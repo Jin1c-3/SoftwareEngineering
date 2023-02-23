@@ -1,3 +1,5 @@
 # SoftwareEngineering
 用做软工大作业
-使用GitHub进行协作
+$$
+ 1 + 1 > 2
+$$
