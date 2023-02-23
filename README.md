@@ -1,3 +1,3 @@
 # SoftwareEngineering
 用做软工大作业
-111111111
+使用GitHub进行协作
