@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * 使用 slf4j 保存日志信息。
  * 此处使用了 统一结果处理 类 Result 用于包装异常信息。
  * <p>
- * 使用Slf4j就是 * 为了能够少写两行代码，不用每次都在类的最前边写上：
+ * 使用Slf4j就是为了能够少写两行代码，不用每次都在类的最前边写上：
  * private static final Logger logger = LoggerFactory.getLogger(this.XXX.class);
  * 我们只需要在类前面添加注解@Slf4j，即可使用log日志的功能了
  */

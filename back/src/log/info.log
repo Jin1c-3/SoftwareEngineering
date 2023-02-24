@@ -1,0 +1,136 @@
+2023-02-24 14:42:03.884 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 38788 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:42:03.886 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:42:04.662 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:42:04.670 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:04.671 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:42:04.671 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:42:04.776 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:42:04.776 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 862 ms
+2023-02-24 14:42:04.997 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:42:05.110 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:05.119 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:42:05.120 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:42:05.131 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:42:05.304 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:05.304 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2023-02-24 14:42:05.338 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:05.339 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:05.343 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-24 14:42:32.539 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 54104 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:42:32.541 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:42:33.201 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:42:33.206 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:33.206 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:42:33.206 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:42:33.286 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:42:33.286 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 716 ms
+2023-02-24 14:42:33.475 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:42:33.578 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:33.586 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:42:33.587 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:42:33.596 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:42:33.863 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:33.864 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2023-02-24 14:42:33.889 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:33.891 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:42:33.895 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-24 14:47:48.775 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 53792 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:47:48.778 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:47:49.408 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:47:49.413 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:47:49.414 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:47:49.414 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:47:49.483 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:47:49.483 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 677 ms
+2023-02-24 14:47:49.660 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:47:49.771 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:47:49.781 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:47:49.782 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:47:49.791 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:47:50.009 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:47:50.009 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2023-02-24 14:47:50.035 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:47:50.036 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:47:50.040 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-24 14:49:17.593 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 44680 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:49:17.595 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:49:18.268 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:49:18.273 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:49:18.274 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:49:18.274 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:49:18.345 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:49:18.345 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 724 ms
+2023-02-24 14:49:18.523 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:49:18.636 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:49:18.645 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:49:18.647 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:49:18.655 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:49:18.817 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:49:18.817 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2023-02-24 14:49:18.846 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:49:18.847 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:49:18.851 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-24 14:51:44.952 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 50580 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:51:44.954 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:51:45.737 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:51:45.743 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:51:45.745 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:51:45.745 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:51:45.840 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:51:45.840 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 849 ms
+2023-02-24 14:51:46.061 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:51:46.191 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:51:46.203 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:51:46.205 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:51:46.216 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:51:46.480 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:51:46.481 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2023-02-24 14:51:46.511 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:51:46.514 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:51:46.519 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-02-24 14:53:36.767 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 57148 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:53:36.769 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:53:37.376 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:53:37.380 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:53:37.381 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:53:37.381 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:53:37.461 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:53:37.461 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 664 ms
+2023-02-24 14:53:37.637 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:53:37.734 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:53:37.744 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:53:37.745 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:53:37.754 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:53:37.783 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-24 14:53:37.942 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 1.454 seconds (JVM running for 2.163)
+2023-02-24 14:54:13.576 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-24 14:54:13.577 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-02-24 14:54:13.577 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2023-02-24 14:56:54.780 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 56468 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-24 14:56:54.791 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-24 14:56:55.399 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-24 14:56:55.405 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:56:55.405 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-24 14:56:55.405 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-24 14:56:55.489 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-24 14:56:55.489 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 674 ms
+2023-02-24 14:56:55.657 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-24 14:56:55.755 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-24 14:56:55.764 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-24 14:56:55.765 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-24 14:56:55.775 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-24 14:56:55.790 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-24 14:56:55.910 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 1.405 seconds (JVM running for 2.056)
+2023-02-24 14:56:57.105 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-24 14:56:57.105 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-02-24 14:56:57.106 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
