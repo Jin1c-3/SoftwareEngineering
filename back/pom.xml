@@ -22,6 +22,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--lombok 用于简化代码的编写。-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -31,6 +32,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!--httpcore 用于状态码的获取。-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.13</version>
         </dependency>
     </dependencies>
 
