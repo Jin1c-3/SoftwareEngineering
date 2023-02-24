@@ -34,7 +34,7 @@ public class SwaggerConfig {
 		return new ApiInfoBuilder()
 				.title("Swagger 测试")
 				.description("Swagger 测试文档")
-				.termsOfServiceUrl("https://www.cnblogs.com/l-y-h/")
+				//.termsOfServiceUrl("https://www.cnblogs.com/l-y-h/")
 				.version("1.0.0")
 				.build();
 	}
