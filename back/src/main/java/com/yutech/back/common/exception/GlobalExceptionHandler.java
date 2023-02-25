@@ -2,8 +2,13 @@ package com.yutech.back.common.exception;
 
 import com.yutech.back.common.utils.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 全局异常处理类。
@@ -51,5 +56,24 @@ public class GlobalExceptionHandler {
 	public Result handlerGlobalException(GlobalException e) {
 		log.error(e.getMessage(), e);
 		return Result.error().message(e.getMessage()).code(e.getCode());
+	}
+
+	/**
+	 * 处理 JSR303 校验的异常
+	 *
+	 * @param e 异常
+	 * @return 处理结果
+	 */
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Result handlerValidException(MethodArgumentNotValidException e) {
+		log.error(e.getMessage(), e);
+		BindingResult result = e.getBindingResult();
+		Map<String, String> map = new HashMap<>();
+		// 获取校验结果，遍历获取捕获到的每个校验结果
+		result.getFieldErrors().forEach(item -> {
+			// 存储得到的校验结果
+			map.put(item.getField(), item.getDefaultMessage());
+		});
+		return Result.error().message("数据校验不合法").data("items", map);
 	}
 }

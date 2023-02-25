@@ -94,6 +94,20 @@
             <artifactId>velocity-engine-core</artifactId>
             <version>2.2</version>
         </dependency>
+
+        <!--使用 JSR303，采用注解的方式，对传入接口的数据进行数据校验，减少额外的校验代码。
+        可以参考：https://www.cnblogs.com/l-y-h/p/12797809.html-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!--此依赖用于SpringBoot的热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

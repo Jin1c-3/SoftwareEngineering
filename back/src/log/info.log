@@ -1,286 +1,58 @@
-2023-02-24 14:42:03.884 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 38788 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:42:03.886 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:42:04.662 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:42:04.670 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:04.671 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:42:04.671 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:42:04.776 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:42:04.776 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 862 ms
-2023-02-24 14:42:04.997 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:42:05.110 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:05.119 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:42:05.120 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:42:05.131 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:42:05.304 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:05.304 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2023-02-24 14:42:05.338 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:05.339 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:05.343 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-02-24 14:42:32.539 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 54104 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:42:32.541 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:42:33.201 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:42:33.206 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:33.206 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:42:33.206 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:42:33.286 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:42:33.286 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 716 ms
-2023-02-24 14:42:33.475 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:42:33.578 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:33.586 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:42:33.587 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:42:33.596 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:42:33.863 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:33.864 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2023-02-24 14:42:33.889 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:33.891 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:42:33.895 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-02-24 14:47:48.775 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 53792 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:47:48.778 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:47:49.408 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:47:49.413 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:47:49.414 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:47:49.414 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:47:49.483 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:47:49.483 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 677 ms
-2023-02-24 14:47:49.660 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:47:49.771 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:47:49.781 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:47:49.782 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:47:49.791 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:47:50.009 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:47:50.009 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2023-02-24 14:47:50.035 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:47:50.036 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:47:50.040 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-02-24 14:49:17.593 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 44680 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:49:17.595 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:49:18.268 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:49:18.273 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:49:18.274 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:49:18.274 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:49:18.345 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:49:18.345 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 724 ms
-2023-02-24 14:49:18.523 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:49:18.636 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:49:18.645 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:49:18.647 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:49:18.655 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:49:18.817 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:49:18.817 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2023-02-24 14:49:18.846 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:49:18.847 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:49:18.851 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-02-24 14:51:44.952 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 50580 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:51:44.954 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:51:45.737 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:51:45.743 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:51:45.745 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:51:45.745 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:51:45.840 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:51:45.840 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 849 ms
-2023-02-24 14:51:46.061 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:51:46.191 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:51:46.203 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:51:46.205 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:51:46.216 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:51:46.480 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:51:46.481 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2023-02-24 14:51:46.511 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:51:46.514 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:51:46.519 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-02-24 14:53:36.767 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 57148 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:53:36.769 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:53:37.376 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:53:37.380 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:53:37.381 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:53:37.381 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:53:37.461 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:53:37.461 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 664 ms
-2023-02-24 14:53:37.637 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:53:37.734 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:53:37.744 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:53:37.745 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:53:37.754 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:53:37.783 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 14:53:37.942 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 1.454 seconds (JVM running for 2.163)
-2023-02-24 14:54:13.576 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-24 14:54:13.577 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-02-24 14:54:13.577 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2023-02-24 14:56:54.780 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 56468 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 14:56:54.791 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 14:56:55.399 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 14:56:55.405 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:56:55.405 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 14:56:55.405 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 14:56:55.489 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 14:56:55.489 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 674 ms
-2023-02-24 14:56:55.657 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 14:56:55.755 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 14:56:55.764 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 14:56:55.765 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 14:56:55.775 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 14:56:55.790 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 14:56:55.910 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 1.405 seconds (JVM running for 2.056)
-2023-02-24 14:56:57.105 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-24 14:56:57.105 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-02-24 14:56:57.106 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2023-02-24 16:38:58.612 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 18724 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:38:58.616 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 16:39:28.734 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 3740 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:39:28.736 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 16:40:02.441 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 20844 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:40:02.443 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:40:43.790 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 26740 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:40:43.792 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 16:41:39.317 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 21672 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:41:39.319 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 16:41:40.006 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 16:41:40.011 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 16:41:40.011 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 16:41:40.011 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 16:41:40.093 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 16:41:40.094 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 747 ms
-2023-02-24 16:41:40.278 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:41:40.931 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 16:41:40.941 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 16:41:40.942 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:41:40.953 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:41:40.967 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:41:41.025 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 1.968 seconds (JVM running for 2.531)
-2023-02-24 16:43:45.380 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 2204 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:43:45.383 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-02-24 16:43:46.171 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-02-24 16:43:46.177 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-24 16:43:46.178 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-02-24 16:43:46.178 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-24 16:43:46.268 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-02-24 16:43:46.268 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 847 ms
-2023-02-24 16:43:46.502 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:43:47.087 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-02-24 16:43:47.099 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-24 16:43:47.099 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:43:47.109 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:43:47.125 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:43:47.190 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 2.121 seconds (JVM running for 2.771)
-2023-02-24 16:46:00.602 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 14224 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:46:00.604 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:46:01.829 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:46:02.992 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:46:03.016 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:46:03.043 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:46:03.163 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.833 seconds (JVM running for 3.488)
-2023-02-24 16:50:32.041 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 3016 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:50:32.042 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:50:33.254 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:50:34.452 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:50:34.467 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:50:34.487 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:50:34.571 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.831 seconds (JVM running for 3.498)
-2023-02-24 16:54:29.998 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 29088 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:54:30.000 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:54:31.341 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:54:32.581 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:54:32.597 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:54:32.617 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:54:32.708 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.0 seconds (JVM running for 3.761)
-2023-02-24 16:55:17.966 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 11240 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:55:17.968 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:55:19.244 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:55:20.614 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:55:20.638 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:55:20.663 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:55:20.791 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.131 seconds (JVM running for 3.864)
-2023-02-24 16:57:06.770 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 2528 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:57:06.772 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:57:08.004 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:57:09.235 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:57:09.258 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:57:09.278 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:57:09.364 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.869 seconds (JVM running for 3.553)
-2023-02-24 16:57:30.954 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 29220 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:57:30.955 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:57:32.209 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:57:33.449 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:57:33.477 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:57:33.524 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:57:33.636 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.963 seconds (JVM running for 3.646)
-2023-02-24 16:58:38.601 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 2968 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:58:38.603 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:58:39.922 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:58:41.366 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:58:41.382 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:58:41.404 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:58:41.488 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.176 seconds (JVM running for 3.962)
-2023-02-24 16:59:05.614 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 6452 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 16:59:05.616 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 16:59:06.812 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 16:59:08.278 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 16:59:08.297 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 16:59:08.318 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 16:59:08.406 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.08 seconds (JVM running for 3.771)
-2023-02-24 17:00:11.429 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 4576 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:00:11.432 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:00:12.713 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:00:14.216 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:00:14.239 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:00:14.261 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:00:14.372 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.217 seconds (JVM running for 3.992)
-2023-02-24 17:03:45.052 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 23516 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:03:45.054 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:03:46.267 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:03:47.953 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:03:47.975 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:03:47.994 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:03:48.079 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.341 seconds (JVM running for 4.095)
-2023-02-24 17:05:13.418 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 3052 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:05:13.419 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:05:14.649 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:05:15.926 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:05:15.947 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:05:15.969 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:05:16.065 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.921 seconds (JVM running for 3.6)
-2023-02-24 17:06:32.164 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 20048 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:06:32.166 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:06:33.359 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:06:34.847 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:06:34.866 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:06:34.897 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:06:34.978 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.092 seconds (JVM running for 3.787)
-2023-02-24 17:06:56.074 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 22404 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:06:56.076 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:06:57.296 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:06:58.383 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:06:58.403 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:06:58.423 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:06:58.528 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.739 seconds (JVM running for 3.433)
-2023-02-24 17:07:09.117 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 20064 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:07:09.118 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:07:10.307 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:07:11.422 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:07:11.442 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:07:11.462 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:07:11.560 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.726 seconds (JVM running for 3.405)
-2023-02-24 17:07:58.583 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 29336 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:07:58.585 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:08:00.084 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:08:01.541 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:08:01.572 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:08:01.599 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:08:01.717 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.49 seconds (JVM running for 4.286)
-2023-02-24 17:09:54.189 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 21712 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
-2023-02-24 17:09:54.191 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
-2023-02-24 17:09:56.795 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-24 17:09:57.495 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
-2023-02-24 17:09:57.525 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
-2023-02-24 17:09:57.555 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
-2023-02-24 17:09:57.734 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.909 seconds (JVM running for 4.83)
+2023-02-25 10:25:18.314 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 452 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-25 10:25:18.319 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-02-25 10:25:20.507 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-25 10:25:21.017 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-25 10:25:21.042 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-25 10:25:21.074 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-25 10:25:21.214 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.17 seconds (JVM running for 3.896)
+2023-02-25 10:37:58.990 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 20304 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-25 10:37:58.992 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-02-25 10:38:01.347 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-25 10:38:01.857 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-25 10:38:01.883 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-25 10:38:01.915 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-25 10:38:02.054 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.338 seconds (JVM running for 3.988)
+2023-02-25 10:52:05.296 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 38920 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-25 10:52:05.297 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-02-25 10:52:07.541 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-25 10:52:08.200 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-25 10:52:08.235 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-25 10:52:08.265 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-25 10:52:08.391 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.383 seconds (JVM running for 4.113)
+2023-02-25 10:52:25.864 [main] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 30288 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-25 10:52:25.866 [main] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-25 10:52:26.624 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-25 10:52:26.633 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-25 10:52:26.633 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-25 10:52:26.634 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-25 10:52:26.726 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-25 10:52:26.726 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 833 ms
+2023-02-25 10:52:27.630 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-25 10:52:27.784 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-25 10:52:27.795 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-25 10:52:27.796 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-25 10:52:27.805 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-25 10:52:27.831 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-25 10:52:27.914 [main] INFO  com.yutech.back.BackApplication - Started BackApplication in 2.31 seconds (JVM running for 3.059)
+2023-02-25 10:52:29.592 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-25 10:52:29.593 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-02-25 10:52:29.593 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2023-02-25 20:26:19.397 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-02-25 20:26:19.406 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 24260 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-02-25 20:26:19.407 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-02-25 20:26:19.451 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-25 20:26:19.452 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-25 20:26:20.466 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-02-25 20:26:20.471 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-25 20:26:20.472 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-02-25 20:26:20.472 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-25 20:26:20.524 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-02-25 20:26:20.524 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1072 ms
+2023-02-25 20:26:21.482 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-25 20:26:21.553 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-02-25 20:26:21.643 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-02-25 20:26:21.652 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-25 20:26:21.653 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-02-25 20:26:21.663 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-02-25 20:26:21.678 [restartedMain] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-02-25 20:26:21.771 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 2.683 seconds (JVM running for 3.405)
