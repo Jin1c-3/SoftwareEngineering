@@ -2,8 +2,8 @@ package com.yutech.back.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.yutech.back.common.validator.group.AddGruop;
-import com.yutech.back.common.validator.group.UpdateGruop;
+import com.yutech.back.common.validator.group.AddGroup;
+import com.yutech.back.common.validator.group.UpdateGroup;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -41,11 +41,11 @@ public class User implements Serializable {
 	@TableId(value = "id", type = IdType.AUTO)
 	private Integer id;
 
-	@NotEmpty(message = "用户名不能为空", groups = {AddGruop.class, UpdateGruop.class})
+	@NotEmpty(message = "用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
 	@ApiModelProperty(value = "用户名")
 	private String username;
 
-	@NotEmpty(message = "用户密码不能为空", groups = {AddGruop.class, UpdateGruop.class})
+	@NotEmpty(message = "用户密码不能为空", groups = {AddGroup.class, UpdateGroup.class})
 	@ApiModelProperty(value = "用户密码")
 	private String password;
 

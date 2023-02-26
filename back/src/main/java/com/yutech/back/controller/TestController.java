@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.common.validator.group.AddGruop;
-import com.yutech.back.common.validator.group.UpdateGruop;
+import com.yutech.back.common.validator.group.AddGroup;
+import com.yutech.back.common.validator.group.UpdateGroup;
 import com.yutech.back.entity.User;
 import com.yutech.back.service.UserService;
 import io.swagger.annotations.Api;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/test")
 @Api(tags = "测试页面")
+@CrossOrigin
 public class TestController {
 	/**
 	 * 用于测试 异常 是否能被统一处理，并返回指定格式的数据
@@ -61,7 +62,7 @@ public class TestController {
 
 	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
 	@PostMapping("testValidator/save")
-	public Result testValidatorSave(@Validated({AddGruop.class}) @RequestBody User user) {
+	public Result testValidatorSave(@Validated({AddGroup.class}) @RequestBody User user) {
 		if(userService.save(user)) {
 			return Result.ok().message("数据添加成功");
 		}
@@ -70,7 +71,7 @@ public class TestController {
 
 	@ApiOperation(value = "测试 JSR 303 更新时的校验规则")
 	@PostMapping("testValidator/update")
-	public Result testValidatorUpdate(@Validated({UpdateGruop.class}) @RequestBody User user) {
+	public Result testValidatorUpdate(@Validated({UpdateGroup.class}) @RequestBody User user) {
 		UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
 		updateWrapper.eq("username", user.getUsername());
 		if(userService.update(user, updateWrapper)) {
