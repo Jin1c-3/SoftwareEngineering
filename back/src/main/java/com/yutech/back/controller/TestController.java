@@ -2,8 +2,10 @@ package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mysql.cj.util.StringUtils;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
+import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
@@ -63,7 +65,7 @@ public class TestController {
 	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
 	@PostMapping("testValidator/save")
 	public Result testValidatorSave(@Validated({AddGroup.class}) @RequestBody User user) {
-		if(userService.save(user)) {
+		if (userService.save(user)) {
 			return Result.ok().message("数据添加成功");
 		}
 		return Result.error().message("数据添加失败");
@@ -74,9 +76,21 @@ public class TestController {
 	public Result testValidatorUpdate(@Validated({UpdateGroup.class}) @RequestBody User user) {
 		UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
 		updateWrapper.eq("username", user.getUsername());
-		if(userService.update(user, updateWrapper)) {
+		if (userService.update(user, updateWrapper)) {
 			return Result.ok().message("数据更新成功");
 		}
 		return Result.error().message("数据更新失败");
+	}
+
+	@ApiOperation(value = "测试 token 验证的效果")
+	@PostMapping("testTokenValidation/login")
+	public Result testValidateUserByToken(@RequestBody User user) {
+		String username = user.getUsername();
+		String password = user.getPassword();
+		String token = JwtUtil.sign(username, password);
+		if (StringUtils.isNullOrEmpty(token)) {
+			return Result.ok().message("用户token发放成功").data("token", token);
+		}
+		return Result.error().message("用户token验证失效");
 	}
 }
