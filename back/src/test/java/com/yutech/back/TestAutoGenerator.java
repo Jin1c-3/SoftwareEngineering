@@ -14,8 +14,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class TestAutoGenerator {
+
+	private final String databaseName = "books";
+	private final String userName = "root";
+	private final String password = "root";
+	private final String[] tableNames = {"BookInfo", "CardInfo"};
+
+
 	@Test
 	public void autoGenerate() {
+
 		// Step1：代码生成器
 		AutoGenerator mpg = new AutoGenerator();
 
@@ -38,7 +46,7 @@ public class TestAutoGenerator {
 		//雪花算法（雪花）是微博开源的分布式ID生成算法其核心思想就是：使用一个64位的长型的数字作为全局唯一ID。在分布式系统中的应用十分广泛，且ID引入了时间戳，基本上保持自增的。
 		//对于像MySQL这样的支持主键自动递增的数据库，我们可以使用IdType.AUTO策略。
 		//无（无状态）如果使用IdType.NONE策略，表示未设置主键类型（注解里等于跟随上下，左右里约等于INPUT）
-		gc.setIdType(IdType.ASSIGN_ID);
+		gc.setIdType(IdType.AUTO);
 		// 配置日期类型，此处为 ONLY_DATE（可选）
 		gc.setDateType(DateType.ONLY_DATE);
 		// 默认生成的 service 会有 I 前缀
@@ -48,15 +56,15 @@ public class TestAutoGenerator {
 		// Step3：数据源配置（需要修改）
 		DataSourceConfig dsc = new DataSourceConfig();
 		// 配置数据库 url 地址
-		dsc.setUrl("jdbc:mysql://localhost:3306/covid?useUnicode=true&characterEncoding=utf8");
+		dsc.setUrl("jdbc:sqlserver://localhost:1433;database=" + databaseName + ";encrypt=false");
 		// dsc.setSchemaName("testMyBatisPlus"); // 可以直接在 url 中指定数据库名
 		// 配置数据库驱动
-		dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+		dsc.setDriverName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		// 配置数据库连接用户名
-		dsc.setUsername("root");
+		dsc.setUsername(userName);
 		// 配置数据库连接密码
-		dsc.setPassword("root");
-		dsc.setDbType(DbType.MYSQL);
+		dsc.setPassword(password);
+		dsc.setDbType(DbType.SQL_SERVER);
 		mpg.setDataSource(dsc);
 
 		// Step:4：包配置
@@ -78,7 +86,7 @@ public class TestAutoGenerator {
 		// Step5：策略配置（数据库表配置）
 		StrategyConfig strategy = new StrategyConfig();
 		// 指定表名（可以同时操作多个表，使用 , 隔开）（需要修改）
-		strategy.setInclude("user", "department");
+		strategy.setInclude(tableNames);
 		// 配置数据表与实体类名之间映射的策略
 		strategy.setNaming(NamingStrategy.underline_to_camel);
 		// 配置数据表的字段与实体类的属性名之间映射的策略

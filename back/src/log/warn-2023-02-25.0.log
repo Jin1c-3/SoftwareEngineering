@@ -1,0 +1,6 @@
+2023-02-25 10:25:22.798 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.unicode' has been deprecated in favor of 'resource.loader.file.unicode'
+2023-02-25 10:25:22.799 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.class' has been deprecated in favor of 'resource.loader.file.class'
+2023-02-25 10:38:03.356 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.unicode' has been deprecated in favor of 'resource.loader.file.unicode'
+2023-02-25 10:38:03.357 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.class' has been deprecated in favor of 'resource.loader.file.class'
+2023-02-25 10:52:09.614 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.unicode' has been deprecated in favor of 'resource.loader.file.unicode'
+2023-02-25 10:52:09.614 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.class' has been deprecated in favor of 'resource.loader.file.class'
