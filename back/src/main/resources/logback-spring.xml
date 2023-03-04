@@ -17,7 +17,7 @@
     <!-- 若项目部署到 linux 服务器上，此处路径必须得改 -->
     <!-- <property name="log.path" value="E:/myProject/log"/> -->
     <!-- 将日志文件输出到 当前目录下的 log 文件夹 -->
-    <property name="log.path" value="src/log"/>
+    <property name="log.path" value="${LOG_PATH:-.}/src/log"/>
 
     <!-- Step2.2 定义彩色日志以及日志输出格式 -->
     <!-- 配置格式变量：CONSOLE_LOG_PATTERN 彩色日志格式 -->

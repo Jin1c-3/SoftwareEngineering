@@ -1,0 +1,124 @@
+2023-03-03 22:48:40.807 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 3188 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 22:48:40.812 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 22:48:40.819 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 22:48:43.162 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 22:48:43.709 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 22:48:43.745 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 22:48:43.778 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 22:48:43.939 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.449 seconds (JVM running for 4.208)
+2023-03-03 22:53:27.302 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 48560 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 22:53:27.304 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 22:53:27.310 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 22:53:30.079 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 22:53:30.813 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 22:53:30.849 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 22:53:30.891 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 22:53:31.054 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 4.184 seconds (JVM running for 4.91)
+2023-03-03 22:54:43.956 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 43248 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 22:54:43.958 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 22:54:43.963 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 22:54:46.695 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 22:54:47.297 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 22:54:47.318 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 22:54:47.352 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 22:54:47.495 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.858 seconds (JVM running for 4.514)
+2023-03-03 22:55:36.227 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 7512 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 22:55:36.228 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 22:55:36.235 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 22:55:38.761 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 22:55:39.370 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 22:55:39.402 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 22:55:39.435 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 22:55:39.584 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.635 seconds (JVM running for 4.33)
+2023-03-03 23:00:50.864 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 47284 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:00:50.866 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:00:50.872 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:00:53.401 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:00:53.993 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:00:54.018 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:00:54.045 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:00:54.192 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.67 seconds (JVM running for 4.447)
+2023-03-03 23:02:58.089 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 48636 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:02:58.097 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:02:58.099 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:03:00.252 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:03:00.817 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:03:00.838 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:03:00.866 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:03:00.990 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.176 seconds (JVM running for 3.849)
+2023-03-03 23:03:17.330 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 13784 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:03:17.331 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:03:17.336 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:03:19.402 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:03:19.976 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:03:20.004 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:03:20.032 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:03:20.184 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.136 seconds (JVM running for 3.85)
+2023-03-03 23:04:13.412 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 47856 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:04:13.413 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:04:13.418 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:04:15.821 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:04:16.388 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:04:16.413 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:04:16.439 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:04:16.587 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.494 seconds (JVM running for 4.177)
+2023-03-03 23:04:36.324 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 45708 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:04:36.326 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:04:36.332 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:04:38.643 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:04:39.288 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:04:39.319 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:04:39.348 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:04:39.507 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.477 seconds (JVM running for 4.148)
+2023-03-03 23:06:06.808 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 3480 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:06:06.809 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:06:06.817 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:06:09.594 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:06:10.190 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:06:10.215 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:06:10.255 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:06:10.419 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.961 seconds (JVM running for 4.748)
+2023-03-03 23:09:19.189 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 36260 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:09:19.191 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:09:19.197 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:09:20.911 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:09:21.523 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:09:21.552 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:09:21.597 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:09:21.754 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.864 seconds (JVM running for 3.543)
+2023-03-03 23:10:46.128 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 51148 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:10:46.130 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:10:46.135 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:10:48.700 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:10:49.332 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:10:49.357 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:10:49.386 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:10:49.527 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.728 seconds (JVM running for 4.383)
+2023-03-03 23:11:23.785 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 51068 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:11:23.787 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:11:23.794 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:11:26.345 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:11:26.975 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:11:27.000 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:11:27.027 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:11:27.170 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.672 seconds (JVM running for 4.347)
+2023-03-03 23:15:24.685 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 49632 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:15:24.686 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:15:24.693 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:15:25.726 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-03-03 23:15:26.531 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-03-03 23:15:27.339 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:15:27.901 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:15:27.933 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:15:27.964 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:15:28.117 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.716 seconds (JVM running for 4.451)
+2023-03-03 23:15:29.187 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-03-03 23:15:29.189 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-03-03 23:16:46.118 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 38504 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-03 23:16:46.120 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-03 23:16:46.126 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-03 23:16:47.860 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-03 23:16:48.395 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-03 23:16:48.425 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-03 23:16:48.470 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-03 23:16:48.642 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 2.826 seconds (JVM running for 3.504)
