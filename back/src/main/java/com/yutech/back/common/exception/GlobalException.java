@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
  */
 @Data
 public class GlobalException extends RuntimeException {
+
 	/**
 	 * 保存异常信息
 	 */

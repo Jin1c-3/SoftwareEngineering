@@ -8,6 +8,8 @@ import com.yutech.back.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 服务实现类
  *
@@ -28,5 +30,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	public String getPasswordByUsername(String username) {
 		log.info("获取用户 " + username + " 的密码");
 		return userMapper.selectOne(new QueryWrapper<User>().eq("username", username)).getPassword();
+	}
+
+	public List<User> selectAll() {
+		log.info("获取所有用户列表");
+		return userMapper.selectList(null);
 	}
 }

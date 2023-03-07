@@ -2,6 +2,8 @@ package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mysql.cj.util.StringUtils;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
@@ -16,6 +18,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/test")
@@ -39,7 +43,7 @@ public class TestController {
 
 	/**
 	 * 访问项目的 swagger-ui.html 页面，即可访问到 Swagger 页面。
-	 * 比如：http://localhost:8080/swagger-ui.html，
+	 * 比如：<a href="http://localhost:8080/swagger-ui.html">...</a>，
 	 * 只有标注了 @ApiOperation 注解的接口才会被显示在 接口文档中。
 	 */
 	@ApiOperation(value = "测试 Swagger")
@@ -58,10 +62,19 @@ public class TestController {
 	@ApiOperation(value = "测试分页插件")
 	@GetMapping("/testMyBatisPlus/page/{current}/{size}")
 	public Result testPage(@PathVariable("current") Long current, @PathVariable("size") Long size) {
-		Page<User> page = new Page(current, size);
+		Page<User> page = new Page<>(current, size);
 		return Result.ok().data("page", userService.page(page, null));
 	}
 
+	@GetMapping("/testPageHelper/page/{current}/{size}")
+	public Result testPageHelper(@PathVariable("current") int current, @PathVariable("size") int size) {
+		PageHelper.startPage(current, size);
+		List<User> userList = userService.selectAll();
+		PageInfo<User> userPageInfo = new PageInfo<>(userList);
+		return Result.ok().data("page", userPageInfo.getPages());
+	}
+
+	//RequestBody注解只能用于Post请求，不能用于Get。因为Get请求没有Body
 	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
 	@PostMapping("testValidator/save")
 	public Result testValidatorSave(@Validated({AddGroup.class}) @RequestBody User user) {
@@ -93,4 +106,5 @@ public class TestController {
 		}
 		return Result.error().message("用户token验证失效");
 	}
+
 }

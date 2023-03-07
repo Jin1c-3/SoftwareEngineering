@@ -3,6 +3,8 @@ package com.yutech.back.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yutech.back.entity.User;
 
+import java.util.List;
+
 /**
  * <p>
  * 服务类
@@ -13,4 +15,6 @@ import com.yutech.back.entity.User;
  */
 public interface UserService extends IService<User> {
 	public String getPasswordByUsername(String username);
+
+	public List<User> selectAll();
 }
