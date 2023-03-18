@@ -1,0 +1,8 @@
+2023-03-04 08:46:30.512 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.unicode' has been deprecated in favor of 'resource.loader.file.unicode'
+2023-03-04 08:46:30.514 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.path' has been deprecated in favor of 'resource.loader.file.path'
+2023-03-04 08:46:30.515 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.class' has been deprecated in favor of 'resource.loader.file.class'
+2023-03-04 08:46:30.515 [main] WARN  org.apache.velocity.deprecation - configuration key 'input.encoding' has been deprecated in favor of 'resource.default_encoding'
+2023-03-04 08:49:10.324 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.unicode' has been deprecated in favor of 'resource.loader.file.unicode'
+2023-03-04 08:49:10.325 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.path' has been deprecated in favor of 'resource.loader.file.path'
+2023-03-04 08:49:10.325 [main] WARN  org.apache.velocity.deprecation - configuration key 'file.resource.loader.class' has been deprecated in favor of 'resource.loader.file.class'
+2023-03-04 08:49:10.325 [main] WARN  org.apache.velocity.deprecation - configuration key 'input.encoding' has been deprecated in favor of 'resource.default_encoding'

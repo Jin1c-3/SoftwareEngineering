@@ -1,0 +1,58 @@
+2023-03-18 13:22:49.597 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 17924 (started by yujin in C:\Users\yujin\Desktop\DBSProj\back)
+2023-03-18 13:22:49.603 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-18 13:22:49.609 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-18 13:22:50.966 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-03-18 13:23:59.994 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 16952 (started by yujin in C:\Users\yujin\Desktop\DBSProj\back)
+2023-03-18 13:23:59.997 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-18 13:24:00.002 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-18 13:24:01.344 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-03-18 16:19:53.437 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-18 16:19:53.440 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 48228 (C:\Users\yujin\Desktop\DBSProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\DBSProj\back)
+2023-03-18 16:19:53.440 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-03-18 16:19:53.468 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-18 16:19:53.468 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-18 16:19:54.460 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-03-18 16:19:54.467 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-18 16:19:54.468 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-03-18 16:19:54.468 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-18 16:19:54.538 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-03-18 16:19:54.538 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1069 ms
+2023-03-18 16:19:55.076 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-18 16:19:55.163 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-03-18 16:19:55.295 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-03-18 16:19:55.307 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-18 16:19:55.309 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-18 16:19:55.322 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-18 16:19:55.342 [restartedMain] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-18 16:19:55.449 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 2.305 seconds (JVM running for 3.041)
+2023-03-18 16:23:34.493 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-18 16:23:34.495 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 10376 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-18 16:23:34.496 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-03-18 16:23:34.526 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-18 16:23:34.526 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-18 16:23:36.119 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-03-18 16:23:36.126 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-18 16:23:36.126 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-03-18 16:23:36.127 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-18 16:23:36.231 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-03-18 16:23:36.232 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1706 ms
+2023-03-18 16:23:37.031 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-18 16:23:37.155 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-03-18 16:23:37.316 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-03-18 16:23:37.331 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-18 16:23:37.332 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-18 16:23:37.345 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-18 16:23:37.366 [restartedMain] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-18 16:23:37.485 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.371 seconds (JVM running for 4.383)
+2023-03-18 16:32:40.278 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 63056 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-18 16:32:40.279 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-18 16:32:40.286 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-18 16:32:42.547 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-18 16:32:43.317 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-18 16:32:43.351 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-18 16:32:43.390 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-18 16:32:43.565 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.707 seconds (JVM running for 4.608)
