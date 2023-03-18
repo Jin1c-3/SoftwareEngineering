@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2023-03-18 13:22:49.597 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 17924 (started by yujin in C:\Users\yujin\Desktop\DBSProj\back)
 2023-03-18 13:22:49.603 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
 2023-03-18 13:22:49.609 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
@@ -56,3 +57,13 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2023-03-18 16:32:43.351 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
 2023-03-18 16:32:43.390 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
 2023-03-18 16:32:43.565 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.707 seconds (JVM running for 4.608)
+=======
+2023-03-07 20:06:26.787 [main] INFO  com.yutech.back.TestAutoGenerator - Starting TestAutoGenerator using Java 1.8.0_131 on Qing with PID 7568 (started by yujin in C:\Users\yujin\Desktop\SEProj\back)
+2023-03-07 20:06:26.793 [main] INFO  com.yutech.back.TestAutoGenerator - The following 1 profile is active: "dev"
+2023-03-07 20:06:26.799 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-03-07 20:06:28.944 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-03-07 20:06:29.450 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2023-03-07 20:06:29.480 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2023-03-07 20:06:29.515 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2023-03-07 20:06:29.659 [main] INFO  com.yutech.back.TestAutoGenerator - Started TestAutoGenerator in 3.269 seconds (JVM running for 4.216)
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4

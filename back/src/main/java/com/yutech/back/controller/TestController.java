@@ -2,6 +2,11 @@ package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+<<<<<<< HEAD
+=======
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 import com.mysql.cj.util.StringUtils;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
@@ -10,7 +15,10 @@ import com.yutech.back.common.utils.Result;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import com.yutech.back.entity.User;
+<<<<<<< HEAD
 import com.yutech.back.service.EMailSenderService;
+=======
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 import com.yutech.back.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,6 +26,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 @RestController
 @RequestMapping("/test")
 @Api(tags = "测试页面")
@@ -63,6 +76,7 @@ public class TestController {
 		return Result.ok().data("page", userService.page(page, null));
 	}
 
+<<<<<<< HEAD
 //	@GetMapping("/testPageHelper/page/{current}/{size}")
 //	public Result testPageHelper(@PathVariable("current") int current, @PathVariable("size") int size) {
 //		PageHelper.startPage(current, size);
@@ -74,6 +88,19 @@ public class TestController {
 	//RequestBody注解只能用于Post请求，不能用于Get。因为Get请求没有Body
 	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
 	@PostMapping("/testValidator/save")
+=======
+	@GetMapping("/testPageHelper/page/{current}/{size}")
+	public Result testPageHelper(@PathVariable("current") int current, @PathVariable("size") int size) {
+		PageHelper.startPage(current, size);
+		List<User> userList = userService.selectAll();
+		PageInfo<User> userPageInfo = new PageInfo<>(userList);
+		return Result.ok().data("page", userPageInfo.getPages());
+	}
+
+	//RequestBody注解只能用于Post请求，不能用于Get。因为Get请求没有Body
+	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
+	@PostMapping("testValidator/save")
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 	public Result testValidatorSave(@Validated({AddGroup.class}) @RequestBody User user) {
 		if (userService.save(user)) {
 			return Result.ok().message("数据添加成功");
@@ -82,7 +109,11 @@ public class TestController {
 	}
 
 	@ApiOperation(value = "测试 JSR 303 更新时的校验规则")
+<<<<<<< HEAD
 	@PostMapping("/testValidator/update")
+=======
+	@PostMapping("testValidator/update")
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 	public Result testValidatorUpdate(@Validated({UpdateGroup.class}) @RequestBody User user) {
 		UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
 		updateWrapper.eq("username", user.getUsername());
@@ -93,7 +124,11 @@ public class TestController {
 	}
 
 	@ApiOperation(value = "测试 token 验证的效果")
+<<<<<<< HEAD
 	@PostMapping("/testTokenValidation/login")
+=======
+	@PostMapping("testTokenValidation/login")
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 	public Result testValidateUserByToken(@RequestBody User user) {
 		String username = user.getUsername();
 		String password = user.getPassword();
@@ -104,6 +139,7 @@ public class TestController {
 		return Result.error().message("用户token验证失效");
 	}
 
+<<<<<<< HEAD
 	@Autowired
 	private EMailSenderService eMailSenderService;
 
@@ -113,4 +149,6 @@ public class TestController {
 		eMailSenderService.sendCodeMail(to, code);
 		return Result.ok();
 	}
+=======
+>>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 }
