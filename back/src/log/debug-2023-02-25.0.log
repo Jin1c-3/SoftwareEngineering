@@ -1,5 +1,0 @@
-2023-02-25 10:25:18.317 [main] DEBUG com.yutech.back.TestAutoGenerator - Running with Spring Boot v2.7.9, Spring v5.3.25
-2023-02-25 10:37:58.992 [main] DEBUG com.yutech.back.TestAutoGenerator - Running with Spring Boot v2.7.9, Spring v5.3.25
-2023-02-25 10:52:05.297 [main] DEBUG com.yutech.back.TestAutoGenerator - Running with Spring Boot v2.7.9, Spring v5.3.25
-2023-02-25 10:52:25.866 [main] DEBUG com.yutech.back.BackApplication - Running with Spring Boot v2.7.9, Spring v5.3.25
-2023-02-25 20:26:19.406 [restartedMain] DEBUG com.yutech.back.BackApplication - Running with Spring Boot v2.7.9, Spring v5.3.25

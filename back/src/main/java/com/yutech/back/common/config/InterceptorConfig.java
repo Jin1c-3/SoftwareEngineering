@@ -15,13 +15,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authenticationInterceptor())
-<<<<<<< HEAD
 				//这里配置要拦截的路径
 				.addPathPatterns("/**")
 				//这里配置不要拦截的路径
-=======
-				.addPathPatterns("/**")
->>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 				.excludePathPatterns("/**/login",
 						"/**/login.html",
 						"/**/register",
@@ -37,12 +33,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 						"/media/**",
 						"/vendors/**",
 						"/avatar/**",
-<<<<<<< HEAD
 						"/download/**",
 						"/test/**");
-=======
-						"/download/**");
->>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 	}
 
 	@Bean
@@ -53,15 +45,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-<<<<<<< HEAD
 				.allowedOriginPatterns("*")
 				.allowCredentials(true)
 				.allowedMethods("*")
-=======
-				.allowedOrigins("*")
-				.allowCredentials(true)
-				.allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS", "HEAD")
->>>>>>> 6aeb4a1e6db15a6f65b781cad5d4b29a7c0e77d4
 				.maxAge(60 * 60 * 24);
 	}
 }
