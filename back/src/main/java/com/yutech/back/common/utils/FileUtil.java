@@ -5,12 +5,13 @@ import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotEmpty;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -25,8 +26,7 @@ import java.util.UUID;
 @Slf4j
 public class FileUtil {
 	//绑定文件上传路径到uploadPath
-	@Value("${web.upload-path}")
-	private static String uploadPath;
+	private static final String uploadPath = "C:/WorkSpace/web/SEProj/";
 
 	private static final Format sdf = new SimpleDateFormat("yyyy/MM/dd/");
 
@@ -81,5 +81,26 @@ public class FileUtil {
 			paths.add(storeMultipartFile(prePath, file, request));
 		}
 		return paths.toArray(new String[files.length]);
+	}
+
+	/**
+	 * 读取txt文件的内容
+	 *
+	 * @param path 被读取的txt文件路径
+	 * @return txt文件的内容
+	 */
+	public static String readFileFromTxt(String path) {
+		log.info("正在从此路径读取txt文件: {}", path);
+		StringBuilder sb = new StringBuilder();
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+			char[] buf = new char[1024];
+			int len = -1;
+			while ((len = bufferedReader.read(buf)) != -1) {
+				sb.append(new String(buf, 0, len));
+			}
+		} catch (IOException e) {
+			throw new GlobalException("文件读取发生问题，文件可能不存在" + ExceptionUtil.getMessage(e));
+		}
+		return sb.toString();
 	}
 }

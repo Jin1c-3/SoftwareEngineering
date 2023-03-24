@@ -10,6 +10,7 @@ import com.yutech.back.common.utils.Result;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import com.yutech.back.entity.User;
+import com.yutech.back.service.AlipayService;
 import com.yutech.back.service.EMailSenderService;
 import com.yutech.back.service.UserService;
 import io.swagger.annotations.Api;
@@ -17,6 +18,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/test")
@@ -107,10 +110,27 @@ public class TestController {
 	@Autowired
 	private EMailSenderService eMailSenderService;
 
+	/**
+	 * 测试通过QQ邮件发送验证码的基础功能
+	 *
+	 * @param to   发到哪儿去
+	 * @param code 验证码是什么
+	 * @return Result
+	 */
 	@ApiOperation(value = "测试通过QQ邮件发送验证码的基础功能")
 	@RequestMapping("/testCodeMailing/{to}/{code}")
 	public Result testCodeMailing(@PathVariable("to") String to, @PathVariable("code") String code) {
 		eMailSenderService.sendCodeMail(to, code);
 		return Result.ok();
+	}
+
+	@Autowired
+	private AlipayService alipayService;
+
+	@ApiOperation(value = "测试通过支付宝支付的基础功能")
+	@RequestMapping("/testAlipay/{subject}/{money}")
+	public String testAlipay(@PathVariable("subject") String subject, @PathVariable("money") BigDecimal money) {
+		return alipayService.toPay(subject, money, null);
+//		return Result.ok();
 	}
 }
