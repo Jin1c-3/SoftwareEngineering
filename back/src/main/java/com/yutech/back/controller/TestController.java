@@ -3,6 +3,7 @@ package com.yutech.back.controller;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mysql.cj.util.StringUtils;
+import com.yutech.back.bo.PaymentBO;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
 import com.yutech.back.common.utils.JwtUtil;
@@ -130,7 +131,7 @@ public class TestController {
 	@ApiOperation(value = "测试通过支付宝支付的基础功能")
 	@RequestMapping("/testAlipay/{subject}/{money}")
 	public String testAlipay(@PathVariable("subject") String subject, @PathVariable("money") BigDecimal money) {
-		return alipayService.toPay(subject, money, null);
+		return alipayService.toPay(new PaymentBO(null, subject, money));
 //		return Result.ok();
 	}
 }

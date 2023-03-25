@@ -5,8 +5,10 @@ import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotEmpty;
 import java.io.BufferedReader;
@@ -25,9 +27,25 @@ import java.util.UUID;
  */
 @Slf4j
 public class FileUtil {
-	//绑定文件上传路径到uploadPath
-	private static final String uploadPath = "C:/WorkSpace/web/SEProj/";
+	/**
+	 * 文件上传的本地存储路径
+	 */
+	private static String uploadPath;
 
+	/**
+	 * 通过 @Value 注解，将 application.properties 中的 web.upload-path 属性值注入到 uploadPath 中
+	 *
+	 * @param uploadPath 文件上传本地路径，存储在配置文件中
+	 */
+	@Value("${web.upload-path}")
+	@PostConstruct
+	public void setUploadPath(String uploadPath) {
+		FileUtil.uploadPath = uploadPath;
+	}
+
+	/**
+	 * 文件默认按照时间作为文件夹存储
+	 */
 	private static final Format sdf = new SimpleDateFormat("yyyy/MM/dd/");
 
 	/**
@@ -52,7 +70,7 @@ public class FileUtil {
 		// 对上传的文件重命名，避免文件重名
 		String oldName = file.getOriginalFilename();
 		assert oldName != null;
-		String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."), oldName.length());
+		String newName = UUID.randomUUID() + oldName.substring(oldName.lastIndexOf("."));
 		try {
 			// 文件保存
 			file.transferTo(new File(folder, newName));

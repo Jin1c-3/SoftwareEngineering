@@ -25,4 +25,13 @@ public class PaymentBO {
 	@NotBlank(message = "订单金额不能为空", groups = {AddGroup.class, UpdateGroup.class})
 	@ApiModelProperty(value = "订单金额")
 	private BigDecimal money;
+
+	/**
+	 * 有参构造器
+	 */
+	public PaymentBO(String orderNO, String subject, BigDecimal money) {
+		this.orderNO = orderNO;
+		this.subject = subject;
+		this.money = money;
+	}
 }

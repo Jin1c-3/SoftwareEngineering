@@ -4,6 +4,7 @@ import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.mysql.cj.util.StringUtils;
+import com.yutech.back.bo.PaymentBO;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
 import com.yutech.back.service.AlipayService;
@@ -11,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -27,17 +27,16 @@ public class AlipayServiceImpl implements AlipayService {
 	/**
 	 * 支付宝支付
 	 *
-	 * @param subject 订单标题
-	 * @param money   订单金额
-	 * @return 支付表单
+	 * @param paymentBO 支付信息
+	 * @return 支付宝支付页面
 	 */
 	@Override
-	public String toPay(String subject, BigDecimal money, String orderNO) {
-		if (StringUtils.isNullOrEmpty(orderNO)) {
-			orderNO = generateTradeNo();
+	public String toPay(PaymentBO paymentBO) {
+		if (StringUtils.isNullOrEmpty(paymentBO.getOrderNO())) {
+			paymentBO.setOrderNO(generateTradeNo());
 		}
 		try {
-			AlipayTradePagePayResponse response = Factory.Payment.Page().pay(subject, orderNO, money.toString(), returnUrl);
+			AlipayTradePagePayResponse response = Factory.Payment.Page().pay(paymentBO.getSubject(), paymentBO.getSubject(), paymentBO.getMoney().toString(), returnUrl);
 			String payForm = null;
 			if (ResponseChecker.success(response)) {
 				payForm = response.getBody();
