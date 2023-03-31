@@ -58,9 +58,9 @@ create table F_time(
 ---用户
 create table usr(
 	usr_account varchar(20) primary key,  --注册时随机分配
-	usr_ID varchar(20),   
-	usr_email varchar(35),
-	usr_avater varchar(70), --存头像地址
+	usr_ID varchar(20) unique,   
+	usr_email varchar(35) unique,
+	usr_avater varchar(70) unique, --存头像地址
 	usr_viplevel int,
 	usr_pwd varchar(30)
 )
