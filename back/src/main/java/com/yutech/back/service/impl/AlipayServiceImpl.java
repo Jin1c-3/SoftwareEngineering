@@ -44,7 +44,7 @@ public class AlipayServiceImpl implements AlipayService {
 			log.info("支付宝支付接口调用成功，返回的数据为：" + response.getBody());
 			return payForm;
 		} catch (Exception e) {
-			throw new GlobalException("支付宝支付结构调用失败" + ExceptionUtil.getMessage(e));
+			throw new GlobalException("支付宝支付接口调用失败" + ExceptionUtil.getMessage(e));
 		}
 	}
 

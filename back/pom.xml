@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
-            <version>4.4.13</version>
+            <version>4.4.15</version>
         </dependency>
 
         <!--以下两者为swagger的相关依赖-->
@@ -66,12 +66,12 @@
 
         <!-- mybatis-plus engine -->
 
-        <!-- mysql-connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.18</version>
-        </dependency>
+        <!--&lt;!&ndash; mysql-connector &ndash;&gt;-->
+        <!--<dependency>-->
+        <!--    <groupId>mysql</groupId>-->
+        <!--    <artifactId>mysql-connector-java</artifactId>-->
+        <!--    <version>8.0.18</version>-->
+        <!--</dependency>-->
 
         <!--以下两项是MyBatisPlus代码生成器，用于根据表逆向生成基本代码-->
         <!-- mybatis-plus-generator -->
@@ -84,7 +84,7 @@
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-            <version>2.2</version>
+            <version>2.3</version>
         </dependency>
 
         <!--使用 JSR303，采用注解的方式，对传入接口的数据进行数据校验，减少额外的校验代码。
@@ -103,7 +103,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>24.0.1</version>
             <scope>compile</scope>
         </dependency>
 
@@ -159,6 +159,20 @@
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-easysdk</artifactId>
             <version>2.2.2</version>
+        </dependency>
+
+        <!-- 阿里云短信jar包 -->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.6.3</version>
+        </dependency>
+
+        <!-- fastjson，实际上用于短信验证的JSON格式化 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83</version>
         </dependency>
     </dependencies>
 

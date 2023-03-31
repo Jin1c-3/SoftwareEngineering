@@ -2,7 +2,6 @@ package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mysql.cj.util.StringUtils;
 import com.yutech.back.bo.PaymentBO;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
@@ -11,11 +10,13 @@ import com.yutech.back.common.utils.Result;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import com.yutech.back.entity.User;
+import com.yutech.back.service.AliSmsService;
 import com.yutech.back.service.AlipayService;
 import com.yutech.back.service.EMailSenderService;
 import com.yutech.back.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -102,7 +103,7 @@ public class TestController {
 		String username = user.getUsername();
 		String password = user.getPassword();
 		String token = JwtUtil.sign(username, password);
-		if (StringUtils.isNullOrEmpty(token)) {
+		if (!StringUtils.isEmpty(token)) {
 			return Result.ok().message("用户token发放成功").data("token", token);
 		}
 		return Result.error().message("用户token验证失效");
@@ -129,9 +130,19 @@ public class TestController {
 	private AlipayService alipayService;
 
 	@ApiOperation(value = "测试通过支付宝支付的基础功能")
-	@RequestMapping("/testAlipay/{subject}/{money}")
+	@GetMapping("/testAlipay/{subject}/{money}")
 	public String testAlipay(@PathVariable("subject") String subject, @PathVariable("money") BigDecimal money) {
 		return alipayService.toPay(new PaymentBO(null, subject, money));
 //		return Result.ok();
+	}
+
+	@Autowired
+	private AliSmsService aliSmsService;
+
+	@ApiOperation(value = "测试通过阿里云短信发送验证码的基础功能")
+	@GetMapping("/testAliSms/{phone}/{code}")
+	public Result testAliyunSms(@PathVariable("phone") String phone, @PathVariable("code") String code) {
+		aliSmsService.sendSmsYZM(phone, code);
+		return Result.ok();
 	}
 }

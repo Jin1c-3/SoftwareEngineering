@@ -29,7 +29,7 @@ public class PaymentBO {
 	/**
 	 * 有参构造器
 	 */
-	public PaymentBO(String orderNO, String subject, BigDecimal money) {
+	public PaymentBO(@org.jetbrains.annotations.Nullable String orderNO, String subject, BigDecimal money) {
 		this.orderNO = orderNO;
 		this.subject = subject;
 		this.money = money;

@@ -10,15 +10,20 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class TestAutoGenerator {
 
-	private final String databaseName = "books";
-	private final String userName = "root";
-	private final String password = "root";
-	private final String[] tableNames = {"BookInfo", "CardInfo"};
+	@Value("${databaseName}")
+	private String databaseName;
+	@Value("${spring.datasource.username}")
+	private String userName;
+	@Value("${spring.datasource.password}")
+	private String password;
+	@Value("#{'${tableNames}'.split(',')}")
+	private String[] tableNames;
 
 
 	@Test
