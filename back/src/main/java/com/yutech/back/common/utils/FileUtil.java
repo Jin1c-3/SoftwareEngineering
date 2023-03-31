@@ -1,6 +1,6 @@
 package com.yutech.back.common.utils;
 
-import com.mysql.cj.util.StringUtils;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
@@ -63,7 +63,7 @@ public class FileUtil {
 		// 在 uploadPath 文件夹中通过日期对上传的文件归类保存
 		// 比如：/2019/06/06/test.png
 		String format = sdf.format(new Date());
-		File folder = new File(StringUtils.isNullOrEmpty(prePath) ? uploadPath + format : uploadPath + prePath + "/" + format);
+		File folder = new File(StringUtils.isEmpty(prePath) ? uploadPath + format : uploadPath + prePath + "/" + format);
 		if (!folder.isDirectory()) {
 			folder.mkdirs();
 		}
