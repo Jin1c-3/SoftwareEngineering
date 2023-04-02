@@ -1,48 +1,31 @@
-----¹ÜÀíÔ±±í  00001Îªroot¹ÜÀíÔ±
+----ç®¡ç†å‘˜è¡¨  00001ä¸ºrootç®¡ç†å‘˜
 create table super_usr(
-<<<<<<< Updated upstream
 	super_usr_ID char(5) primary key,
 	super_usr_name nvarchar(20),
 	super_usr_pwd varchar(30) check (len(super_usr_pwd) between 6 and 30)
-=======
-		super_usr_ID char(5) primary key,
-		super_usr_name nvarchar(20),
-		super_usr_pwd varchar(30) check (len(super_usr_pwd) between 6 and 30)
->>>>>>> Stashed changes
 )
-----·şÎñÉÌ±í
+----æœåŠ¡å•†è¡¨
 create table service_provider(
 	service_provider_ID int primary key identity(1,1),
 <<<<<<< Updated upstream
-	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),	--ÃÜÂë6-30Î»
+	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),	--å¯†ç 6-30ä½
 	service_provider_name nvarchar(30),
-	push_money float	--Ô¼¶¨Ìá³É
-=======
-	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),
-	service_provider_name nvarchar(30),
-	push_money float
->>>>>>> Stashed changes
+	push_money float	--çº¦å®šææˆ
 )
-----·É»úĞÅÏ¢±í
+----é£æœºä¿¡æ¯è¡¨
 create table aircraft(
 	aircraft_ID varchar(20) primary key,
 	aircraft_type varchar(20),
-<<<<<<< Updated upstream
-	aircraft_T_num int,	--Í·µÈ²Õ
-	aircraft_M_num int,	--ÉÌÎñ²Õ
-	aircraft_L_num int,	--¾­¼Ã²Õ
-=======
-	Air_T_num int,
-	Air_M_num int,
-	Air_L_num int,
->>>>>>> Stashed changes
-	aircraft_status nvarchar(3) check (aircraft_status = '¿ÉÓÃ' or aircraft_status = '²»¿ÉÓÃ' ) default('¿ÉÓÃ'),
+	aircraft_T_num int,	--å¤´ç­‰èˆ±
+	aircraft_M_num int,	--å•†åŠ¡èˆ±
+	aircraft_L_num int,	--ç»æµèˆ±
+	aircraft_status nvarchar(3) check (aircraft_status = 'å¯ç”¨' or aircraft_status = 'ä¸å¯ç”¨' ) default('å¯ç”¨'),
 	service_provider_ID int ,
 	foreign key(service_provider_ID)  references service_provider(service_provider_ID)
 )
-----º½°àĞÅÏ¢±í
+----èˆªç­ä¿¡æ¯è¡¨
 create table flight_info(
-	--°àÆÚ
+	--ç­æœŸ
 	 T varchar(18),
 	 flight_ID varchar(25) primary key,
 	 flight_start_city nvarchar(10),
@@ -51,75 +34,62 @@ create table flight_info(
 	 flight_end_port nvarchar(10),
 	 flight_status nvarchar(20),
 	 aircraft_type varchar(20),
-	 direct_flag nvarchar(2) check(direct_flag = 'ÊÇ' or direct_flag = '·ñ'),
+	 direct_flag nvarchar(2) check(direct_flag = 'æ˜¯' or direct_flag = 'å¦'),
 	 aircraft_ID varchar(20),
 	 foreign key(aircraft_ID) references Aircraft(aircraft_ID)
 )
-----·É»úĞĞ³ÌĞÅÏ¢±í
+----é£æœºè¡Œç¨‹ä¿¡æ¯è¡¨
 create table flight_time(
 	 flight_start_time datetime,   
 	 flight_end_time datetime,
 	 flight_ID varchar(25),
-	 ----º½°àºÅ  Íâ¼ü
+	 ----èˆªç­å·  å¤–é”®
 	 flight_start_city nvarchar(10),
 	 flight_end_city nvarchar(10),
 	 flight_start_port nvarchar(10),
 	 flight_end_port nvarchar(10),
-	 --Õ¾Ğò
-<<<<<<< Updated upstream
+	 --ç«™åº
 	 flight_order int default(1),
 	 flight_price int,
 	  foreign key (flight_ID) references flight_info(flight_ID)
-=======
-	 f_order int default(1),
-	 f_price int,
-	  foreign key (f_ID) references flight_info(flight_ID)
->>>>>>> Stashed changes
 )
 
----ÓÃ»§
+---ç”¨æˆ·
 create table usr(
-	usr_account varchar(20) primary key,  --ÓÃ»§ÕËºÅ ×¢²áÊ±Ëæ»ú·ÖÅä
+	usr_account varchar(20) primary key,  --ç”¨æˆ·è´¦å· æ³¨å†Œæ—¶éšæœºåˆ†é…
 	usr_ID varchar(20) unique,   --uuid
 	usr_email varchar(35) unique,  
-	usr_avater varchar(70) unique, --´æÍ·ÏñµØÖ·
+	usr_avater varchar(70) unique, --å­˜å¤´åƒåœ°å€
 	usr_viplevel int,
 	usr_pwd varchar(30)
 )
 
 
---×Ü¶©µ¥±í °üÀ¨·É»ú»ğ³µ
+--æ€»è®¢å•è¡¨ åŒ…æ‹¬é£æœºç«è½¦
 create table whole_order(
-	order_ID int identity(1,1) primary key,--¶©µ¥±àºÅ
+	order_ID int identity(1,1) primary key,--è®¢å•ç¼–å·
 	order_time datetime,
-	order_status nvarchar(10),  --ÊÇ·ñÒÑÖ§¸¶
+	order_status nvarchar(10),  --æ˜¯å¦å·²æ”¯ä»˜
 	vehicle_type nvarchar(10),
 	usr_ID varchar(20) 
 )
 
 create table flight_ticket(
-	  ---Ö÷¼ü
+	  ---ä¸»é”®
 	 ticket_ID int identity(1,1) primary key,
-	 --Íâ¼ü
+	 --å¤–é”®
 	 flight_ID varchar(25),
-	 order_ID int,--¶©µ¥±àºÅ  ×ÔÔö
+	 order_ID int,--è®¢å•ç¼–å·  è‡ªå¢
 
 	 flight_start_time datetime,
 	 flight_end_time datetime,
 	 ticket_status nvarchar(10),
 	 passenger_name nvarchar(15),
 	 seat_type nvarchar(10),
-<<<<<<< Updated upstream
 	 flight_start_port nvarchar(10),
 	 flight_end_port nvarchar(10),
 	 flight_price int,
 	 foreign key(flight_ID) references flight_info(flight_ID),
-=======
-	 f_st_port nvarchar(10),
-	 f_en_port nvarchar(10),
-	 f_price int,
-	 foreign key(f_ID) references flight_info(flight_ID),
->>>>>>> Stashed changes
 	 foreign key(order_ID) references whole_order(order_ID)
 )
 
