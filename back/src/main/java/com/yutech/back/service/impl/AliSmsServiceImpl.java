@@ -7,6 +7,7 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.yutech.back.common.exception.GlobalException;
+import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.service.AliSmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +20,8 @@ public class AliSmsServiceImpl implements AliSmsService {
 	@Value("${aliyun.sms.accessKeyId}")
 	private String accessKeyId;
 
-	@Value("${aliyun.sms.accessKeySecret}")
-	private String accessKeySecret;
+	@Value("${aliyun.sms.accessKeySecretPath}")
+	private String accessKeySecretPath;
 
 	@Value("${aliyun.sms.templateCodeOfYZM}")
 	private String templateCodeOfYZM;
@@ -37,10 +38,11 @@ public class AliSmsServiceImpl implements AliSmsService {
 	 * @return boolean
 	 */
 	public Boolean sendSms(String phone, String templateCode, String code) {
+
 		// 创建DefaultAcsClient实例并初始化
 		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou",
 				accessKeyId,
-				accessKeySecret);
+				FileUtil.readFileFromTxt(accessKeySecretPath));
 		IAcsClient client = new DefaultAcsClient(profile);
 
 		// 组装请求对象-具体描述见控制台-文档部分内容
