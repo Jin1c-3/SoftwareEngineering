@@ -54,6 +54,12 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <!--swagger注释依赖-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.13</version>
+        </dependency>
 
         <!-- 以下4项是mybatisplus的依赖-->
         <!-- mybatis-plus -->
@@ -168,12 +174,13 @@
             <version>4.6.3</version>
         </dependency>
 
-        <!-- fastjson，实际上用于短信验证的JSON格式化 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.83</version>
-        </dependency>
+        <!--        &lt;!&ndash; fastjson，实际上用于短信验证的JSON格式化 &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba</groupId>-->
+        <!--            <artifactId>fastjson</artifactId>-->
+        <!--            <version>1.2.83</version>-->
+        <!--        </dependency>-->
+
     </dependencies>
 
     <build>

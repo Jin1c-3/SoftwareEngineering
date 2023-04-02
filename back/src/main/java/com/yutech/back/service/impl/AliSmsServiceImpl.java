@@ -1,6 +1,7 @@
 package com.yutech.back.service.impl;
 
 import com.aliyuncs.CommonRequest;
+import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
@@ -56,8 +57,9 @@ public class AliSmsServiceImpl implements AliSmsService {
 		request.putQueryParameter("TemplateParam", "{\"code\":\"" + code + "\"}");// 验证码
 
 		try {
-			log.info("发送短信验证码请求=======" + client.getCommonResponse(request).getData());
-			return true;
+			CommonResponse response = client.getCommonResponse(request);
+			log.info("发送短信========" + response.getData());
+			return response.getHttpResponse().isSuccess();
 		} catch (Exception e) {
 			throw new GlobalException("发送短信失败");
 		}

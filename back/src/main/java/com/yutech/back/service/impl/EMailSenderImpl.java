@@ -30,14 +30,14 @@ public class EMailSenderImpl implements EMailSenderService {
 		simpleMailMessage.setText(content);
 		// 发送邮件
 		javaMailSender.send(simpleMailMessage);
-		log.info("邮件发送成功:from {} -> to {}", from, to);
+		log.debug("邮件发送成功:from: {} ====== to: {}", from, to);
 	}
 
 	@Override
 	public void sendCodeMail(String to, String code) {
 		String from = "3396024490@qq.com";
 		sendSimpleMail(from, to, "[网络鱼科技]验证码", "您的验证码为:" + code);
-		log.info("验证码邮件发送成功:from {} -> to {} ,with code {}", from, to, code);
+		log.info("验证码邮件发送成功:from: {} ======= to: {} ,with code {}", from, to, code);
 	}
 
 }

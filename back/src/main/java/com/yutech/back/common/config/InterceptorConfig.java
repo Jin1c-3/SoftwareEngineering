@@ -34,7 +34,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
 						"/vendors/**",
 						"/avatar/**",
 						"/download/**",
-						"/test/**");
+						"/test/**",
+						"/swagger-ui.html/**",
+						"/swagger-ui.html#/**",
+						"/swagger-resources/**");
 	}
 
 	@Bean

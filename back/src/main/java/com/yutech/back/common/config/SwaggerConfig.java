@@ -32,9 +32,9 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Swagger 测试")
-				.description("Swagger 测试文档")
-				//.termsOfServiceUrl("https://www.cnblogs.com/l-y-h/")
+				.title("网上购票系统API文档")
+				.description("本文档描述了网上购票系统接口定义和实体类定义")
+				.termsOfServiceUrl("http://localhost:8080/")
 				.version("1.0.0")
 				.build();
 	}

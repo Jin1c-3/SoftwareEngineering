@@ -1,23 +1,41 @@
 ----管理员表  00001为root管理员
 create table super_usr(
+<<<<<<< Updated upstream
 	super_usr_ID char(5) primary key,
 	super_usr_name nvarchar(20),
 	super_usr_pwd varchar(30) check (len(super_usr_pwd) between 6 and 30)
+=======
+		super_usr_ID char(5) primary key,
+		super_usr_name nvarchar(20),
+		super_usr_pwd varchar(30) check (len(super_usr_pwd) between 6 and 30)
+>>>>>>> Stashed changes
 )
 ----服务商表
 create table service_provider(
 	service_provider_ID int primary key identity(1,1),
+<<<<<<< Updated upstream
 	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),	--密码6-30位
 	service_provider_name nvarchar(30),
 	push_money float	--约定提成
+=======
+	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),
+	service_provider_name nvarchar(30),
+	push_money float
+>>>>>>> Stashed changes
 )
 ----飞机信息表
 create table aircraft(
 	aircraft_ID varchar(20) primary key,
 	aircraft_type varchar(20),
+<<<<<<< Updated upstream
 	aircraft_T_num int,	--头等舱
 	aircraft_M_num int,	--商务舱
 	aircraft_L_num int,	--经济舱
+=======
+	Air_T_num int,
+	Air_M_num int,
+	Air_L_num int,
+>>>>>>> Stashed changes
 	aircraft_status nvarchar(3) check (aircraft_status = '可用' or aircraft_status = '不可用' ) default('可用'),
 	service_provider_ID int ,
 	foreign key(service_provider_ID)  references service_provider(service_provider_ID)
@@ -48,9 +66,15 @@ create table flight_time(
 	 flight_start_port nvarchar(10),
 	 flight_end_port nvarchar(10),
 	 --站序
+<<<<<<< Updated upstream
 	 flight_order int default(1),
 	 flight_price int,
 	  foreign key (flight_ID) references flight_info(flight_ID)
+=======
+	 f_order int default(1),
+	 f_price int,
+	  foreign key (f_ID) references flight_info(flight_ID)
+>>>>>>> Stashed changes
 )
 
 ---用户
@@ -85,10 +109,17 @@ create table flight_ticket(
 	 ticket_status nvarchar(10),
 	 passenger_name nvarchar(15),
 	 seat_type nvarchar(10),
+<<<<<<< Updated upstream
 	 flight_start_port nvarchar(10),
 	 flight_end_port nvarchar(10),
 	 flight_price int,
 	 foreign key(flight_ID) references flight_info(flight_ID),
+=======
+	 f_st_port nvarchar(10),
+	 f_en_port nvarchar(10),
+	 f_price int,
+	 foreign key(f_ID) references flight_info(flight_ID),
+>>>>>>> Stashed changes
 	 foreign key(order_ID) references whole_order(order_ID)
 )
 

@@ -15,6 +15,8 @@ import com.yutech.back.service.AlipayService;
 import com.yutech.back.service.EMailSenderService;
 import com.yutech.back.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/test")
-@Api(tags = "测试页面")
+@Api(value = "测试页面", tags = "各类测试接口")
 @CrossOrigin
 public class TestController {
 	/**
@@ -33,6 +35,7 @@ public class TestController {
 	 *
 	 * @return
 	 */
+	@ApiOperation(value = "测试自定义异常类")
 	@GetMapping("/testGlobalException")
 	public Result testGlobalException() {
 		try {
@@ -48,7 +51,7 @@ public class TestController {
 	 * 比如：<a href="http://localhost:8080/swagger-ui.html">...</a>，
 	 * 只有标注了 @ApiOperation 注解的接口才会被显示在 接口文档中。
 	 */
-	@ApiOperation(value = "测试 Swagger")
+	@ApiOperation(value = "测试 Swagger", notes = "只会返回 ok")
 	@GetMapping("/testSwagger")
 	public Result testSwagger() {
 		return Result.ok();
@@ -120,7 +123,11 @@ public class TestController {
 	 * @return Result
 	 */
 	@ApiOperation(value = "测试通过QQ邮件发送验证码的基础功能")
-	@RequestMapping("/testCodeMailing/{to}/{code}")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "to", value = "发到哪儿去", required = true, dataType = "String", paramType = "path"),
+			@ApiImplicitParam(name = "code", value = "验证码是什么", required = true, dataType = "String", paramType = "code")
+	})
+	@GetMapping ("/testCodeMailing/{to}/{code}")
 	public Result testCodeMailing(@PathVariable("to") String to, @PathVariable("code") String code) {
 		eMailSenderService.sendCodeMail(to, code);
 		return Result.ok();
