@@ -58,8 +58,13 @@ create table flight_time(
 create table usr(
 	usr_account varchar(20) primary key,  --ç”¨æˆ·è´¦å· æ³¨å†Œæ—¶éšæœºåˆ†é…
 	usr_ID varchar(20) unique,   --uuid
+<<<<<<< Updated upstream
 	usr_email varchar(35) unique,  
 	usr_avater varchar(70) unique, --å­˜å¤´åƒåœ°å€
+=======
+	usr_email varchar(255) unique,  
+	usr_avater varchar(255) unique, --´æÍ·ÏñµØÖ·
+>>>>>>> Stashed changes
 	usr_viplevel int,
 	usr_pwd varchar(30)
 )
@@ -69,7 +74,11 @@ create table usr(
 create table whole_order(
 	order_ID int identity(1,1) primary key,--è®¢å•ç¼–å·
 	order_time datetime,
+<<<<<<< Updated upstream
 	order_status nvarchar(10),  --æ˜¯å¦å·²æ”¯ä»˜
+=======
+	order_flag nvarchar(10) check (order_flag = 'ÊÇ' or order_flag = '·ñ'),  --ÊÇ·ñÒÑÖ§¸¶
+>>>>>>> Stashed changes
 	vehicle_type nvarchar(10),
 	usr_ID varchar(20) 
 )
