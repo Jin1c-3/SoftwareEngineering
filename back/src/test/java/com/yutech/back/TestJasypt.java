@@ -5,15 +5,15 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = TestJasypt.class)
 public class TestJasypt {
 	@Test
 	public void generateEncrypt() {
 		PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
 		SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-		config.setPassword("yjy765");
+		config.setPassword("yjy765");//需要修改
 		// 默认值
-		config.setAlgorithm("123456");
+		config.setAlgorithm("PBEWithMD5AndDES");
 		config.setKeyObtentionIterations("1000");
 		config.setPoolSize("1");
 		config.setProviderName("SunJCE");
@@ -21,6 +21,6 @@ public class TestJasypt {
 		config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
 		config.setStringOutputType("base64");
 		encryptor.setConfig(config);
-		System.out.println(encryptor.encrypt("lvaxoquswukocjca"));
+		System.out.println(encryptor.encrypt("vgctrxqskfoebhhc"));//需要修改
 	}
 }

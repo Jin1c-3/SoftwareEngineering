@@ -3,6 +3,7 @@ package com.yutech.back.service.impl;
 import com.yutech.back.service.EMailSenderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Service;
 public class EMailSenderImpl implements EMailSenderService {
 	@Autowired
 	private final JavaMailSender javaMailSender;
+
+	@Value("${spring.mail.username}")
+	private String from;
 
 	public EMailSenderImpl(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
@@ -35,7 +39,6 @@ public class EMailSenderImpl implements EMailSenderService {
 
 	@Override
 	public void sendCodeMail(String to, String code) {
-		String from = "3396024490@qq.com";
 		sendSimpleMail(from, to, "[网络鱼科技]验证码", "您的验证码为:" + code + "，5分钟内有效，请勿将验证码告诉他人。");
 		log.info("验证码邮件发送成功:from: {} ======= to: {} ,with code {}", from, to, code);
 	}
