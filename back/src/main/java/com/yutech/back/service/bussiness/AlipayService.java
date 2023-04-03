@@ -1,6 +1,6 @@
-package com.yutech.back.service;
+package com.yutech.back.service.bussiness;
 
-import com.yutech.back.bo.PaymentBO;
+import com.yutech.back.entity.bo.PaymentBO;
 
 
 /**

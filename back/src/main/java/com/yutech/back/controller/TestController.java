@@ -2,7 +2,6 @@ package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yutech.back.bo.PaymentBO;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
 import com.yutech.back.common.utils.JwtUtil;
@@ -10,10 +9,11 @@ import com.yutech.back.common.utils.Result;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import com.yutech.back.entity.User;
-import com.yutech.back.service.AliSmsService;
-import com.yutech.back.service.AlipayService;
-import com.yutech.back.service.EMailSenderService;
-import com.yutech.back.service.UserService;
+import com.yutech.back.entity.bo.PaymentBO;
+import com.yutech.back.service.bussiness.AliSmsService;
+import com.yutech.back.service.bussiness.AlipayService;
+import com.yutech.back.service.bussiness.EMailSenderService;
+import com.yutech.back.service.bussiness.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -24,6 +24,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+
+/**
+ * Restful风格说明
+ * 请求方式	含义
+ * GET（SELECT）	从服务器取出资源（一项或多项）
+ * POST（CREATE）	在服务器新建一个资源
+ * PUT（UPDATE）	在服务器更新资源（更新完整资源）
+ * PATCH（UPDATE）	在服务器更新资源， PATCH更新个别属性
+ * DELETE（DELETE）	从服务器删除资源
+ */
 
 @RestController
 @RequestMapping("/test")
@@ -122,12 +132,12 @@ public class TestController {
 	 * @param code 验证码是什么
 	 * @return Result
 	 */
-	@ApiOperation(value = "测试通过QQ邮件发送验证码的基础功能")
+	@ApiOperation(value = "测试通过邮件发送验证码的基础功能")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "to", value = "发到哪儿去", required = true, dataType = "String", paramType = "path"),
 			@ApiImplicitParam(name = "code", value = "验证码是什么", required = true, dataType = "String", paramType = "code")
 	})
-	@GetMapping ("/testCodeMailing/{to}/{code}")
+	@GetMapping("/testCodeMailing/{to}/{code}")
 	public Result testCodeMailing(@PathVariable("to") String to, @PathVariable("code") String code) {
 		eMailSenderService.sendCodeMail(to, code);
 		return Result.ok();

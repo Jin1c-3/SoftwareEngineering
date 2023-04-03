@@ -15,7 +15,7 @@ import java.util.Date;
 @Slf4j
 public class JwtUtil {
 	/**
-	 * Token过期时间30分钟
+	 * Token过期时间60分钟
 	 */
 	public static final long EXPIRE_TIME = 60 * 60 * 1000;
 
@@ -64,7 +64,7 @@ public class JwtUtil {
 	/**
 	 * 通过token获取userID
 	 *
-	 * @param request 前端的王爷请求
+	 * @param request 前端的网页请求
 	 * @return String 返回token中的username
 	 */
 	public static String getUsernameByToken(HttpServletRequest request) {

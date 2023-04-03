@@ -11,7 +11,7 @@ public class TestJasypt {
 	public void generateEncrypt() {
 		PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
 		SimpleStringPBEConfig config = new SimpleStringPBEConfig();
-		config.setPassword("yjy765");//需要修改
+		config.setPassword("000000");//需要修改
 		// 默认值
 		config.setAlgorithm("PBEWithMD5AndDES");
 		config.setKeyObtentionIterations("1000");
@@ -21,6 +21,6 @@ public class TestJasypt {
 		config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
 		config.setStringOutputType("base64");
 		encryptor.setConfig(config);
-		System.out.println(encryptor.encrypt("vgctrxqskfoebhhc"));//需要修改
+		System.out.println(encryptor.encrypt("000000"));//需要修改
 	}
 }

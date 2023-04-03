@@ -1,10 +1,10 @@
-package com.yutech.back.service.impl;
+package com.yutech.back.service.bussiness.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yutech.back.entity.User;
 import com.yutech.back.mapper.UserMapper;
-import com.yutech.back.service.UserService;
+import com.yutech.back.service.bussiness.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.yutech.back.service.impl;
+package com.yutech.back.service.bussiness.impl;
 
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
@@ -7,7 +7,8 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.yutech.back.common.exception.GlobalException;
-import com.yutech.back.service.AliSmsService;
+import com.yutech.back.entity.bo.Sms4CodeBO;
+import com.yutech.back.service.bussiness.AliSmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -76,5 +77,16 @@ public class AliSmsServiceImpl implements AliSmsService {
 	@Override
 	public Boolean sendSmsYZM(String phone, String code) {
 		return sendSms(phone, templateCodeOfYZM, code);
+	}
+
+	/**
+	 * 发送验证码短信
+	 *
+	 * @param sms4CodeBO 短信验证码业务对象
+	 * @return boolean
+	 */
+	@Override
+	public Boolean sendSmsYZM(Sms4CodeBO sms4CodeBO) {
+		return sendSms(sms4CodeBO.getPhone(), templateCodeOfYZM, sms4CodeBO.getCode());
 	}
 }

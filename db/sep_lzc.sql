@@ -7,7 +7,6 @@ create table super_usr(
 ----服务商表
 create table service_provider(
 	service_provider_ID int primary key identity(1,1),
-<<<<<<< Updated upstream
 	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),	--密码6-30位
 	service_provider_name nvarchar(30),
 	push_money float	--约定提成

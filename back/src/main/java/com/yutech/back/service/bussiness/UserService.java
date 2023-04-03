@@ -1,4 +1,4 @@
-package com.yutech.back.service;
+package com.yutech.back.service.bussiness;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yutech.back.entity.User;

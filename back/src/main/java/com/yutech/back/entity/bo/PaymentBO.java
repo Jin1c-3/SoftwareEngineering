@@ -1,20 +1,22 @@
-package com.yutech.back.bo;
+package com.yutech.back.entity.bo;
 
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 
 /**
  * 支付业务对象
  */
 @Data
+@ApiModel(value = "支付业务对象", description = "支付业务对象")
 public class PaymentBO {
-	@Nullable
+	@Null
 	@ApiModelProperty(value = "订单号")
 	private String orderNO;
 
