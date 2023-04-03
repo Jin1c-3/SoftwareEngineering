@@ -2,7 +2,7 @@ package com.yutech.back.interceptor;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.utils.JwtUtil;
-import com.yutech.back.service.UserService;
+import com.yutech.back.service.bussiness.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -5,12 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/EMail4CodeBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/Sms4CodeBO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/AlipayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/AlipayConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/AliSmsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/AliSmsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/EMailSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/EMailSenderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/bo/PaymentBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/PaymentBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/AliSmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/AliSmsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/AlipayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/AlipayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/EMailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/EMailSenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/AliSmsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/AliSmsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/AlipayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/AlipayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/EMailSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/EMailSenderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestAutoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestAutoGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestJasypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestJasypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/sep_lzc.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/sep_lzc.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +94,23 @@
       <recent name="com.yutech.back.sdk" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackApplication">
+  <component name="RunManager" selected="JUnit.TestAutoGenerator.autoGenerate">
+    <configuration name="TestAutoGenerator.autoGenerate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yutech.back.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yutech.back" />
+      <option name="MAIN_CLASS_NAME" value="com.yutech.back.TestAutoGenerator" />
+      <option name="METHOD_NAME" value="autoGenerate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestJasypt.generateEncrypt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back" />
       <extension name="coverage">
@@ -120,11 +150,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.TestAutoGenerator.autoGenerate" />
       <item itemvalue="JUnit.TestJasypt.generateEncrypt" />
       <item itemvalue="Spring Boot.BackApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestAutoGenerator.autoGenerate" />
         <item itemvalue="JUnit.TestJasypt.generateEncrypt" />
       </list>
     </recent_temporary>
@@ -171,6 +203,8 @@
       <workItem from="1680479347896" duration="2838000" />
       <workItem from="1680482738735" duration="196000" />
       <workItem from="1680499221815" duration="1860000" />
+      <workItem from="1680502580814" duration="3371000" />
+      <workItem from="1680506124416" duration="2405000" />
     </task>
     <servers />
   </component>
