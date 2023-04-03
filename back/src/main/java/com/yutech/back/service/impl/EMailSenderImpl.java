@@ -36,7 +36,7 @@ public class EMailSenderImpl implements EMailSenderService {
 	@Override
 	public void sendCodeMail(String to, String code) {
 		String from = "3396024490@qq.com";
-		sendSimpleMail(from, to, "[网络鱼科技]验证码", "您的验证码为:" + code);
+		sendSimpleMail(from, to, "[网络鱼科技]验证码", "您的验证码为:" + code + "，5分钟内有效，请勿将验证码告诉他人。");
 		log.info("验证码邮件发送成功:from: {} ======= to: {} ,with code {}", from, to, code);
 	}
 

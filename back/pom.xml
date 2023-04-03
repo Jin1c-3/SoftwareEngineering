@@ -181,6 +181,12 @@
         <!--            <version>1.2.83</version>-->
         <!--        </dependency>-->
 
+        <!--为配置文件中的秘密信息加密-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>3.0.5</version>
+        </dependency>
     </dependencies>
 
     <build>
