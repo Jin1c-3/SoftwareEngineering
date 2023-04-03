@@ -49,7 +49,9 @@ create table flight_time(
 	 flight_end_port nvarchar(10),
 	 --站序
 	 flight_order int default(1),
-	 flight_price money,
+	 flight_L_price money,
+	 flight_M_price money,
+	 flight_T_price money,
 	  foreign key (flight_ID) references flight_info(flight_ID)
 )
 

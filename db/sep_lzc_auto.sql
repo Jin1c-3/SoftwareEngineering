@@ -1,6 +1,6 @@
 USE [SEP]
 GO
-/****** Object:  Table [dbo].[aircraft]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[aircraft]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -19,7 +19,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[flight_info]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[flight_info]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -41,7 +41,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[flight_ticket]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[flight_ticket]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -64,7 +64,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[flight_time]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[flight_time]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -78,10 +78,12 @@ CREATE TABLE [dbo].[flight_time](
 	[flight_start_port] [nvarchar](10) NULL,
 	[flight_end_port] [nvarchar](10) NULL,
 	[flight_order] [int] NULL,
-	[flight_price] [money] NULL
+	[flight_L_price] [money] NULL,
+	[flight_M_price] [money] NULL,
+	[flight_T_price] [money] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[service_provider]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[service_provider]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +99,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[super_usr]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[super_usr]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -112,7 +114,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[usr]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[usr]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,7 +144,7 @@ UNIQUE NONCLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[whole_order]    Script Date: 2023/4/3 15:19:12 ******/
+/****** Object:  Table [dbo].[whole_order]    Script Date: 2023/4/3 19:12:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,19 +210,11 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'总起点' , @
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'总终点' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_ticket', @level2type=N'COLUMN',@level2name=N'flight_end_port'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本段航班' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_start_time'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'经济舱本段价格' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_L_price'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本段航班' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_end_time'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'商务舱本段价格' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_M_price'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本段航班' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_start_city'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本段航班' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_end_city'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本段航班' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_start_port'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本段航班' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_end_port'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'站序' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_order'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'头等舱本段价格' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'flight_time', @level2type=N'COLUMN',@level2name=N'flight_T_price'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'约定提成' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'service_provider', @level2type=N'COLUMN',@level2name=N'push_money'
 GO
