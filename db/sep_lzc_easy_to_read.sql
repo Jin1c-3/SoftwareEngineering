@@ -7,7 +7,6 @@ create table super_usr(
 ----服务商表
 create table service_provider(
 	service_provider_ID int primary key identity(1,1),
-<<<<<<< Updated upstream
 	service_provider_pwd varchar(30) check (len(service_provider_pwd) between 6 and 30),	--密码6-30位
 	service_provider_name nvarchar(30),
 	push_money float	--约定提成
@@ -26,7 +25,7 @@ create table aircraft(
 ----航班信息表
 create table flight_info(
 	--班期
-	 T varchar(18),
+	 flight_schedule varchar(18),
 	 flight_ID varchar(25) primary key,
 	 flight_start_city nvarchar(10),
 	 flight_end_city nvarchar(10),
@@ -50,7 +49,7 @@ create table flight_time(
 	 flight_end_port nvarchar(10),
 	 --站序
 	 flight_order int default(1),
-	 flight_price int,
+	 flight_price money,
 	  foreign key (flight_ID) references flight_info(flight_ID)
 )
 
@@ -88,7 +87,7 @@ create table flight_ticket(
 	 seat_type nvarchar(10),
 	 flight_start_port nvarchar(10),
 	 flight_end_port nvarchar(10),
-	 flight_price int,
+	 flight_price money,
 	 foreign key(flight_ID) references flight_info(flight_ID),
 	 foreign key(order_ID) references whole_order(order_ID)
 )
