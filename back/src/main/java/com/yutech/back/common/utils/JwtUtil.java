@@ -67,11 +67,11 @@ public class JwtUtil {
 	 * @param request 前端的网页请求
 	 * @return String 返回token中的username
 	 */
-	public static String getUsernameByToken(HttpServletRequest request) {
+	public static String getUsrIdByToken(HttpServletRequest request) {
 		String token = request.getHeader("token");
 		DecodedJWT djwt = JWT.decode(token);
 		return djwt
-				.getClaim("username")
+				.getClaim("usrId")
 				.asString();
 	}
 }

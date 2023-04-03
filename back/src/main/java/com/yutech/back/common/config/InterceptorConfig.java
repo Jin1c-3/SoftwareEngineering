@@ -20,8 +20,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 				//这里配置不要拦截的路径
 				.excludePathPatterns("/**/login",
 						"/**/login.html",
-						"/**/register",
-						"/**/register.html",
+						"/**/registry",
+						"/**/registry.html",
 						"/**/*.js",
 						"/**/*.css",
 						"/**/*.woff",
