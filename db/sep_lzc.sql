@@ -58,13 +58,8 @@ create table flight_time(
 create table usr(
 	usr_account varchar(20) primary key,  --用户账号 注册时随机分配
 	usr_ID varchar(20) unique,   --uuid
-<<<<<<< Updated upstream
-	usr_email varchar(35) unique,  
-	usr_avater varchar(70) unique, --存头像地址
-=======
 	usr_email varchar(255) unique,  
-	usr_avater varchar(255) unique, --��ͷ���ַ
->>>>>>> Stashed changes
+	usr_avater varchar(255) unique, --存头像地址
 	usr_viplevel int,
 	usr_pwd varchar(30)
 )
@@ -74,11 +69,7 @@ create table usr(
 create table whole_order(
 	order_ID int identity(1,1) primary key,--订单编号
 	order_time datetime,
-<<<<<<< Updated upstream
-	order_status nvarchar(10),  --是否已支付
-=======
-	order_flag nvarchar(10) check (order_flag = '��' or order_flag = '��'),  --�Ƿ���֧��
->>>>>>> Stashed changes
+	order_flag nvarchar(10) check (order_flag = '是' or order_flag = '否'),  --是否已支付
 	vehicle_type nvarchar(10),
 	usr_ID varchar(20) 
 )
