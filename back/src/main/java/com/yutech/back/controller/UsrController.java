@@ -74,5 +74,21 @@ public class UsrController {
 		}
 		return Result.error().message("账号或密码错误");
 	}
+
+	/**
+	 * 获取用户信息
+	 *
+	 * @param usr 为了获取用户id
+	 * @return Result
+	 */
+	@PatchMapping("/update")
+	@ApiOperation(value = "修改用户信息", notes = "修改用户信息")
+	public Result updateUsrInfo(Usr usr) {
+		if (usrService.verifyUnique(usr)) {
+			usrService.updateById(usr);
+			return Result.ok();
+		}
+		return Result.error().message("账号冲突");
+	}
 }
 

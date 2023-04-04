@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加一些Usr接口" />
+    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加一些Usr接口">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/PassengerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/PassengerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/WholeOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/WholeOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Passenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/WholeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/WholeOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/PassengerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/PassengerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/WholeOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/WholeOrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/PassengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/PassengerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/WholeOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/WholeOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/PassengerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/PassengerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/WholeOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/WholeOrderServiceImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +86,7 @@
       <recent name="com.yutech.back.sdk" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestAutoGenerator.autoGenerate">
+  <component name="RunManager" selected="Spring Boot.BackApplication">
     <configuration name="TestAutoGenerator.autoGenerate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back" />
       <extension name="coverage">
@@ -185,7 +198,7 @@
       <workItem from="1680502580814" duration="3371000" />
       <workItem from="1680506124416" duration="2405000" />
       <workItem from="1680532829876" duration="758000" />
-      <workItem from="1680562282709" duration="4158000" />
+      <workItem from="1680562282709" duration="8290000" />
     </task>
     <task id="LOCAL-00001" summary="增加一些Usr接口">
       <created>1680565795985</created>
