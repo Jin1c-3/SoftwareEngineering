@@ -7,7 +7,9 @@ import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/usr")
 @Api(tags = "用户管理")
+@Slf4j
+@CrossOrigin
 public class UsrController {
 	@Autowired
 	private UsrService usrService;
@@ -63,20 +67,21 @@ public class UsrController {
 	 * @param usr 用户信息
 	 * @return Result
 	 */
-	@ApiOperation(value = "用户登录", notes = "用户登录")
+	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象")
+	@ApiImplicitParam(name = "usr", value = "用户信息", required = true, dataType = "Usr对象")
 	@GetMapping("/login")
 	public Result usrLogin(Usr usr) {
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
 		if (usrInDB != null) {
 			if (usrInDB.getUsrPwd().equals(usr.getUsrPwd())) {
-				return Result.ok().data("token", JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd()));
+				return Result.ok().data("token", JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd())).data("usr", usrInDB);
 			}
 		}
 		return Result.error().message("账号或密码错误");
 	}
 
 	/**
-	 * 获取用户信息
+	 * 更新用户信息
 	 *
 	 * @param usr 为了获取用户id
 	 * @return Result

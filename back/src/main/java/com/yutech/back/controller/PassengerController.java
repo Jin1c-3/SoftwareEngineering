@@ -5,9 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.po.Passenger;
 import com.yutech.back.service.persistence.PassengerService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,9 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/passenger")
-@ApiModel(value = "乘客信息管理", description = "乘客信息管理")
+@Api(tags = "乘客管理")
 @Slf4j
+@CrossOrigin
 public class PassengerController {
 	@Autowired
 	private PassengerService passengerService;
@@ -44,7 +44,7 @@ public class PassengerController {
 
 	@PostMapping("/addPassenger")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息，前端弄一个页面添加就行")
-	@ApiImplicitParam(name = "passenger", value = "乘客信息", required = true, dataType = "Passenger")
+	@ApiImplicitParam(name = "passenger", value = "乘客信息", required = true, dataType = "Passenger对象")
 	public Result addPassenger(@RequestBody Passenger passenger) {
 		if (passengerService.getOne(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId())) != null) {
 			log.debug("该乘客已存在=======" + passenger.getPassengerId());
@@ -57,11 +57,7 @@ public class PassengerController {
 
 	@DeleteMapping("/deletePassenger")
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "passenger", value = "传入被删除的乘客对象", required = false, dataType = "Passenger"),
-			@ApiImplicitParam(name = "usrId", value = "用户id是必须的", required = true, dataType = "String"),
-			@ApiImplicitParam(name = "passengerId", value = "乘客身份证号是必须的", required = true, dataType = "String")
-	})
+	@ApiImplicitParam(name = "passenger", value = "传入被删除的乘客对象，其中用户id和乘客身份证号是必须的", required = true, dataType = "Passenger对象")
 	public Result deletePassenger(@RequestBody Passenger passenger) {
 		if (passengerService.remove(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId()).eq("usr_id", passenger.getUsrId()))) {
 			log.info("乘客删除成功=======" + passenger);

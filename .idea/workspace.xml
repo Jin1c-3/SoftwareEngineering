@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加一些Usr接口">
+    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加了用户管理系统的所有接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/PassengerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/PassengerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/WholeOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/WholeOrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Passenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/WholeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/WholeOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/PassengerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/PassengerMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/WholeOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/WholeOrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/PassengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/PassengerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/WholeOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/WholeOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/PassengerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/PassengerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/WholeOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/WholeOrderServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +190,7 @@
       <workItem from="1680502580814" duration="3371000" />
       <workItem from="1680506124416" duration="2405000" />
       <workItem from="1680532829876" duration="758000" />
-      <workItem from="1680562282709" duration="8290000" />
+      <workItem from="1680562282709" duration="8929000" />
     </task>
     <task id="LOCAL-00001" summary="增加一些Usr接口">
       <created>1680565795985</created>
@@ -207,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680565795985</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加了用户管理系统的所有接口">
+      <created>1680570635462</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680570635462</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +225,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="增加一些Usr接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加一些Usr接口" />
+    <MESSAGE value="增加了用户管理系统的所有接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了用户管理系统的所有接口" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -5,11 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.po.WholeOrder;
 import com.yutech.back.service.persistence.WholeOrderService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/whole-order")
 @Slf4j
-@ApiModel(value = "订单管理", description = "订单管理")
+@Api(tags = "订单管理")
+@CrossOrigin
 public class WholeOrderController {
 	@Autowired
 	private WholeOrderService wholeOrderService;
@@ -37,7 +39,7 @@ public class WholeOrderController {
 	 * @return 订单列表
 	 */
 	@GetMapping("/getOrder")
-	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "String")
+	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "Passenger对象")
 	@ApiOperation(value = "根据用户id查询订单", notes = "根据用户id查询订单")
 	public Result getOrderByUsrId(String usrId) {
 		log.debug("查询订单信息=======" + usrId);
