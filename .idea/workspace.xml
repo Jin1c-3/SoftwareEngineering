@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/InterceptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加一些Usr接口" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,8 +185,16 @@
       <workItem from="1680502580814" duration="3371000" />
       <workItem from="1680506124416" duration="2405000" />
       <workItem from="1680532829876" duration="758000" />
-      <workItem from="1680562282709" duration="3447000" />
+      <workItem from="1680562282709" duration="4158000" />
     </task>
+    <task id="LOCAL-00001" summary="增加一些Usr接口">
+      <created>1680565795985</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680565795985</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +210,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="增加一些Usr接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加一些Usr接口" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
