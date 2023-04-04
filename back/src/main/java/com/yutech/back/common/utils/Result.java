@@ -1,5 +1,7 @@
 package com.yutech.back.common.utils;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
@@ -24,10 +26,12 @@ import java.util.Map;
  * 使用 HttpStatus 的常量表示 响应状态码，需导入 httpcore 相关依赖文件。
  */
 @Data
+@ApiModel(value = "统一结果返回类")
 public class Result {
 	/**
 	 * 响应是否成功，true 为成功，false 为失败
 	 */
+	@ApiModelProperty(value = "响应是否成功，true 为成功，false 为失败")
 	private Boolean success;
 
 	/**
@@ -41,16 +45,19 @@ public class Result {
 	 * HttpStatus.SERVICE_UNAVAILABLE =500;
 	 * 来自：<a href="https://blog.csdn.net/csdn1844295154/article/details/78980174">...</a>
 	 */
+	@ApiModelProperty(value = "响应状态码， 200 成功，500 系统异常")
 	private Integer code;
 
 	/**
 	 * 响应消息
 	 */
+	@ApiModelProperty(value = "响应消息")
 	private String message;
 
 	/**
 	 * 响应数据
 	 */
+	@ApiModelProperty(value = "响应数据")
 	private Map<String, Object> data = new HashMap<>();
 
 	/**

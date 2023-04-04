@@ -8,6 +8,7 @@ import com.yutech.back.service.persistence.PassengerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class PassengerController {
 	@ApiOperation(value = "根据用户id查询乘客信息", notes = "用户id和PassengerID是互通的")
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "String")
 	public Result findPagByUsrId(String usrId) {
-		return Result.ok().data("passenger", passengerService.findPagByUsrId(usrId));
+		return Result.ok().message("查询成功").data("passenger", passengerService.findPagByUsrId(usrId));
 	}
 
 	@PostMapping("/addPassenger")

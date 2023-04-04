@@ -2,6 +2,7 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.po.Usr;
@@ -9,10 +10,12 @@ import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,15 +49,20 @@ public class UsrController {
 	 * @param usr 用户信息
 	 * @return Result
 	 */
-	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性")
+	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
-	public Result usrRegistry(@RequestBody Usr usr) {
+	@ApiImplicitParam(name = "usr", value = "用户对象", required = true, dataType = "Usr对象")
+	public Result usrRegistry(@RequestBody Usr usr, HttpServletRequest request) {
 		Format sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		//验证账号唯一性
 		if (usrService.verifyUnique(usr)) {
 			usr.setUsrId(sdf.format(new Date()) + UUID.randomUUID());
-			//设置默认头像
-			if (usr.getUsrAvatar() == null) usr.setUsrAvatar(DEFAULT_AVATAR);
+			//如果用户没有上传头像，则使用默认头像
+			if (usr.getUsrAvatar() == null) {
+				usr.setUsrAvatar(DEFAULT_AVATAR);
+			} else {
+				usr.setUsrAvatar(FileUtil.storeMultipartFile(usr.getUsrId(), usr.getAvatar(), request));
+			}
 			usrService.save(usr);
 			Result.ok().data("token", JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd()));
 		}
@@ -67,8 +75,9 @@ public class UsrController {
 	 * @param usr 用户信息
 	 * @return Result
 	 */
-	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象")
+	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@ApiImplicitParam(name = "usr", value = "用户信息", required = true, dataType = "Usr对象")
+	@ApiResponse(code = 200, message = "成功")
 	@GetMapping("/login")
 	public Result usrLogin(Usr usr) {
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
