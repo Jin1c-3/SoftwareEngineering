@@ -1,10 +1,8 @@
 package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
-import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
@@ -18,7 +16,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -74,12 +71,12 @@ public class TestController {
 	@Autowired
 	private UserService userService;
 
-	@ApiOperation(value = "测试分页插件")
-	@GetMapping("/testMyBatisPlus/page/{current}/{size}")
-	public Result testPage(@PathVariable("current") Long current, @PathVariable("size") Long size) {
-		Page<User> page = new Page<>(current, size);
-		return Result.ok().data("page", userService.page(page, null));
-	}
+//	@ApiOperation(value = "测试分页插件")
+//	@GetMapping("/testMyBatisPlus/page/{current}/{size}")
+//	public Result testPage(@PathVariable("current") Long current, @PathVariable("size") Long size) {
+//		Page<User> page = new Page<>(current, size);
+//		return Result.ok().data("page", userService.page(page, null));
+//	}
 
 //	@GetMapping("/testPageHelper/page/{current}/{size}")
 //	public Result testPageHelper(@PathVariable("current") int current, @PathVariable("size") int size) {
@@ -110,17 +107,17 @@ public class TestController {
 		return Result.error().message("数据更新失败");
 	}
 
-	@ApiOperation(value = "测试 token 验证的效果")
-	@PostMapping("/testTokenValidation/login")
-	public Result testValidateUserByToken(@RequestBody User user) {
-		String username = user.getUsername();
-		String password = user.getPassword();
-		String token = JwtUtil.sign(username, password);
-		if (!StringUtils.isEmpty(token)) {
-			return Result.ok().message("用户token发放成功").data("token", token);
-		}
-		return Result.error().message("用户token验证失效");
-	}
+//	@ApiOperation(value = "测试 token 验证的效果")
+//	@PostMapping("/testTokenValidation/login")
+//	public Result testValidateUserByToken(@RequestBody User user) {
+//		String username = user.getUsername();
+//		String password = user.getPassword();
+//		String token = JwtUtil.sign(username, password);
+//		if (!StringUtils.isEmpty(token)) {
+//			return Result.ok().message("用户token发放成功").data("token", token);
+//		}
+//		return Result.error().message("用户token验证失效");
+//	}
 
 	@Autowired
 	private EMailSenderService eMailSenderService;

@@ -3,8 +3,6 @@ package com.yutech.back.service.persistence;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yutech.back.entity.po.Passenger;
 
-import java.util.List;
-
 /**
  * <p>
  * 服务类
@@ -15,5 +13,4 @@ import java.util.List;
  */
 public interface PassengerService extends IService<Passenger> {
 
-	List<Passenger> findPagByUsrId(String usrId);
 }

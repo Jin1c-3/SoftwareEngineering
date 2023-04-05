@@ -5,8 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
 
 /**
  * 统一结果返回类。方法采用链式调用的写法（即返回类本身 return this）。
@@ -27,7 +26,7 @@ import java.util.Map;
  */
 @Data
 @ApiModel(value = "统一结果返回类")
-public class Result {
+public class Result<T> implements Serializable {
 	/**
 	 * 响应是否成功，true 为成功，false 为失败
 	 */
@@ -58,7 +57,7 @@ public class Result {
 	 * 响应数据
 	 */
 	@ApiModelProperty(value = "响应数据")
-	private Map<String, Object> data = new HashMap<>();
+	private T data;
 
 	/**
 	 * 默认私有构造器
@@ -72,7 +71,6 @@ public class Result {
 	 * @param success 响应是否成功
 	 * @param code    响应状态码
 	 * @param message 响应消息
-	 *                <p>
 	 *                param 注释是生成文档的 javadoc 使用的特殊格式注释。
 	 */
 	private Result(Boolean success, Integer code, String message) {
@@ -81,13 +79,20 @@ public class Result {
 		this.message = message;
 	}
 
+	private Result(Boolean success, Integer code, String message, T data) {
+		this.success = success;
+		this.code = code;
+		this.message = message;
+		this.data = data;
+	}
+
 	/**
 	 * 返回一个默认的 成功操作 的结果，默认响应状态码 200
 	 *
 	 * @return 成功操作的实例对象
 	 */
-	public static Result ok() {
-		return new Result(true, HttpStatus.OK.value(), "success");
+	public static <T> Result<T> ok() {
+		return new Result<>(true, HttpStatus.OK.value(), "success");
 	}
 
 	/**
@@ -98,8 +103,16 @@ public class Result {
 	 * @param message 响应消息
 	 * @return 成功操作的实例对象
 	 */
-	public static Result ok(Boolean success, Integer code, String message) {
-		return new Result(success, code, message);
+	public static <T> Result<T> ok(Boolean success, Integer code, String message) {
+		return new Result<>(success, code, message);
+	}
+
+	public static <T> Result<T> ok(T data) {
+		return new Result<>(true, HttpStatus.OK.value(), "success", data);
+	}
+
+	public static <T> Result<T> ok(Boolean success, Integer code, String message, T data) {
+		return new Result<T>(success, code, message, data);
 	}
 
 	/**
@@ -107,8 +120,8 @@ public class Result {
 	 *
 	 * @return 失败操作的实例对象
 	 */
-	public static Result error() {
-		return new Result(false, HttpStatus.INTERNAL_SERVER_ERROR.value(), "error");
+	public static <T> Result<T> error() {
+		return new Result<>(false, HttpStatus.INTERNAL_SERVER_ERROR.value(), "error");
 	}
 
 	/**
@@ -119,8 +132,16 @@ public class Result {
 	 * @param message 相应消息
 	 * @return 失败操作的实例对象
 	 */
-	public static Result error(Boolean success, Integer code, String message) {
-		return new Result(success, code, message);
+	public static <T> Result<T> error(Boolean success, Integer code, String message) {
+		return new Result<>(success, code, message);
+	}
+
+	public static <T> Result<T> error(T data) {
+		return new Result<>(false, HttpStatus.INTERNAL_SERVER_ERROR.value(), "error", data);
+	}
+
+	public static <T> Result<T> error(Boolean success, Integer code, String message, T data) {
+		return new Result<>(success, code, message, data);
 	}
 
 	/**
@@ -129,7 +150,7 @@ public class Result {
 	 * @param success 响应是否成功
 	 * @return 当前实例对象
 	 */
-	public Result success(Boolean success) {
+	public Result<T> success(Boolean success) {
 		this.setSuccess(success);
 		return this;
 	}
@@ -140,7 +161,7 @@ public class Result {
 	 * @param code 响应状态码
 	 * @return 当前实例对象
 	 */
-	public Result code(Integer code) {
+	public Result<T> code(Integer code) {
 		this.setCode(code);
 		return this;
 	}
@@ -151,31 +172,32 @@ public class Result {
 	 * @param message 响应消息
 	 * @return 当前实例对象
 	 */
-	public Result message(String message) {
+	public Result<T> message(String message) {
 		this.setMessage(message);
 		return this;
 	}
+//
+//	/**
+//	 * 自定义响应数据
+//	 *
+//	 * @param dataValue 响应数据
+//	 * @return 当前实例对象
+//	 */
+//	public Result<T> data(T dataValue) {
+//		this.setData(dataValue);
+//		return this;
+//	}
 
-	/**
-	 * 自定义响应数据，一次设置一个 map 集合
-	 *
-	 * @param map 响应数据
-	 * @return 当前实例对象
-	 */
-	public Result data(Map<String, Object> map) {
-		this.data.putAll(map);
-		return this;
-	}
-
-	/**
-	 * 通用设置响应数据，一次设置一个 key - value 键值对
-	 *
-	 * @param key   键
-	 * @param value 数据
-	 * @return 当前实例对象
-	 */
-	public Result data(String key, Object value) {
-		this.data.put(key, value);
-		return this;
-	}
+	//该方法失效
+//	/**
+//	 * 通用设置响应数据，一次设置一个 key - value 键值对
+//	 *
+//	 * @param key   键
+//	 * @param value 数据
+//	 * @return 当前实例对象
+//	 */
+//	public Result data(String key, Object value) {
+//		this.data.put(key, value);
+//		return this;
+//	}
 }

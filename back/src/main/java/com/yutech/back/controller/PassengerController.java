@@ -8,10 +8,11 @@ import com.yutech.back.service.persistence.PassengerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -39,8 +40,9 @@ public class PassengerController {
 	@GetMapping("/findPagByUsrId")
 	@ApiOperation(value = "根据用户id查询乘客信息", notes = "用户id和PassengerID是互通的")
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "String")
-	public Result findPagByUsrId(String usrId) {
-		return Result.ok().message("查询成功").data("passenger", passengerService.findPagByUsrId(usrId));
+	public Result<List<Passenger>> findPagByUsrId(String usrId) {
+		log.debug("根据usrId查询乘客信息=======" + usrId);
+		return Result.ok(passengerService.list(new QueryWrapper<Passenger>().eq("usr_id", usrId))).message("查询成功");
 	}
 
 	@PostMapping("/addPassenger")
@@ -61,8 +63,8 @@ public class PassengerController {
 	@ApiImplicitParam(name = "passenger", value = "传入被删除的乘客对象，其中用户id和乘客身份证号是必须的", required = true, dataType = "Passenger对象")
 	public Result deletePassenger(@RequestBody Passenger passenger) {
 		if (passengerService.remove(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId()).eq("usr_id", passenger.getUsrId()))) {
-			log.info("乘客删除成功=======" + passenger);
-			return Result.ok().message("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
+			log.info("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
+			return Result.ok().message("乘客删除成功");
 		}
 		log.debug("乘客删除失败，该乘客不存在或用户无此权限=======" + passenger);
 		return Result.error().message("删除失败");

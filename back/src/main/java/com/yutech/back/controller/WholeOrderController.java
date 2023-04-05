@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * <p>
  * 前端控制器
@@ -41,9 +43,9 @@ public class WholeOrderController {
 	@GetMapping("/getOrder")
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "Passenger对象")
 	@ApiOperation(value = "根据用户id查询订单", notes = "根据用户id查询订单")
-	public Result getOrderByUsrId(String usrId) {
+	public Result<List<WholeOrder>> getOrderByUsrId(String usrId) {
 		log.debug("查询订单信息=======" + usrId);
-		return Result.ok().data("order", wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId)));
+		return Result.ok(wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId)));
 	}
 }
 

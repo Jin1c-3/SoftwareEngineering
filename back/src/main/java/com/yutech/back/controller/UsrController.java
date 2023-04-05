@@ -5,12 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.service.persistence.UsrService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +44,20 @@ public class UsrController {
 	/**
 	 * 用户注册
 	 *
-	 * @param usr 用户信息
+	 * @param usrDTO 用户信息
 	 * @return Result
 	 */
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
-	@ApiImplicitParam(name = "usr", value = "用户对象", required = true, dataType = "Usr对象")
-	public Result usrRegistry(@RequestBody Usr usr, HttpServletRequest request) {
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "usr_account", value = "账号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usr_pwd", value = "密码", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usr_email", value = "邮箱", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usr_phone", value = "手机号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "avatar", value = "头像", dataType = "MultipartFile对象")
+	})
+	public Result<UsrDTO> usrRegistry(@RequestBody UsrDTO usrDTO, HttpServletRequest request) {
+		Usr usr = usrDTO.getUsr();
 		Format sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		//验证账号唯一性
 		if (usrService.verifyUnique(usr)) {
@@ -61,12 +66,13 @@ public class UsrController {
 			if (usr.getUsrAvatar() == null) {
 				usr.setUsrAvatar(DEFAULT_AVATAR);
 			} else {
-				usr.setUsrAvatar(FileUtil.storeMultipartFile(usr.getUsrId(), usr.getAvatar(), request));
+				usr.setUsrAvatar(FileUtil.storeMultipartFile(usr.getUsrId(), usrDTO.getAvatar(), request));
 			}
+			//保存用户信息
 			usrService.save(usr);
-			Result.ok().data("token", JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd()));
+			return Result.ok(new UsrDTO(usr, JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd())));
 		}
-		return Result.error().message("账号已存在");
+		return Result.error(new UsrDTO()).message("账号已存在");
 	}
 
 	/**
@@ -76,17 +82,21 @@ public class UsrController {
 	 * @return Result
 	 */
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
-	@ApiImplicitParam(name = "usr", value = "用户信息", required = true, dataType = "Usr对象")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "usr_account", value = "账号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usr_pwd", value = "密码", required = true, dataType = "string")
+	})
 	@ApiResponse(code = 200, message = "成功")
 	@GetMapping("/login")
-	public Result usrLogin(Usr usr) {
+	public Result<UsrDTO> usrLogin(Usr usr) {
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
 		if (usrInDB != null) {
 			if (usrInDB.getUsrPwd().equals(usr.getUsrPwd())) {
-				return Result.ok().data("token", JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd())).data("usr", usrInDB);
+				return Result.ok(new UsrDTO(usr, JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd())));
 			}
+			return Result.error(new UsrDTO()).message("账号或密码错误");
 		}
-		return Result.error().message("账号或密码错误");
+		return Result.error(new UsrDTO()).message("账号不存在");
 	}
 
 	/**
@@ -97,12 +107,12 @@ public class UsrController {
 	 */
 	@PatchMapping("/update")
 	@ApiOperation(value = "修改用户信息", notes = "修改用户信息")
-	public Result updateUsrInfo(Usr usr) {
+	public Result<Usr> updateUsrInfo(Usr usr) {
 		if (usrService.verifyUnique(usr)) {
 			usrService.updateById(usr);
-			return Result.ok();
+			return Result.ok(usr);
 		}
-		return Result.error().message("账号冲突");
+		return Result.error(new Usr()).message("账号冲突");
 	}
 }
 

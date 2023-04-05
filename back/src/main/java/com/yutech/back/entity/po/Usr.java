@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 
@@ -27,10 +26,6 @@ public class Usr implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "头像文件，不会存储到数据库")
-	@TableField(exist = false)
-	private MultipartFile avatar;
-
 	@TableId("usr_account")
 	private String usrAccount;
 
@@ -40,7 +35,7 @@ public class Usr implements Serializable {
 	@TableField("usr_email")
 	private String usrEmail;
 
-	@ApiModelProperty(value = "头像地址，会存储到数据库")
+	@ApiModelProperty(value = "头像网址，会存储到数据库")
 	@TableField("usr_avatar")
 	private String usrAvatar;
 

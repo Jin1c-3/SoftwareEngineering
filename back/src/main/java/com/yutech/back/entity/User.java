@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -29,7 +30,8 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "User对象", description = "用户表")
+@ApiModel(value = "测试User对象", description = "测试用户，不要管")
+@ApiIgnore
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
