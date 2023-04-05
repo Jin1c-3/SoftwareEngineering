@@ -57,10 +57,11 @@ create table flight_time(
 
 ---用户
 create table usr(
-	usr_account varchar(20) primary key,  --用户账号 注册时随机分配
-	usr_ID varchar(20) unique,   --uuid
+	usr_account varchar(20) unique,  --用户账号 注册时随机分配
+	usr_ID varchar(20)  primary key,   --uuid
 	usr_email varchar(255) unique,  
 	usr_avater varchar(255) unique, --存头像地址
+	usr_phone char(11) unique,
 	usr_viplevel int,
 	usr_pwd varchar(30)
 )
@@ -72,7 +73,8 @@ create table whole_order(
 	order_time datetime,
 	order_flag nvarchar(10) check (order_flag = '是' or order_flag = '否'),  --是否已支付
 	vehicle_type nvarchar(10),
-	usr_ID varchar(20) 
+	usr_ID varchar(20),
+	foreign key(usr_ID) references usr(usr_ID)
 )
 
 create table flight_ticket(
@@ -80,7 +82,7 @@ create table flight_ticket(
 	 ticket_ID int identity(1,1) primary key,
 	 --外键
 	 flight_ID varchar(25),
-	 order_ID int,--订单编号  自增
+	 order_ID int,
 
 	 flight_start_time datetime,
 	 flight_end_time datetime,
