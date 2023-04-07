@@ -8,7 +8,10 @@ import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.service.persistence.UsrService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -70,9 +73,10 @@ public class UsrController {
 			}
 			//保存用户信息
 			usrService.save(usr);
+			log.info("用户注册成功，用户id为{}", usr.getUsrId());
 			return Result.ok(new UsrDTO(usr, JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd())));
 		}
-		return Result.error(new UsrDTO()).message("账号已存在");
+		return Result.error(new UsrDTO(usr)).message("账号已存在");
 	}
 
 	/**
@@ -86,17 +90,17 @@ public class UsrController {
 			@ApiImplicitParam(name = "usr_account", value = "账号", required = true, dataType = "string"),
 			@ApiImplicitParam(name = "usr_pwd", value = "密码", required = true, dataType = "string")
 	})
-	@ApiResponse(code = 200, message = "成功")
 	@GetMapping("/login")
 	public Result<UsrDTO> usrLogin(Usr usr) {
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
 		if (usrInDB != null) {
 			if (usrInDB.getUsrPwd().equals(usr.getUsrPwd())) {
+				log.info("用户登录成功，用户id为{}", usrInDB.getUsrId());
 				return Result.ok(new UsrDTO(usr, JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd())));
 			}
-			return Result.error(new UsrDTO()).message("账号或密码错误");
+			return Result.error(new UsrDTO(usr)).message("账号或密码错误");
 		}
-		return Result.error(new UsrDTO()).message("账号不存在");
+		return Result.error(new UsrDTO(usr)).message("账号不存在");
 	}
 
 	/**
@@ -110,9 +114,10 @@ public class UsrController {
 	public Result<Usr> updateUsrInfo(Usr usr) {
 		if (usrService.verifyUnique(usr)) {
 			usrService.updateById(usr);
+			log.info("用户信息修改成功，用户id为{}", usr.getUsrId());
 			return Result.ok(usr);
 		}
-		return Result.error(new Usr()).message("账号冲突");
+		return Result.error(usr).message("账号冲突");
 	}
 }
 

@@ -20,9 +20,13 @@ public class TestAutoGenerator {
 	private String userName;
 	@Value("${spring.datasource.password}")
 	private String password;
-	@Value("#{'${tableNames}'.split(',')}")
-	private String[] tableNames;
+	private final String[] tableNames = "train_ticket,aircraft,flight_info,flight_ticket,flight_time,passenger,railway_carriage_information,service_provider,super_usr,train_information,train_number_details,train_number_information,usr,whole_order"
+			.split(",");
 
+	/**
+	 * 是否只生成Entity类
+	 */
+	private final boolean entityOnlyFlag = false;
 
 	@Test
 	public void autoGenerate() {
@@ -78,16 +82,18 @@ public class TestAutoGenerator {
 //		pc.setModuleName("back");
 		// 配置 entity 包名
 		pc.setEntity("entity.po");
-		// 配置 mapper 包名
-		pc.setMapper("mapper.po");
-		// 配置 xml 包名
-		pc.setXml("mapper.po.xml");
-		// 配置 service 包名
-		pc.setService("service.persistence");
-		// 配置 service.impl 包名
-		pc.setServiceImpl("service.persistence.impl");
-		// 配置 controller 包名
-		pc.setController("controller");
+		if (!entityOnlyFlag) {
+			// 配置 mapper 包名
+			pc.setMapper("mapper.po");
+			// 配置 xml 包名
+			pc.setXml("mapper.po.xml");
+			// 配置 service 包名
+			pc.setService("service.persistence");
+			// 配置 service.impl 包名
+			pc.setServiceImpl("service.persistence.impl");
+			// 配置 controller 包名
+			pc.setController("controller");
+		}
 		mpg.setPackageInfo(pc);
 
 		// Step5：策略配置（数据库表配置）

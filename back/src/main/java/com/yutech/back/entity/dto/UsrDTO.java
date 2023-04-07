@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UsrDTO {
 	@ApiModelProperty(value = "用户信息PO")
 	private Usr usr;
+
 	@ApiModelProperty(value = "用户token")
 	private String token;
 
@@ -27,7 +28,16 @@ public class UsrDTO {
 	}
 
 	/**
-	 * 构造方法
+	 * 单参构造方法
+	 *
+	 * @param usr 用户信息PO
+	 */
+	public UsrDTO(Usr usr) {
+		this.usr = usr;
+	}
+
+	/**
+	 * 双参构造方法
 	 *
 	 * @param usr   用户信息PO
 	 * @param token 用户token

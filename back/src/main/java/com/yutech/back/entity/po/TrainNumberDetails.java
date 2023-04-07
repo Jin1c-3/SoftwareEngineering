@@ -1,13 +1,14 @@
 package com.yutech.back.entity.po;
 
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -20,7 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="TrainNumberDetails对象", description="")
+@ApiModel(value="TrainNumberDetails对象", description="车次细节")
 public class TrainNumberDetails implements Serializable {
 
     private static final long serialVersionUID=1L;

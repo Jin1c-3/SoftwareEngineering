@@ -1,13 +1,14 @@
 package com.yutech.back.entity.po;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -20,7 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="TrainInformation对象", description="")
+@ApiModel(value="TrainInformation对象", description="火车信息")
 public class TrainInformation implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -42,8 +43,8 @@ public class TrainInformation implements Serializable {
     private Integer trainTwoNum;
 
     @ApiModelProperty(value = "软座/特等座数量")
-    @TableField("traint_sp_num")
-    private Integer traintSpNum;
+    @TableField("train_sp_num")
+    private Integer trainSpNum;
 
     @ApiModelProperty(value = "软卧数量")
     @TableField("train_ssp_num")

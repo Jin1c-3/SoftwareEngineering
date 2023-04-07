@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.mapper.po.UsrMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -22,7 +23,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 	private UsrMapper usrMapper;
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+	public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
 		String token = request.getHeader("token");
 		// 如果不是映射到方法直接通过
 		if (!(handler instanceof HandlerMethod)) {
