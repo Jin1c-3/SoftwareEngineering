@@ -1,6 +1,6 @@
 package com.yutech.back.service.persistence;
 
-import com.yutech.back.entity.po.TrainInformation;
+import com.yutech.back.entity.po.RailwayCarriageInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author Jin1c-3
- * @since 2023-04-03
+ * @since 2023-04-07
  */
-public interface TrainInformationService extends IService<TrainInformation> {
+public interface RailwayCarriageInfoService extends IService<RailwayCarriageInfo> {
 
 }

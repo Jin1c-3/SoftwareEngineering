@@ -5,169 +5,123 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加管理员系统的一些接口">
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/GetTrainDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/SuperUsrOper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainTicketMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainTicketMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainTicketService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainTicketServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alipay_sdk_alipay_easysdk_2_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alipay_sdk_easysdk_kernel_1_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_aliyun_aliyun_java_sdk_core_4_6_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_aliyun_tea_1_1_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_auth0_java_jwt_3_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_3_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_annotation_3_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_3_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_core_3_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_extension_3_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_generator_3_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_13_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_13_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_13_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_13_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_13_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_13_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_ulisesbocchio_jasypt_spring_boot_3_0_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_ulisesbocchio_jasypt_spring_boot_starter_3_0_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_20_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_sqlserver_sqljdbc4_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_4_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_2_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_4_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_opentracing_opentracing_api_0_33_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_opentracing_opentracing_noop_0_33_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_opentracing_opentracing_util_0_33_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_core_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_schema_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spi_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spring_web_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger2_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_common_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_ui_2_9_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_annotations_1_5_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_models_1_5_20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_12_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_12_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_2_4_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_4_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_17_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_71.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_71.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_71.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_velocity_velocity_engine_core_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_22_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_70.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_2_5_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ini4j_ini4j_0_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jacoco_org_jacoco_agent_runtime_0_8_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jasypt_jasypt_1_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_3_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_24_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_6_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_common_1_6_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mapstruct_mapstruct_1_2_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_4_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_4_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_26.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_36.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_36.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_7_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_core_1_2_0_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_metadata_1_2_0_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_15_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_15_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/AbnormalRecordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/FlightInfoDetailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/RailwayCarriageInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainNumberInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainNumberInfoDetailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainTicketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/AbnormalRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/RailwayCarriageInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainNumberInfoDetailMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainNumberInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainNumberInfoDetailMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainNumberInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/RailwayCarriageInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainNumberInfoDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainNumberInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/AbnormalRecordServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/FlightInfoDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/RailwayCarriageInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainNumberInfoDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainNumberInfoServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/AlipayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/AlipayConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/InterceptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/SuperUsrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/SuperUsrController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainInformationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainNumberDetailsController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainNumberInformationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/MyBatisPlusConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/MyBatisPlusConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/exception/GlobalException.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/exception/GlobalException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/ExceptionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/ExceptionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/FileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/validator/group/AddGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/validator/group/AddGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/validator/group/UpdateGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/validator/group/UpdateGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/FlightTimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/TrainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/EMail4CodeBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/EMail4CodeBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/PaymentBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/PaymentBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/Sms4CodeBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/bo/Sms4CodeBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/GetTrainDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/GetTrainDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/SuperUsrOper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/SuperUsrOper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/UsrDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/UsrDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/RailwayCarriageInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/RailwayCarriageInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/ValidationErrorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/ValidationErrorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Aircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Aircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/FlightInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/FlightInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/FlightTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/FlightTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/FlightTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/FlightInfoDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Passenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/RailwayCarriageInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/RailwayCarriageInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/SuperUsr.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/SuperUsr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberInfoDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainNumberInformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/TrainTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Usr.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/Usr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/WholeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/po/WholeOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/AircraftMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/AircraftMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/FlightInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/FlightInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/FlightTicketMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/FlightTicketMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/FlightTimeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/PassengerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/PassengerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/RailwayCarriageInformationMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/ServiceProviderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/ServiceProviderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/SuperUsrMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/SuperUsrMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainInformationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/AbnormalRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainNumberDetailsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/FlightInfoDetailMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainNumberInformationMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainTicketMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/TrainTicketMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/UsrMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/UsrMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/WholeOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/WholeOrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/FlightTimeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/RailwayCarriageInformationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/RailwayCarriageInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainInformationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/FlightInfoDetailMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainNumberDetailsMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/TrainNumberInformationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/xml/AbnormalRecordMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/AliSmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/AliSmsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/AlipayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/AlipayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/EMailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/EMailSenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/AliSmsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/AliSmsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/AlipayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/AlipayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/EMailSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/EMailSenderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/AircraftService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/AircraftService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/FlightInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/FlightInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/FlightTicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/FlightTicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/FlightTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/PassengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/PassengerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/RailwayCarriageInformationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/ServiceProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/ServiceProviderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/SuperUsrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/SuperUsrService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainInformationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/AbnormalRecordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainNumberDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/FlightInfoDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainNumberInformationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainTicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/TrainTicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/UsrService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/UsrService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/WholeOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/WholeOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/AircraftServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/AircraftServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/FlightInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/FlightInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/FlightTicketServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/FlightTicketServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/FlightTimeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/PassengerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/PassengerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/RailwayCarriageInformationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/ServiceProviderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/ServiceProviderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/SuperUsrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/SuperUsrServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainInformationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainNumberDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainNumberInformationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainTicketServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/TrainTicketServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/UsrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/UsrServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/WholeOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/WholeOrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/logback-spring.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestAutoGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestAutoGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestJasypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/test/java/com/yutech/back/TestJasypt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,8 +134,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -258,6 +212,8 @@
       <recent name="C:\Users\yujin\Desktop\SEProj\properties" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yujin\Desktop\SEProj\back\src\main\java\com\yutech\back\entity" />
+      <recent name="C:\Users\yujin\Desktop\SEProj\back\src\main\java\com\yutech\back\common" />
       <recent name="C:\Users\yujin\Desktop\SEProj\back\src\main\java\com\yutech\back" />
       <recent name="C:\Users\yujin\Desktop\SEProj\back\src\main\java\com\yutech\back\sdk" />
       <recent name="C:\Users\yujin\Desktop\SEProj\back\src\main\resources" />
@@ -266,7 +222,22 @@
       <recent name="com.yutech.back.sdk" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackApplication">
+  <component name="RunManager" selected="JUnit.TestAutoGenerator.autoGenerate">
+    <configuration name="TestAutoGenerator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yutech.back.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yutech.back" />
+      <option name="MAIN_CLASS_NAME" value="com.yutech.back.TestAutoGenerator" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestAutoGenerator.autoGenerate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="back" />
       <extension name="coverage">
@@ -279,6 +250,21 @@
       <option name="MAIN_CLASS_NAME" value="com.yutech.back.TestAutoGenerator" />
       <option name="METHOD_NAME" value="autoGenerate" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJasypt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yutech.back.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yutech.back" />
+      <option name="MAIN_CLASS_NAME" value="com.yutech.back.TestJasypt" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -322,6 +308,8 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.TestAutoGenerator" />
+      <item itemvalue="JUnit.TestJasypt" />
       <item itemvalue="JUnit.TestAutoGenerator.autoGenerate" />
       <item itemvalue="JUnit.TestJasypt.generateEncrypt" />
       <item itemvalue="Spring Boot.BackApplication" />
@@ -329,6 +317,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestAutoGenerator.autoGenerate" />
+        <item itemvalue="JUnit.TestJasypt" />
+        <item itemvalue="JUnit.TestAutoGenerator" />
         <item itemvalue="JUnit.TestJasypt.generateEncrypt" />
       </list>
     </recent_temporary>
@@ -408,7 +398,12 @@
       <workItem from="1680827389527" duration="304000" />
       <workItem from="1680827711722" duration="98000" />
       <workItem from="1680827876085" duration="14256000" />
-      <workItem from="1680846048159" duration="367000" />
+      <workItem from="1680846048159" duration="2228000" />
+      <workItem from="1680851093576" duration="5000" />
+      <workItem from="1680851363194" duration="12000" />
+      <workItem from="1680872919977" duration="1682000" />
+      <workItem from="1680874641171" duration="15000" />
+      <workItem from="1680875198587" duration="2509000" />
     </task>
     <task id="LOCAL-00001" summary="增加一些Usr接口">
       <created>1680565795985</created>
@@ -438,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680577301064</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="增加管理员系统的一些接口">
+      <created>1680846440056</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680846440056</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

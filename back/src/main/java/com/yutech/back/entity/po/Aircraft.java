@@ -1,13 +1,14 @@
 package com.yutech.back.entity.po;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -15,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Jin1c-3
- * @since 2023-04-03
+ * @since 2023-04-07
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,15 +32,19 @@ public class Aircraft implements Serializable {
     @TableField("aircraft_type")
     private String aircraftType;
 
+    @ApiModelProperty(value = "头等舱座位数")
     @TableField("aircraft_T_num")
     private Integer aircraftTNum;
 
+    @ApiModelProperty(value = "商务舱座位数")
     @TableField("aircraft_M_num")
     private Integer aircraftMNum;
 
+    @ApiModelProperty(value = "经济舱座位数")
     @TableField("aircraft_L_num")
     private Integer aircraftLNum;
 
+    @ApiModelProperty(value = "可用/不可用")
     @TableField("aircraft_status")
     private String aircraftStatus;
 

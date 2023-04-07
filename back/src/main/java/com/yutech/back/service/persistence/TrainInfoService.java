@@ -1,6 +1,6 @@
 package com.yutech.back.service.persistence;
 
-import com.yutech.back.entity.po.TrainTicket;
+import com.yutech.back.entity.po.TrainInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Jin1c-3
  * @since 2023-04-07
  */
-public interface TrainTicketService extends IService<TrainTicket> {
+public interface TrainInfoService extends IService<TrainInfo> {
 
 }

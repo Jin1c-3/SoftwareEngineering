@@ -1,16 +1,17 @@
 package com.yutech.back.entity.po;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -18,7 +19,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Jin1c-3
- * @since 2023-04-03
+ * @since 2023-04-07
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -45,6 +46,14 @@ public class FlightTicket implements Serializable {
     @TableField("flight_end_time")
     private LocalDateTime flightEndTime;
 
+    @ApiModelProperty(value = "总起点")
+    @TableField("flight_start_port")
+    private String flightStartPort;
+
+    @ApiModelProperty(value = "总终点")
+    @TableField("flight_end_port")
+    private String flightEndPort;
+
     @TableField("ticket_status")
     private String ticketStatus;
 
@@ -53,14 +62,6 @@ public class FlightTicket implements Serializable {
 
     @TableField("seat_type")
     private String seatType;
-
-    @ApiModelProperty(value = "总起点")
-    @TableField("flight_start_port")
-    private String flightStartPort;
-
-    @ApiModelProperty(value = "总终点")
-    @TableField("flight_end_port")
-    private String flightEndPort;
 
     @TableField("flight_price")
     private BigDecimal flightPrice;

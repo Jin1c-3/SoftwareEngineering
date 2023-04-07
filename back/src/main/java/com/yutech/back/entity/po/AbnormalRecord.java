@@ -1,6 +1,5 @@
 package com.yutech.back.entity.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
@@ -10,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -22,23 +22,18 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="ServiceProvider对象", description="")
-public class ServiceProvider implements Serializable {
+@ApiModel(value="AbnormalRecord对象", description="")
+public class AbnormalRecord implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @TableId(value = "service_provider_ID", type = IdType.AUTO)
-    private Integer serviceProviderId;
+    @ApiModelProperty(value = "取消的航班")
+    @TableId("flight_ID")
+    private String flightId;
 
-    @TableField("service_provider_pwd")
-    private String serviceProviderPwd;
-
-    @TableField("service_provider_name")
-    private String serviceProviderName;
-
-    @ApiModelProperty(value = "约定提成")
-    @TableField("push_money")
-    private Float pushMoney;
+    @ApiModelProperty(value = "取消航班的那天")
+    @TableField("abnormal_data")
+    private LocalDateTime abnormalData;
 
 
 }

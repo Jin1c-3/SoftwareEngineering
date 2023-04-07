@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author Jin1c-3
- * @since 2023-04-03
+ * @since 2023-04-07
  */
 @RestController
-@RequestMapping("/flight-time")
-public class FlightTimeController {
+@RequestMapping("/train-number-info-detail")
+public class TrainNumberInfoDetailController {
 
 }
 

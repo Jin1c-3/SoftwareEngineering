@@ -1,6 +1,6 @@
 package com.yutech.back.mapper.po;
 
-import com.yutech.back.entity.po.FlightInfo;
+import com.yutech.back.entity.po.TrainNumberInfoDetail;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Jin1c-3
  * @since 2023-04-07
  */
-public interface FlightInfoMapper extends BaseMapper<FlightInfo> {
+public interface TrainNumberInfoDetailMapper extends BaseMapper<TrainNumberInfoDetail> {
 
 }

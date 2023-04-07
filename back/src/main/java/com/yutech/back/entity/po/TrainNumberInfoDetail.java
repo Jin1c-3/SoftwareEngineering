@@ -1,6 +1,7 @@
 package com.yutech.back.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -16,13 +18,13 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Jin1c-3
- * @since 2023-04-03
+ * @since 2023-04-07
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="TrainNumberDetails对象", description="车次细节")
-public class TrainNumberDetails implements Serializable {
+@ApiModel(value="TrainNumberInfoDetail对象", description="")
+public class TrainNumberInfoDetail implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -35,7 +37,7 @@ public class TrainNumberDetails implements Serializable {
     private LocalDateTime trainLeaveTime;
 
     @ApiModelProperty(value = "车次编号")
-    @TableField("train_number_ID")
+    @TableId("train_number_ID")
     private String trainNumberId;
 
     @ApiModelProperty(value = "到达站点所在城市")
@@ -47,28 +49,28 @@ public class TrainNumberDetails implements Serializable {
     private String trainArriveStation;
 
     @ApiModelProperty(value = "站序")
-    @TableField("train_order")
+    @TableId("train_order")
     private Integer trainOrder;
 
     @ApiModelProperty(value = "里程")
     @TableField("mileage")
-    private Integer mileage;
+    private Float mileage;
 
     @ApiModelProperty(value = "硬卧/一等座票价")
     @TableField("train_one_price")
-    private Integer trainOnePrice;
+    private BigDecimal trainOnePrice;
 
     @ApiModelProperty(value = "硬座/二等座票价")
     @TableField("train_two_price")
-    private Integer trainTwoPrice;
+    private BigDecimal trainTwoPrice;
 
     @ApiModelProperty(value = "软座/特等座票价")
     @TableField("train_sp_price")
-    private Integer trainSpPrice;
+    private BigDecimal trainSpPrice;
 
     @ApiModelProperty(value = "软卧票价")
     @TableField("train_ssp_price")
-    private Integer trainSspPrice;
+    private BigDecimal trainSspPrice;
 
     @ApiModelProperty(value = "相对日期")
     @TableField("dateorder")
