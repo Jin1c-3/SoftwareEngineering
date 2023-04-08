@@ -144,8 +144,8 @@
         <!--自己下载的SQL server JDBC包-->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>4.0</version>
+            <artifactId>sqljdbc6</artifactId>
+            <version>4.2</version>
         </dependency>
 
         <!--以下两项是支持发送邮件功能-->

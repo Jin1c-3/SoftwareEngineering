@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="FlightTicket对象", description="")
+@ApiModel(value="FlightTicket对象", description="飞机机票存储")
 public class FlightTicket implements Serializable {
 
     private static final long serialVersionUID=1L;

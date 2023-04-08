@@ -33,7 +33,7 @@ import java.util.List;
 @Slf4j
 public class SuperUsrController {
 
-	@Value("&{super.usr.id}")
+	@Value("${super.usr.id}")
 	private String superUsrId;
 
 	@Autowired
@@ -136,7 +136,8 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "管理员信息查询", notes = "管理员信息查询，只有超级管理员才能查询")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "superUsr", value = "管理员信息", required = true, dataType = "SuperUsr对象")
+			@ApiImplicitParam(name = "requestMaker", value = "请求者信息", required = true, dataType = "SuperUsr对象"),
+			@ApiImplicitParam(name = "requestTarget", value = "请求目标信息", required = true, dataType = "SuperUsr对象")
 	})
 	@GetMapping("/get-super-usr-list")
 	public Result<List<SuperUsr>> getSuperUsrList(SuperUsrOper superUsrOper) {

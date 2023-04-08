@@ -53,11 +53,10 @@ public class UsrController {
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "usr_account", value = "账号", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "usr_pwd", value = "密码", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "usr_email", value = "邮箱", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "usr_phone", value = "手机号", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "avatar", value = "头像", dataType = "MultipartFile对象")
+			@ApiImplicitParam(name = "usrAccount", value = "账号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usrPwd", value = "密码", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usrEmail", value = "邮箱", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usrPhone", value = "手机号", required = true, dataType = "string")
 	})
 	public Result<UsrDTO> usrRegistry(@RequestBody UsrDTO usrDTO, HttpServletRequest request) {
 		Usr usr = usrDTO.getUsr();
@@ -87,8 +86,8 @@ public class UsrController {
 	 */
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "usr_account", value = "账号", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "usr_pwd", value = "密码", required = true, dataType = "string")
+			@ApiImplicitParam(name = "usrAccount", value = "账号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usrPwd", value = "密码", required = true, dataType = "string")
 	})
 	@GetMapping("/login")
 	public Result<UsrDTO> usrLogin(Usr usr) {
@@ -111,13 +110,19 @@ public class UsrController {
 	 */
 	@PatchMapping("/update")
 	@ApiOperation(value = "修改用户信息", notes = "修改用户信息")
-	public Result<Usr> updateUsrInfo(Usr usr) {
-		if (usrService.verifyUnique(usr)) {
-			usrService.updateById(usr);
-			log.info("用户信息修改成功，用户id为{}", usr.getUsrId());
-			return Result.ok(usr);
+	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "string")
+	public Result<Usr> updateUsrInfo(UsrDTO usrDTO, HttpServletRequest request) {
+		Usr usr = usrDTO.getUsr();
+		//如果用户没有上传头像，则使用默认头像
+		if (usr.getUsrAvatar() == null) {
+			usr.setUsrAvatar(DEFAULT_AVATAR);
+		} else {
+			usr.setUsrAvatar(FileUtil.storeMultipartFile(usr.getUsrId(), usrDTO.getAvatar(), request));
 		}
-		return Result.error(usr).message("账号冲突");
+		//更新用户信息
+		usrService.updateById(usr);
+		log.info("用户信息更新成功，用户id为{}", usr.getUsrId());
+		return Result.ok(usr);
 	}
 }
 

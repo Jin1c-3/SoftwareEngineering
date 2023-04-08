@@ -7,6 +7,7 @@ import com.yutech.back.entity.po.Passenger;
 import com.yutech.back.service.persistence.PassengerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class PassengerController {
 	 * @param usrId 用户id
 	 * @return 乘客信息列表
 	 */
-	@GetMapping("/findPagByUsrId")
+	@GetMapping("/findPsgByUsrId")
 	@ApiOperation(value = "根据用户id查询乘客信息", notes = "用户id和PassengerID是互通的")
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "String")
 	public Result<List<Passenger>> findPagByUsrId(String usrId) {
@@ -47,10 +48,15 @@ public class PassengerController {
 
 	@PostMapping("/addPassenger")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息，前端弄一个页面添加就行")
-	@ApiImplicitParam(name = "passenger", value = "乘客信息", required = true, dataType = "Passenger对象")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "passengerId", value = "乘客身份证号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "string")
+	})
 	public Result addPassenger(@RequestBody Passenger passenger) {
-		if (passengerService.getOne(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId())) != null) {
-			log.debug("该乘客已存在=======" + passenger.getPassengerId());
+		if (passengerService.getOne(new QueryWrapper<Passenger>()
+				.eq("passenger_ID", passenger.getPassengerId())
+				.eq("usr_ID", passenger.getUsrId())) != null) {
+			log.debug("该乘客已存在=======" + passenger);
 			return Result.error().message("该乘客已存在");
 		}
 		passengerService.save(passenger);
@@ -60,7 +66,10 @@ public class PassengerController {
 
 	@DeleteMapping("/deletePassenger")
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
-	@ApiImplicitParam(name = "passenger", value = "传入被删除的乘客对象，其中用户id和乘客身份证号是必须的", required = true, dataType = "Passenger对象")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "passengerId", value = "乘客身份证号", required = true, dataType = "string"),
+			@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "string")
+	})
 	public Result deletePassenger(@RequestBody Passenger passenger) {
 		if (passengerService.remove(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId()).eq("usr_id", passenger.getUsrId()))) {
 			log.info("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
