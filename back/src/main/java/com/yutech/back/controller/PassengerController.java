@@ -7,7 +7,6 @@ import com.yutech.back.entity.po.Passenger;
 import com.yutech.back.service.persistence.PassengerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class PassengerController {
 	 */
 	@GetMapping("/findPsgByUsrId")
 	@ApiOperation(value = "根据用户id查询乘客信息", notes = "用户id和PassengerID是互通的")
-	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "String")
+	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataTypeClass = String.class)
 	public Result<List<Passenger>> findPagByUsrId(String usrId) {
 		log.debug("根据usrId查询乘客信息=======" + usrId);
 		return Result.ok(passengerService.list(new QueryWrapper<Passenger>().eq("usr_id", usrId))).message("查询成功");
@@ -48,10 +47,6 @@ public class PassengerController {
 
 	@PostMapping("/addPassenger")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息，前端弄一个页面添加就行")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "passengerId", value = "乘客身份证号", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "string")
-	})
 	public Result addPassenger(@RequestBody Passenger passenger) {
 		if (passengerService.getOne(new QueryWrapper<Passenger>()
 				.eq("passenger_ID", passenger.getPassengerId())
@@ -66,10 +61,6 @@ public class PassengerController {
 
 	@DeleteMapping("/deletePassenger")
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "passengerId", value = "乘客身份证号", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "string")
-	})
 	public Result deletePassenger(@RequestBody Passenger passenger) {
 		if (passengerService.remove(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId()).eq("usr_id", passenger.getUsrId()))) {
 			log.info("删除成功,该乘客已被删除=======" + passenger.getPassengerId());

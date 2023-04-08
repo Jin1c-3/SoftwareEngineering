@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Jin1c-3
@@ -21,32 +21,35 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Usr对象", description="")
+@ApiModel(value = "Usr对象", description = "")
 public class Usr implements Serializable {
 
-    private static final long serialVersionUID=1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableField("usr_account")
-    private String usrAccount;
+	@ApiModelProperty(value = "用户账号", required = true)
+	@TableField("usr_account")
+	private String usrAccount;
 
-    @TableId("usr_ID")
-    private String usrId;
+	@ApiModelProperty(value = "用户ID")
+	@TableId("usr_ID")
+	private String usrId;
 
-    @TableField("usr_email")
-    private String usrEmail;
+	@TableField("usr_email")
+	private String usrEmail;
 
-    @ApiModelProperty(value = "头像网址，会存储到数据库")
-    @TableField("usr_avatar")
-    private String usrAvatar;
+	@ApiModelProperty(value = "头像网址，会存储到数据库")
+	@TableField("usr_avatar")
+	private String usrAvatar;
 
-    @TableField("usr_vip_level")
-    private Integer usrVipLevel;
+	@TableField("usr_vip_level")
+	private Integer usrVipLevel;
 
-    @TableField("usr_pwd")
-    private String usrPwd;
+	@ApiModelProperty(value = "用户密码", required = true)
+	@TableField("usr_pwd")
+	private String usrPwd;
 
-    @TableField("usr_phone")
-    private String usrPhone;
+	@TableField("usr_phone")
+	private String usrPhone;
 
 
 }

@@ -41,7 +41,7 @@ public class WholeOrderController {
 	 * @return 订单列表
 	 */
 	@GetMapping("/getOrder")
-	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataType = "Passenger对象")
+	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataTypeClass = String.class)
 	@ApiOperation(value = "根据用户id查询订单", notes = "根据用户id查询订单")
 	public Result<List<WholeOrder>> getOrderByUsrId(String usrId) {
 		log.debug("查询订单信息=======" + usrId);

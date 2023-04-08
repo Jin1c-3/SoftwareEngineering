@@ -7,8 +7,6 @@ import com.yutech.back.entity.dto.SuperUsrOper;
 import com.yutech.back.entity.po.SuperUsr;
 import com.yutech.back.service.persistence.SuperUsrService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,10 +84,6 @@ public class SuperUsrController {
 	 * @return Result
 	 */
 	@ApiOperation(value = "管理员登录", notes = "管理员登录，只会验证账号密码，不发放token")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "superUsrId", value = "管理员账号", required = true, dataType = "string"),
-			@ApiImplicitParam(name = "superUsrPwd", value = "管理员密码", required = true, dataType = "string")
-	})
 	@GetMapping("/login")
 	public Result<SuperUsr> login(SuperUsr superUsr) {
 		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
@@ -112,10 +106,6 @@ public class SuperUsrController {
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息修改", notes = "管理员信息修改，只有超级管理员才能修改")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "requestMaker", value = "请求者信息", required = true, dataType = "SuperUsr对象"),
-			@ApiImplicitParam(name = "requestTarget", value = "请求目标信息", required = true, dataType = "SuperUsr对象")
-	})
 	@PatchMapping("/update-super-usr")
 	public Result updateSuperUsr(SuperUsrOper superUsrOper) {
 		SuperUsr requestTarget = superUsrOper.getRequestTarget();
@@ -135,10 +125,6 @@ public class SuperUsrController {
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息查询", notes = "管理员信息查询，只有超级管理员才能查询")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "requestMaker", value = "请求者信息", required = true, dataType = "SuperUsr对象"),
-			@ApiImplicitParam(name = "requestTarget", value = "请求目标信息", required = true, dataType = "SuperUsr对象")
-	})
 	@GetMapping("/get-super-usr-list")
 	public Result<List<SuperUsr>> getSuperUsrList(SuperUsrOper superUsrOper) {
 		SuperUsr requestTarget = superUsrOper.getRequestTarget();
@@ -157,10 +143,6 @@ public class SuperUsrController {
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息删除", notes = "管理员信息删除，只有超级管理员才能删除")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "requestMaker", value = "请求者信息", required = true, dataType = "SuperUsr对象"),
-			@ApiImplicitParam(name = "requestTarget", value = "请求目标信息", required = true, dataType = "SuperUsr对象")
-	})
 	@DeleteMapping("/delete-super-usr")
 	public Result deleteSuperUsr(SuperUsrOper superUsrOper) {
 		SuperUsr requestTarget = superUsrOper.getRequestTarget();
@@ -179,10 +161,6 @@ public class SuperUsrController {
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息添加", notes = "管理员信息添加，只有超级管理员才能添加")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "requestMaker", value = "请求者信息", required = true, dataType = "SuperUsr对象"),
-			@ApiImplicitParam(name = "requestTarget", value = "请求目标信息", required = true, dataType = "SuperUsr对象")
-	})
 	@PostMapping("/add-super-usr")
 	public Result addSuperUsr(SuperUsrOper superUsrOper) {
 		SuperUsr requestTarget = superUsrOper.getRequestTarget();

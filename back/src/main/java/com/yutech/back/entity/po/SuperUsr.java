@@ -3,6 +3,7 @@ package com.yutech.back.entity.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Jin1c-3
@@ -20,19 +21,21 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SuperUsr对象", description="")
+@ApiModel(value = "SuperUsr对象", description = "")
 public class SuperUsr implements Serializable {
 
-    private static final long serialVersionUID=1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId("super_usr_ID")
-    private String superUsrId;
+	@TableId("super_usr_ID")
+	@ApiModelProperty(value = "管理员ID", required = true)
+	private String superUsrId;
 
-    @TableField("super_usr_name")
-    private String superUsrName;
+	@TableField("super_usr_name")
+	private String superUsrName;
 
-    @TableField("super_usr_pwd")
-    private String superUsrPwd;
+	@TableField("super_usr_pwd")
+	@ApiModelProperty(value = "管理员密码", required = true)
+	private String superUsrPwd;
 
 
 }

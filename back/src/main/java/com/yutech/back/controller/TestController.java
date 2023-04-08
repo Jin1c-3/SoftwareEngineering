@@ -56,6 +56,7 @@ public class TestController {
 	/**
 	 * 访问项目的 swagger-ui.html 页面，即可访问到 Swagger 页面。
 	 * 比如：<a href="http://localhost:8080/swagger-ui.html">...</a>，
+	 * 访问 <a href="http://localhost:8080/doc.html">...</a>
 	 * 只有标注了 @ApiOperation 注解的接口才会被显示在 接口文档中。
 	 */
 	@ApiOperation(value = "测试 Swagger", notes = "只会返回 ok")
@@ -131,8 +132,8 @@ public class TestController {
 	 */
 	@ApiOperation(value = "测试通过邮件发送验证码的基础功能")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "to", value = "发到哪儿去", required = true, dataType = "String", paramType = "path"),
-			@ApiImplicitParam(name = "code", value = "验证码是什么", required = true, dataType = "String", paramType = "code")
+			@ApiImplicitParam(name = "to", value = "发到哪儿去", required = true, dataTypeClass = String.class, paramType = "path"),
+//			@ApiImplicitParam(name = "code", value = "验证码是什么", required = true, dataType = "String", paramType = "code")
 	})
 	@GetMapping("/testCodeMailing/{to}/{code}")
 	public Result testCodeMailing(@PathVariable("to") String to, @PathVariable("code") String code) {

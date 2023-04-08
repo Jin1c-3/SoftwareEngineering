@@ -6,9 +6,9 @@ import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotEmpty;
 import java.io.BufferedReader;
@@ -26,6 +26,7 @@ import java.util.UUID;
  * 文件上传下载工具类
  */
 @Slf4j
+@Component
 public class FileUtil {
 	/**
 	 * 文件上传的本地存储路径
@@ -38,7 +39,6 @@ public class FileUtil {
 	 * @param uploadPath 文件上传本地路径，存储在配置文件中
 	 */
 	@Value("${web.upload-path}")
-	@PostConstruct
 	public void setUploadPath(String uploadPath) {
 		FileUtil.uploadPath = uploadPath;
 	}
@@ -64,7 +64,9 @@ public class FileUtil {
 		// 比如：/2019/06/06/test.png
 		String format = sdf.format(new Date());
 		File folder = new File(StringUtils.isEmpty(prePath) ? uploadPath + format : uploadPath + prePath + "/" + format);
+		log.debug("目标文件夹 {}", folder);
 		if (!folder.isDirectory()) {
+			log.debug("正在新建文件夹 {}", folder);
 			folder.mkdirs();
 		}
 		// 对上传的文件重命名，避免文件重名
@@ -74,9 +76,8 @@ public class FileUtil {
 		try {
 			// 文件保存
 			file.transferTo(new File(folder, newName));
-
 			// 返回上传文件的访问路径
-			String httpAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + format + newName;
+			String httpAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/" + format + newName;
 			log.info("图片存储成功，真实文件位置：" + folder + "/" + newName + "；返回的网络文件地址：" + httpAddress);
 			return httpAddress;
 		} catch (IOException e) {
