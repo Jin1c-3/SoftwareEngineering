@@ -31,13 +31,13 @@ public class UsrInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		if (!StringUtils.isEmpty(token)) {
-			String usrId = JwtUtil.getUsrIdByToken(request);
-			log.debug("用户 " + usrId + " 的token是" + token);
-			if (JwtUtil.verify(token, usrId, usrMapper.selectById(usrId).getUsrPwd())) {
-				log.info("用户 " + usrId + " 通过了token验证");
+			String id = JwtUtil.getIdByToken(request);
+			log.debug("用户 " + id + " 的token是" + token);
+			if (JwtUtil.verify(token, id, usrMapper.selectById(id).getUsrPwd())) {
+				log.info("用户 " + id + " 通过了token验证");
 				return true;
 			}
-			log.info("用户 " + usrId + " 未通过token验证");
+			log.info("用户 " + id + " 未通过token验证");
 			return false;
 		}
 		log.warn("返回的token是空字符串");

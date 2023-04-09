@@ -23,22 +23,22 @@ public class JwtUtil {
 	 * 校验token是否正确
 	 *
 	 * @param token  前端传回的token值
-	 * @param usrId  user的唯一标识符
+	 * @param id     user的唯一标识符
 	 * @param secret 设定为password
 	 * @return boolean 返回是否合格
 	 */
-	public static boolean verify(String token, String usrId, String secret) {
+	public static boolean verify(String token, String id, String secret) {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 			JWTVerifier verifier = JWT
 					.require(algorithm)
-					.withClaim("UsrId", usrId)
+					.withClaim("id", id)
 					.build();
 			verifier.verify(token);
-			log.info("验证token成功，UsrId：" + usrId);
+			log.info("验证token成功，id：" + id);
 			return true;
 		} catch (Exception e) {
-			log.warn("验证token失效，UsrId：" + usrId);
+			log.warn("验证token失效，id：" + id);
 			return false;
 		}
 	}
@@ -46,16 +46,16 @@ public class JwtUtil {
 	/**
 	 * 生成签名,EXPIRE_TIME后过期
 	 *
-	 * @param usrId  用户名
+	 * @param id     用户名
 	 * @param secret 用户的密码
 	 * @return 加密的token
 	 */
-	public static String sign(String usrId, String secret) {
+	public static String sign(String id, String secret) {
 		Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
 		Algorithm algorithm = Algorithm.HMAC256(secret);
 		return JWT
 				.create()
-				.withClaim("UsrId", usrId)
+				.withClaim("id", id)
 				.withExpiresAt(date)
 				.sign(algorithm);
 	}
@@ -66,10 +66,10 @@ public class JwtUtil {
 	 * @param request 前端的网页请求
 	 * @return String 返回token中的username
 	 */
-	public static String getUsrIdByToken(HttpServletRequest request) {
+	public static String getIdByToken(HttpServletRequest request) {
 		String token = request.getHeader("token");
 		return JWT.decode(token)
-				.getClaim("UsrId")
+				.getClaim("id")
 				.asString();
 	}
 }

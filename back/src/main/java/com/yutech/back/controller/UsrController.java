@@ -54,7 +54,7 @@ public class UsrController {
 	 */
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
-	public Result<Usr> usrRegistry(@RequestBody Usr usr, HttpServletRequest request) {
+	public Result<Usr> usrRegistry(@RequestBody Usr usr) {
 		log.debug("用户注册，前端信息：=======" + usr);
 		Format sdf = new SimpleDateFormat("yyyyMMdd");
 		//验证账号唯一性
@@ -68,6 +68,7 @@ public class UsrController {
 			log.info("用户注册成功，用户为{}", usr);
 			return Result.ok(usr).message("注册成功");
 		}
+		log.debug("用户注册失败，可能违反唯一性，用户为======{}", usr);
 		return Result.error(usr).message("账号已存在");
 	}
 

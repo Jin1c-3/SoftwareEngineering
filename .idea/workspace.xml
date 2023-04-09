@@ -4,29 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="更换高级前端文档；&#10;修复FileUtils问题；&#10;修复token无效的问题；&#10;UsrController可用可靠">
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/entity/dto/SuperUseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/SuperUsrInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.14cd622f.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.14cd622f.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/chunk-vendors.532f7d11.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/chunk-vendors.532f7d11.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="增加了管理员拦截器">
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.31a17314.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.31a17314.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/config/InterceptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/FileUtil.java.baiduyun.uploading.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/common/utils/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/SuperUsrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/SuperUsrController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/controller/UsrController.java.baiduyun.uploading.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/interceptor/UsrInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/SuperUsrMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/mapper/po/SuperUsrMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/EMailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/EMailSenderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/EMailSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/bussiness/impl/EMailSenderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/app.afdf4f49.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/app.afdf4f49.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/chunk-vendors.14fca857.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/chunk-vendors.14fca857.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/UsrServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/yutech/back/service/persistence/impl/UsrServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/app.14cd622f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/app.14cd622f.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -327,7 +312,7 @@
       <workItem from="1681001393856" duration="115000" />
       <workItem from="1681001519452" duration="313000" />
       <workItem from="1681001845848" duration="2716000" />
-      <workItem from="1681004808982" duration="3128000" />
+      <workItem from="1681004808982" duration="4830000" />
     </task>
     <task id="LOCAL-00001" summary="增加一些Usr接口">
       <created>1680565795985</created>
@@ -385,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680970976335</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="增加了管理员拦截器">
+      <created>1681008129447</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681008129447</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +404,8 @@
     <MESSAGE value="常规更新" />
     <MESSAGE value="swagger文档修正" />
     <MESSAGE value="更换高级前端文档；&#10;修复FileUtils问题；&#10;修复token无效的问题；&#10;UsrController可用可靠" />
-    <option name="LAST_COMMIT_MESSAGE" value="更换高级前端文档；&#10;修复FileUtils问题；&#10;修复token无效的问题；&#10;UsrController可用可靠" />
+    <MESSAGE value="增加了管理员拦截器" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了管理员拦截器" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

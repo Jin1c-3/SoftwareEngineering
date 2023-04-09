@@ -30,15 +30,15 @@ public class SuperUsrInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		if (!StringUtils.isEmpty(token)) {
-			String usrId = JwtUtil.getUsrIdByToken(request);
-			log.debug("管理员 " + usrId + " 的token是" + token);
-			if (JwtUtil.verify(token, usrId, superUsrMapper
-					.selectOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", usrId))
+			String id = JwtUtil.getIdByToken(request);
+			log.debug("管理员 " + id + " 的token是" + token);
+			if (JwtUtil.verify(token, id, superUsrMapper
+					.selectOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", id))
 					.getSuperUsrPwd())) {
-				log.info("管理员 " + usrId + " 通过了token验证");
+				log.info("管理员 " + id + " 通过了token验证");
 				return true;
 			}
-			log.info("管理员 " + usrId + " 未通过token验证");
+			log.info("管理员 " + id + " 未通过token验证");
 			return false;
 		}
 		log.warn("返回的token是空字符串");
