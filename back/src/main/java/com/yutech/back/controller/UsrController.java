@@ -44,7 +44,7 @@ public class UsrController {
 	/**
 	 * 默认头像
 	 */
-	private static final String DEFAULT_AVATAR = "https://www.duitang.com/blog/?id=1416137961";
+	private static final String DEFAULT_AVATAR = "https://www.nitutu.com/uploads/allimg/200409/2136324362-1.jpeg";
 
 	/**
 	 * 用户注册
