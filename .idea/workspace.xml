@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="常规更新">
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.9e3bffcf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.9e3bffcf.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.9e6d52d5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.9e6d52d5.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.be9f1498.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/resources/static/js/app.be9f1498.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/app.50e3688b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/resources/static/js/app.50e3688b.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +313,7 @@
       <workItem from="1681001845848" duration="2716000" />
       <workItem from="1681004808982" duration="5654000" />
       <workItem from="1681026886197" duration="143000" />
-      <workItem from="1681028616994" duration="2795000" />
+      <workItem from="1681028616994" duration="5647000" />
     </task>
     <task id="LOCAL-00001" summary="增加一些Usr接口">
       <created>1680565795985</created>
