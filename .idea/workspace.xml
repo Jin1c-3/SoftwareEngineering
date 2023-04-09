@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28e8c492-24ea-4ef3-b335-529a54e37c38" name="变更" comment="常规更新">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -307,7 +304,7 @@
       <workItem from="1681001845848" duration="2716000" />
       <workItem from="1681004808982" duration="5654000" />
       <workItem from="1681026886197" duration="143000" />
-      <workItem from="1681028616994" duration="579000" />
+      <workItem from="1681028616994" duration="1673000" />
     </task>
     <task id="LOCAL-00001" summary="增加一些Usr接口">
       <created>1680565795985</created>
