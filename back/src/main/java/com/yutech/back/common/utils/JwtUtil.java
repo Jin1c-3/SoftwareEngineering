@@ -3,7 +3,6 @@ package com.yutech.back.common.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +22,9 @@ public class JwtUtil {
 	/**
 	 * 校验token是否正确
 	 *
-	 * @param token    前端传回的token值
-	 * @param username user的唯一标识符
-	 * @param secret   设定为password
+	 * @param token  前端传回的token值
+	 * @param usrId  user的唯一标识符
+	 * @param secret 设定为password
 	 * @return boolean 返回是否合格
 	 */
 	public static boolean verify(String token, String usrId, String secret) {
@@ -35,7 +34,7 @@ public class JwtUtil {
 					.require(algorithm)
 					.withClaim("UsrId", usrId)
 					.build();
-			DecodedJWT djwt = verifier.verify(token);
+			verifier.verify(token);
 			log.info("验证token成功，UsrId：" + usrId);
 			return true;
 		} catch (Exception e) {

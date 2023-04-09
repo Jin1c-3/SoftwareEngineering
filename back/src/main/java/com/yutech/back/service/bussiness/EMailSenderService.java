@@ -12,4 +12,7 @@ public interface EMailSenderService {
 
 	public Boolean sendCodeMail(EMail4CodeBO eMail4CodeBO);
 
+	public Boolean sendGreetingsMail(String to, String name);
+
+
 }

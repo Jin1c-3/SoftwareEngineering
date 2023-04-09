@@ -7,6 +7,7 @@ import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.po.Usr;
+import com.yutech.back.service.bussiness.EMailSenderService;
 import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,6 +38,9 @@ public class UsrController {
 	@Autowired
 	private UsrService usrService;
 
+	@Autowired
+	private EMailSenderService eMailSenderService;
+
 	/**
 	 * 默认头像
 	 */
@@ -45,30 +49,26 @@ public class UsrController {
 	/**
 	 * 用户注册
 	 *
-	 * @param usrDTO 用户信息
+	 * @param usr 用户信息
 	 * @return Result
 	 */
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
-	public Result<UsrDTO> usrRegistry(@RequestBody UsrDTO usrDTO, HttpServletRequest request) {
-		log.debug("用户注册，前端信息：=======" + usrDTO);
-		Usr usr = usrDTO.getUsr();
-		Format sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	public Result<Usr> usrRegistry(@RequestBody Usr usr, HttpServletRequest request) {
+		log.debug("用户注册，前端信息：=======" + usr);
+		Format sdf = new SimpleDateFormat("yyyyMMdd");
 		//验证账号唯一性
 		if (usrService.verifyUnique(usr)) {
-			usr.setUsrId(sdf.format(new Date()) + UUID.randomUUID());
-			//如果用户没有上传头像，则使用默认头像
-			if (usrDTO.getAvatar() == null) {
-				usr.setUsrAvatar(DEFAULT_AVATAR);
-			} else {
-				usr.setUsrAvatar(FileUtil.storeMultipartFile(usr.getUsrId(), usrDTO.getAvatar(), request));
-			}
+			usr.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
+			usr.setUsrAvatar(DEFAULT_AVATAR);
 			//保存用户信息
 			usrService.save(usr);
-			log.info("用户注册成功，用户id为{}", usr.getUsrId());
-			return Result.ok(new UsrDTO(usr, JwtUtil.sign(usr.getUsrId(), usr.getUsrPwd())));
+			//发送欢迎邮件
+			eMailSenderService.sendGreetingsMail(usr.getUsrAccount(), usr.getUsrAccount());
+			log.info("用户注册成功，用户为{}", usr);
+			return Result.ok(usr).message("注册成功");
 		}
-		return Result.error(new UsrDTO(usr)).message("账号已存在");
+		return Result.error(usr).message("账号已存在");
 	}
 
 	/**
@@ -80,6 +80,7 @@ public class UsrController {
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@GetMapping("/login")
 	public Result<UsrDTO> usrLogin(Usr usr) {
+		log.debug("用户登录，前端信息：=======" + usr);
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
 		if (usrInDB == null) {
 			return Result.error(new UsrDTO(usr)).message("账号不存在");
@@ -98,11 +99,11 @@ public class UsrController {
 	 * @return Result
 	 */
 	@PatchMapping("/update")
-	@ApiOperation(value = "修改用户信息", notes = "修改用户信息")
+	@ApiOperation(value = "修改用户信息", notes = "修改用户信息，请传入usrId!!!!!!")
 	public Result<Usr> updateUsrInfo(UsrDTO usrDTO, HttpServletRequest request) {
 		log.debug("用户信息修改，前端信息：=======" + usrDTO);
 		Usr usr = usrDTO.getUsr();
-		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
+		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usr.getUsrId()));
 		if (usrInDB == null) {
 			return Result.error(usr).message("用户不存在");
 		}

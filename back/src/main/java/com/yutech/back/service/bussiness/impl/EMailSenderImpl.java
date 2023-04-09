@@ -85,4 +85,20 @@ public class EMailSenderImpl implements EMailSenderService {
 		}
 	}
 
+	/**
+	 * 发送欢迎邮件
+	 *
+	 * @param to   接收者
+	 * @param name 用户名
+	 */
+	public Boolean sendGreetingsMail(String to, String name) {
+		if (sendSimpleMail(from, to, "[网络鱼科技]欢迎", "欢迎您的加入，" + name + "。")) {
+			log.info("欢迎邮件发送成功:from: {} ======= to: {} ,with name {}", from, to, name);
+			return true;
+		} else {
+			log.error("欢迎邮件发送失败:from: {} ======= to: {} ,with name {}", from, to, name);
+			return false;
+		}
+	}
+
 }

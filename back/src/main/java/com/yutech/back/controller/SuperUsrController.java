@@ -2,7 +2,9 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.dto.SuperUseDTO;
 import com.yutech.back.entity.dto.SuperUsrOper;
 import com.yutech.back.entity.po.SuperUsr;
 import com.yutech.back.service.persistence.SuperUsrService;
@@ -18,7 +20,7 @@ import java.util.List;
 
 /**
  * <p>
- * 管理员系统，注意这里不会被拦截器拦截
+ * 管理员系统，也会被拦截器拦截
  * </p>
  *
  * @author Jin1c-3
@@ -83,20 +85,20 @@ public class SuperUsrController {
 	 * @param superUsr 管理员信息
 	 * @return Result
 	 */
-	@ApiOperation(value = "管理员登录", notes = "管理员登录，只会验证账号密码，不发放token")
+	@ApiOperation(value = "管理员登录", notes = "管理员登录，只会验证账号密码，也会发放token")
 	@GetMapping("/login")
-	public Result<SuperUsr> login(SuperUsr superUsr) {
+	public Result<SuperUseDTO> login(SuperUsr superUsr) {
 		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
 		if (superUsrInDB == null) {
-			log.info("管理员账号不存在======" + superUsr.getSuperUsrId() + "======");
-			return Result.error(superUsr).message("账号不存在");
+			log.info("管理员账号不存在======" + superUsr + "======");
+			return Result.error(new SuperUseDTO(superUsr)).message("账号不存在");
 		}
 		if (!superUsrInDB.getSuperUsrPwd().equals(superUsr.getSuperUsrPwd())) {
-			log.info("管理员密码错误======" + superUsr.getSuperUsrId() + "======");
-			return Result.error(superUsr).message("密码错误");
+			log.info("管理员密码错误======" + superUsr + "======");
+			return Result.error(new SuperUseDTO(superUsr)).message("密码错误");
 		}
-		log.debug("管理员登录成功======" + superUsr.getSuperUsrId() + "======");
-		return Result.ok(superUsrInDB);
+		log.debug("管理员登录成功======" + superUsrInDB + "======");
+		return Result.ok(new SuperUseDTO(superUsrInDB, JwtUtil.sign(superUsrInDB.getSuperUsrId(), superUsrInDB.getSuperUsrPwd())));
 	}
 
 	/**
@@ -126,12 +128,11 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "管理员信息查询", notes = "管理员信息查询，只有超级管理员才能查询")
 	@GetMapping("/get-super-usr-list")
-	public Result<List<SuperUsr>> getSuperUsrList(SuperUsrOper superUsrOper) {
-		SuperUsr requestTarget = superUsrOper.getRequestTarget();
-		Result<List<SuperUsr>> result = isRoot(superUsrOper.getRequestMaker(), new ArrayList<>());
+	public Result<List<SuperUsr>> getSuperUsrList(SuperUsr superUsr) {
+		Result<List<SuperUsr>> result = isRoot(superUsr, new ArrayList<>());
 		if (result != null)
 			return result;
-		List<SuperUsr> superUsrList = superUsrService.list(new QueryWrapper<SuperUsr>().like("super_usr_ID", requestTarget.getSuperUsrId()));
+		List<SuperUsr> superUsrList = superUsrService.list();
 		log.debug("管理员信息查询成功======" + superUsrList + "======");
 		return Result.ok(superUsrList);
 	}
