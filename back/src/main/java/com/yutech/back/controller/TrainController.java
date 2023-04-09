@@ -1,7 +1,7 @@
 package com.yutech.back.controller;
 
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.dto.GetTrainDTO;
+import com.yutech.back.entity.bo.dto.GetTrainDTO;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;

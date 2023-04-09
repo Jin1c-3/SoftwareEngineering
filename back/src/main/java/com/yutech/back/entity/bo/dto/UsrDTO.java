@@ -1,4 +1,4 @@
-package com.yutech.back.entity.dto;
+package com.yutech.back.entity.bo.dto;
 
 import com.yutech.back.entity.po.Usr;
 import io.swagger.annotations.ApiModel;

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.dto.UsrDTO;
+import com.yutech.back.entity.bo.dto.UsrDTO;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.service.bussiness.AliSmsService;
 import com.yutech.back.service.bussiness.EMailSenderService;
@@ -128,18 +128,18 @@ public class UsrController {
 		return Result.ok(usrInDB);
 	}
 
-	@GetMapping("/before-update/{accountOrPhone}")
+	@GetMapping("/before-update/{phoneOrEMail}")
 	@ApiOperation(value = "修改用户信息前的验证", notes = "修改用户信息前的验证，返回用户信息")
 	@ApiParam(name = "accountOrPhone", value = "账号或手机号", required = true)
-	public Result<String> beforeUpdate(@PathVariable String accountOrPhone) {
-		Boolean isEMail = accountOrPhone.contains("@");
-		log.debug("修改用户信息前的验证，前端信息：======{}======是否是邮箱：======{}======", accountOrPhone, isEMail);
+	public Result<String> beforeUpdate(@PathVariable String phoneOrEMail) {
+		Boolean isEMail = phoneOrEMail.contains("@");
+		log.debug("修改用户信息前的验证，前端信息：======{}======是否是邮箱：======{}======", phoneOrEMail, isEMail);
 		String code = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 1000000));
 		if (isEMail) {
-			eMailSenderService.sendCodeMail(accountOrPhone, code);
+			eMailSenderService.sendCodeMail(phoneOrEMail, code);
 		} else {
 			//TODO 发送短信
-			aliSmsService.sendSmsYZM(accountOrPhone, code);
+			aliSmsService.sendSmsYZM(phoneOrEMail, code);
 		}
 		log.debug("返回前端的验证码：======{}", code);
 		return Result.ok(code);

@@ -1,7 +1,7 @@
 package com.yutech.back.common.exception;
 
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.dto.ValidationErrorDTO;
+import com.yutech.back.entity.bo.dto.ValidationErrorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
