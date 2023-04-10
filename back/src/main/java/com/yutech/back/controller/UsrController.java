@@ -161,7 +161,7 @@ public class UsrController {
 	public Result updateUsrPwd(@PathVariable String phoneOrEMail, String pwd) {
 		Boolean isEMail = phoneOrEMail.contains("@");
 		log.debug("修改用户密码，前端信息======{}======判断是否是邮箱======{}======", phoneOrEMail, isEMail);
-		Usr usrInDB = null;
+		Usr usrInDB;
 		if (isEMail) {
 			usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_email", phoneOrEMail));
 		} else {
@@ -188,7 +188,7 @@ public class UsrController {
 			eMailService.sendVerificationCode(phoneOrEMail, code);
 		} else {
 			//TODO 发送短信
-			aliSmsService.sendSms(phoneOrEMail, code);
+			aliSmsService.sendSmsVerificationCode(phoneOrEMail, code);
 		}
 		log.debug("返回前端的验证码======{}", code);
 		return Result.ok(code).message("验证码发送成功");

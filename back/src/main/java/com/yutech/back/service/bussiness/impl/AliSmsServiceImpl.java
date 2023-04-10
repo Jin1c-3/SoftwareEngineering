@@ -75,7 +75,7 @@ public class AliSmsServiceImpl implements AliSmsService {
 	 * @return boolean
 	 */
 	@Override
-	public Boolean sendSms(String phone, String code) {
+	public Boolean sendSmsVerificationCode(String phone, String code) {
 		return sendSms(phone, templateCodeOfYZM, code);
 	}
 

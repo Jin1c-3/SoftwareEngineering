@@ -1,9 +1,7 @@
 package com.yutech.back.interceptor;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.utils.JwtUtil;
-import com.yutech.back.entity.po.SuperUsr;
 import com.yutech.back.mapper.po.SuperUsrMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -32,14 +30,12 @@ public class SuperUsrInterceptor implements HandlerInterceptor {
 		}
 		if (!StringUtils.isEmpty(token)) {
 			String id = JwtUtil.getIdByToken(request);
-			log.debug("管理员 " + id + " 的token是" + token);
-			if (JwtUtil.verify(token, id, superUsrMapper
-					.selectOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", id))
-					.getSuperUsrPwd())) {
-				log.info("管理员 " + id + " 通过了token验证");
+			log.debug(id + "======的token是======" + token);
+			if (JwtUtil.verify(token, id, superUsrMapper.selectById(id).getSuperUsrPwd())) {
+				log.info(id + "======通过了token验证");
 				return true;
 			}
-			log.info("管理员 " + id + " 未通过token验证");
+			log.info(id + "======未通过token验证");
 			return false;
 		}
 		log.warn("返回的token是空字符串");

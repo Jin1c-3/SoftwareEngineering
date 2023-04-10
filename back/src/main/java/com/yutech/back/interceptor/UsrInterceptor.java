@@ -33,12 +33,12 @@ public class UsrInterceptor implements HandlerInterceptor {
 		}
 		if (!StringUtils.isEmpty(token)) {
 			String id = JwtUtil.getIdByToken(request);
-			log.debug("用户 " + id + " 的token是" + token);
+			log.debug(id + "======的token是======" + token);
 			if (JwtUtil.verify(token, id, usrMapper.selectById(id).getUsrPwd())) {
-				log.info("用户 " + id + " 通过了token验证");
+				log.info(id + "======通过了token验证");
 				return true;
 			}
-			log.info("用户 " + id + " 未通过token验证");
+			log.info(id + "======未通过token验证");
 			return false;
 		}
 		log.warn("返回的token是空字符串");

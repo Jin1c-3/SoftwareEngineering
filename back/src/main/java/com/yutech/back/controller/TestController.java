@@ -157,7 +157,7 @@ public class TestController {
 	@ApiOperation(value = "测试通过阿里云短信发送验证码的基础功能")
 	@GetMapping("/testAliSms/{phone}/{code}")
 	public Result testAliyunSms(@PathVariable("phone") String phone, @PathVariable("code") String code) {
-		aliSmsService.sendSms(phone, code);
+		aliSmsService.sendSmsVerificationCode(phone, code);
 		return Result.ok();
 	}
 }
