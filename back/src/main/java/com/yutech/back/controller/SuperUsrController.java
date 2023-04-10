@@ -4,9 +4,9 @@ package com.yutech.back.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.bo.dto.SuperUseDTO;
-import com.yutech.back.entity.bo.dto.SuperUsrOper;
+import com.yutech.back.entity.dto.SuperUsrOperationDTO;
 import com.yutech.back.entity.po.SuperUsr;
+import com.yutech.back.entity.vo.SuperUsrVO;
 import com.yutech.back.service.persistence.SuperUsrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -87,43 +87,44 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "管理员登录", notes = "管理员登录，只会验证账号密码，也会发放token")
 	@GetMapping("/login")
-	public Result<SuperUseDTO> login(SuperUsr superUsr) {
+	public Result<SuperUsrVO> login(SuperUsr superUsr) {
 		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
 		if (superUsrInDB == null) {
 			log.info("管理员账号不存在======" + superUsr + "======");
-			return Result.error(new SuperUseDTO(superUsr)).message("账号不存在");
+			return Result.error(new SuperUsrVO(superUsr)).message("账号不存在");
 		}
 		if (!superUsrInDB.getSuperUsrPwd().equals(superUsr.getSuperUsrPwd())) {
 			log.info("管理员密码错误======" + superUsr + "======");
-			return Result.error(new SuperUseDTO(superUsr)).message("密码错误");
+			return Result.error(new SuperUsrVO(superUsr)).message("密码错误");
 		}
 		log.debug("管理员登录成功======" + superUsrInDB + "======");
-		return Result.ok(new SuperUseDTO(superUsrInDB, JwtUtil.sign(superUsrInDB.getSuperUsrId(), superUsrInDB.getSuperUsrPwd())));
+		return Result.ok(new SuperUsrVO(superUsrInDB, JwtUtil.sign(superUsrInDB.getSuperUsrId(), superUsrInDB.getSuperUsrPwd())))
+				.message("登录成功");
 	}
 
 	/**
 	 * 管理员信息修改
 	 *
-	 * @param superUsrOper 请求者信息和请求目标信息
+	 * @param superUsrOperationDTO 请求者信息和请求目标信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息修改", notes = "管理员信息修改，只有超级管理员才能修改")
 	@PatchMapping("/update-super-usr")
-	public Result updateSuperUsr(SuperUsrOper superUsrOper) {
-		SuperUsr requestTarget = superUsrOper.getRequestTarget();
-		Result result = isRoot(superUsrOper.getRequestMaker());
+	public Result updateSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
+		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
 		if (result != null)
 			return result;
 		requestTarget.setSuperUsrName(superUsrService.getById(requestTarget.getSuperUsrId()).getSuperUsrName());
 		superUsrService.updateById(requestTarget);
 		log.debug("管理员信息修改成功======" + requestTarget + "======");
-		return Result.ok();
+		return Result.ok().message("修改成功");
 	}
 
 	/**
 	 * 管理员信息查询
 	 *
-	 * @param superUsrOper 请求者信息和请求目标信息
+	 * @param superUsr 请求者信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息查询", notes = "管理员信息查询，只有超级管理员才能查询")
@@ -134,43 +135,43 @@ public class SuperUsrController {
 			return result;
 		List<SuperUsr> superUsrList = superUsrService.list();
 		log.debug("管理员信息查询成功======" + superUsrList + "======");
-		return Result.ok(superUsrList);
+		return Result.ok(superUsrList).message("查询成功");
 	}
 
 	/**
 	 * 管理员信息删除
 	 *
-	 * @param superUsrOper 请求者信息和请求目标信息
+	 * @param superUsrOperationDTO 请求者信息和请求目标信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息删除", notes = "管理员信息删除，只有超级管理员才能删除")
 	@DeleteMapping("/delete-super-usr")
-	public Result deleteSuperUsr(SuperUsrOper superUsrOper) {
-		SuperUsr requestTarget = superUsrOper.getRequestTarget();
-		Result result = isRoot(superUsrOper.getRequestMaker());
+	public Result deleteSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
+		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
 		if (result != null)
 			return result;
 		superUsrService.removeById(requestTarget.getSuperUsrId());
 		log.debug("管理员信息删除成功======" + requestTarget + "======");
-		return Result.ok();
+		return Result.ok().message("删除成功");
 	}
 
 	/**
 	 * 管理员信息添加
 	 *
-	 * @param superUsrOper 请求者信息和请求目标信息
+	 * @param superUsrOperationDTO 请求者信息和请求目标信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "管理员信息添加", notes = "管理员信息添加，只有超级管理员才能添加")
 	@PostMapping("/add-super-usr")
-	public Result addSuperUsr(SuperUsrOper superUsrOper) {
-		SuperUsr requestTarget = superUsrOper.getRequestTarget();
-		Result result = isRoot(superUsrOper.getRequestMaker());
+	public Result addSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
+		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
 		if (result != null)
 			return result;
 		superUsrService.save(requestTarget);
 		log.debug("管理员信息添加成功======" + requestTarget + "======");
-		return Result.ok();
+		return Result.ok().message("添加成功");
 	}
 }
 

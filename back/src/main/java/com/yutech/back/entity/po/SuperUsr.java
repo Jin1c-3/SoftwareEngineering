@@ -21,20 +21,20 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "SuperUsr对象", description = "")
+@ApiModel(value = "SuperUsr对象", description = "管理员的相关操作")
 public class SuperUsr implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@TableId("super_usr_ID")
-	@ApiModelProperty(value = "管理员ID", required = true)
+	@ApiModelProperty(value = "管理员ID")
 	private String superUsrId;
 
 	@TableField("super_usr_name")
 	private String superUsrName;
 
 	@TableField("super_usr_pwd")
-	@ApiModelProperty(value = "管理员密码", required = true)
+	@ApiModelProperty(value = "管理员密码")
 	private String superUsrPwd;
 
 

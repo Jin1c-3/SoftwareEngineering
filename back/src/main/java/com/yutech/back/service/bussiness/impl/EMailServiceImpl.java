@@ -1,7 +1,7 @@
 package com.yutech.back.service.bussiness.impl;
 
 import com.yutech.back.entity.bo.EMail4CodeBO;
-import com.yutech.back.service.bussiness.EMailSenderService;
+import com.yutech.back.service.bussiness.EMailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class EMailSenderImpl implements EMailSenderService {
+public class EMailServiceImpl implements EMailService {
 	@Autowired
 	private final JavaMailSender javaMailSender;
 
 	@Value("${spring.mail.username}")
 	private String from;
 
-	public EMailSenderImpl(JavaMailSender javaMailSender) {
+	public EMailServiceImpl(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
 
@@ -59,7 +59,7 @@ public class EMailSenderImpl implements EMailSenderService {
 	 * @param code 验证码
 	 */
 	@Override
-	public Boolean sendCodeMail(String to, String code) {
+	public Boolean sendVerificationCode(String to, String code) {
 		if (sendSimpleMail(from, to, "[网络鱼科技]验证码", "您的验证码为:" + code + "，5分钟内有效，请勿将验证码告诉他人。")) {
 			log.info("验证码邮件发送成功:from: {} ======= to: {} ,with code {}", from, to, code);
 			return true;
@@ -75,7 +75,7 @@ public class EMailSenderImpl implements EMailSenderService {
 	 * @param eMail4CodeBO 邮件验证码业务对象
 	 */
 	@Override
-	public Boolean sendCodeMail(EMail4CodeBO eMail4CodeBO) {
+	public Boolean sendVerificationCode(EMail4CodeBO eMail4CodeBO) {
 		if (sendSimpleMail(from, eMail4CodeBO.getTo(), "[网络鱼科技]验证码", "您的验证码为:" + eMail4CodeBO.getCode() + "，5分钟内有效，请勿将验证码告诉他人。")) {
 			log.info("验证码邮件发送成功:from: {} ======= to: {} ,with code {}", from, eMail4CodeBO.getTo(), eMail4CodeBO.getCode());
 			return true;
@@ -91,7 +91,7 @@ public class EMailSenderImpl implements EMailSenderService {
 	 * @param to   接收者
 	 * @param name 用户名
 	 */
-	public Boolean sendGreetingsMail(String to, String name) {
+	public Boolean sendGreetings(String to, String name) {
 		if (sendSimpleMail(from, to, "[网络鱼科技]欢迎", "欢迎您的加入，" + name + "。")) {
 			log.info("欢迎邮件发送成功:from: {} ======= to: {} ,with name {}", from, to, name);
 			return true;

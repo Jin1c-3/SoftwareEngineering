@@ -1,4 +1,4 @@
-package com.yutech.back.entity.bo.dto;
+package com.yutech.back.entity.dto;
 
 import com.yutech.back.entity.po.Usr;
 import io.swagger.annotations.ApiModel;
@@ -12,11 +12,20 @@ import org.springframework.web.multipart.MultipartFile;
 @Data
 @ApiModel(value = "用户信息表现层", description = "用户信息表现层")
 public class UsrDTO {
-	@ApiModelProperty(value = "用户信息PO")
-	private Usr usr;
+	@ApiModelProperty(value = "用户账号")
+	private String usrAccount;
 
-	@ApiModelProperty(value = "用户token")
-	private String token;
+	@ApiModelProperty(value = "用户ID", required = true)
+	private String usrId;
+
+	private String usrEmail;
+
+	private Integer usrVipLevel;
+
+	@ApiModelProperty(value = "用户密码")
+	private String usrPwd;
+
+	private String usrPhone;
 
 	@ApiModelProperty(value = "头像文件，不会存储到数据库")
 	private MultipartFile avatar;
@@ -33,17 +42,10 @@ public class UsrDTO {
 	 * @param usr 用户信息PO
 	 */
 	public UsrDTO(Usr usr) {
-		this.usr = usr;
-	}
-
-	/**
-	 * 双参构造方法
-	 *
-	 * @param usr   用户信息PO
-	 * @param token 用户token
-	 */
-	public UsrDTO(Usr usr, String token) {
-		this.usr = usr;
-		this.token = token;
+		this.usrAccount = usr.getUsrAccount();
+		this.usrId = usr.getUsrId();
+		this.usrEmail = usr.getUsrEmail();
+		this.usrVipLevel = usr.getUsrVipLevel();
+		this.usrPhone = usr.getUsrPhone();
 	}
 }

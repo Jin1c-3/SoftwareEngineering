@@ -45,7 +45,7 @@ public class WholeOrderController {
 	@ApiOperation(value = "根据用户id查询订单", notes = "根据用户id查询订单")
 	public Result<List<WholeOrder>> getOrderByUsrId(String usrId) {
 		log.debug("查询订单信息=======" + usrId);
-		return Result.ok(wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId)));
+		return Result.ok(wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId))).message("查询成功");
 	}
 }
 

@@ -75,7 +75,7 @@ public class AliSmsServiceImpl implements AliSmsService {
 	 * @return boolean
 	 */
 	@Override
-	public Boolean sendSmsYZM(String phone, String code) {
+	public Boolean sendSms(String phone, String code) {
 		return sendSms(phone, templateCodeOfYZM, code);
 	}
 
@@ -86,7 +86,7 @@ public class AliSmsServiceImpl implements AliSmsService {
 	 * @return boolean
 	 */
 	@Override
-	public Boolean sendSmsYZM(Sms4CodeBO sms4CodeBO) {
+	public Boolean sendSmsVerificationCode(Sms4CodeBO sms4CodeBO) {
 		return sendSms(sms4CodeBO.getPhone(), templateCodeOfYZM, sms4CodeBO.getCode());
 	}
 }

@@ -10,7 +10,7 @@ import com.yutech.back.entity.User;
 import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.service.bussiness.AliSmsService;
 import com.yutech.back.service.bussiness.AlipayService;
-import com.yutech.back.service.bussiness.EMailSenderService;
+import com.yutech.back.service.bussiness.EMailService;
 import com.yutech.back.service.bussiness.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -40,7 +40,7 @@ public class TestController {
 	/**
 	 * 用于测试 异常 是否能被统一处理，并返回指定格式的数据
 	 *
-	 * @return
+	 * @return Result
 	 */
 	@ApiOperation(value = "测试自定义异常类")
 	@GetMapping("/testGlobalException")
@@ -121,7 +121,7 @@ public class TestController {
 //	}
 
 	@Autowired
-	private EMailSenderService eMailSenderService;
+	private EMailService eMailService;
 
 	/**
 	 * 测试通过QQ邮件发送验证码的基础功能
@@ -137,7 +137,7 @@ public class TestController {
 	})
 	@GetMapping("/testCodeMailing/{to}/{code}")
 	public Result testCodeMailing(@PathVariable("to") String to, @PathVariable("code") String code) {
-		eMailSenderService.sendCodeMail(to, code);
+		eMailService.sendVerificationCode(to, code);
 		return Result.ok();
 	}
 
@@ -157,7 +157,7 @@ public class TestController {
 	@ApiOperation(value = "测试通过阿里云短信发送验证码的基础功能")
 	@GetMapping("/testAliSms/{phone}/{code}")
 	public Result testAliyunSms(@PathVariable("phone") String phone, @PathVariable("code") String code) {
-		aliSmsService.sendSmsYZM(phone, code);
+		aliSmsService.sendSms(phone, code);
 		return Result.ok();
 	}
 }

@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.bo.dto.UsrDTO;
+import com.yutech.back.entity.dto.UsrDTO;
+import com.yutech.back.entity.dto.UsrLoginDTO;
 import com.yutech.back.entity.po.Usr;
+import com.yutech.back.entity.vo.UsrVO;
 import com.yutech.back.service.bussiness.AliSmsService;
-import com.yutech.back.service.bussiness.EMailSenderService;
+import com.yutech.back.service.bussiness.EMailService;
 import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,7 +44,7 @@ public class UsrController {
 	private UsrService usrService;
 
 	@Autowired
-	private EMailSenderService eMailSenderService;
+	private EMailService eMailService;
 
 	@Autowired
 	private AliSmsService aliSmsService;
@@ -70,7 +72,7 @@ public class UsrController {
 			//保存用户信息
 			usrService.save(usr);
 			//发送欢迎邮件
-			eMailSenderService.sendGreetingsMail(usr.getUsrAccount(), usr.getUsrAccount());
+			eMailService.sendGreetings(usr.getUsrAccount(), usr.getUsrAccount());
 			log.info("用户注册成功，用户为{}", usr);
 			return Result.ok(usr).message("注册成功");
 		}
@@ -81,24 +83,38 @@ public class UsrController {
 	/**
 	 * 用户登录
 	 *
-	 * @param usr 用户信息
+	 * @param usrLoginDTO 用户登录信息
 	 * @return Result
 	 */
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@GetMapping("/login")
-	public Result<UsrDTO> usrLogin(Usr usr) {
-		log.debug("用户登录，前端信息：=======" + usr);
-		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usr.getUsrAccount()));
-		if (usrInDB == null) {
-			log.info("用户登录失败，账号不存在，用户为{}", usr);
-			return Result.error(new UsrDTO(usr)).message("账号不存在");
+	public Result<UsrVO> usrLogin(UsrLoginDTO usrLoginDTO) {
+		log.debug("用户登录，前端信息：======={}", usrLoginDTO);
+		Usr[] usrLogins = {usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usrLoginDTO.getUsrName())),
+				usrService.getOne(new QueryWrapper<Usr>().eq("usr_phone", usrLoginDTO.getUsrName())),
+				usrService.getOne(new QueryWrapper<Usr>().eq("usr_email", usrLoginDTO.getUsrName()))};
+		int countVerifier = 0;
+		Usr usrInDB = null;
+		for (Usr usr : usrLogins) {
+			if (usr != null) {
+				usrInDB = usr;
+				countVerifier++;
+			}
 		}
-		if (!usrInDB.getUsrPwd().equals(usr.getUsrPwd())) {
-			log.info("用户登录失败，密码错误，用户为{}", usr);
-			return Result.error(new UsrDTO(usr)).message("账号或密码错误");
+		if (countVerifier > 1) {
+			log.warn("用户登录失败，账号存在多个，用户为{}", usrLoginDTO);
+			return Result.error(new UsrVO()).message("您的账号存在问题，待管理员核实");
+		}
+		if (countVerifier == 0) {
+			log.info("用户登录失败，账号不存在，用户为{}", usrLoginDTO);
+			return Result.error(new UsrVO()).message("账号不存在");
+		}
+		if (!usrInDB.getUsrPwd().equals(usrLoginDTO.getUsrPassword())) {
+			log.info("用户登录失败，密码错误，用户为{}", usrInDB);
+			return Result.error(new UsrVO()).message("密码错误");
 		}
 		log.info("用户登录成功======{}", usrInDB);
-		return Result.ok(new UsrDTO(usrInDB, JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd())));
+		return Result.ok(new UsrVO(usrInDB, JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd()))).message("登录成功");
 	}
 
 	/**
@@ -109,37 +125,39 @@ public class UsrController {
 	 */
 	@PatchMapping("/update")
 	@ApiOperation(value = "修改用户信息", notes = "修改用户信息，请传入usrId!!!!!!")
-	public Result<Usr> updateUsrInfo(UsrDTO usrDTO, HttpServletRequest request) {
+	public Result<UsrVO> updateUsrInfo(UsrDTO usrDTO, HttpServletRequest request) {
 		log.debug("用户信息修改，前端信息：=======" + usrDTO);
-		Usr usr = usrDTO.getUsr();
-		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usr.getUsrId()));
+		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usrDTO.getUsrId()));
 		if (usrInDB == null) {
-			return Result.error(usr).message("用户不存在");
+			log.info("用户信息修改失败，用户不存在，用户为{}", usrDTO);
+			return Result.error(new UsrVO()).message("用户不存在");
 		}
-		if (!usrInDB.getUsrPwd().equals(usr.getUsrPwd())) {
-			return Result.error(usr).message("密码错误");
+		if (!usrInDB.getUsrPwd().equals(usrDTO.getUsrPwd())) {
+			log.info("用户信息修改失败，密码错误，用户为{}", usrInDB);
+			return Result.error(new UsrVO()).message("密码错误");
 		}
 		if (usrDTO.getAvatar() != null) {
-			usr.setUsrAvatar(FileUtil.storeMultipartFile(usrInDB.getUsrId(), usrDTO.getAvatar(), request));
+			log.debug("用户信息修改，头像不为空，开始上传头像");
+			usrInDB.setUsrAvatar(FileUtil.storeMultipartFile(usrDTO.getUsrId(), usrDTO.getAvatar(), request));
 		}
 		//更新用户信息
 		usrService.updateById(usrInDB);
 		log.info("用户信息更新成功，用户为 {}", usrInDB);
-		return Result.ok(usrInDB);
+		return Result.ok(new UsrVO(usrInDB)).message("修改成功");
 	}
 
 	@GetMapping("/before-update/{phoneOrEMail}")
 	@ApiOperation(value = "修改用户信息前的验证", notes = "修改用户信息前的验证，返回用户信息")
-	@ApiParam(name = "accountOrPhone", value = "账号或手机号", required = true)
+	@ApiParam(name = "phoneOrEMail", value = "账号或手机号", required = true)
 	public Result<String> beforeUpdate(@PathVariable String phoneOrEMail) {
 		Boolean isEMail = phoneOrEMail.contains("@");
-		log.debug("修改用户信息前的验证，前端信息：======{}======是否是邮箱：======{}======", phoneOrEMail, isEMail);
+		log.debug("修改用户信息前的验证，前端信息：======{}======判断是否是邮箱：======{}======", phoneOrEMail, isEMail);
 		String code = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 1000000));
 		if (isEMail) {
-			eMailSenderService.sendCodeMail(phoneOrEMail, code);
+			eMailService.sendVerificationCode(phoneOrEMail, code);
 		} else {
 			//TODO 发送短信
-			aliSmsService.sendSmsYZM(phoneOrEMail, code);
+			aliSmsService.sendSms(phoneOrEMail, code);
 		}
 		log.debug("返回前端的验证码：======{}", code);
 		return Result.ok(code);
