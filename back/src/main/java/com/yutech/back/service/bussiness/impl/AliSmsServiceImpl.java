@@ -26,7 +26,7 @@ public class AliSmsServiceImpl implements AliSmsService {
 	@Value("${aliyun.sms.templateCodeOfYZM}")
 	private String templateCodeOfYZM;
 
-	@Value("${aliyun.sms.signNameOfYZM}")
+	@Value("${aliyun.sms.signNameOfVerificationCode}")
 	private String signNameOfYZM;
 
 	/**

@@ -161,7 +161,7 @@ public class UsrController {
 			aliSmsService.sendSms(phoneOrEMail, code);
 		}
 		log.debug("返回前端的验证码：======{}", code);
-		return Result.ok(code);
+		return Result.ok(code).message("验证码发送成功");
 	}
 }
 
