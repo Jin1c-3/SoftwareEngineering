@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -55,29 +54,30 @@ public class UsrController {
 	private static final String DEFAULT_AVATAR = "https://www.nitutu.com/uploads/allimg/200409/2136324362-1.jpeg";
 
 	/**
-	 * 用户注册
+	 * 用户登录
 	 *
-	 * @param usr 用户信息
-	 * @return Result
+	 * @param usrDTO 用户注册信息
+	 * @return 用户信息
 	 */
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
-	public Result<Usr> usrRegistry(@RequestBody Usr usr) {
-		log.debug("用户注册，前端信息：=======" + usr);
+	public Result<UsrVO> usrRegistry(@RequestBody UsrDTO usrDTO) {
+		log.debug("用户注册，前端信息：=======" + usrDTO);
 		Format sdf = new SimpleDateFormat("yyyyMMdd");
+		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
-		if (usrService.verifyUnique(usr)) {
-			usr.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
-			usr.setUsrAvatar(DEFAULT_AVATAR);
+		if (usrService.verifyUnique(usrPushInDB)) {
+			usrDTO.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
+			usrPushInDB.setUsrAvatar(DEFAULT_AVATAR);
 			//保存用户信息
-			usrService.save(usr);
+			usrService.save(usrPushInDB);
 			//发送欢迎邮件
-			eMailService.sendGreetings(usr.getUsrAccount(), usr.getUsrAccount());
-			log.info("用户注册成功，用户为{}", usr);
-			return Result.ok(usr).message("注册成功");
+			eMailService.sendGreetings(usrPushInDB.getUsrEmail(), usrPushInDB.getUsrAccount());
+			log.info("用户注册成功，用户为{}", usrPushInDB);
+			return Result.ok(new UsrVO(usrPushInDB)).message("注册成功");
 		}
-		log.debug("用户注册失败，可能违反唯一性，用户为======{}", usr);
-		return Result.error(usr).message("账号已存在");
+		log.debug("用户注册失败，可能违反唯一性，用户为======{}", usrPushInDB);
+		return Result.error(new UsrVO(usrPushInDB)).message("账号已存在");
 	}
 
 	/**

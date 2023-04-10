@@ -2,6 +2,7 @@ package com.yutech.back.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.yutech.back.entity.dto.UsrDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,7 +22,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value = "Usr对象", description = "")
+@ApiModel(value = "Usr对象", description = "Usr持久层")
 public class Usr implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -51,5 +52,24 @@ public class Usr implements Serializable {
 	@TableField("usr_phone")
 	private String usrPhone;
 
+	/**
+	 * 无参构造方法
+	 */
+	public Usr() {
+	}
+
+	/**
+	 * 单参构造方法
+	 *
+	 * @param usrDTO 用户信息DTO
+	 */
+	public Usr(UsrDTO usrDTO) {
+		this.usrAccount = usrDTO.getUsrAccount();
+		this.usrId = usrDTO.getUsrId();
+		this.usrEmail = usrDTO.getUsrEmail();
+		this.usrVipLevel = usrDTO.getUsrVipLevel();
+		this.usrPwd = usrDTO.getUsrPwd();
+		this.usrPhone = usrDTO.getUsrPhone();
+	}
 
 }
