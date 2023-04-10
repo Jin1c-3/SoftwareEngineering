@@ -63,7 +63,7 @@ public class UsrController {
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
 	public Result<UsrVO> usrRegistry(@RequestBody UsrDTO usrDTO) {
-		log.debug("用户注册，前端信息：=======" + usrDTO);
+		log.debug("用户注册，前端信息=======" + usrDTO);
 		Format sdf = new SimpleDateFormat("yyyyMMdd");
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
@@ -74,7 +74,7 @@ public class UsrController {
 			usrService.save(usrPushInDB);
 			//发送欢迎邮件
 			eMailService.sendGreetings(usrPushInDB.getUsrEmail(), usrPushInDB.getUsrAccount());
-			log.info("用户注册成功，用户为{}", usrPushInDB);
+			log.info("用户注册成功，用户为======{}", usrPushInDB);
 			return Result.ok(new UsrVO(usrPushInDB)).message("注册成功");
 		}
 		log.debug("用户注册失败，可能违反唯一性，用户为======{}", usrPushInDB);
@@ -103,15 +103,15 @@ public class UsrController {
 			}
 		}
 		if (countVerifier > 1) {
-			log.warn("用户登录失败，账号存在多个，用户为{}", usrLoginDTO);
+			log.warn("用户登录失败，账号存在多个，用户为======{}", usrLoginDTO);
 			return Result.error(new UsrVO()).message("您的账号存在问题，待管理员核实");
 		}
 		if (countVerifier == 0) {
-			log.info("用户登录失败，账号不存在，用户为{}", usrLoginDTO);
+			log.info("用户登录失败，账号不存在，用户为======{}", usrLoginDTO);
 			return Result.error(new UsrVO()).message("账号不存在");
 		}
 		if (!usrInDB.getUsrPwd().equals(usrLoginDTO.getUsrPassword())) {
-			log.info("用户登录失败，密码错误，用户为{}", usrInDB);
+			log.info("用户登录失败，密码错误，用户为======{}", usrInDB);
 			return Result.error(new UsrVO()).message("密码错误");
 		}
 		log.info("用户登录成功======{}", usrInDB);
@@ -130,11 +130,11 @@ public class UsrController {
 		log.debug("用户信息修改，前端信息：=======" + usrDTO);
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usrDTO.getUsrId()));
 		if (usrInDB == null) {
-			log.info("用户信息修改失败，用户不存在，用户为{}", usrDTO);
+			log.info("用户信息修改失败，用户不存在，用户为======{}", usrDTO);
 			return Result.error(new UsrVO()).message("用户不存在");
 		}
 		if (!usrInDB.getUsrPwd().equals(usrDTO.getUsrPwd())) {
-			log.info("用户信息修改失败，密码错误，用户为{}", usrInDB);
+			log.info("用户信息修改失败，密码错误，用户为======{}", usrInDB);
 			return Result.error(new UsrVO()).message("密码错误");
 		}
 		if (usrDTO.getAvatar() != null) {
