@@ -152,7 +152,7 @@ public class UsrController {
 	@ApiParam(name = "phoneOrEMail", value = "账号或手机号", required = true)
 	public Result<String> beforeUpdate(@PathVariable String phoneOrEMail) {
 		Boolean isEMail = phoneOrEMail.contains("@");
-		log.debug("修改用户信息前的验证，前端信息：======{}======判断是否是邮箱：======{}======", phoneOrEMail, isEMail);
+		log.debug("修改用户信息前的验证，前端信息======{}======判断是否是邮箱======{}======", phoneOrEMail, isEMail);
 		String code = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 1000000));
 		if (isEMail) {
 			eMailService.sendVerificationCode(phoneOrEMail, code);
@@ -160,7 +160,7 @@ public class UsrController {
 			//TODO 发送短信
 			aliSmsService.sendSms(phoneOrEMail, code);
 		}
-		log.debug("返回前端的验证码：======{}", code);
+		log.debug("返回前端的验证码======{}", code);
 		return Result.ok(code).message("验证码发送成功");
 	}
 }
