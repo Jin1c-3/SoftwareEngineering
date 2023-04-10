@@ -12,9 +12,7 @@ import com.yutech.back.entity.vo.UsrVO;
 import com.yutech.back.service.bussiness.AliSmsService;
 import com.yutech.back.service.bussiness.EMailService;
 import com.yutech.back.service.persistence.UsrService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -145,6 +143,38 @@ public class UsrController {
 		usrService.updateById(usrInDB);
 		log.info("用户信息更新成功，用户为 {}", usrInDB);
 		return Result.ok(new UsrVO(usrInDB)).message("修改成功");
+	}
+
+	/**
+	 * 修改用户密码
+	 *
+	 * @param phoneOrEMail 账号或手机号
+	 * @param pwd          新密码
+	 * @return Result
+	 */
+	@PatchMapping("/update-pwd/{phoneOrEMail}")
+	@ApiOperation(value = "修改用户密码", notes = "修改用户密码，传入账号或手机号，将新密码存入数据库")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "phoneOrEMail", value = "账号或手机号", required = true, dataType = "String", paramType = "path"),
+			@ApiImplicitParam(name = "pwd", value = "新密码", required = true, dataType = "String", paramType = "query")
+	})
+	public Result updateUsrPwd(@PathVariable String phoneOrEMail, String pwd) {
+		Boolean isEMail = phoneOrEMail.contains("@");
+		log.debug("修改用户密码，前端信息======{}======判断是否是邮箱======{}======", phoneOrEMail, isEMail);
+		Usr usrInDB = null;
+		if (isEMail) {
+			usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_email", phoneOrEMail));
+		} else {
+			usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_phone", phoneOrEMail));
+		}
+		if (usrInDB == null) {
+			log.info("修改用户密码失败，用户不存在，用户为======{}", phoneOrEMail);
+			return Result.error().message("无此用户");
+		}
+		usrInDB.setUsrPwd(pwd);
+		usrService.updateById(usrInDB);
+		log.info("修改用户密码成功，用户为======{}", usrInDB);
+		return Result.ok().message("修改成功");
 	}
 
 	@GetMapping("/before-update/{phoneOrEMail}")
