@@ -5,4 +5,6 @@ import com.yutech.back.entity.po.Usr;
 
 public interface UsrService extends IService<Usr> {
 	Boolean verifyUnique(Usr usr);
+
+	Boolean verifyGoodUpdate(Usr usr);
 }

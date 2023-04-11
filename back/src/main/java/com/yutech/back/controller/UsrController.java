@@ -2,6 +2,7 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
@@ -18,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,7 +91,7 @@ public class UsrController {
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@GetMapping("/login")
 	public Result<UsrVO> usrLogin(UsrLoginDTO usrLoginDTO) {
-		log.debug("用户登录，前端信息：======={}", usrLoginDTO);
+		log.debug("用户登录，前端信息======={}", usrLoginDTO);
 		Usr[] usrLogins = {usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usrLoginDTO.getUsrName())),
 				usrService.getOne(new QueryWrapper<Usr>().eq("usr_phone", usrLoginDTO.getUsrName())),
 				usrService.getOne(new QueryWrapper<Usr>().eq("usr_email", usrLoginDTO.getUsrName()))};
@@ -131,10 +134,24 @@ public class UsrController {
 			log.info("用户信息修改失败，用户不存在，用户为======{}", usrDTO);
 			return Result.error(new UsrVO()).message("用户不存在");
 		}
-		if (!usrInDB.getUsrPwd().equals(usrDTO.getUsrPwd())) {
-			log.info("用户信息修改失败，密码错误，用户为======{}", usrInDB);
-			return Result.error(new UsrVO()).message("密码错误");
+		Usr usrPushInDB = new Usr(usrDTO);
+		//赋值操作，如果前端传入的值不为空，就赋值给数据库中的值
+		for (Field field : usrPushInDB.getClass().getDeclaredFields()) {
+			field.setAccessible(true);
+			try {
+				if (field.get(usrPushInDB) != null && !Modifier.isStatic(field.getModifiers())) {
+					field.set(usrInDB, field.get(usrPushInDB));
+				}
+			} catch (IllegalAccessException e) {
+				throw new GlobalException("用户赋值失败", e);
+			}
 		}
+		//验证账号唯一性
+		if (!usrService.verifyGoodUpdate(usrInDB)) {
+			log.info("用户信息修改失败，账号已存在，用户为======{}", usrInDB);
+			return Result.error(new UsrVO()).message("修改失败，账号已存在");
+		}
+		//如果头像不为空，就上传头像
 		if (usrDTO.getAvatar() != null) {
 			log.debug("用户信息修改，头像不为空，开始上传头像");
 			usrInDB.setUsrAvatar(FileUtil.storeMultipartFile(usrDTO.getUsrId(), usrDTO.getAvatar(), request));
@@ -155,8 +172,8 @@ public class UsrController {
 	@PatchMapping("/update-pwd/{phoneOrEMail}")
 	@ApiOperation(value = "修改用户密码", notes = "修改用户密码，传入账号或手机号，将新密码存入数据库")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "phoneOrEMail", value = "账号或手机号", required = true, dataType = "String", paramType = "path"),
-			@ApiImplicitParam(name = "pwd", value = "新密码", required = true, dataType = "String", paramType = "query")
+			@ApiImplicitParam(name = "phoneOrEMail", value = "账号或手机号", required = true, dataTypeClass = String.class, paramType = "path"),
+			@ApiImplicitParam(name = "pwd", value = "新密码", required = true, dataTypeClass = String.class, paramType = "query")
 	})
 	public Result updateUsrPwd(@PathVariable String phoneOrEMail, String pwd) {
 		Boolean isEMail = phoneOrEMail.contains("@");
