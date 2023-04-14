@@ -2,7 +2,7 @@ package com.yutech.back.interceptor;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.utils.JwtUtil;
-import com.yutech.back.mapper.po.SuperUsrMapper;
+import com.yutech.back.service.persistence.SuperUsrService;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class SuperUsrInterceptor implements HandlerInterceptor {
 	@Autowired
-	private SuperUsrMapper superUsrMapper;
+	private SuperUsrService superUsrService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
@@ -31,7 +31,7 @@ public class SuperUsrInterceptor implements HandlerInterceptor {
 		if (!StringUtils.isEmpty(token)) {
 			String id = JwtUtil.getIdByToken(request);
 			log.debug(id + "======的token是======" + token);
-			if (JwtUtil.verify(token, id, superUsrMapper.selectById(id).getSuperUsrPwd())) {
+			if (JwtUtil.verify(token, id, superUsrService.getById(id).getSuperUsrPwd())) {
 				log.info(id + "======通过了token验证");
 				return true;
 			}

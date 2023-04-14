@@ -35,10 +35,10 @@ public class JwtUtil {
 					.withClaim("id", id)
 					.build();
 			verifier.verify(token);
-			log.info("验证token成功，id：" + id);
+			log.info("验证token成功，id======" + id);
 			return true;
 		} catch (Exception e) {
-			log.warn("验证token失效，id：" + id);
+			log.warn("token失效，id======" + id);
 			return false;
 		}
 	}
@@ -51,6 +51,7 @@ public class JwtUtil {
 	 * @return 加密的token
 	 */
 	public static String sign(String id, String secret) {
+		log.trace("生成token，id&secret==={}==={}", id, secret);
 		Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
 		Algorithm algorithm = Algorithm.HMAC256(secret);
 		return JWT
@@ -61,13 +62,14 @@ public class JwtUtil {
 	}
 
 	/**
-	 * 通过token获取userID
+	 * 通过token获取ID
 	 *
 	 * @param request 前端的网页请求
 	 * @return String 返回token中的username
 	 */
 	public static String getIdByToken(HttpServletRequest request) {
 		String token = request.getHeader("token");
+		log.trace("从token中获取id，token==={}", token);
 		return JWT.decode(token)
 				.getClaim("id")
 				.asString();

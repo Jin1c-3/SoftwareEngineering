@@ -18,6 +18,7 @@ public class GlobalException extends RuntimeException {
 	 * 保存异常信息
 	 */
 	private String message;
+
 	/**
 	 * 保存响应状态码
 	 */

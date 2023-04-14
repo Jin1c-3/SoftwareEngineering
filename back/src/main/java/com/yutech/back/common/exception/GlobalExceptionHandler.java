@@ -30,9 +30,9 @@ public class GlobalExceptionHandler {
 	 * @return 处理结果
 	 */
 	@ExceptionHandler(Exception.class)
-	public Result handlerException(Exception e) {
+	public Result<String> handlerException(Exception e) {
 		log.error(e.getMessage(), e);
-		return Result.error().message("系统异常");
+		return Result.error("后端报错信息=>" + e.getMessage()).message("系统异常，请联系管理员");
 	}
 
 	/**
@@ -42,9 +42,9 @@ public class GlobalExceptionHandler {
 	 * @return 处理结果
 	 */
 	@ExceptionHandler(NullPointerException.class)
-	public Result handlerNullPointerException(NullPointerException e) {
+	public Result<String> handlerNullPointerException(NullPointerException e) {
 		log.error(e.getMessage(), e);
-		return Result.error().message("空指针异常");
+		return Result.error("后端空指针异常=>" + e.getMessage()).message("空指针异常，请联系管理员");
 	}
 
 	/**
@@ -54,9 +54,9 @@ public class GlobalExceptionHandler {
 	 * @return 处理结果
 	 */
 	@ExceptionHandler(GlobalException.class)
-	public Result handlerGlobalException(GlobalException e) {
+	public Result<String> handlerGlobalException(GlobalException e) {
 		log.error(e.getMessage(), e);
-		return Result.error().message(e.getMessage()).code(e.getCode());
+		return Result.error("后端自定义全局异常=>" + e.getMessage()).message("自定义报错，请联系管理员").code(e.getCode());
 	}
 
 	/**

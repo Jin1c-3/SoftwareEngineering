@@ -28,6 +28,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 public class PassengerController {
+
 	@Autowired
 	private PassengerService passengerService;
 
@@ -40,7 +41,7 @@ public class PassengerController {
 	@GetMapping("/findPsgByUsrId")
 	@ApiOperation(value = "根据用户id查询乘客信息", notes = "用户id和PassengerID是互通的")
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataTypeClass = String.class)
-	public Result<List<Passenger>> findPagByUsrId(String usrId) {
+	public Result<List<Passenger>> findPsgByUsrId(String usrId) {
 		log.debug("根据usrId查询乘客信息=======" + usrId);
 		return Result.ok(passengerService.list(new QueryWrapper<Passenger>().eq("usr_id", usrId))).message("查询成功");
 	}
@@ -51,22 +52,24 @@ public class PassengerController {
 		if (passengerService.getOne(new QueryWrapper<Passenger>()
 				.eq("passenger_ID", passenger.getPassengerId())
 				.eq("usr_ID", passenger.getUsrId())) != null) {
-			log.debug("该乘客已存在=======" + passenger);
+			log.info("该乘客已存在=======" + passenger);
 			return Result.error().message("该乘客已存在");
 		}
 		passengerService.save(passenger);
-		log.info("乘客添加成功=======" + passenger);
+		log.debug("乘客添加成功=======" + passenger);
 		return Result.ok().message("添加成功");
 	}
 
 	@DeleteMapping("/deletePassenger")
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
 	public Result deletePassenger(@RequestBody Passenger passenger) {
-		if (passengerService.remove(new QueryWrapper<Passenger>().eq("passenger_ID", passenger.getPassengerId()).eq("usr_id", passenger.getUsrId()))) {
-			log.info("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
+		if (passengerService.remove(new QueryWrapper<Passenger>()
+				.eq("passenger_ID", passenger.getPassengerId())
+				.eq("usr_id", passenger.getUsrId()))) {
+			log.debug("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
 			return Result.ok().message("乘客删除成功");
 		}
-		log.debug("乘客删除失败，该乘客不存在或用户无此权限=======" + passenger);
+		log.info("乘客删除失败，该乘客不存在或用户无此权限=======" + passenger);
 		return Result.error().message("删除失败");
 	}
 }
