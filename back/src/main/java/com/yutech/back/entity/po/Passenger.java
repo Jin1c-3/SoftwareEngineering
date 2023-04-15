@@ -1,7 +1,7 @@
 package com.yutech.back.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -27,7 +27,8 @@ public class Passenger implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty(value = "用户ID", required = true)
-	@TableId("usr_ID")
+	@MppMultiId
+	@TableField("usr_ID")
 	private String usrId;
 
 	@ApiModelProperty(value = "乘客姓名")
@@ -35,7 +36,8 @@ public class Passenger implements Serializable {
 	private String passengerName;
 
 	@ApiModelProperty(value = "身份证号", required = true)
-	@TableId("passenger_ID")
+	@MppMultiId
+	@TableField("passenger_ID")
 	private String passengerId;
 
 	@ApiModelProperty(value = "电话号码")

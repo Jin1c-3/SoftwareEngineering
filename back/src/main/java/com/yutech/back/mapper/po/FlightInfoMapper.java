@@ -1,16 +1,18 @@
 package com.yutech.back.mapper.po;
 
+import com.github.jeffreyning.mybatisplus.base.MppBaseMapper;
 import com.yutech.back.entity.po.FlightInfo;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Jin1c-3
  * @since 2023-04-07
  */
-public interface FlightInfoMapper extends BaseMapper<FlightInfo> {
+@Mapper
+public interface FlightInfoMapper extends MppBaseMapper<FlightInfo> {
 
 }

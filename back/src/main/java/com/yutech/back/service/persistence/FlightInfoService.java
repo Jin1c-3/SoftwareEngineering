@@ -1,7 +1,7 @@
 package com.yutech.back.service.persistence;
 
+import com.github.jeffreyning.mybatisplus.service.IMppService;
 import com.yutech.back.entity.po.FlightInfo;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Jin1c-3
  * @since 2023-04-07
  */
-public interface FlightInfoService extends IService<FlightInfo> {
+public interface FlightInfoService extends IMppService<FlightInfo> {
 
 }

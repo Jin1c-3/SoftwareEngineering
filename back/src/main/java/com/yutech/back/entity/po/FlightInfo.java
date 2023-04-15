@@ -1,7 +1,7 @@
 package com.yutech.back.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -30,7 +30,8 @@ public class FlightInfo implements Serializable {
 	@TableField("flight_schedule")
 	private String flightSchedule;
 
-	@TableId("flight_ID")
+	@MppMultiId
+	@TableField("flight_ID")
 	private String flightId;
 
 	@ApiModelProperty(value = "总起点")
@@ -60,7 +61,8 @@ public class FlightInfo implements Serializable {
 	@TableField("direct_flag")
 	private String directFlag;
 
-	@TableId("aircraft_ID")
+	@MppMultiId
+	@TableField("aircraft_ID")
 	private String aircraftId;
 
 

@@ -1,9 +1,9 @@
 package com.yutech.back.service.persistence.impl;
 
+import com.github.jeffreyning.mybatisplus.service.MppServiceImpl;
 import com.yutech.back.entity.po.TrainNumberInfo;
 import com.yutech.back.mapper.po.TrainNumberInfoMapper;
 import com.yutech.back.service.persistence.TrainNumberInfoService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2023-04-07
  */
 @Service
-public class TrainNumberInfoServiceImpl extends ServiceImpl<TrainNumberInfoMapper, TrainNumberInfo> implements TrainNumberInfoService {
+public class TrainNumberInfoServiceImpl extends MppServiceImpl<TrainNumberInfoMapper, TrainNumberInfo> implements TrainNumberInfoService {
 
 }

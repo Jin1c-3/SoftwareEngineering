@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * <p>
- * 前端控制器
+ * 乘客控制器，乘客是多重ID，所以需要MPP
  * </p>
  *
  * @author Jin1c-3
@@ -49,13 +49,11 @@ public class PassengerController {
 	@PostMapping("/addPassenger")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息，前端弄一个页面添加就行")
 	public Result addPassenger(@RequestBody Passenger passenger) {
-		if (passengerService.getOne(new QueryWrapper<Passenger>()
-				.eq("passenger_ID", passenger.getPassengerId())
-				.eq("usr_ID", passenger.getUsrId())) != null) {
+		if (passengerService.selectByMultiId(passenger) != null) {
 			log.info("该乘客已存在=======" + passenger);
 			return Result.error().message("该乘客已存在");
 		}
-		passengerService.save(passenger);
+		passengerService.selectByMultiId(passenger);
 		log.debug("乘客添加成功=======" + passenger);
 		return Result.ok().message("添加成功");
 	}
@@ -63,9 +61,8 @@ public class PassengerController {
 	@DeleteMapping("/deletePassenger")
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
 	public Result deletePassenger(@RequestBody Passenger passenger) {
-		if (passengerService.remove(new QueryWrapper<Passenger>()
-				.eq("passenger_ID", passenger.getPassengerId())
-				.eq("usr_id", passenger.getUsrId()))) {
+		if (passengerService.selectByMultiId(passenger) != null) {
+			passengerService.deleteByMultiId(passenger);
 			log.debug("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
 			return Result.ok().message("乘客删除成功");
 		}

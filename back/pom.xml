@@ -71,13 +71,20 @@
             <version>3.0.3</version>
         </dependency>
 
-        <!-- 以下4项是mybatisplus的依赖-->
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.2.0</version>
         </dependency>
+
+        <!-- mybatis-plus-plus，支持多重主键-->
+        <dependency>
+            <groupId>com.github.jeffreyning</groupId>
+            <artifactId>mybatisplus-plus</artifactId>
+            <version>1.7.4-RELEASE</version>
+        </dependency>
+
         <!-- mybatis-plus-generator -->
 
         <!-- mybatis-plus engine -->
