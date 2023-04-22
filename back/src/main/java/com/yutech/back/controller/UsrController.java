@@ -7,7 +7,7 @@ import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.UsrDTO;
-import com.yutech.back.entity.dto.UsrLoginDTO;
+import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.entity.vo.UsrVO;
 import com.yutech.back.service.bussiness.AliSmsService;
@@ -85,16 +85,16 @@ public class UsrController {
 	/**
 	 * 用户登录
 	 *
-	 * @param usrLoginDTO 用户登录信息
+	 * @param loginDTO 用户登录信息
 	 * @return Result
 	 */
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@GetMapping("/login")
-	public Result<UsrVO> usrLogin(UsrLoginDTO usrLoginDTO) {
-		log.debug("用户登录，前端信息======={}", usrLoginDTO);
-		Usr[] usrLogins = {usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", usrLoginDTO.getUsrName())),
-				usrService.getOne(new QueryWrapper<Usr>().eq("usr_phone", usrLoginDTO.getUsrName())),
-				usrService.getOne(new QueryWrapper<Usr>().eq("usr_email", usrLoginDTO.getUsrName()))};
+	public Result<UsrVO> usrLogin(LoginDTO loginDTO) {
+		log.debug("用户登录，前端信息======={}", loginDTO);
+		Usr[] usrLogins = {usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", loginDTO.getAccount())),
+				usrService.getOne(new QueryWrapper<Usr>().eq("usr_phone", loginDTO.getAccount())),
+				usrService.getOne(new QueryWrapper<Usr>().eq("usr_email", loginDTO.getAccount()))};
 		int countVerifier = 0;
 		Usr usrInDB = null;
 		for (Usr usr : usrLogins) {
@@ -104,14 +104,14 @@ public class UsrController {
 			}
 		}
 		if (countVerifier > 1) {
-			log.warn("用户登录失败，账号存在多个，用户为======{}", usrLoginDTO);
+			log.warn("用户登录失败，账号存在多个，用户为======{}", loginDTO);
 			return Result.error(new UsrVO()).message("您的账号存在问题，待管理员核实");
 		}
 		if (countVerifier == 0) {
-			log.info("用户登录失败，账号不存在，用户为======{}", usrLoginDTO);
+			log.info("用户登录失败，账号不存在，用户为======{}", loginDTO);
 			return Result.error(new UsrVO()).message("账号不存在");
 		}
-		if (!usrInDB.getUsrPwd().equals(usrLoginDTO.getUsrPassword())) {
+		if (!usrInDB.getUsrPwd().equals(loginDTO.getPwd())) {
 			log.info("用户登录失败，密码错误，用户为======{}", usrInDB);
 			return Result.error(new UsrVO()).message("密码错误");
 		}

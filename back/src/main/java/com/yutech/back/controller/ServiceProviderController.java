@@ -1,13 +1,24 @@
 package com.yutech.back.controller;
 
 
+import com.yutech.back.common.utils.JwtUtil;
+import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.dto.LoginDTO;
+import com.yutech.back.entity.po.ServiceProvider;
+import com.yutech.back.entity.vo.ServiceProviderVO;
+import com.yutech.back.service.persistence.ServiceProviderService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author Jin1c-3
@@ -15,7 +26,39 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/service-provider")
+@Slf4j
+@Api(tags = "服务商系统")
+@CrossOrigin
 public class ServiceProviderController {
 
+	@Autowired
+	private ServiceProviderService serviceProviderService;
+
+	@ApiOperation(value = "服务商登录", notes = "服务商登录，需要传入ID和密码")
+	@GetMapping("/login")
+	public Result<ServiceProviderVO> login(LoginDTO loginDTO) {
+		ServiceProvider serviceProviderInDB = serviceProviderService.getById(loginDTO.getAccount());
+		if (serviceProviderInDB == null) {
+			log.info("账号不存在======" + loginDTO + "======");
+			return Result.error(new ServiceProviderVO()).message("账号不存在");
+		}
+		if (!serviceProviderInDB.getServiceProviderPwd().equals(loginDTO.getPwd())) {
+			log.info("密码错误======" + loginDTO + "======");
+			return Result.error(new ServiceProviderVO()).message("密码错误");
+		}
+		log.debug("登录成功======" + loginDTO + "======");
+		return Result.ok(new ServiceProviderVO(serviceProviderInDB, JwtUtil.sign(String.valueOf(serviceProviderInDB.getServiceProviderId()), serviceProviderInDB.getServiceProviderPwd())))
+				.message("登录成功");
+	}
+
+	public Result update(ServiceProvider serviceProvider) {
+		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
+			log.info("服务商不存在======" + serviceProvider + "======");
+			return Result.error().message("服务商不存在");
+		}
+		serviceProviderService.updateById(serviceProvider);
+		log.debug("服务商更新成功======" + serviceProvider + "======");
+		return Result.ok().message("更新成功");
+	}
 }
 

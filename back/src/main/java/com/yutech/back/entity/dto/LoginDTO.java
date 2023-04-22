@@ -5,12 +5,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(value = "用户登录信息传输层对象", description = "用户登录信息传输层对象")
-public class UsrLoginDTO {
+@ApiModel(value = "登录信息传输层对象", description = "登录信息传输层对象")
+public class LoginDTO {
 
 	@ApiModelProperty(value = "用户名", required = true)
-	private String usrName;
+	private String account;
 
 	@ApiModelProperty(value = "用户密码", required = true)
-	private String usrPassword;
+	private String pwd;
 }

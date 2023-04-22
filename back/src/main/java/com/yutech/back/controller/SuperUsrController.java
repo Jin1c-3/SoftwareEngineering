@@ -4,12 +4,18 @@ package com.yutech.back.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.dto.SuperUsrOperationDTO;
+import com.yutech.back.entity.po.ServiceProvider;
 import com.yutech.back.entity.po.SuperUsr;
+import com.yutech.back.entity.po.Usr;
 import com.yutech.back.entity.vo.SuperUsrVO;
+import com.yutech.back.service.persistence.ServiceProviderService;
 import com.yutech.back.service.persistence.SuperUsrService;
+import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,6 +44,13 @@ public class SuperUsrController {
 
 	@Autowired
 	private SuperUsrService superUsrService;
+
+	@Autowired
+	private ServiceProviderService serviceProviderService;
+
+	@Autowired
+	private UsrService usrService;
+
 
 	/**
 	 * 检测输入是否为超级管理员
@@ -82,20 +95,20 @@ public class SuperUsrController {
 	/**
 	 * 管理员登录
 	 *
-	 * @param superUsr 管理员信息
-	 * @return Result
+	 * @param loginDTO
+	 * @return
 	 */
-	@ApiOperation(value = "管理员登录", notes = "管理员登录，只会验证账号密码，也会发放token")
+	@ApiOperation(value = "管理员登录", notes = "管理员登录，验证账号密码并发放token")
 	@GetMapping("/login")
-	public Result<SuperUsrVO> login(SuperUsr superUsr) {
-		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
+	public Result<SuperUsrVO> login(LoginDTO loginDTO) {
+		SuperUsr superUsrInDB = superUsrService.getById(loginDTO.getAccount());
 		if (superUsrInDB == null) {
-			log.info("管理员账号不存在======" + superUsr + "======");
-			return Result.error(new SuperUsrVO(superUsr)).message("账号不存在");
+			log.info("管理员账号不存在======" + loginDTO + "======");
+			return Result.error(new SuperUsrVO()).message("账号不存在");
 		}
-		if (!superUsrInDB.getSuperUsrPwd().equals(superUsr.getSuperUsrPwd())) {
-			log.info("管理员密码错误======" + superUsr + "======");
-			return Result.error(new SuperUsrVO(superUsr)).message("密码错误");
+		if (!superUsrInDB.getSuperUsrPwd().equals(loginDTO.getPwd())) {
+			log.info("管理员密码错误======" + loginDTO + "======");
+			return Result.error(new SuperUsrVO()).message("密码错误");
 		}
 		log.debug("管理员登录成功======" + superUsrInDB + "======");
 		return Result.ok(new SuperUsrVO(superUsrInDB, JwtUtil.sign(superUsrInDB.getSuperUsrId(), superUsrInDB.getSuperUsrPwd())))
@@ -108,7 +121,7 @@ public class SuperUsrController {
 	 * @param superUsrOperationDTO 请求者信息和请求目标信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
-	@ApiOperation(value = "管理员信息修改", notes = "管理员信息修改，只有超级管理员才能修改")
+	@ApiOperation(value = "修改管理员", notes = "管理员信息修改，只有超级管理员才能修改")
 	@PatchMapping("/update-super-usr")
 	public Result updateSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
@@ -127,7 +140,7 @@ public class SuperUsrController {
 	 * @param superUsr 请求者信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
-	@ApiOperation(value = "管理员信息查询", notes = "管理员信息查询，只有超级管理员才能查询")
+	@ApiOperation(value = "获取管理员列表", notes = "管理员信息查询，只有超级管理员才能查询")
 	@GetMapping("/get-super-usr-list")
 	public Result<List<SuperUsr>> getSuperUsrList(SuperUsr superUsr) {
 		Result<List<SuperUsr>> result = isRoot(superUsr, new ArrayList<>());
@@ -144,7 +157,7 @@ public class SuperUsrController {
 	 * @param superUsrOperationDTO 请求者信息和请求目标信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
-	@ApiOperation(value = "管理员信息删除", notes = "管理员信息删除，只有超级管理员才能删除")
+	@ApiOperation(value = "删除管理员", notes = "管理员信息删除，只有超级管理员才能删除")
 	@DeleteMapping("/delete-super-usr")
 	public Result deleteSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
@@ -162,15 +175,151 @@ public class SuperUsrController {
 	 * @param superUsrOperationDTO 请求者信息和请求目标信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
-	@ApiOperation(value = "管理员信息添加", notes = "管理员信息添加，只有超级管理员才能添加")
+	@ApiOperation(value = "添加管理员", notes = "管理员信息添加，只有超级管理员才能添加")
 	@PostMapping("/add-super-usr")
 	public Result addSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
 		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
 		if (result != null)
 			return result;
+		if (superUsrService.getById(requestTarget.getSuperUsrId()) != null)
+			return Result.error().message("该管理员已存在，添加失败");
 		superUsrService.save(requestTarget);
 		log.debug("管理员信息添加成功======" + requestTarget + "======");
+		return Result.ok().message("添加成功");
+	}
+
+	/**
+	 * 服务商信息添加
+	 *
+	 * @param serviceProvider
+	 * @return
+	 */
+	@PatchMapping("/update-service-provider")
+	@ApiOperation(value = "修改服务商", notes = "修改服务商，ID不能被修改")
+	public Result updateServiceProvider(ServiceProvider serviceProvider) {
+		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
+			log.info("该服务商不存在，修改失败======" + serviceProvider + "======");
+			return Result.error().message("该服务商不存在，修改失败");
+		}
+		serviceProviderService.updateById(serviceProvider);
+		log.debug("修改服务商成功======" + serviceProvider + "======");
+		return Result.ok().message("修改成功");
+	}
+
+	/**
+	 * 服务商信息查询
+	 *
+	 * @return list
+	 */
+	@GetMapping("/get-service-provider-list")
+	@ApiOperation(value = "获取服务商列表", notes = "获取服务商列表")
+	public Result<List<ServiceProvider>> getServiceProviderList() {
+		List<ServiceProvider> serviceProviderList = serviceProviderService.list();
+		log.debug("获取服务商列表成功======" + serviceProviderList + "======");
+		return Result.ok(serviceProviderList).message("查询成功");
+	}
+
+	/**
+	 * 服务商信息删除
+	 *
+	 * @param serviceProviderId
+	 * @return
+	 */
+	@DeleteMapping("/delete-service-provider")
+	@ApiOperation(value = "删除服务商", notes = "删除服务商")
+	@ApiParam(name = "serviceProviderId", value = "被删除服务商的id", required = true)
+	public Result deleteServiceProvider(String serviceProviderId) {
+		if (serviceProviderService.getById(serviceProviderId) == null) {
+			log.info("该服务商不存在，删除失败======" + serviceProviderId + "======");
+			return Result.error().message("该服务商不存在，删除失败");
+		}
+		serviceProviderService.removeById(serviceProviderId);
+		log.debug("删除服务商成功======" + serviceProviderId + "======");
+		return Result.ok().message("删除成功");
+	}
+
+	/**
+	 * 服务商信息添加
+	 *
+	 * @param serviceProvider
+	 * @return
+	 */
+	@PostMapping("/add-service-provider")
+	@ApiOperation(value = "添加服务商", notes = "添加服务商")
+	public Result addServiceProvider(ServiceProvider serviceProvider) {
+		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) != null) {
+			log.info("该服务商已存在，不能重复添加======" + serviceProvider + "======");
+			return Result.error().message("该服务商已存在，添加失败");
+		}
+		serviceProviderService.save(serviceProvider);
+		log.debug("添加服务商成功======" + serviceProvider + "======");
+		return Result.ok().message("添加成功");
+	}
+
+	/**
+	 * 用户直接修改
+	 *
+	 * @param usr
+	 * @return
+	 */
+	@PatchMapping("/update-usr")
+	@ApiOperation(value = "修改用户", notes = "绕过策略直接修改用户，注意ID不能被修改")
+	@ApiParam(name = "usr", value = "被修改的用户。注意如果某属性为空，则将数据库中属性也置空！因此需要传入完整的Usr对象", required = true)
+	public Result updateUsr(Usr usr) {
+		if (usrService.getById(usr.getUsrId()) == null) {
+			log.info("该用户不存在======{}======", usr);
+			return Result.error().message("该用户不存在，修改失败");
+		}
+		usrService.updateById(usr);
+		log.debug("修改用户成功======" + usr + "======");
+		return Result.ok().message("修改成功");
+	}
+
+	/**
+	 * 获取用户列表
+	 *
+	 * @return
+	 */
+	@GetMapping("/get-usr-list")
+	@ApiOperation(value = "获取用户列表", notes = "获取用户列表")
+	public Result<List<Usr>> getUsrList() {
+		List<Usr> usrList = usrService.list();
+		log.debug("获取用户列表成功======" + usrList + "======");
+		return Result.ok(usrList).message("查询成功");
+	}
+
+	/**
+	 * 直接删除用户
+	 *
+	 * @param usrId
+	 * @return
+	 */
+	@DeleteMapping("/delete-usr")
+	@ApiOperation(value = "删除用户", notes = "删除用户")
+	public Result deleteUsr(String usrId) {
+		if (usrService.getById(usrId) == null)
+			return Result.error().message("该用户不存在，删除失败");
+		usrService.removeById(usrId);
+		log.debug("删除用户成功======" + usrId + "======");
+		return Result.ok().message("删除成功");
+	}
+
+	/**
+	 * 直接添加用户
+	 *
+	 * @param usr
+	 * @return
+	 */
+	@PostMapping("/add-usr")
+	@ApiOperation(value = "添加用户", notes = "绕过策略直接添加用户")
+	public Result addUsr(Usr usr) {
+		if (usrService.getById(usr.getUsrId()) != null) {
+			log.info("该用户已存在，不能重复添加======{}======", usr);
+			return Result.error().message("该用户已存在，添加失败");
+		}
+		usrService.save(usr);
+		log.debug("添加用户成功======" + usr + "======");
 		return Result.ok().message("添加成功");
 	}
 }

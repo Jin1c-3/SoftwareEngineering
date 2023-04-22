@@ -1,5 +1,6 @@
 package com.yutech.back.common.config;
 
+import com.yutech.back.interceptor.ServiceProviderInterceptor;
 import com.yutech.back.interceptor.SuperUsrInterceptor;
 import com.yutech.back.interceptor.UsrInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -59,9 +60,18 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		return new SuperUsrInterceptor();
 	}
 
+	/**
+	 * 注入拦截器，交给spring管理
+	 */
+	@Bean
+	public ServiceProviderInterceptor getServiceProviderInterceptor() {
+		return new ServiceProviderInterceptor();
+	}
+
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+
 		registry.addInterceptor(getUsrInterceptor())
 				//这里配置要拦截的路径
 				.addPathPatterns("/**")
@@ -72,6 +82,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		registry.addInterceptor(getSuperUsrInterceptor())
 				//这里配置要拦截的路径
 				.addPathPatterns("/**/super-usr/**")
+				//这里配置不要拦截的路径
+				.excludePathPatterns(EXCLUDE_PATH_PATTERN);
+
+		registry.addInterceptor(getServiceProviderInterceptor())
+				//这里配置要拦截的路径
+				.addPathPatterns("/**/service-provider/**")
 				//这里配置不要拦截的路径
 				.excludePathPatterns(EXCLUDE_PATH_PATTERN);
 	}

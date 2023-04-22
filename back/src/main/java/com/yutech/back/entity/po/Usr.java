@@ -27,7 +27,7 @@ public class Usr implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "用户账号", required = true)
+	@ApiModelProperty(value = "用户账号")
 	@TableField("usr_account")
 	private String usrAccount;
 
@@ -45,7 +45,7 @@ public class Usr implements Serializable {
 	@TableField("usr_vip_level")
 	private Integer usrVipLevel;
 
-	@ApiModelProperty(value = "用户密码", required = true)
+	@ApiModelProperty(value = "用户密码")
 	@TableField("usr_pwd")
 	private String usrPwd;
 
