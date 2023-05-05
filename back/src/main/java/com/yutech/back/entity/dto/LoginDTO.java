@@ -13,4 +13,12 @@ public class LoginDTO {
 
 	@ApiModelProperty(value = "用户密码", required = true)
 	private String pwd;
+
+	public LoginDTO() {
+	}
+
+	public LoginDTO(String usrName, String usrPassword) {
+		this.account = usrName;
+		this.pwd = usrPassword;
+	}
 }

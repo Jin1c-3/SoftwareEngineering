@@ -2,12 +2,11 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.dto.LoginDTO;
+import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.entity.vo.UsrVO;
 import com.yutech.back.service.bussiness.AliSmsService;
@@ -17,10 +16,9 @@ import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,12 +83,14 @@ public class UsrController {
 	/**
 	 * 用户登录
 	 *
-	 * @param loginDTO 用户登录信息
-	 * @return Result
+	 * @param usrName     用户名
+	 * @param usrPassword 用户密码
+	 * @return 用户信息
 	 */
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@GetMapping("/login")
-	public Result<UsrVO> usrLogin(LoginDTO loginDTO) {
+	public Result<UsrVO> usrLogin(String usrName, String usrPassword) {
+		LoginDTO loginDTO = new LoginDTO(usrName, usrPassword);
 		log.debug("用户登录，前端信息======={}", loginDTO);
 		Usr[] usrLogins = {usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", loginDTO.getAccount())),
 				usrService.getOne(new QueryWrapper<Usr>().eq("usr_phone", loginDTO.getAccount())),
@@ -127,7 +127,7 @@ public class UsrController {
 	 */
 	@PatchMapping("/update")
 	@ApiOperation(value = "修改用户信息", notes = "修改用户信息，请传入usrId!!!!!!")
-	public Result<UsrVO> updateUsrInfo(UsrDTO usrDTO, HttpServletRequest request) {
+	public Result<UsrVO> updateUsrInfo(UsrDTO usrDTO, MultipartFile avatar, HttpServletRequest request) {
 		log.debug("用户信息修改，前端信息：=======" + usrDTO);
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usrDTO.getUsrId()));
 		if (usrInDB == null) {
@@ -135,31 +135,20 @@ public class UsrController {
 			return Result.error(new UsrVO()).message("用户不存在");
 		}
 		Usr usrPushInDB = new Usr(usrDTO);
-		//赋值操作，如果前端传入的值不为空，就赋值给数据库中的值
-		for (Field field : usrPushInDB.getClass().getDeclaredFields()) {
-			field.setAccessible(true);
-			try {
-				if (field.get(usrPushInDB) != null && !Modifier.isStatic(field.getModifiers())) {
-					field.set(usrInDB, field.get(usrPushInDB));
-				}
-			} catch (IllegalAccessException e) {
-				throw new GlobalException("用户赋值失败", e);
-			}
-		}
 		//验证账号唯一性
 		if (!usrService.verifyGoodUpdate(usrInDB)) {
 			log.info("用户信息修改失败，账号已存在，用户为======{}", usrInDB);
 			return Result.error(new UsrVO()).message("修改失败，账号已存在");
 		}
 		//如果头像不为空，就上传头像
-		if (usrDTO.getAvatar() != null) {
+		if (avatar != null) {
 			log.debug("用户信息修改，头像不为空，开始上传头像");
-			usrInDB.setUsrAvatar(FileUtil.storeMultipartFile(usrDTO.getUsrId(), usrDTO.getAvatar(), request));
+			usrInDB.setUsrAvatar(FileUtil.storeMultipartFile(usrDTO.getUsrId(), avatar, request));
 		}
 		//更新用户信息
-		usrService.updateById(usrInDB);
-		log.info("用户信息更新成功，用户为 {}", usrInDB);
-		return Result.ok(new UsrVO(usrInDB)).message("修改成功");
+		usrService.updateById(usrPushInDB);
+		log.info("用户信息更新成功，用户为==={}", usrPushInDB);
+		return Result.ok(new UsrVO(usrPushInDB)).message("修改成功");
 	}
 
 	/**

@@ -4,7 +4,6 @@ import com.yutech.back.entity.po.Usr;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 用户信息表现层
@@ -26,9 +25,6 @@ public class UsrDTO {
 	private String usrPwd;
 
 	private String usrPhone;
-
-	@ApiModelProperty(value = "头像文件，不会存储到数据库")
-	private MultipartFile avatar;
 
 	/**
 	 * 无参构造方法
