@@ -67,11 +67,24 @@ public class JwtUtil {
 	 * @param request 前端的网页请求
 	 * @return String 返回token中的username
 	 */
-	public static String getIdByToken(HttpServletRequest request) {
+	public static String getId(HttpServletRequest request) {
 		String token = request.getHeader("token");
 		log.trace("从token中获取id，token==={}", token);
 		return JWT.decode(token)
 				.getClaim("id")
 				.asString();
 	}
+
+	/**
+	 * 通过token获取ID
+	 *
+	 * @param token 前端的网页请求
+	 * @return String 返回token中的username
+	 */
+	public static String getId(String token) {
+		return JWT.decode(token)
+				.getClaim("id")
+				.asString();
+	}
+
 }

@@ -32,7 +32,7 @@ public class UsrInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		if (!StringUtils.isEmpty(token)) {
-			String id = JwtUtil.getIdByToken(request);
+			String id = JwtUtil.getId(request);
 			log.debug(id + "======的token是======" + token);
 			if (JwtUtil.verify(token, id, usrService.getById(id).getUsrPwd())) {
 				log.info(id + "======通过了token验证");

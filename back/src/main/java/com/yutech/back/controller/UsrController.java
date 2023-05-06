@@ -89,7 +89,7 @@ public class UsrController {
 	 */
 	@ApiOperation(value = "用户登录", notes = "用户登录，返回详细用户对象Usr以及token")
 	@GetMapping("/login")
-	public Result<UsrVO> usrLogin(String usrName, String usrPassword) {
+	public Result<String> usrLogin(String usrName, String usrPassword) {
 		LoginDTO loginDTO = new LoginDTO(usrName, usrPassword);
 		log.debug("用户登录，前端信息======={}", loginDTO);
 		Usr[] usrLogins = {usrService.getOne(new QueryWrapper<Usr>().eq("usr_account", loginDTO.getAccount())),
@@ -105,19 +105,39 @@ public class UsrController {
 		}
 		if (countVerifier > 1) {
 			log.warn("用户登录失败，账号存在多个，用户为======{}", loginDTO);
-			return Result.error(new UsrVO()).message("您的账号存在问题，待管理员核实");
+			return Result.error("").message("您的账号存在问题，待管理员核实");
 		}
 		if (countVerifier == 0) {
 			log.info("用户登录失败，账号不存在，用户为======{}", loginDTO);
-			return Result.error(new UsrVO()).message("账号不存在");
+			return Result.error("").message("账号不存在");
 		}
 		if (!usrInDB.getUsrPwd().equals(loginDTO.getPwd())) {
 			log.info("用户登录失败，密码错误，用户为======{}", usrInDB);
-			return Result.error(new UsrVO()).message("密码错误");
+			return Result.error("").message("密码错误");
 		}
 		log.info("用户登录成功======{}", usrInDB);
-		return Result.ok(new UsrVO(usrInDB, JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd()))).message("登录成功");
+		return Result.ok(JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd())).message("登录成功");
 	}
+
+	/**
+	 * 用户信息获取
+	 *
+	 * @param token token
+	 * @return 用户信息
+	 */
+	@ApiOperation(value = "用户信息获取", notes = "用户信息获取，返回详细用户对象Usr")
+	@GetMapping("/info")
+	public Result<UsrVO> getInfo(String token) {
+		String usrId = JwtUtil.getId(token);
+		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usrId));
+		if (usrInDB == null) {
+			log.info("用户信息获取失败，用户不存在，用户为======{}", usrId);
+			return Result.error(new UsrVO()).message("该用户不存在");
+		}
+		log.debug("用户信息获取成功，用户为======{}", usrInDB);
+		return Result.ok(new UsrVO(usrInDB)).message("用户信息获取成功");
+	}
+
 
 	/**
 	 * 修改用户信息
