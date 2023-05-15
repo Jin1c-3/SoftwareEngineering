@@ -1,6 +1,7 @@
 package com.yutech.back.interceptor;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.yutech.back.common.utils.InterceptorUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.service.persistence.UsrService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,7 @@ public class UsrInterceptor implements HandlerInterceptor {
 				return true;
 			}
 			log.info(id + "======未通过token验证");
+			InterceptorUtil.createTimeLimitResponse(response);
 			return false;
 		}
 		log.warn("返回的token是空字符串");
