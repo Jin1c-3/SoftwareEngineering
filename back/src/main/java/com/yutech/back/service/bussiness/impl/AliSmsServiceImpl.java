@@ -40,9 +40,7 @@ public class AliSmsServiceImpl implements AliSmsService {
 	public Boolean sendSms(String phone, String templateCode, String code) {
 
 		// 创建DefaultAcsClient实例并初始化
-		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou",
-				accessKeyId,
-				accessKeySecret);
+		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
 		IAcsClient client = new DefaultAcsClient(profile);
 
 		// 组装请求对象-具体描述见控制台-文档部分内容
@@ -60,7 +58,7 @@ public class AliSmsServiceImpl implements AliSmsService {
 
 		try {
 			CommonResponse response = client.getCommonResponse(request);
-			log.info("发送短信========" + response.getData());
+			log.info("发送短信===" + response.getData());
 			return response.getHttpResponse().isSuccess();
 		} catch (Exception e) {
 			throw new GlobalException("发送短信失败");

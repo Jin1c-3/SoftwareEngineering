@@ -52,24 +52,24 @@ public class SuperUsrController {
 	private UsrService usrService;
 
 
-	/**
-	 * 检测输入是否为超级管理员
-	 *
-	 * @param superUsr 管理员信息
-	 * @return null表示是超级管理员
-	 */
-	private Result isRoot(SuperUsr superUsr) {
-		if (!superUsr.getSuperUsrId().equals(superUsrId)) {
-			log.info("管理员权限不足======" + superUsr.getSuperUsrId() + "======");
-			return Result.error().message("权限不足");
-		}
-		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
-		if (!superUsrInDB.getSuperUsrPwd().equals(superUsr.getSuperUsrPwd())) {
-			log.info("管理员密码错误======" + superUsr.getSuperUsrId() + "======");
-			return Result.error().message("密码错误");
-		}
-		return null;
-	}
+//	/**
+//	 * 检测输入是否为超级管理员
+//	 *
+//	 * @param superUsr 管理员信息
+//	 * @return null表示是超级管理员
+//	 */
+//	private Result<Object> isRoot(SuperUsr superUsr) {
+//		if (!superUsr.getSuperUsrId().equals(superUsrId)) {
+//			log.info("管理员权限不足===" + superUsr.getSuperUsrId());
+//			return Result.error().message("权限不足");
+//		}
+//		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
+//		if (!superUsrInDB.getSuperUsrPwd().equals(superUsr.getSuperUsrPwd())) {
+//			log.info("管理员密码错误===" + superUsr.getSuperUsrId());
+//			return Result.error().message("密码错误");
+//		}
+//		return null;
+//	}
 
 	/**
 	 * 检测输入是否为超级管理员
@@ -81,12 +81,12 @@ public class SuperUsrController {
 	 */
 	private <T> Result<T> isRoot(SuperUsr superUsr, T data) {
 		if (!superUsr.getSuperUsrId().equals(superUsrId)) {
-			log.info("管理员权限不足======" + superUsr.getSuperUsrId() + "======");
+			log.info("管理员权限不足===" + superUsr.getSuperUsrId());
 			return Result.error(data).message("权限不足");
 		}
 		SuperUsr superUsrInDB = superUsrService.getOne(new QueryWrapper<SuperUsr>().eq("super_usr_ID", superUsr.getSuperUsrId()));
 		if (!superUsrInDB.getSuperUsrPwd().equals(superUsr.getSuperUsrPwd())) {
-			log.info("管理员密码错误======" + superUsr.getSuperUsrId() + "======");
+			log.info("管理员密码错误===" + superUsr.getSuperUsrId());
 			return Result.error(data).message("密码错误");
 		}
 		return null;
@@ -100,19 +100,37 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "管理员登录", notes = "管理员登录，验证账号密码并发放token")
 	@GetMapping("/login")
-	public Result<SuperUsrVO> login(LoginDTO loginDTO) {
+	public Result<String> login(LoginDTO loginDTO) {
 		SuperUsr superUsrInDB = superUsrService.getById(loginDTO.getAccount());
 		if (superUsrInDB == null) {
-			log.info("管理员账号不存在======" + loginDTO + "======");
-			return Result.error(new SuperUsrVO()).message("账号不存在");
+			log.info("管理员账号不存在==={}", loginDTO);
+			return Result.error("").message("账号不存在");
 		}
 		if (!superUsrInDB.getSuperUsrPwd().equals(loginDTO.getPwd())) {
-			log.info("管理员密码错误======" + loginDTO + "======");
-			return Result.error(new SuperUsrVO()).message("密码错误");
+			log.info("管理员密码错误==={}", loginDTO);
+			return Result.error("").message("密码错误");
 		}
-		log.debug("管理员登录成功======" + superUsrInDB + "======");
-		return Result.ok(new SuperUsrVO(superUsrInDB, JwtUtil.sign(superUsrInDB.getSuperUsrId(), superUsrInDB.getSuperUsrPwd())))
-				.message("登录成功");
+		log.debug("管理员登录成功==={}", superUsrInDB);
+		return Result.ok(JwtUtil.sign(superUsrInDB.getSuperUsrId(), superUsrInDB.getSuperUsrPwd())).message("登录成功");
+	}
+
+	/**
+	 * 管理员信息获取
+	 *
+	 * @param token
+	 * @return
+	 */
+	@ApiOperation(value = "管理员信息获取", notes = "管理员信息获取，验证token并返回管理员信息")
+	@GetMapping("/info")
+	public Result<SuperUsrVO> getInfo(String token) {
+		String usrId = JwtUtil.getId(token);
+		SuperUsr superUsrInDB = superUsrService.getById(usrId);
+		if (superUsrInDB == null) {
+			log.info("管理员账号不存在==={}", usrId);
+			return Result.error(new SuperUsrVO()).message("账号不存在");
+		}
+		log.debug("管理员登录成功==={}", superUsrInDB);
+		return Result.ok(new SuperUsrVO(superUsrInDB)).message("登录成功");
 	}
 
 	/**
@@ -123,14 +141,13 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "修改管理员", notes = "管理员信息修改，只有超级管理员才能修改")
 	@PatchMapping("/update-super-usr")
-	public Result updateSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> updateSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
-		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
-		if (result != null)
-			return result;
+		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
+		if (result != null) return result;
 		requestTarget.setSuperUsrName(superUsrService.getById(requestTarget.getSuperUsrId()).getSuperUsrName());
 		superUsrService.updateById(requestTarget);
-		log.debug("管理员信息修改成功======" + requestTarget + "======");
+		log.debug("管理员信息修改成功===" + requestTarget);
 		return Result.ok().message("修改成功");
 	}
 
@@ -144,10 +161,9 @@ public class SuperUsrController {
 	@GetMapping("/get-super-usr-list")
 	public Result<List<SuperUsr>> getSuperUsrList(SuperUsr superUsr) {
 		Result<List<SuperUsr>> result = isRoot(superUsr, new ArrayList<>());
-		if (result != null)
-			return result;
+		if (result != null) return result;
 		List<SuperUsr> superUsrList = superUsrService.list();
-		log.debug("管理员信息查询成功======" + superUsrList + "======");
+		log.debug("管理员信息查询成功==={}", superUsrList);
 		return Result.ok(superUsrList).message("查询成功");
 	}
 
@@ -159,13 +175,12 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "删除管理员", notes = "管理员信息删除，只有超级管理员才能删除")
 	@DeleteMapping("/delete-super-usr")
-	public Result deleteSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> deleteSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
-		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
-		if (result != null)
-			return result;
+		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
+		if (result != null) return result;
 		superUsrService.removeById(requestTarget.getSuperUsrId());
-		log.debug("管理员信息删除成功======" + requestTarget + "======");
+		log.debug("管理员信息删除成功==={}", requestTarget);
 		return Result.ok().message("删除成功");
 	}
 
@@ -177,15 +192,14 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "添加管理员", notes = "管理员信息添加，只有超级管理员才能添加")
 	@PostMapping("/add-super-usr")
-	public Result addSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> addSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
-		Result result = isRoot(superUsrOperationDTO.getRequestMaker());
-		if (result != null)
-			return result;
+		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
+		if (result != null) return result;
 		if (superUsrService.getById(requestTarget.getSuperUsrId()) != null)
 			return Result.error().message("该管理员已存在，添加失败");
 		superUsrService.save(requestTarget);
-		log.debug("管理员信息添加成功======" + requestTarget + "======");
+		log.debug("管理员信息添加成功==={}", requestTarget);
 		return Result.ok().message("添加成功");
 	}
 
@@ -197,13 +211,13 @@ public class SuperUsrController {
 	 */
 	@PatchMapping("/update-service-provider")
 	@ApiOperation(value = "修改服务商", notes = "修改服务商，ID不能被修改")
-	public Result updateServiceProvider(ServiceProvider serviceProvider) {
+	public Result<Object> updateServiceProvider(ServiceProvider serviceProvider) {
 		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
-			log.info("该服务商不存在，修改失败======" + serviceProvider + "======");
+			log.info("该服务商不存在，修改失败==={}", serviceProvider);
 			return Result.error().message("该服务商不存在，修改失败");
 		}
 		serviceProviderService.updateById(serviceProvider);
-		log.debug("修改服务商成功======" + serviceProvider + "======");
+		log.debug("修改服务商成功==={}", serviceProvider);
 		return Result.ok().message("修改成功");
 	}
 
@@ -216,7 +230,7 @@ public class SuperUsrController {
 	@ApiOperation(value = "获取服务商列表", notes = "获取服务商列表")
 	public Result<List<ServiceProvider>> getServiceProviderList() {
 		List<ServiceProvider> serviceProviderList = serviceProviderService.list();
-		log.debug("获取服务商列表成功======" + serviceProviderList + "======");
+		log.debug("获取服务商列表成功==={}", serviceProviderList);
 		return Result.ok(serviceProviderList).message("查询成功");
 	}
 
@@ -229,13 +243,13 @@ public class SuperUsrController {
 	@DeleteMapping("/delete-service-provider")
 	@ApiOperation(value = "删除服务商", notes = "删除服务商")
 	@ApiParam(name = "serviceProviderId", value = "被删除服务商的id", required = true)
-	public Result deleteServiceProvider(String serviceProviderId) {
+	public Result<Object> deleteServiceProvider(String serviceProviderId) {
 		if (serviceProviderService.getById(serviceProviderId) == null) {
-			log.info("该服务商不存在，删除失败======" + serviceProviderId + "======");
+			log.info("该服务商不存在，删除失败==={}", serviceProviderId);
 			return Result.error().message("该服务商不存在，删除失败");
 		}
 		serviceProviderService.removeById(serviceProviderId);
-		log.debug("删除服务商成功======" + serviceProviderId + "======");
+		log.debug("删除服务商成功==={}", serviceProviderId);
 		return Result.ok().message("删除成功");
 	}
 
@@ -247,13 +261,13 @@ public class SuperUsrController {
 	 */
 	@PostMapping("/add-service-provider")
 	@ApiOperation(value = "添加服务商", notes = "添加服务商")
-	public Result addServiceProvider(ServiceProvider serviceProvider) {
+	public Result<Object> addServiceProvider(ServiceProvider serviceProvider) {
 		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) != null) {
-			log.info("该服务商已存在，不能重复添加======" + serviceProvider + "======");
+			log.info("该服务商已存在，不能重复添加==={}", serviceProvider);
 			return Result.error().message("该服务商已存在，添加失败");
 		}
 		serviceProviderService.save(serviceProvider);
-		log.debug("添加服务商成功======" + serviceProvider + "======");
+		log.debug("添加服务商成功==={}", serviceProvider);
 		return Result.ok().message("添加成功");
 	}
 
@@ -266,13 +280,13 @@ public class SuperUsrController {
 	@PatchMapping("/update-usr")
 	@ApiOperation(value = "修改用户", notes = "绕过策略直接修改用户，注意ID不能被修改")
 	@ApiParam(name = "usr", value = "被修改的用户。注意如果某属性为空，则将数据库中属性也置空！因此需要传入完整的Usr对象", required = true)
-	public Result updateUsr(Usr usr) {
+	public Result<Object> updateUsr(Usr usr) {
 		if (usrService.getById(usr.getUsrId()) == null) {
-			log.info("该用户不存在======{}======", usr);
+			log.info("该用户不存在==={}", usr);
 			return Result.error().message("该用户不存在，修改失败");
 		}
 		usrService.updateById(usr);
-		log.debug("修改用户成功======" + usr + "======");
+		log.debug("修改用户成功===", usr);
 		return Result.ok().message("修改成功");
 	}
 
@@ -285,7 +299,7 @@ public class SuperUsrController {
 	@ApiOperation(value = "获取用户列表", notes = "获取用户列表")
 	public Result<List<Usr>> getUsrList() {
 		List<Usr> usrList = usrService.list();
-		log.debug("获取用户列表成功======" + usrList + "======");
+		log.debug("获取用户列表成功===", usrList);
 		return Result.ok(usrList).message("查询成功");
 	}
 
@@ -297,11 +311,10 @@ public class SuperUsrController {
 	 */
 	@DeleteMapping("/delete-usr")
 	@ApiOperation(value = "删除用户", notes = "删除用户")
-	public Result deleteUsr(String usrId) {
-		if (usrService.getById(usrId) == null)
-			return Result.error().message("该用户不存在，删除失败");
+	public Result<Object> deleteUsr(String usrId) {
+		if (usrService.getById(usrId) == null) return Result.error().message("该用户不存在，删除失败");
 		usrService.removeById(usrId);
-		log.debug("删除用户成功======" + usrId + "======");
+		log.debug("删除用户成功===", usrId);
 		return Result.ok().message("删除成功");
 	}
 
@@ -313,13 +326,13 @@ public class SuperUsrController {
 	 */
 	@PostMapping("/add-usr")
 	@ApiOperation(value = "添加用户", notes = "绕过策略直接添加用户")
-	public Result addUsr(Usr usr) {
+	public Result<Object> addUsr(Usr usr) {
 		if (usrService.getById(usr.getUsrId()) != null) {
-			log.info("该用户已存在，不能重复添加======{}======", usr);
+			log.info("该用户已存在，不能重复添加==={}", usr);
 			return Result.error().message("该用户已存在，添加失败");
 		}
 		usrService.save(usr);
-		log.debug("添加用户成功======" + usr + "======");
+		log.debug("添加用户成功==={}", usr);
 		return Result.ok().message("添加成功");
 	}
 }

@@ -15,6 +15,7 @@ import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,7 +52,8 @@ public class UsrController {
 	/**
 	 * 默认头像
 	 */
-	private static final String DEFAULT_AVATAR = "https://www.nitutu.com/uploads/allimg/200409/2136324362-1.jpeg";
+	@Value("${default.avatar}")
+	private String defaultAvatar;
 
 	/**
 	 * 用户登录
@@ -62,21 +64,21 @@ public class UsrController {
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
 	public Result<UsrVO> usrRegistry(@RequestBody UsrDTO usrDTO) {
-		log.debug("用户注册，前端信息=======" + usrDTO);
+		log.debug("用户注册，前端信息====" + usrDTO);
 		Format sdf = new SimpleDateFormat("yyyyMMdd");
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
-		if (usrService.verifyUnique(usrPushInDB)) {
+		if (Boolean.TRUE.equals(usrService.verifyUnique(usrPushInDB))) {
 			usrDTO.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
-			usrPushInDB.setUsrAvatar(DEFAULT_AVATAR);
+			usrPushInDB.setUsrAvatar(defaultAvatar);
 			//保存用户信息
 			usrService.save(usrPushInDB);
 			//发送欢迎邮件
 			eMailService.sendGreetings(usrPushInDB.getUsrEmail(), usrPushInDB.getUsrAccount());
-			log.info("用户注册成功，用户为======{}", usrPushInDB);
+			log.info("用户注册成功，用户为==={}", usrPushInDB);
 			return Result.ok(new UsrVO(usrPushInDB)).message("注册成功");
 		}
-		log.debug("用户注册失败，可能违反唯一性，用户为======{}", usrPushInDB);
+		log.debug("用户注册失败，可能违反唯一性，用户为==={}", usrPushInDB);
 		return Result.error(new UsrVO(usrPushInDB)).message("账号已存在");
 	}
 
@@ -184,7 +186,7 @@ public class UsrController {
 			@ApiImplicitParam(name = "phoneOrEMail", value = "账号或手机号", required = true, dataTypeClass = String.class, paramType = "path"),
 			@ApiImplicitParam(name = "pwd", value = "新密码", required = true, dataTypeClass = String.class, paramType = "query")
 	})
-	public Result updateUsrPwd(@PathVariable String phoneOrEMail, String pwd) {
+	public Result<Object> updateUsrPwd(@PathVariable String phoneOrEMail, String pwd) {
 		Boolean isEMail = phoneOrEMail.contains("@");
 		log.debug("修改用户密码，前端信息======{}======判断是否是邮箱======{}======", phoneOrEMail, isEMail);
 		Usr usrInDB;

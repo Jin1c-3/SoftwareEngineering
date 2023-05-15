@@ -41,10 +41,10 @@ public class AlipayServiceImpl implements AlipayService {
 			if (ResponseChecker.success(response)) {
 				payForm = response.getBody();
 			}
-			log.debug("支付宝支付接口调用成功，返回的数据为======" + response.getBody());
+			log.debug("支付宝支付接口调用成功，返回的数据为===" + response.getBody());
 			return payForm;
 		} catch (Exception e) {
-			throw new GlobalException("支付宝支付接口调用失败======" + ExceptionUtil.getMessage(e));
+			throw new GlobalException("支付宝支付接口调用失败===" + ExceptionUtil.getMessage(e));
 		}
 	}
 
@@ -56,7 +56,7 @@ public class AlipayServiceImpl implements AlipayService {
 	private String generateTradeNo() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
 		String orderNo = LocalDateTime.now().format(formatter);
-		log.debug("生成的订单号是======{}", orderNo);
+		log.debug("生成的订单号是==={}", orderNo);
 		return orderNo;
 	}
 }

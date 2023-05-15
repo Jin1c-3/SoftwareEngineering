@@ -14,9 +14,6 @@ public class SuperUsrVO {
 	@ApiModelProperty(value = "管理员名称", required = true)
 	private String superUsrName;
 
-	@ApiModelProperty(value = "token")
-	private String token;
-
 	/**
 	 * 无参构造方法
 	 */
@@ -33,15 +30,4 @@ public class SuperUsrVO {
 		this.superUsrName = superUsr.getSuperUsrName();
 	}
 
-	/**
-	 * 有参构造方法
-	 *
-	 * @param superUsr 管理员信息
-	 * @param token    管理员token
-	 */
-	public SuperUsrVO(SuperUsr superUsr, String token) {
-		this.superUsrId = superUsr.getSuperUsrId();
-		this.superUsrName = superUsr.getSuperUsrName();
-		this.token = token;
-	}
 }

@@ -16,15 +16,12 @@ public class ServiceProviderVO {
 	@ApiModelProperty(value = "约定提成")
 	private Float pushMoney;
 
-	private String token;
-
 	public ServiceProviderVO() {
 	}
 
-	public ServiceProviderVO(ServiceProvider serviceProvider, String token) {
+	public ServiceProviderVO(ServiceProvider serviceProvider) {
 		this.serviceProviderId = String.valueOf(serviceProvider.getServiceProviderId());
 		this.serviceProviderName = serviceProvider.getServiceProviderName();
 		this.pushMoney = serviceProvider.getPushMoney();
-		this.token = token;
 	}
 }

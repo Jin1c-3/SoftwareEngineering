@@ -1,6 +1,7 @@
 package com.yutech.back.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.LoginDTO;
@@ -36,28 +37,44 @@ public class ServiceProviderController {
 
 	@ApiOperation(value = "服务商登录", notes = "服务商登录，需要传入ID和密码")
 	@GetMapping("/login")
-	public Result<ServiceProviderVO> login(LoginDTO loginDTO) {
+	public Result<String> login(LoginDTO loginDTO) {
 		ServiceProvider serviceProviderInDB = serviceProviderService.getById(loginDTO.getAccount());
 		if (serviceProviderInDB == null) {
-			log.info("账号不存在======" + loginDTO + "======");
-			return Result.error(new ServiceProviderVO()).message("账号不存在");
+			log.info("账号不存在==={}", loginDTO);
+			return Result.error("").message("账号不存在");
 		}
 		if (!serviceProviderInDB.getServiceProviderPwd().equals(loginDTO.getPwd())) {
-			log.info("密码错误======" + loginDTO + "======");
-			return Result.error(new ServiceProviderVO()).message("密码错误");
+			log.info("密码错误==={}", loginDTO);
+			return Result.error("").message("密码错误");
 		}
-		log.debug("登录成功======" + loginDTO + "======");
-		return Result.ok(new ServiceProviderVO(serviceProviderInDB, JwtUtil.sign(String.valueOf(serviceProviderInDB.getServiceProviderId()), serviceProviderInDB.getServiceProviderPwd())))
+		log.debug("登录成功==={}", loginDTO);
+		return Result.ok(
+						JwtUtil.sign(String.valueOf(serviceProviderInDB.getServiceProviderId()), serviceProviderInDB.getServiceProviderPwd()))
 				.message("登录成功");
 	}
 
-	public Result update(ServiceProvider serviceProvider) {
+	@ApiOperation(value = "服务商信息获取", notes = "服务商信息获取，需要传入token")
+	@GetMapping("/info")
+	public Result<ServiceProviderVO> getInfo(String token) {
+		String serviceProviderId = JwtUtil.getId(token);
+		ServiceProvider serviceProviderInDB = serviceProviderService.getOne(new QueryWrapper<ServiceProvider>().eq("service_provider_ID", serviceProviderId));
+		if (serviceProviderInDB == null) {
+			log.info("服务商信息获取失败，服务商不存在，服务商为======{}", serviceProviderId);
+			return Result.error(new ServiceProviderVO()).message("该用户不存在");
+		}
+		log.debug("用户信息获取成功，用户为======{}", serviceProviderInDB);
+		return Result.ok(new ServiceProviderVO(serviceProviderInDB)).message("用户信息获取成功");
+	}
+
+	@ApiOperation(value = "服务商信息更新", notes = "服务商信息更新，需要传入token")
+	@GetMapping("/update")
+	public Result<Object> update(ServiceProvider serviceProvider) {
 		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
-			log.info("服务商不存在======" + serviceProvider + "======");
+			log.info("服务商不存在===" + serviceProvider);
 			return Result.error().message("服务商不存在");
 		}
 		serviceProviderService.updateById(serviceProvider);
-		log.debug("服务商更新成功======" + serviceProvider + "======");
+		log.debug("服务商更新成功===" + serviceProvider);
 		return Result.ok().message("更新成功");
 	}
 }

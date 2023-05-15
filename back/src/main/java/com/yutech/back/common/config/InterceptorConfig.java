@@ -51,18 +51,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	public UsrInterceptor getUsrInterceptor() {
 		return new UsrInterceptor();
 	}
-
-	/**
-	 * 注入拦截器，交给spring管理
-	 */
 	@Bean
 	public SuperUsrInterceptor getSuperUsrInterceptor() {
 		return new SuperUsrInterceptor();
 	}
-
-	/**
-	 * 注入拦截器，交给spring管理
-	 */
 	@Bean
 	public ServiceProviderInterceptor getServiceProviderInterceptor() {
 		return new ServiceProviderInterceptor();

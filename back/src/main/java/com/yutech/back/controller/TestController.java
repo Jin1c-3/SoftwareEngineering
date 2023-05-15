@@ -1,23 +1,17 @@
 package com.yutech.back.controller;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.common.validator.group.AddGroup;
-import com.yutech.back.common.validator.group.UpdateGroup;
-import com.yutech.back.entity.User;
 import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.service.bussiness.AliSmsService;
 import com.yutech.back.service.bussiness.AlipayService;
 import com.yutech.back.service.bussiness.EMailService;
-import com.yutech.back.service.bussiness.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -69,8 +63,7 @@ public class TestController {
 	 * 对于实现分页，首先声明一个 Page 对象，并指定查询的当前页以及每页的大小，
 	 * 然后直接调用 MyBatisPlus 提供的 page 方法即可，page 方法中可以添加过滤条件。
 	 */
-	@Autowired
-	private UserService userService;
+
 
 //	@ApiOperation(value = "测试分页插件")
 //	@GetMapping("/testMyBatisPlus/page/{current}/{size}")
@@ -88,25 +81,25 @@ public class TestController {
 //	}
 
 	//RequestBody注解只能用于Post请求，不能用于Get。因为Get请求没有Body
-	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
-	@PostMapping("/testValidator/save")
-	public Result testValidatorSave(@Validated({AddGroup.class}) @RequestBody User user) {
-		if (userService.save(user)) {
-			return Result.ok().message("数据添加成功");
-		}
-		return Result.error().message("数据添加失败");
-	}
-
-	@ApiOperation(value = "测试 JSR 303 更新时的校验规则")
-	@PostMapping("/testValidator/update")
-	public Result testValidatorUpdate(@Validated({UpdateGroup.class}) @RequestBody User user) {
-		UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-		updateWrapper.eq("username", user.getUsername());
-		if (userService.update(user, updateWrapper)) {
-			return Result.ok().message("数据更新成功");
-		}
-		return Result.error().message("数据更新失败");
-	}
+//	@ApiOperation(value = "测试 JSR 303 插入时的校验规则")
+//	@PostMapping("/testValidator/save")
+//	public Result testValidatorSave(@Validated({AddGroup.class}) @RequestBody User user) {
+//		if (userService.save(user)) {
+//			return Result.ok().message("数据添加成功");
+//		}
+//		return Result.error().message("数据添加失败");
+//	}
+//
+//	@ApiOperation(value = "测试 JSR 303 更新时的校验规则")
+//	@PostMapping("/testValidator/update")
+//	public Result testValidatorUpdate(@Validated({UpdateGroup.class}) @RequestBody User user) {
+//		UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+//		updateWrapper.eq("username", user.getUsername());
+//		if (userService.update(user, updateWrapper)) {
+//			return Result.ok().message("数据更新成功");
+//		}
+//		return Result.error().message("数据更新失败");
+//	}
 
 //	@ApiOperation(value = "测试 token 验证的效果")
 //	@PostMapping("/testTokenValidation/login")

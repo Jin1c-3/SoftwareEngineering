@@ -22,6 +22,9 @@ public class AlipayConfig {
 	@Value("${alipay.publicKey}")
 	private String publicKey;
 
+	@Value("${alipay.notifyUrl}")
+	private String notifyUrl;
+
 	@PostConstruct
 	public void init() {
 		Factory.setOptions(getOptions());
@@ -39,7 +42,7 @@ public class AlipayConfig {
 		config.merchantPrivateKey = privateKey;
 		config.alipayPublicKey = publicKey;
 		// 设置异步通知接收服务地址，需要外网可以访问，可以设置内网穿透
-		config.notifyUrl = "";
+		config.notifyUrl = notifyUrl;
 		config.encryptKey = "";
 		return config;
 	}

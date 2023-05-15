@@ -77,7 +77,7 @@ public class FileUtil {
 			file.transferTo(new File(folder, newName));
 			// 返回上传文件的访问路径
 			String httpAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/" + format + newName;
-			log.info("图片存储成功，真实文件位置======" + folder + "/" + newName + "======返回的网络文件地址======" + httpAddress);
+			log.info("图片存储成功，真实文件位置===" + folder + "/" + newName + "===返回的网络文件地址===" + httpAddress);
 			return httpAddress;
 		} catch (IOException e) {
 			throw new GlobalException("文件存储发生异常", e);
