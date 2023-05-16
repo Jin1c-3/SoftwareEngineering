@@ -3,9 +3,9 @@ package com.yutech.back.service.bussiness.impl;
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
-import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
+import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.service.bussiness.AlipayService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +36,11 @@ public class AlipayServiceImpl implements AlipayService {
 			paymentBO.setOrderNO(generateTradeNo());
 		}
 		try {
-			AlipayTradePagePayResponse response = Factory.Payment.Page().pay(paymentBO.getSubject(), paymentBO.getSubject(), paymentBO.getMoney().toString(), returnUrl);
+			AlipayTradePagePayResponse response = Factory.Payment.Page().pay(
+					paymentBO.getSubject(),
+					paymentBO.getSubject(),
+					paymentBO.getMoney().toString(),
+					returnUrl);
 			String payForm = null;
 			if (ResponseChecker.success(response)) {
 				payForm = response.getBody();

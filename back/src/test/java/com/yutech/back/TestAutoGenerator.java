@@ -20,7 +20,7 @@ public class TestAutoGenerator {
 	private String userName;
 	@Value("${spring.datasource.password}")
 	private String password;
-	private final String[] tableNames = "abnormal_record,train_ticket,aircraft,flight_info,flight_info_detail,flight_ticket,passenger,railway_carriage_info,service_provider,super_usr,train_info,train_number_info,train_number_info_detail,usr,whole_order"
+	private final String[] tableNames = ""
 			.split(",");
 
 	@Test
