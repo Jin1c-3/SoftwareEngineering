@@ -1,0 +1,40 @@
+2023-05-18 15:56:39.673 [restartedMain] DEBUG com.yutech.back.BackApplication - Running with Spring Boot v2.7.9, Spring v5.3.25
+2023-05-18 15:56:42.502 [http-nio-8080-exec-1] DEBUG com.yutech.back.interceptor.UsrInterceptor - /doc.html===进入拦截器
+2023-05-18 15:56:42.503 [http-nio-8080-exec-1] DEBUG com.yutech.back.interceptor.UsrInterceptor - 不是映射到方法直接通过拦截器
+2023-05-18 15:56:43.171 [http-nio-8080-exec-9] DEBUG com.yutech.back.interceptor.UsrInterceptor - /favicon.ico===进入拦截器
+2023-05-18 15:56:43.172 [http-nio-8080-exec-9] DEBUG com.yutech.back.interceptor.UsrInterceptor - 不是映射到方法直接通过拦截器
+2023-05-18 15:56:53.729 [http-nio-8080-exec-6] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr WHERE super_usr_ID=? 
+2023-05-18 15:56:53.756 [http-nio-8080-exec-6] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==> Parameters: 00001(String)
+2023-05-18 15:56:53.787 [http-nio-8080-exec-6] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - <==      Total: 1
+2023-05-18 15:56:53.797 [http-nio-8080-exec-6] DEBUG com.yutech.back.controller.SuperUsrController - 管理员登录成功===SuperUsr(superUsrId=00001, superUsrName=admin, superUsrPwd=88888888)
+2023-05-18 15:57:09.309 [http-nio-8080-exec-4] DEBUG com.yutech.back.interceptor.SuperUsrInterceptor - /super-usr/get-super-usr-list===进入拦截器
+2023-05-18 15:57:09.508 [http-nio-8080-exec-4] DEBUG com.yutech.back.interceptor.SuperUsrInterceptor - 00001===的token是===eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwMDAxIiwiZXhwIjoxNjg0NDAwMjEzfQ.TjVWy9kFUpTFRicsPjyT56r7CuS-9oB1-OZL8MTshRY
+2023-05-18 15:57:09.524 [http-nio-8080-exec-4] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr WHERE super_usr_ID=? 
+2023-05-18 15:57:09.527 [http-nio-8080-exec-4] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==> Parameters: 00001(String)
+2023-05-18 15:57:09.527 [http-nio-8080-exec-4] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - <==      Total: 1
+2023-05-18 15:57:09.588 [http-nio-8080-exec-4] DEBUG com.yutech.back.mapper.po.SuperUsrMapper.selectOne - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr WHERE (super_usr_ID = ?) 
+2023-05-18 15:57:09.588 [http-nio-8080-exec-4] DEBUG com.yutech.back.mapper.po.SuperUsrMapper.selectOne - ==> Parameters: 00001(String)
+2023-05-18 15:57:09.596 [http-nio-8080-exec-4] DEBUG com.yutech.back.mapper.po.SuperUsrMapper.selectOne - <==      Total: 1
+2023-05-18 15:57:09.596 [http-nio-8080-exec-4] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr 
+2023-05-18 15:57:09.603 [http-nio-8080-exec-4] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - ==> Parameters: 
+2023-05-18 15:57:09.603 [http-nio-8080-exec-4] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - <==      Total: 1
+2023-05-18 15:57:09.603 [http-nio-8080-exec-4] DEBUG com.yutech.back.controller.SuperUsrController - 管理员信息查询成功===[SuperUsr(superUsrId=00001, superUsrName=admin, superUsrPwd=88888888)]
+2023-05-18 16:01:21.752 [restartedMain] DEBUG com.yutech.back.BackApplication - Running with Spring Boot v2.7.9, Spring v5.3.25
+2023-05-18 16:01:26.960 [http-nio-8080-exec-1] DEBUG com.yutech.back.interceptor.SuperUsrInterceptor - /super-usr/get-super-usr-list===进入拦截器
+2023-05-18 16:01:26.984 [http-nio-8080-exec-1] DEBUG com.yutech.back.interceptor.SuperUsrInterceptor - 00001===的token是===eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwMDAxIiwiZXhwIjoxNjg0NDAwMjEzfQ.TjVWy9kFUpTFRicsPjyT56r7CuS-9oB1-OZL8MTshRY
+2023-05-18 16:01:27.091 [http-nio-8080-exec-1] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr WHERE super_usr_ID=? 
+2023-05-18 16:01:27.103 [http-nio-8080-exec-1] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==> Parameters: 00001(String)
+2023-05-18 16:01:27.121 [http-nio-8080-exec-1] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - <==      Total: 1
+2023-05-18 16:01:27.158 [http-nio-8080-exec-1] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr 
+2023-05-18 16:01:27.159 [http-nio-8080-exec-1] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - ==> Parameters: 
+2023-05-18 16:01:27.162 [http-nio-8080-exec-1] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - <==      Total: 1
+2023-05-18 16:01:27.162 [http-nio-8080-exec-1] DEBUG com.yutech.back.controller.SuperUsrController - 管理员信息查询成功===[SuperUsr(superUsrId=00001, superUsrName=admin, superUsrPwd=88888888)]
+2023-05-18 16:01:44.314 [http-nio-8080-exec-3] DEBUG com.yutech.back.interceptor.SuperUsrInterceptor - /super-usr/get-super-usr-list===进入拦截器
+2023-05-18 16:01:44.315 [http-nio-8080-exec-3] DEBUG com.yutech.back.interceptor.SuperUsrInterceptor - 00001===的token是===eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwMDAxIiwiZXhwIjoxNjg0NDAwMjEzfQ.TjVWy9kFUpTFRicsPjyT56r7CuS-9oB1-OZL8MTshRY
+2023-05-18 16:01:44.333 [http-nio-8080-exec-3] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr WHERE super_usr_ID=? 
+2023-05-18 16:01:44.334 [http-nio-8080-exec-3] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - ==> Parameters: 00001(String)
+2023-05-18 16:01:44.335 [http-nio-8080-exec-3] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectById - <==      Total: 1
+2023-05-18 16:01:44.339 [http-nio-8080-exec-3] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - ==>  Preparing: SELECT super_usr_ID,super_usr_name,super_usr_pwd FROM super_usr 
+2023-05-18 16:01:44.340 [http-nio-8080-exec-3] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - ==> Parameters: 
+2023-05-18 16:01:44.342 [http-nio-8080-exec-3] DEBUG c.yutech.back.mapper.po.SuperUsrMapper.selectList - <==      Total: 1
+2023-05-18 16:01:44.342 [http-nio-8080-exec-3] DEBUG com.yutech.back.controller.SuperUsrController - 管理员信息查询成功===[SuperUsr(superUsrId=00001, superUsrName=admin, superUsrPwd=88888888)]

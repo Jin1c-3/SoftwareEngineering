@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -95,13 +94,14 @@ public class SuperUsrController {
 	/**
 	 * 管理员登录
 	 *
-	 * @param loginDTO
+	 * @param account 账号
+	 * @param pwd     密码
 	 * @return
 	 */
 	@ApiOperation(value = "管理员登录", notes = "管理员登录，验证账号密码并发放token")
 	@GetMapping("/login")
-	public Result<String> login(String account,String pwd) {
-		LoginDTO loginDTO = new LoginDTO(account,pwd);
+	public Result<String> login(String account, String pwd) {
+		LoginDTO loginDTO = new LoginDTO(account, pwd);
 		System.out.println(loginDTO);
 		log.debug("管理员登录==={}", loginDTO);
 		SuperUsr superUsrInDB = superUsrService.getById(loginDTO.getAccount());
@@ -137,7 +137,8 @@ public class SuperUsrController {
 	}
 
 	@GetMapping("/logout")
-	public Result<Object> logout(String token){
+	@ApiOperation(value = "管理员登出", notes = "管理员登出，验证token并登出")
+	public Result<Object> logout(String token) {
 		return Result.ok();
 	}
 
@@ -162,14 +163,11 @@ public class SuperUsrController {
 	/**
 	 * 管理员信息查询
 	 *
-	 * @param superUsr 请求者信息
 	 * @return Result 如果不是超级管理员，那么返回空列表
 	 */
 	@ApiOperation(value = "获取管理员列表", notes = "管理员信息查询，只有超级管理员才能查询")
 	@GetMapping("/get-super-usr-list")
-	public Result<List<SuperUsr>> getSuperUsrList(SuperUsr superUsr) {
-		Result<List<SuperUsr>> result = isRoot(superUsr, new ArrayList<>());
-		if (result != null) return result;
+	public Result<List<SuperUsr>> getSuperUsrList() {
 		List<SuperUsr> superUsrList = superUsrService.list();
 		log.debug("管理员信息查询成功==={}", superUsrList);
 		return Result.ok(superUsrList).message("查询成功");

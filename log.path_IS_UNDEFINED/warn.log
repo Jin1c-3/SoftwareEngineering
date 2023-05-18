@@ -1,0 +1,24 @@
+2023-05-18 15:56:24.275 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.Passenger.
+2023-05-18 15:56:24.437 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.TrainNumberInfoDetail.
+2023-05-18 15:56:24.454 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.TrainNumberInfo.
+2023-05-18 15:56:24.495 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.AbnormalRecord.
+2023-05-18 15:56:24.527 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.FlightInfoDetail.
+2023-05-18 15:56:24.541 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.FlightInfo.
+2023-05-18 15:56:24.570 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.RailwayCarriageInfo.
+2023-05-18 15:56:24.814 [restartedMain] WARN  com.github.jeffreyning.mybatisplus.conf.PlusConfig - mpp.entityBasePath is null skip scan result map
+2023-05-18 15:56:41.464 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.Passenger.
+2023-05-18 15:56:41.604 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.TrainNumberInfoDetail.
+2023-05-18 15:56:41.624 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.TrainNumberInfo.
+2023-05-18 15:56:41.666 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.AbnormalRecord.
+2023-05-18 15:56:41.716 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.FlightInfoDetail.
+2023-05-18 15:56:41.742 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.FlightInfo.
+2023-05-18 15:56:41.788 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.RailwayCarriageInfo.
+2023-05-18 15:56:42.020 [restartedMain] WARN  com.github.jeffreyning.mybatisplus.conf.PlusConfig - mpp.entityBasePath is null skip scan result map
+2023-05-18 16:01:23.532 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.Passenger.
+2023-05-18 16:01:23.682 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.TrainNumberInfoDetail.
+2023-05-18 16:01:23.700 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.TrainNumberInfo.
+2023-05-18 16:01:23.740 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.AbnormalRecord.
+2023-05-18 16:01:23.780 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.FlightInfoDetail.
+2023-05-18 16:01:23.799 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.FlightInfo.
+2023-05-18 16:01:23.850 [restartedMain] WARN  c.b.mybatisplus.core.metadata.TableInfoHelper - Warn: Could not find @TableId in Class: com.yutech.back.entity.po.RailwayCarriageInfo.
+2023-05-18 16:01:24.055 [restartedMain] WARN  com.github.jeffreyning.mybatisplus.conf.PlusConfig - mpp.entityBasePath is null skip scan result map
