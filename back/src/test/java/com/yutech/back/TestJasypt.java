@@ -5,6 +5,8 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+//java -jar -Djasypt.encryptor.password=${JASYPT_PASSWORD} xxx.jar
+
 @SpringBootTest(classes = TestJasypt.class)
 public class TestJasypt {
 	@Test
