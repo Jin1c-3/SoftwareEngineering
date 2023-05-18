@@ -100,7 +100,10 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "管理员登录", notes = "管理员登录，验证账号密码并发放token")
 	@GetMapping("/login")
-	public Result<String> login(LoginDTO loginDTO) {
+	public Result<String> login(String account,String pwd) {
+		LoginDTO loginDTO = new LoginDTO(account,pwd);
+		System.out.println(loginDTO);
+		log.debug("管理员登录==={}", loginDTO);
 		SuperUsr superUsrInDB = superUsrService.getById(loginDTO.getAccount());
 		if (superUsrInDB == null) {
 			log.info("管理员账号不存在==={}", loginDTO);
@@ -131,6 +134,11 @@ public class SuperUsrController {
 		}
 		log.debug("管理员登录成功==={}", superUsrInDB);
 		return Result.ok(new SuperUsrVO(superUsrInDB)).message("登录成功");
+	}
+
+	@GetMapping("/logout")
+	public Result<Object> logout(String token){
+		return Result.ok();
 	}
 
 	/**
