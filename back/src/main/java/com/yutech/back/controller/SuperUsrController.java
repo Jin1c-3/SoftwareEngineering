@@ -125,15 +125,15 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "管理员信息获取", notes = "管理员信息获取，验证token并返回管理员信息")
 	@GetMapping("/info")
-	public Result<SuperUsrVO> getInfo(String token) {
+	public Result<SuperUsr> getInfo(String token) {
 		String usrId = JwtUtil.getId(token);
 		SuperUsr superUsrInDB = superUsrService.getById(usrId);
 		if (superUsrInDB == null) {
 			log.info("管理员账号不存在==={}", usrId);
-			return Result.error(new SuperUsrVO()).message("账号不存在");
+			return Result.error(new SuperUsr()).message("账号不存在");
 		}
 		log.debug("管理员登录成功==={}", superUsrInDB);
-		return Result.ok(new SuperUsrVO(superUsrInDB)).message("登录成功");
+		return Result.ok(superUsrInDB).message("登录成功");
 	}
 
 	@GetMapping("/logout")
@@ -198,7 +198,7 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "添加管理员", notes = "管理员信息添加，只有超级管理员才能添加")
 	@PostMapping("/add-super-usr")
-	public Result<Object> addSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> addSuperUsr(@RequestBody SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
 		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
 		if (result != null) return result;
