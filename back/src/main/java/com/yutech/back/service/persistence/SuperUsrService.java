@@ -1,7 +1,8 @@
 package com.yutech.back.service.persistence;
 
-import com.yutech.back.entity.po.SuperUsr;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.yutech.back.entity.po.SuperUsr;
 
 /**
  * <p>
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-04-07
  */
 public interface SuperUsrService extends IService<SuperUsr> {
-
+	Bool mySave(SuperUsr superUsr);
 }

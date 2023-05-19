@@ -204,7 +204,7 @@ public class SuperUsrController {
 		if (result != null) return result;
 		if (superUsrService.getById(requestTarget.getSuperUsrId()) != null)
 			return Result.error().message("该管理员已存在，添加失败");
-		superUsrService.save(requestTarget);
+		superUsrService.mySave(requestTarget);
 		log.debug("管理员信息添加成功==={}", requestTarget);
 		return Result.ok().message("添加成功");
 	}
