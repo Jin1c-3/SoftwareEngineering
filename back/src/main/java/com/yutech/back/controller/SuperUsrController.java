@@ -150,7 +150,7 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "修改管理员", notes = "管理员信息修改，只有超级管理员才能修改")
 	@PatchMapping("/update-super-usr")
-	public Result<Object> updateSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> updateSuperUsr(@RequestBody SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
 		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
 		if (result != null) return result;
