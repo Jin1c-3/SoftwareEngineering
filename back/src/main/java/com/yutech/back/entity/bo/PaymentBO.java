@@ -28,6 +28,12 @@ public class PaymentBO {
 	@ApiModelProperty(value = "订单金额")
 	private BigDecimal money;
 
+	@ApiModelProperty(value = "交通工具类型")
+	private String vehicleType;
+
+	@ApiModelProperty(value = "用户ID")
+	private String usrId;
+
 	/**
 	 * 有参构造器
 	 */

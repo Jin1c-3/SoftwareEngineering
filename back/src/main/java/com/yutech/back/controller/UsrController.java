@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.entity.dto.LoginDTO;
+import com.yutech.back.entity.dto.PaymentDTO;
 import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.entity.vo.UsrVO;
 import com.yutech.back.service.bussiness.AliSmsService;
+import com.yutech.back.service.bussiness.AlipayService;
 import com.yutech.back.service.bussiness.EMailService;
 import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.*;
@@ -48,6 +51,9 @@ public class UsrController {
 
 	@Autowired
 	private AliSmsService aliSmsService;
+
+	@Autowired
+	private AlipayService alipayService;
 
 	/**
 	 * 默认头像
@@ -210,16 +216,34 @@ public class UsrController {
 	@ApiParam(name = "phoneOrEMail", value = "账号或手机号", required = true)
 	public Result<String> beforeUpdate(@PathVariable String phoneOrEMail) {
 		Boolean isEMail = phoneOrEMail.contains("@");
-		log.debug("修改用户信息前的验证，前端信息======{}======判断是否是邮箱======{}======", phoneOrEMail, isEMail);
+		log.debug("修改用户信息前的验证，前端信息==={}===判断是否是邮箱==={}===", phoneOrEMail, isEMail);
 		String code = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 1000000));
 		if (isEMail) {
-			eMailService.sendVerificationCode(phoneOrEMail, code);
+			try {
+				eMailService.sendVerificationCode(phoneOrEMail, code);
+			} catch (Exception e) {
+				log.error("邮件发送失败，错误信息为==={}", e.getMessage());
+				return Result.error("").message("邮件发送失败，请重试");
+			}
 		} else {
-			//TODO 发送短信
-			aliSmsService.sendSmsVerificationCode(phoneOrEMail, code);
+			try {
+				//TODO 发送短信
+				aliSmsService.sendSmsVerificationCode(phoneOrEMail, code);
+			} catch (Exception e) {
+				log.error("短信发送失败，错误信息为==={}", e.getMessage());
+				return Result.error("").message("短信发送失败，请重试");
+			}
 		}
-		log.debug("返回前端的验证码======{}", code);
+		log.debug("返回前端的验证码==={}", code);
 		return Result.ok(code).message("验证码发送成功");
 	}
+
+	@ApiOperation(value = "用户支付", notes = "用户订单支付")
+	@PostMapping("/alipay")
+	public String alipay(@RequestBody PaymentDTO paymentDTO) {
+		String subject = paymentDTO.getVehicleType() + paymentDTO.getFlightOrTrainNO() + paymentDTO.getDueDate() + paymentDTO.getSeatType();
+		return alipayService.toPay(new PaymentBO(null, subject, paymentDTO.getMoney()));
+	}
+
 }
 
