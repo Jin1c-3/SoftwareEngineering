@@ -56,7 +56,7 @@ public class ServiceProviderController {
 	@ApiOperation(value = "服务商信息获取", notes = "服务商信息获取，需要传入token")
 	@GetMapping("/info")
 	public Result<ServiceProvider> getInfo(String token) {
-		String serviceProviderId = JwtUtil.getId(token);
+		Integer serviceProviderId = Integer.parseInt(JwtUtil.getId(token));
 		ServiceProvider serviceProviderInDB = serviceProviderService.getOne(new QueryWrapper<ServiceProvider>().eq("service_provider_ID", serviceProviderId));
 		if (serviceProviderInDB == null) {
 			log.info("服务商信息获取失败，服务商不存在，服务商为======{}", serviceProviderId);
