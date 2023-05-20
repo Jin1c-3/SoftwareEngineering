@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Jin1c-3
@@ -21,35 +21,34 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Aircraft对象", description="")
+@ApiModel(value = "Aircraft对象", description = "")
 public class Aircraft implements Serializable {
 
-    private static final long serialVersionUID=1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId("aircraft_ID")
-    private String aircraftId;
+	@TableId("aircraft_ID")
+	private String aircraftId = "0";
 
-    @TableField("aircraft_type")
-    private String aircraftType;
+	@TableField("aircraft_type")
+	private String aircraftType;
 
-    @ApiModelProperty(value = "头等舱座位数")
-    @TableField("aircraft_T_num")
-    private Integer aircraftTNum;
+	@ApiModelProperty(value = "头等舱座位数")
+	@TableField("aircraft_T_num")
+	private Integer aircraftTNum;
 
-    @ApiModelProperty(value = "商务舱座位数")
-    @TableField("aircraft_M_num")
-    private Integer aircraftMNum;
+	@ApiModelProperty(value = "商务舱座位数")
+	@TableField("aircraft_M_num")
+	private Integer aircraftMNum;
 
-    @ApiModelProperty(value = "经济舱座位数")
-    @TableField("aircraft_L_num")
-    private Integer aircraftLNum;
+	@ApiModelProperty(value = "经济舱座位数")
+	@TableField("aircraft_L_num")
+	private Integer aircraftLNum;
 
-    @ApiModelProperty(value = "可用/不可用")
-    @TableField("aircraft_status")
-    private String aircraftStatus;
+	@ApiModelProperty(value = "可用/不可用")
+	@TableField("aircraft_status")
+	private String aircraftStatus = "可用";
 
-    @TableField("service_provider_ID")
-    private Integer serviceProviderId;
-
+	@TableField("service_provider_ID")
+	private Integer serviceProviderId;
 
 }

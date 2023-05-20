@@ -5,16 +5,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.LoginDTO;
+import com.yutech.back.entity.po.Aircraft;
 import com.yutech.back.entity.po.ServiceProvider;
+import com.yutech.back.service.persistence.AircraftService;
 import com.yutech.back.service.persistence.ServiceProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -33,6 +34,9 @@ public class ServiceProviderController {
 
 	@Autowired
 	private ServiceProviderService serviceProviderService;
+
+	@Autowired
+	private AircraftService aircraftService;
 
 	@ApiOperation(value = "服务商登录", notes = "服务商登录，需要传入ID和密码")
 	@GetMapping("/login")
@@ -76,6 +80,24 @@ public class ServiceProviderController {
 		serviceProviderService.updateById(serviceProvider);
 		log.debug("服务商更新成功===" + serviceProvider);
 		return Result.ok().message("更新成功");
+	}
+
+	@PostMapping("/add-aircraft")
+	@ApiOperation(value = "添加飞机", notes = "添加飞机")
+	public Result<Object> addAircraft(Aircraft aircraft) {
+		aircraft.setAircraftId("0");
+		aircraft.setAircraftStatus("可用");
+		log.debug("添加飞机==={}", aircraft);
+		aircraftService.save(aircraft);
+		return Result.ok().message("添加成功");
+	}
+
+	@PostMapping("/add-aircraft-list")
+	@ApiOperation(value = "批量飞机列表", notes = "批量添加飞机")
+	public Result<Object> addAircraftList(@RequestBody List<Aircraft> aircrafts) {
+		log.debug("批量添加飞机==={}", aircrafts);
+		aircraftService.saveBatch(aircrafts);
+		return Result.ok().message("添加成功");
 	}
 }
 

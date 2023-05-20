@@ -1,0 +1,142 @@
+<mxfile host="app.diagrams.net" modified="2023-05-20T03:29:38.561Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.0.0" version="21.3.0" etag="v6Gcy96uIN7ktPX7Bwuu" type="device">
+  <diagram id="n_MigHmAyOpJGLqw7cCM" name="第 1 页">
+    <mxGraphModel dx="2840" dy="4089" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node0" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AbnormalRecord&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- flightId: String&lt;br/&gt;- abnormalData: LocalDateTime&lt;br/&gt;- serialVersionUID: long&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ AbnormalRecord(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="910" y="1011.25" width="228" height="139.5" as="geometry" />
+        </mxCell>
+        <mxCell id="node14" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Aircraft&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- serviceProviderId: Integer&lt;br/&gt;- aircraftId: String&lt;br/&gt;- aircraftType: String&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- aircraftLNum: Integer&lt;br/&gt;- aircraftStatus: String&lt;br/&gt;- aircraftTNum: Integer&lt;br/&gt;- aircraftMNum: Integer&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Aircraft(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="-288.25" width="205" height="256.5" as="geometry" />
+        </mxCell>
+        <mxCell id="node3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlightInfo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- serialVersionUID: long&lt;br/&gt;- aircraftType: String&lt;br/&gt;- flightId: String&lt;br/&gt;- directFlag: String&lt;br/&gt;- flightEndCity: String&lt;br/&gt;- flightStartCity: String&lt;br/&gt;- flightStatus: String&lt;br/&gt;- flightEndPort: String&lt;br/&gt;- aircraftId: String&lt;br/&gt;- flightStartPort: String&lt;br/&gt;- flightSchedule: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlightInfo(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="531.5" y="46.75" width="182" height="331.5" as="geometry" />
+        </mxCell>
+        <mxCell id="node6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlightInfoDetail&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- flightStartPort: String&lt;br/&gt;- flightLPrice: BigDecimal&lt;br/&gt;- flightId: String&lt;br/&gt;- flightStartTime: LocalDateTime&lt;br/&gt;- flightEndTime: LocalDateTime&lt;br/&gt;- flightEndPort: String&lt;br/&gt;- flightTPrice: BigDecimal&lt;br/&gt;- flightOrder: Integer&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- flightEndCity: String&lt;br/&gt;- flightMPrice: BigDecimal&lt;br/&gt;- flightStartCity: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlightInfoDetail(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="505" y="448" width="235" height="342.5" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="node5" target="node0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="node5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlightTicket&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- flightEndTime: LocalDateTime&lt;br/&gt;- passengerName: String&lt;br/&gt;- flightStartTime: LocalDateTime&lt;br/&gt;- seatType: String&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- ticketId: Integer&lt;br/&gt;- flightStartPort: String&lt;br/&gt;- flightId: String&lt;br/&gt;- orderId: Integer&lt;br/&gt;- ticketStatus: String&lt;br/&gt;- flightEndPort: String&lt;br/&gt;- flightPrice: BigDecimal&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlightTicket(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="505" y="910" width="235" height="342" as="geometry" />
+        </mxCell>
+        <mxCell id="node13" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Passenger&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- passengerId: String&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- usrId: String&lt;br/&gt;- passengerType: String&lt;br/&gt;- passengerName: String&lt;br/&gt;- phoneNumber: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Passenger(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="704.5" width="191" height="213.5" as="geometry" />
+        </mxCell>
+        <mxCell id="node8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;RailwayCarriageInfo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- railwayCarriageId: Integer&lt;br/&gt;- railwayCarriageType: String&lt;br/&gt;- trainType: String&lt;br/&gt;- oneRailwayCarriageSeatNum: Integer&lt;br/&gt;- eachRowNum: Integer&lt;br/&gt;- serialVersionUID: long&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ RailwayCarriageInfo(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-220" y="976" width="276" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="node11" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ServiceProvider&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- serialVersionUID: long&lt;br/&gt;- serviceProviderId: Integer&lt;br/&gt;- serviceProviderPwd: String&lt;br/&gt;- pushMoney: Float&lt;br/&gt;- serviceProviderName: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ServiceProvider(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="860" y="470" width="222" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="node7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;SuperUsr&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- superUsrId: String&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- superUsrName: String&lt;br/&gt;- superUsrPwd: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ SuperUsr(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="879.5" y="260" width="183" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="node4" target="node9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="node4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;TrainInfo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- serialVersionUID: long&lt;br/&gt;- trainSspNum: Integer&lt;br/&gt;- trainRailwayCarriageNum: Integer&lt;br/&gt;- trainSpNum: Integer&lt;br/&gt;- trainId: String&lt;br/&gt;- trainType: String&lt;br/&gt;- trainOneNum: Integer&lt;br/&gt;- trainStatus: String&lt;br/&gt;- trainTwoNum: Integer&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ TrainInfo(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="198.5" y="-300" width="252" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="node9" target="node2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="node9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;TrainNumberInfo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- trainStartTime: LocalDateTime&lt;br/&gt;- trainId: String&lt;br/&gt;- trainStartStation: String&lt;br/&gt;- trainEndStation: String&lt;br/&gt;- trainNumberId: String&lt;br/&gt;- trainNumberStatus: String&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- trainEndCity: String&lt;br/&gt;- trainEndTime: LocalDateTime&lt;br/&gt;- trainStartCity: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ TrainNumberInfo(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="209" y="60" width="231" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="node2" target="node10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="node2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;TrainNumberInfoDetail&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- trainSpPrice: BigDecimal&lt;br/&gt;- trainArriveStation: String&lt;br/&gt;- trainArriveCity: String&lt;br/&gt;- dateorder: Integer&lt;br/&gt;- trainArriveTime: LocalDateTime&lt;br/&gt;- mileage: Float&lt;br/&gt;- trainTwoPrice: BigDecimal&lt;br/&gt;- trainOnePrice: BigDecimal&lt;br/&gt;- trainSspPrice: BigDecimal&lt;br/&gt;- trainLeaveTime: LocalDateTime&lt;br/&gt;- trainOrder: Integer&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- trainNumberId: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ TrainNumberInfoDetail(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="202.5" y="440" width="244" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="node10" target="node8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="node10" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;TrainTicket&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- trainStartStation: String&lt;br/&gt;- trainNumberId: String&lt;br/&gt;- trainPrice: BigDecimal&lt;br/&gt;- trainTicketId: Integer&lt;br/&gt;- orderId: Integer&lt;br/&gt;- trainTicketEndTime: LocalDateTime&lt;br/&gt;- ticketStatus: String&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- trainTicketStartTime: LocalDateTime&lt;br/&gt;- passengerName: String&lt;br/&gt;- seatType: String&lt;br/&gt;- trainEndStation: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ TrainTicket(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="190" y="910" width="269" height="342" as="geometry" />
+        </mxCell>
+        <mxCell id="node12" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Usr&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- serialVersionUID: long&lt;br/&gt;- usrAvatar: String&lt;br/&gt;- usrEmail: String&lt;br/&gt;- usrPwd: String&lt;br/&gt;- usrAccount: String&lt;br/&gt;- usrVipLevel: Integer&lt;br/&gt;- usrId: String&lt;br/&gt;- usrPhone: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Usr(UsrDTO): &lt;br/&gt;+ Usr(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="880" y="-60" width="182" height="278" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-32" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="node1" target="node10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-33" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=block;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="node1" target="node5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="node1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;WholeOrder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- vehicleType: String&lt;br/&gt;- orderId: Integer&lt;br/&gt;- orderTime: LocalDateTime&lt;br/&gt;- serialVersionUID: long&lt;br/&gt;- orderFlag: String&lt;br/&gt;- usrId: String&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ WholeOrder(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="370" y="1390" width="207" height="213.5" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-6" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="325" y="-22" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-7" value="1..n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="320" y="38" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-9" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="315" y="358" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-10" value="1...n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="315" y="418" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-12" value="1..n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="320" y="808" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-13" value="1..n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="320" y="888" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-15" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="155" y="1078" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-16" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="55" y="1078" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="node14" target="node3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="625" y="-29.75" as="sourcePoint" />
+            <mxPoint x="625" y="50.25" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-20" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="625" y="-31.75" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-21" value="1..n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="16.75" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="node3" target="node6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="625" y="385.25" as="sourcePoint" />
+            <mxPoint x="625" y="460.25" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-23" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="378.25" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-24" value="1...n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="418" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="node6" target="node5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="625" y="792.5" as="sourcePoint" />
+            <mxPoint x="625" y="892.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-27" value="1..n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="790.5" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-28" value="1..n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="870.5" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-30" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="735" y="1078" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-VNTyE4VYNnDsgD1Tp2w-31" value="0..1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="870" y="1078" width="40" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

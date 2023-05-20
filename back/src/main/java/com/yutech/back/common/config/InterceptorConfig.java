@@ -51,10 +51,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	public UsrInterceptor getUsrInterceptor() {
 		return new UsrInterceptor();
 	}
+
 	@Bean
 	public SuperUsrInterceptor getSuperUsrInterceptor() {
 		return new SuperUsrInterceptor();
 	}
+
 	@Bean
 	public ServiceProviderInterceptor getServiceProviderInterceptor() {
 		return new ServiceProviderInterceptor();
@@ -69,7 +71,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 				.addPathPatterns("/**")
 				//这里配置不要拦截的路径
 				.excludePathPatterns(EXCLUDE_PATH_PATTERN)
-				.excludePathPatterns("/**/super-usr/**");
+				.excludePathPatterns("/**/super-usr/**")
+				.excludePathPatterns("/**/service-provider/**");
 
 		registry.addInterceptor(getSuperUsrInterceptor())
 				//这里配置要拦截的路径
