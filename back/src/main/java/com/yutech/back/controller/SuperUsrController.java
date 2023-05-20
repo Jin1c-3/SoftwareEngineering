@@ -9,7 +9,6 @@ import com.yutech.back.entity.dto.SuperUsrOperationDTO;
 import com.yutech.back.entity.po.ServiceProvider;
 import com.yutech.back.entity.po.SuperUsr;
 import com.yutech.back.entity.po.Usr;
-import com.yutech.back.entity.vo.SuperUsrVO;
 import com.yutech.back.service.persistence.ServiceProviderService;
 import com.yutech.back.service.persistence.SuperUsrService;
 import com.yutech.back.service.persistence.UsrService;
@@ -181,7 +180,7 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "删除管理员", notes = "管理员信息删除，只有超级管理员才能删除")
 	@DeleteMapping("/delete-super-usr")
-	public Result<Object> deleteSuperUsr(@RequestBody SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> deleteSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
 		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
 		if (result != null) return result;
@@ -204,6 +203,7 @@ public class SuperUsrController {
 		if (result != null) return result;
 		if (superUsrService.getById(requestTarget.getSuperUsrId()) != null)
 			return Result.error().message("该管理员已存在，添加失败");
+		requestTarget.setSuperUsrId("00005");
 		superUsrService.mySave(requestTarget);
 		log.debug("管理员信息添加成功==={}", requestTarget);
 		return Result.ok().message("添加成功");
