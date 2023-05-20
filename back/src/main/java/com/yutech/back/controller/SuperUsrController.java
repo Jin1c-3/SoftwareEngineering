@@ -101,7 +101,6 @@ public class SuperUsrController {
 	@GetMapping("/login")
 	public Result<String> login(String account, String pwd) {
 		LoginDTO loginDTO = new LoginDTO(account, pwd);
-		System.out.println(loginDTO);
 		log.debug("管理员登录==={}", loginDTO);
 		SuperUsr superUsrInDB = superUsrService.getById(loginDTO.getAccount());
 		if (superUsrInDB == null) {
@@ -249,7 +248,7 @@ public class SuperUsrController {
 	@DeleteMapping("/delete-service-provider")
 	@ApiOperation(value = "删除服务商", notes = "删除服务商")
 	@ApiParam(name = "serviceProviderId", value = "被删除服务商的id", required = true)
-	public Result<Object> deleteServiceProvider(String serviceProviderId) {
+	public Result<Object> deleteServiceProvider(@RequestBody int serviceProviderId) {
 		if (serviceProviderService.getById(serviceProviderId) == null) {
 			log.info("该服务商不存在，删除失败==={}", serviceProviderId);
 			return Result.error().message("该服务商不存在，删除失败");
