@@ -1,6 +1,5 @@
 package com.yutech.back.service.persistence.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yutech.back.entity.po.SuperUsr;
 import com.yutech.back.mapper.po.SuperUsrMapper;
 import com.yutech.back.service.persistence.SuperUsrService;
@@ -24,7 +23,7 @@ public class SuperUsrServiceImpl extends ServiceImpl<SuperUsrMapper, SuperUsr> i
 	private SuperUsrMapper superUsrMapper;
 
 	@Override
-	public Bool mySave(SuperUsr superUsr) {
+	public Boolean mySave(SuperUsr superUsr) {
 		return superUsrMapper.mySave(superUsr);
 	}
 }

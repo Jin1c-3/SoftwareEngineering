@@ -1,316 +1,128 @@
-2023-05-18 15:56:39.670 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
-2023-05-18 15:56:39.673 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 10144 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj)
-2023-05-18 15:56:39.674 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-05-18 15:56:39.703 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-05-18 15:56:39.703 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-05-18 15:56:40.510 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
-2023-05-18 15:56:40.511 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-18 15:56:40.511 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-18 15:56:40.512 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-18 15:56:40.513 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 15:56:40.513 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
-2023-05-18 15:56:40.513 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
-2023-05-18 15:56:40.513 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 15:56:40.513 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 15:56:40.513 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 15:56:40.605 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
-2023-05-18 15:56:40.610 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
-2023-05-18 15:56:40.612 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
-2023-05-18 15:56:40.942 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-05-18 15:56:40.948 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-05-18 15:56:40.948 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-05-18 15:56:40.948 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-05-18 15:56:41.022 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-05-18 15:56:41.022 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1318 ms
-2023-05-18 15:56:41.056 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
-2023-05-18 15:56:41.064 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
-2023-05-18 15:56:41.064 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
-2023-05-18 15:56:41.065 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
-2023-05-18 15:56:41.065 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
-2023-05-18 15:56:41.065 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
-2023-05-18 15:56:41.065 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
-2023-05-18 15:56:41.067 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
-2023-05-18 15:56:42.110 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2023-05-18 15:56:42.127 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
-2023-05-18 15:56:42.324 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-05-18 15:56:42.337 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-05-18 15:56:42.337 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
-2023-05-18 15:56:42.338 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-18 15:56:42.339 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-18 15:56:42.339 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
-2023-05-18 15:56:42.490 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-18 15:56:42.490 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-05-18 15:56:42.492 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2023-05-18 15:56:42.596 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.23 seconds (JVM running for 3.991)
-2023-05-18 15:56:53.494 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2023-05-18 15:56:53.706 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2023-05-18 15:57:09.533 [http-nio-8080-exec-4] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-18 15:57:09.534 [http-nio-8080-exec-4] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-18 16:01:14.396 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2023-05-18 16:01:14.398 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2023-05-18 16:01:21.750 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
-2023-05-18 16:01:21.751 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 1.8.0_131 on Qing with PID 9964 (C:\Users\yujin\Desktop\SEProj\back\target\classes started by yujin in C:\Users\yujin\Desktop\SEProj)
-2023-05-18 16:01:21.752 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-05-18 16:01:21.781 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-05-18 16:01:21.781 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-05-18 16:01:22.606 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
-2023-05-18 16:01:22.607 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-18 16:01:22.608 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-18 16:01:22.608 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-18 16:01:22.609 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 16:01:22.610 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
-2023-05-18 16:01:22.610 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
-2023-05-18 16:01:22.610 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 16:01:22.611 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 16:01:22.611 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-18 16:01:22.704 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
-2023-05-18 16:01:22.710 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
-2023-05-18 16:01:22.712 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
-2023-05-18 16:01:23.057 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-05-18 16:01:23.063 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-05-18 16:01:23.063 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-05-18 16:01:23.063 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-05-18 16:01:23.142 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-05-18 16:01:23.142 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1360 ms
-2023-05-18 16:01:23.177 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
-2023-05-18 16:01:23.185 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
-2023-05-18 16:01:23.185 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
-2023-05-18 16:01:23.185 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
-2023-05-18 16:01:23.185 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
-2023-05-18 16:01:23.186 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
-2023-05-18 16:01:23.186 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
-2023-05-18 16:01:23.187 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
-2023-05-18 16:01:24.125 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2023-05-18 16:01:24.141 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
-2023-05-18 16:01:24.370 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-05-18 16:01:24.384 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-05-18 16:01:24.384 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
-2023-05-18 16:01:24.385 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
-2023-05-18 16:01:24.385 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
-2023-05-18 16:01:24.385 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
-2023-05-18 16:01:24.385 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
-2023-05-18 16:01:24.386 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
-2023-05-18 16:01:24.386 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
-2023-05-18 16:01:24.386 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-18 16:01:24.386 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-18 16:01:24.387 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
-2023-05-18 16:01:24.685 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.241 seconds (JVM running for 3.973)
-2023-05-18 16:01:26.949 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-18 16:01:26.949 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-05-18 16:01:26.951 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2023-05-18 16:01:27.001 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2023-05-18 16:01:27.082 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2023-05-18 16:01:27.129 [http-nio-8080-exec-1] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-18 16:01:27.130 [http-nio-8080-exec-1] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-18 16:01:44.336 [http-nio-8080-exec-3] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-18 16:01:44.337 [http-nio-8080-exec-3] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:10:18.928 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 11.0.12 on MSI with PID 21784 (C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master\back\target\classes started by AaBbCcuzim in C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master)
-2023-05-19 21:10:18.930 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-05-19 21:10:18.930 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
-2023-05-19 21:10:18.971 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-05-19 21:10:18.972 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-05-19 21:10:19.846 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
-2023-05-19 21:10:19.847 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-19 21:10:19.848 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:10:19.848 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:10:19.848 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:10:19.849 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
-2023-05-19 21:10:19.849 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
-2023-05-19 21:10:19.849 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:10:19.850 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:10:19.850 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:10:19.921 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
-2023-05-19 21:10:19.927 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
-2023-05-19 21:10:19.928 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
-2023-05-19 21:10:20.166 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-05-19 21:10:20.167 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
-2023-05-19 21:10:20.167 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
-2023-05-19 21:10:20.167 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2023-05-19 21:10:20.169 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
-2023-05-19 21:10:20.176 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-05-19 21:10:20.177 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-05-19 21:10:20.177 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-05-19 21:10:20.249 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-05-19 21:10:20.250 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1277 ms
-2023-05-19 21:10:20.281 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
-2023-05-19 21:10:20.287 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
-2023-05-19 21:10:20.287 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
-2023-05-19 21:10:20.288 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
-2023-05-19 21:10:20.288 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
-2023-05-19 21:10:20.288 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
-2023-05-19 21:10:20.289 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
-2023-05-19 21:10:20.290 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
-2023-05-19 21:10:21.291 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2023-05-19 21:10:21.311 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
-2023-05-19 21:10:21.630 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-05-19 21:10:21.647 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-05-19 21:10:21.647 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
-2023-05-19 21:10:21.648 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
-2023-05-19 21:10:21.648 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
-2023-05-19 21:10:21.649 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
-2023-05-19 21:10:21.649 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
-2023-05-19 21:10:21.649 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
-2023-05-19 21:10:21.649 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
-2023-05-19 21:10:21.649 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-19 21:10:21.649 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:10:21.650 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
-2023-05-19 21:10:22.014 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.551 seconds (JVM running for 4.353)
-2023-05-19 21:10:43.409 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-19 21:10:43.409 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-05-19 21:10:43.410 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2023-05-19 21:10:43.505 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2023-05-19 21:10:43.738 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2023-05-19 21:10:43.940 [http-nio-8080-exec-6] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:10:43.940 [http-nio-8080-exec-6] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:10:47.470 [http-nio-8080-exec-10] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:10:47.471 [http-nio-8080-exec-10] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:10:53.943 [http-nio-8080-exec-9] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:10:53.943 [http-nio-8080-exec-9] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:14:59.678 [http-nio-8080-exec-1] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:14:59.678 [http-nio-8080-exec-1] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:15:02.496 [http-nio-8080-exec-6] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:15:02.496 [http-nio-8080-exec-6] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:15:17.990 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2023-05-19 21:15:17.993 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2023-05-19 21:15:22.497 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
-2023-05-19 21:15:22.501 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 11.0.12 on MSI with PID 20840 (C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master\back\target\classes started by AaBbCcuzim in C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master)
-2023-05-19 21:15:22.502 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-05-19 21:15:22.538 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-05-19 21:15:22.539 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-05-19 21:15:23.367 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
-2023-05-19 21:15:23.368 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-19 21:15:23.369 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:15:23.369 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:15:23.370 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:15:23.370 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
-2023-05-19 21:15:23.371 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
-2023-05-19 21:15:23.371 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:15:23.371 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:15:23.371 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:15:23.447 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
-2023-05-19 21:15:23.454 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
-2023-05-19 21:15:23.455 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
-2023-05-19 21:15:23.683 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-05-19 21:15:23.683 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
-2023-05-19 21:15:23.684 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
-2023-05-19 21:15:23.684 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2023-05-19 21:15:23.686 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
-2023-05-19 21:15:23.692 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-05-19 21:15:23.693 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-05-19 21:15:23.693 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-05-19 21:15:23.752 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-05-19 21:15:23.753 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1214 ms
-2023-05-19 21:15:23.786 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
-2023-05-19 21:15:23.793 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
-2023-05-19 21:15:23.793 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
-2023-05-19 21:15:23.793 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
-2023-05-19 21:15:23.794 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
-2023-05-19 21:15:23.794 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
-2023-05-19 21:15:23.795 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
-2023-05-19 21:15:23.795 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
-2023-05-19 21:15:24.607 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2023-05-19 21:15:24.624 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
-2023-05-19 21:15:24.827 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-05-19 21:15:24.839 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-05-19 21:15:24.840 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
-2023-05-19 21:15:24.840 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
-2023-05-19 21:15:24.840 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
-2023-05-19 21:15:24.840 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
-2023-05-19 21:15:24.841 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
-2023-05-19 21:15:24.841 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
-2023-05-19 21:15:24.841 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
-2023-05-19 21:15:24.841 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-19 21:15:24.841 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:15:24.841 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
-2023-05-19 21:15:25.096 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.011 seconds (JVM running for 3.745)
-2023-05-19 21:15:27.154 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-19 21:15:27.154 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-05-19 21:15:27.156 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2023-05-19 21:15:27.218 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2023-05-19 21:15:27.376 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2023-05-19 21:15:27.428 [http-nio-8080-exec-1] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:15:27.428 [http-nio-8080-exec-1] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:15:27.953 [http-nio-8080-exec-1] INFO  com.yutech.back.controller.SuperUsrController - 管理员密码错误===00001
-2023-05-19 21:16:51.319 [http-nio-8080-exec-3] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:16:51.320 [http-nio-8080-exec-3] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:16:57.306 [http-nio-8080-exec-5] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:16:57.306 [http-nio-8080-exec-5] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:16:57.310 [http-nio-8080-exec-5] INFO  com.yutech.back.controller.SuperUsrController - 管理员密码错误===00001
-2023-05-19 21:18:12.261 [http-nio-8080-exec-7] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:18:12.262 [http-nio-8080-exec-7] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:18:12.448 [http-nio-8080-exec-9] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:18:12.448 [http-nio-8080-exec-9] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:18:13.643 [http-nio-8080-exec-2] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:18:13.643 [http-nio-8080-exec-2] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:20:13.117 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2023-05-19 21:20:13.119 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2023-05-19 21:20:17.564 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
-2023-05-19 21:20:17.563 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 11.0.12 on MSI with PID 5704 (C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master\back\target\classes started by AaBbCcuzim in C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master)
-2023-05-19 21:20:17.566 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
-2023-05-19 21:20:17.598 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-05-19 21:20:17.598 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-05-19 21:20:18.482 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
-2023-05-19 21:20:18.483 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-19 21:20:18.484 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:20:18.484 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:20:18.485 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:20:18.486 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
-2023-05-19 21:20:18.486 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
-2023-05-19 21:20:18.486 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:20:18.487 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:20:18.487 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
-2023-05-19 21:20:18.764 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
-2023-05-19 21:20:18.781 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
-2023-05-19 21:20:18.784 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
-2023-05-19 21:20:19.223 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-2023-05-19 21:20:19.224 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
-2023-05-19 21:20:19.224 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
-2023-05-19 21:20:19.224 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2023-05-19 21:20:19.241 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
-2023-05-19 21:20:19.250 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2023-05-19 21:20:19.250 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2023-05-19 21:20:19.251 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-05-19 21:20:19.350 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2023-05-19 21:20:19.351 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1752 ms
-2023-05-19 21:20:19.403 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
-2023-05-19 21:20:19.411 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
-2023-05-19 21:20:19.411 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
-2023-05-19 21:20:19.411 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
-2023-05-19 21:20:19.412 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
-2023-05-19 21:20:19.412 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
-2023-05-19 21:20:19.413 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
-2023-05-19 21:20:19.414 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
-2023-05-19 21:20:20.222 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
-2023-05-19 21:20:20.240 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
-2023-05-19 21:20:20.447 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2023-05-19 21:20:20.460 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-2023-05-19 21:20:20.461 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
-2023-05-19 21:20:20.461 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
-2023-05-19 21:20:20.462 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
-2023-05-19 21:20:20.463 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
-2023-05-19 21:20:20.726 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.578 seconds (JVM running for 4.461)
-2023-05-19 21:20:27.597 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-19 21:20:27.598 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2023-05-19 21:20:27.599 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2023-05-19 21:20:27.661 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2023-05-19 21:20:27.958 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2023-05-19 21:20:28.050 [http-nio-8080-exec-3] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:20:28.050 [http-nio-8080-exec-1] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:20:28.050 [http-nio-8080-exec-1] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:20:28.050 [http-nio-8080-exec-3] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:20:28.861 [http-nio-8080-exec-6] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:20:28.861 [http-nio-8080-exec-6] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
-2023-05-19 21:20:32.418 [http-nio-8080-exec-10] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
-2023-05-19 21:20:32.419 [http-nio-8080-exec-10] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:25:29.951 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-05-20 09:25:29.963 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 11.0.12 on MSI with PID 19948 (C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master\back\target\classes started by AaBbCcuzim in C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master)
+2023-05-20 09:25:29.967 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-05-20 09:25:30.084 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-20 09:25:30.084 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-20 09:25:32.296 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2023-05-20 09:25:32.297 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2023-05-20 09:25:32.297 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2023-05-20 09:25:32.297 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2023-05-20 09:25:32.299 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:25:32.299 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2023-05-20 09:25:32.299 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-05-20 09:25:32.300 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:25:32.300 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:25:32.300 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:25:32.569 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2023-05-20 09:25:32.576 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-05-20 09:25:32.578 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-05-20 09:25:33.041 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-05-20 09:25:33.042 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
+2023-05-20 09:25:33.042 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2023-05-20 09:25:33.042 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2023-05-20 09:25:33.147 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
+2023-05-20 09:25:33.158 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-05-20 09:25:33.158 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-05-20 09:25:33.159 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-05-20 09:25:33.338 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-05-20 09:25:33.339 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3254 ms
+2023-05-20 09:25:33.515 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2023-05-20 09:25:33.522 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2023-05-20 09:25:33.523 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2023-05-20 09:25:33.523 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2023-05-20 09:25:33.523 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2023-05-20 09:25:33.523 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2023-05-20 09:25:33.525 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2023-05-20 09:25:33.526 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2023-05-20 09:25:35.132 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-05-20 09:25:35.156 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+2023-05-20 09:25:35.909 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-05-20 09:25:36.008 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-05-20 09:25:36.008 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2023-05-20 09:25:36.009 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2023-05-20 09:25:36.010 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2023-05-20 09:25:36.352 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 7.594 seconds (JVM running for 12.507)
+2023-05-20 09:25:54.706 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-20 09:25:54.706 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-05-20 09:25:54.708 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2023-05-20 09:25:55.020 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-05-20 09:25:55.506 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-05-20 09:25:55.573 [http-nio-8080-exec-2] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===未通过token验证
+2023-05-20 09:26:05.680 [http-nio-8080-exec-5] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:26:05.680 [http-nio-8080-exec-5] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:26:10.210 [http-nio-8080-exec-9] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:26:10.210 [http-nio-8080-exec-9] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:27:07.064 [http-nio-8080-exec-10] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:27:07.065 [http-nio-8080-exec-10] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:27:47.469 [http-nio-8080-exec-1] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:27:47.470 [http-nio-8080-exec-1] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:28:16.896 [http-nio-8080-exec-2] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:28:16.896 [http-nio-8080-exec-2] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:28:35.331 [http-nio-8080-exec-3] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:28:35.331 [http-nio-8080-exec-3] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:28:35.468 [http-nio-8080-exec-4] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:28:35.468 [http-nio-8080-exec-4] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:29:38.737 [http-nio-8080-exec-6] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:29:38.737 [http-nio-8080-exec-6] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:30:10.007 [http-nio-8080-exec-8] INFO  com.yutech.back.common.utils.JwtUtil - 验证token成功，id======00001
+2023-05-20 09:30:10.008 [http-nio-8080-exec-8] INFO  com.yutech.back.interceptor.SuperUsrInterceptor - 00001===通过了token验证
+2023-05-20 09:33:31.908 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-05-20 09:33:31.910 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-05-20 09:33:36.623 [restartedMain] INFO  com.yutech.back.BackApplication - Starting BackApplication using Java 11.0.12 on MSI with PID 15076 (C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master\back\target\classes started by AaBbCcuzim in C:\Users\AaBbCcuzim\Desktop\SoftwareEngineering-master)
+2023-05-20 09:33:36.622 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2023-05-20 09:33:36.625 [restartedMain] INFO  com.yutech.back.BackApplication - The following 1 profile is active: "dev"
+2023-05-20 09:33:36.664 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-20 09:33:36.665 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-20 09:33:37.650 [restartedMain] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2023-05-20 09:33:37.652 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2023-05-20 09:33:37.652 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2023-05-20 09:33:37.652 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2023-05-20 09:33:37.654 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:33:37.654 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2023-05-20 09:33:37.654 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-05-20 09:33:37.654 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:33:37.654 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:33:37.654 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource devtools [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-05-20 09:33:37.824 [restartedMain] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2023-05-20 09:33:37.831 [restartedMain] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-05-20 09:33:37.832 [restartedMain] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-05-20 09:33:38.145 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-05-20 09:33:38.146 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.0].
+2023-05-20 09:33:38.146 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2023-05-20 09:33:38.146 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2023-05-20 09:33:38.151 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1q  5 Jul 2022]
+2023-05-20 09:33:38.159 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-05-20 09:33:38.160 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-05-20 09:33:38.160 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-05-20 09:33:38.234 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-05-20 09:33:38.235 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1570 ms
+2023-05-20 09:33:38.272 [restartedMain] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2023-05-20 09:33:38.279 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2023-05-20 09:33:38.279 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2023-05-20 09:33:38.279 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2023-05-20 09:33:38.279 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2023-05-20 09:33:38.280 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2023-05-20 09:33:38.281 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2023-05-20 09:33:38.281 [restartedMain] INFO  c.u.j.configuration.StringEncryptorBuilder - Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2023-05-20 09:33:39.151 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-05-20 09:33:39.170 [restartedMain] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page template: index
+2023-05-20 09:33:39.381 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-05-20 09:33:39.395 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-05-20 09:33:39.396 [restartedMain] INFO  c.u.j.caching.RefreshScopeRefreshedEventListener - Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+2023-05-20 09:33:39.396 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemProperties refreshed
+2023-05-20 09:33:39.396 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source systemEnvironment refreshed
+2023-05-20 09:33:39.396 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source random refreshed
+2023-05-20 09:33:39.397 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application-dev.properties]' via location 'optional:classpath:/' refreshed
+2023-05-20 09:33:39.397 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' refreshed
+2023-05-20 09:33:39.397 [restartedMain] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource - Property Source devtools refreshed
+2023-05-20 09:33:39.397 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2023-05-20 09:33:39.397 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2023-05-20 09:33:39.397 [restartedMain] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2023-05-20 09:33:39.659 [restartedMain] INFO  com.yutech.back.BackApplication - Started BackApplication in 3.417 seconds (JVM running for 4.276)

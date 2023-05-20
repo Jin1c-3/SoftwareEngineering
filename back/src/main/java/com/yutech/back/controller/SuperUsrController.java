@@ -181,7 +181,7 @@ public class SuperUsrController {
 	 */
 	@ApiOperation(value = "删除管理员", notes = "管理员信息删除，只有超级管理员才能删除")
 	@DeleteMapping("/delete-super-usr")
-	public Result<Object> deleteSuperUsr(SuperUsrOperationDTO superUsrOperationDTO) {
+	public Result<Object> deleteSuperUsr(@RequestBody SuperUsrOperationDTO superUsrOperationDTO) {
 		SuperUsr requestTarget = superUsrOperationDTO.getRequestTarget();
 		Result<Object> result = isRoot(superUsrOperationDTO.getRequestMaker(), null);
 		if (result != null) return result;
