@@ -244,7 +244,7 @@ public class SuperUsrController {
 	/**
 	 * 服务商信息删除
 	 *
-	 * @param serviceProviderId
+	 *
 	 * @return
 	 */
 	@DeleteMapping("/delete-service-provider")
