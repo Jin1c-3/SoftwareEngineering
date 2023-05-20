@@ -6,7 +6,6 @@ import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.po.ServiceProvider;
-import com.yutech.back.entity.vo.ServiceProviderVO;
 import com.yutech.back.service.persistence.ServiceProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +36,8 @@ public class ServiceProviderController {
 
 	@ApiOperation(value = "服务商登录", notes = "服务商登录，需要传入ID和密码")
 	@GetMapping("/login")
-	public Result<String> login(LoginDTO loginDTO) {
+	public Result<String> login(String account, String pwd) {
+		LoginDTO loginDTO = new LoginDTO(account, pwd);
 		ServiceProvider serviceProviderInDB = serviceProviderService.getById(loginDTO.getAccount());
 		if (serviceProviderInDB == null) {
 			log.info("账号不存在==={}", loginDTO);
@@ -55,15 +55,15 @@ public class ServiceProviderController {
 
 	@ApiOperation(value = "服务商信息获取", notes = "服务商信息获取，需要传入token")
 	@GetMapping("/info")
-	public Result<ServiceProviderVO> getInfo(String token) {
+	public Result<ServiceProvider> getInfo(String token) {
 		String serviceProviderId = JwtUtil.getId(token);
 		ServiceProvider serviceProviderInDB = serviceProviderService.getOne(new QueryWrapper<ServiceProvider>().eq("service_provider_ID", serviceProviderId));
 		if (serviceProviderInDB == null) {
 			log.info("服务商信息获取失败，服务商不存在，服务商为======{}", serviceProviderId);
-			return Result.error(new ServiceProviderVO()).message("该用户不存在");
+			return Result.error(new ServiceProvider()).message("该用户不存在");
 		}
 		log.debug("用户信息获取成功，用户为======{}", serviceProviderInDB);
-		return Result.ok(new ServiceProviderVO(serviceProviderInDB)).message("用户信息获取成功");
+		return Result.ok(serviceProviderInDB).message("用户信息获取成功");
 	}
 
 	@ApiOperation(value = "服务商信息更新", notes = "服务商信息更新，需要传入token")

@@ -9,7 +9,6 @@ import com.yutech.back.entity.dto.SuperUsrOperationDTO;
 import com.yutech.back.entity.po.ServiceProvider;
 import com.yutech.back.entity.po.SuperUsr;
 import com.yutech.back.entity.po.Usr;
-import com.yutech.back.entity.vo.SuperUsrVO;
 import com.yutech.back.service.persistence.ServiceProviderService;
 import com.yutech.back.service.persistence.SuperUsrService;
 import com.yutech.back.service.persistence.UsrService;
@@ -102,7 +101,6 @@ public class SuperUsrController {
 	@GetMapping("/login")
 	public Result<String> login(String account, String pwd) {
 		LoginDTO loginDTO = new LoginDTO(account, pwd);
-		System.out.println(loginDTO);
 		log.debug("管理员登录==={}", loginDTO);
 		SuperUsr superUsrInDB = superUsrService.getById(loginDTO.getAccount());
 		if (superUsrInDB == null) {
@@ -211,6 +209,21 @@ public class SuperUsrController {
 	}
 
 	/**
+	 * 管理员信息批量添加
+	 *
+	 * @param superUsrOperationDTOList 请求者信息和请求目标信息
+	 * @return Result 如果不是超级管理员，那么返回空列表
+	 */
+	@PostMapping("/add-super-usr-list")
+	@ApiOperation(value = "批量添加管理员", notes = "管理员信息添加，只有超级管理员才能添加")
+	public Result<Object> addSuperUsrList(@RequestBody List<SuperUsrOperationDTO> superUsrOperationDTOList) {
+		for (SuperUsrOperationDTO superUsrOperationDTO : superUsrOperationDTOList) {
+			addSuperUsr(superUsrOperationDTO);
+		}
+		return Result.ok().message("批量添加成功");
+	}
+
+	/**
 	 * 服务商信息添加
 	 *
 	 * @param serviceProvider
@@ -244,7 +257,6 @@ public class SuperUsrController {
 	/**
 	 * 服务商信息删除
 	 *
-	 *
 	 * @return
 	 */
 	@DeleteMapping("/delete-service-provider")
@@ -275,6 +287,21 @@ public class SuperUsrController {
 		}
 		serviceProviderService.save(serviceProvider);
 		log.debug("添加服务商成功==={}", serviceProvider);
+		return Result.ok().message("批量添加成功");
+	}
+
+	/**
+	 * 服务商信息添加
+	 *
+	 * @param serviceProviderList
+	 * @return
+	 */
+	@PostMapping("/add-service-provider-list")
+	@ApiOperation(value = "批量添加服务商", notes = "批量添加服务商")
+	public Result<Object> addServiceProviderList(@RequestBody List<ServiceProvider> serviceProviderList) {
+		for (ServiceProvider serviceProvider : serviceProviderList) {
+			addServiceProvider(serviceProvider);
+		}
 		return Result.ok().message("添加成功");
 	}
 
