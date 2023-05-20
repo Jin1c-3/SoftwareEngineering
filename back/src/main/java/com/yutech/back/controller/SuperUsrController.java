@@ -204,6 +204,7 @@ public class SuperUsrController {
 		if (result != null) return result;
 		if (superUsrService.getById(requestTarget.getSuperUsrId()) != null)
 			return Result.error().message("该管理员已存在，添加失败");
+		requestTarget.setSuperUsrId("000000");
 		superUsrService.mySave(requestTarget);
 		log.debug("管理员信息添加成功==={}", requestTarget);
 		return Result.ok().message("添加成功");
@@ -217,7 +218,7 @@ public class SuperUsrController {
 	 */
 	@PatchMapping("/update-service-provider")
 	@ApiOperation(value = "修改服务商", notes = "修改服务商，ID不能被修改")
-	public Result<Object> updateServiceProvider(ServiceProvider serviceProvider) {
+	public Result<Object> updateServiceProvider(@RequestBody ServiceProvider serviceProvider) {
 		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
 			log.info("该服务商不存在，修改失败==={}", serviceProvider);
 			return Result.error().message("该服务商不存在，修改失败");
@@ -249,13 +250,13 @@ public class SuperUsrController {
 	@DeleteMapping("/delete-service-provider")
 	@ApiOperation(value = "删除服务商", notes = "删除服务商")
 	@ApiParam(name = "serviceProviderId", value = "被删除服务商的id", required = true)
-	public Result<Object> deleteServiceProvider(String serviceProviderId) {
-		if (serviceProviderService.getById(serviceProviderId) == null) {
-			log.info("该服务商不存在，删除失败==={}", serviceProviderId);
+	public Result<Object> deleteServiceProvider(@RequestBody ServiceProvider serviceProvider) {
+		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
+			log.info("该服务商不存在，删除失败==={}", serviceProvider.getServiceProviderId());
 			return Result.error().message("该服务商不存在，删除失败");
 		}
-		serviceProviderService.removeById(serviceProviderId);
-		log.debug("删除服务商成功==={}", serviceProviderId);
+		serviceProviderService.removeById(serviceProvider.getServiceProviderId());
+		log.debug("删除服务商成功==={}", serviceProvider.getServiceProviderId());
 		return Result.ok().message("删除成功");
 	}
 
@@ -267,7 +268,7 @@ public class SuperUsrController {
 	 */
 	@PostMapping("/add-service-provider")
 	@ApiOperation(value = "添加服务商", notes = "添加服务商")
-	public Result<Object> addServiceProvider(ServiceProvider serviceProvider) {
+	public Result<Object> addServiceProvider(@RequestBody ServiceProvider serviceProvider) {
 		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) != null) {
 			log.info("该服务商已存在，不能重复添加==={}", serviceProvider);
 			return Result.error().message("该服务商已存在，添加失败");
