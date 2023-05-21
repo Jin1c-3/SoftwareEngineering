@@ -240,9 +240,9 @@ public class UsrController {
 
 	@ApiOperation(value = "用户支付", notes = "用户订单支付")
 	@PostMapping("/alipay")
-	public String alipay(@RequestBody PaymentDTO paymentDTO) {
+	public Result<String> alipay(@RequestBody PaymentDTO paymentDTO) {
 		String subject = paymentDTO.getVehicleType() + paymentDTO.getFlightOrTrainNO() + paymentDTO.getDueDate() + paymentDTO.getSeatType();
-		return alipayService.toPay(new PaymentBO(null, subject, paymentDTO.getMoney()));
+		return Result.ok(alipayService.toPay(new PaymentBO(null, subject, paymentDTO.getMoney()))).message("正在跳转支付页面...");
 	}
 
 }
