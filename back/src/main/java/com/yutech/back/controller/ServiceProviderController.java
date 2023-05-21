@@ -88,7 +88,12 @@ public class ServiceProviderController {
 		aircraft.setAircraftId("0");
 		aircraft.setAircraftStatus("可用");
 		log.debug("添加飞机==={}", aircraft);
-		aircraftService.save(aircraft);
+		try {
+			aircraftService.save(aircraft);
+		} catch (Exception e) {
+			log.info("添加飞机失败==={}", aircraft);
+			return Result.error().message("添加失败");
+		}
 		return Result.ok().message("添加成功");
 	}
 
@@ -96,8 +101,71 @@ public class ServiceProviderController {
 	@ApiOperation(value = "批量飞机列表", notes = "批量添加飞机")
 	public Result<Object> addAircraftList(@RequestBody List<Aircraft> aircrafts) {
 		log.debug("批量添加飞机==={}", aircrafts);
-		aircraftService.saveBatch(aircrafts);
+		try {
+			aircraftService.saveBatch(aircrafts);
+		} catch (Exception e) {
+			log.info("批量添加飞机失败==={}", aircrafts);
+			return Result.error().message("添加失败");
+		}
 		return Result.ok().message("添加成功");
+	}
+
+	@DeleteMapping("/delete-aircraft")
+	@ApiOperation(value = "删除飞机", notes = "删除飞机")
+	public Result<Object> deleteAircraft(String aircraftId) {
+		log.debug("删除飞机==={}", aircraftId);
+		try {
+			aircraftService.removeById(aircraftId);
+		} catch (Exception e) {
+			log.info("删除飞机失败==={}", aircraftId);
+			return Result.error().message("删除失败");
+		}
+		return Result.ok().message("删除成功");
+	}
+
+	@GetMapping("/get-aircraft-list")
+	@ApiOperation(value = "获取飞机列表", notes = "获取飞机列表")
+	public Result<List<Aircraft>> getAircraftList() {
+		List<Aircraft> aircraftList = null;
+		try {
+			aircraftList = aircraftService.list();
+		} catch (Exception e) {
+			log.info("通过服务商ID获取飞机列表失败");
+			return Result.error(aircraftList).message("获取失败");
+		}
+		log.debug("通过服务商ID获取飞机列表==={}", aircraftList);
+		return Result.ok(aircraftList).message("获取成功");
+	}
+
+	@GetMapping("/get-aircraft-list-by-id")
+	@ApiOperation(value = "通过服务商ID获取飞机列表", notes = "通过服务商ID获取飞机列表")
+	public Result<List<Aircraft>> getAircraftListById(String serviceProviderId) {
+		List<Aircraft> aircraftList = null;
+		try {
+			aircraftList = aircraftService.list(new QueryWrapper<Aircraft>().eq("service_provider_ID", serviceProviderId));
+		} catch (Exception e) {
+			log.info("通过服务商ID获取飞机列表失败==={}", serviceProviderId);
+			return Result.error(aircraftList).message("获取失败");
+		}
+		log.debug("通过服务商ID获取飞机列表==={}", aircraftList);
+		return Result.ok(aircraftList).message("获取成功");
+	}
+
+	@PatchMapping("/update-aircraft")
+	@ApiOperation(value = "更新飞机", notes = "更新飞机")
+	public Result<Object> updateAircraft(Aircraft aircraft) {
+		log.debug("更新飞机==={}", aircraft);
+		if (aircraftService.getById(aircraft.getAircraftId()) == null) {
+			log.info("飞机不存在===" + aircraft);
+			return Result.error().message("飞机不存在");
+		}
+		try {
+			aircraftService.updateById(aircraft);
+		} catch (Exception e) {
+			log.info("更新失败===" + aircraft);
+			return Result.error().message("更新失败");
+		}
+		return Result.ok().message("更新成功");
 	}
 }
 
