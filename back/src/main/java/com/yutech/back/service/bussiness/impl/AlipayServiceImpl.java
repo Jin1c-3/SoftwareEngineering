@@ -44,7 +44,7 @@ public class AlipayServiceImpl implements AlipayService {
 		try {
 			AlipayTradePagePayResponse response = Factory.Payment.Page().pay(
 					paymentBO.getSubject(),
-					paymentBO.getSubject(),
+					paymentBO.getOrderNO(),
 					paymentBO.getMoney().toString(),
 					returnUrl);
 			String payForm = null;

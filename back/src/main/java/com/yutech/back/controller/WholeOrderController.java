@@ -10,10 +10,16 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -46,20 +52,40 @@ public class WholeOrderController {
 		return Result.ok(wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId))).message("查询成功");
 	}
 
-	@PostMapping("/callback")
+	@GetMapping("/callback")
 	@ApiOperation(value = "支付宝回调", notes = "支付宝回调")
 	public String callback(HttpServletRequest request) {
-		if (request.getParameter("trade_status").equals("TRADE_SUCCESS") || request.getParameter("trade_status").equals("TRADE_FINISHED")) {
+		Map<String, String> params = new HashMap<String, String>();
+		Map requestParams = request.getParameterMap();
+		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
+			}
+			log.debug("参数>>" + name + ":" + valueStr);
+			params.put(name, valueStr);
+		}
+		requestParams.get("trade_status");
+
+		String outTradeNo = request.getParameter("out_trade_no");
+		String tradeStatus = request.getParameter("trade_status");
+		String subject = request.getParameter("subject");
+		String sellerId = request.getParameter("seller_id");
+		//支付宝流水
+		String tradeNo = request.getParameter("trade_no");
+		log.info("trade_status>>" + tradeStatus + ">>trade_no>>" + tradeNo + ">>out_trade_no>>" + outTradeNo);
+		if ("TRADE_FINISHED".equals(tradeStatus) || "TRADE_SUCCESS".equals(tradeStatus) || tradeStatus == null) {
 			//支付成功，修改订单状态
-			String out_trade_no = request.getParameter("out_trade_no");
-			log.debug("支付宝回调订单号===" + out_trade_no);
-			WholeOrder wholeOrder = wholeOrderService.getOne(new QueryWrapper<WholeOrder>().eq("order_id", out_trade_no));
+			log.debug("支付宝回调订单号===" + outTradeNo);
+			WholeOrder wholeOrder = wholeOrderService.getOne(new QueryWrapper<WholeOrder>().eq("order_id", outTradeNo));
 			wholeOrder.setOrderFlag("是");
 			log.debug("支付宝回调后更新订单信息===" + wholeOrder);
 			wholeOrderService.updateById(wholeOrder);
-			return "Success";
+			return "success";
 		} else {
-			return "Fail";
+			return "fail";
 		}
 	}
 }
