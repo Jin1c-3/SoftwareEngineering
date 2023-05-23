@@ -49,35 +49,45 @@ public class PassengerController {
 	@PostMapping("/addPassenger")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息，前端弄一个页面添加就行")
 	public Result<Object> addPassenger(@RequestBody Passenger passenger) {
+		log.debug("添加乘客信息===" + passenger);
+		Passenger passengerInDB = passengerService.getOne(new QueryWrapper<Passenger>()
+				.eq("passenger_id", passenger.getPassengerId())
+				.eq("usr_id", passenger.getUsrId()));
+		if (passengerInDB != null) {
+			log.info("添加乘客信息失败，该乘客已存在===" + passenger);
+			return Result.error().message("添加失败，该乘客已存在");
+		}
 		try {
-			if (passengerService.selectByMultiId(passenger) != null) {
-				log.info("该乘客已存在====" + passenger);
-				return Result.error().message("该乘客已存在");
-			}
-			passengerService.selectByMultiId(passenger);
+			passengerService.save(passenger);
+			log.debug("添加乘客信息成功===" + passenger);
+			return Result.ok().message("添加成功");
 		} catch (Exception e) {
 			log.error("添加乘客信息失败==={}==={}", passenger, e.getMessage());
 			return Result.error().message("添加失败");
 		}
-		log.debug("乘客添加成功====" + passenger);
-		return Result.ok().message("添加成功");
 	}
 
 	@DeleteMapping("/deletePassenger")
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
 	public Result<Object> deletePassenger(@RequestBody Passenger passenger) {
+		log.debug("删除乘客信息===" + passenger);
+		Passenger passengerInDB = passengerService.getOne(new QueryWrapper<Passenger>()
+				.eq("passenger_id", passenger.getPassengerId())
+				.eq("usr_id", passenger.getUsrId()));
+		if (passengerInDB == null) {
+			log.info("添加乘客信息失败，该乘客不存在===" + passenger);
+			return Result.error().message("添加失败，该乘客不存在");
+		}
 		try {
-			if (passengerService.selectByMultiId(passenger) != null) {
-				passengerService.deleteByMultiId(passenger);
-				log.debug("删除成功,该乘客已被删除=======" + passenger.getPassengerId());
-				return Result.ok().message("乘客删除成功");
-			}
+			passengerService.remove(new QueryWrapper<Passenger>()
+					.eq("passenger_id", passenger.getPassengerId())
+					.eq("usr_id", passenger.getUsrId()));
+			log.debug("删除乘客信息成功===" + passenger);
+			return Result.ok().message("删除成功");
 		} catch (Exception e) {
 			log.error("删除乘客信息失败==={}==={}", passenger, e.getMessage());
 			return Result.error().message("删除失败");
 		}
-		log.info("乘客删除失败，该乘客不存在或用户无此权限=======" + passenger);
-		return Result.error().message("删除失败");
 	}
 }
 

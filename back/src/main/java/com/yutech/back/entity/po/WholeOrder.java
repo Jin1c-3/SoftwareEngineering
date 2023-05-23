@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 /**
@@ -31,7 +32,7 @@ public class WholeOrder implements Serializable {
 	private String orderId;
 
 	@TableField("order_time")
-	private LocalDateTime orderTime;
+	private String orderTime;
 
 	@ApiModelProperty(value = "是否已支付")
 	@TableField("order_flag")
@@ -48,18 +49,19 @@ public class WholeOrder implements Serializable {
 	 * 有参构造器
 	 */
 	public WholeOrder(String orderNO, String orderFlag, String vehicleType, String usrId) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		this.orderId = orderNO;
-		this.orderTime = LocalDateTime.now();
+		this.orderTime = sdf.format(LocalDateTime.now());
 		this.orderFlag = orderFlag;
 		this.vehicleType = vehicleType;
 		this.usrId = usrId;
 	}
 
-	public WholeOrder(String orderNO, LocalDateTime date, String orderFlag, String vehicleType, String usrId) {
-		this.orderId = orderNO;
-		this.orderTime = date;
-		this.orderFlag = orderFlag;
-		this.vehicleType = vehicleType;
-		this.usrId = usrId;
-	}
+//	public WholeOrder(String orderNO, LocalDateTime date, String orderFlag, String vehicleType, String usrId) {
+//		this.orderId = orderNO;
+//		this.orderTime = date;
+//		this.orderFlag = orderFlag;
+//		this.vehicleType = vehicleType;
+//		this.usrId = usrId;
+//	}
 }
