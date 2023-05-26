@@ -23,6 +23,6 @@ public class TestJasypt {
 		config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
 		config.setStringOutputType("base64");
 		encryptor.setConfig(config);
-		System.out.println(encryptor.encrypt("000000"));//需要修改
+		System.out.println(encryptor.encrypt("shandongdaxue2021"));//需要修改
 	}
 }

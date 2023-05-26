@@ -3,8 +3,8 @@ package com.yutech.back.common.exception;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.ValidationErrorDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public Result<String> handlerException(Exception e) {
 		log.error(e.getMessage(), e);
-		return Result.error("后端报错信息=>" + e.getMessage()).message("系统异常，请联系管理员");
+		return Result.error("后端报错信息=>" + e.getMessage()).message(e.getMessage() == null ? "后端报错信息为空" : e.getMessage());
 	}
 
 	/**
@@ -56,17 +56,30 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(GlobalException.class)
 	public Result<String> handlerGlobalException(GlobalException e) {
 		log.error(e.getMessage(), e);
-		return Result.error("后端自定义全局异常=>" + e.getMessage()).message("自定义报错，请联系管理员").code(e.getCode());
+		return Result.error("后端自定义全局异常=>" + e.getMessage()).message(e.getMessage()).code(e.getCode());
 	}
 
-	/**
-	 * 处理 JSR303 校验的异常
-	 *
-	 * @param e 异常
-	 * @return 处理结果
-	 */
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Result<List<ValidationErrorDTO>> handlerValidException(MethodArgumentNotValidException e) {
+//	/**
+//	 * 处理 JSR303 校验的异常
+//	 *
+//	 * @param e 异常
+//	 * @return 处理结果
+//	 */
+//	@ExceptionHandler(MethodArgumentNotValidException.class)
+//	public Result<List<ValidationErrorDTO>> handlerValidException(MethodArgumentNotValidException e) {
+//		log.error(e.getMessage(), e);
+//		BindingResult result = e.getBindingResult();
+//		List<ValidationErrorDTO> v = new ArrayList<>();
+//		// 获取校验结果，遍历获取捕获到的每个校验结果
+//		result.getFieldErrors().forEach(item -> {
+//			// 存储得到的校验结果
+//			v.add(new ValidationErrorDTO(item.getField(), item.getDefaultMessage()));
+//		});
+//		return Result.error(v).message("数据校验不合法");
+//	}
+
+	@ExceptionHandler(BindException.class)
+	public Result<List<ValidationErrorDTO>> handlerValidException(BindException e) {
 		log.error(e.getMessage(), e);
 		BindingResult result = e.getBindingResult();
 		List<ValidationErrorDTO> v = new ArrayList<>();

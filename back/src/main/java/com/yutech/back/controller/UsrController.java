@@ -75,8 +75,9 @@ public class UsrController {
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
 		if (Boolean.TRUE.equals(usrService.verifyUnique(usrPushInDB))) {
-			usrDTO.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
+			usrPushInDB.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
 			usrPushInDB.setUsrAvatar(defaultAvatar);
+			log.debug("用户注册，即将存入数据库===" + usrPushInDB);
 			//保存用户信息
 			usrService.save(usrPushInDB);
 			//发送欢迎邮件
