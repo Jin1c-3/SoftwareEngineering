@@ -9,8 +9,8 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * <p>
@@ -49,9 +49,8 @@ public class WholeOrder implements Serializable {
 	 * 有参构造器
 	 */
 	public WholeOrder(String orderNO, String orderFlag, String vehicleType, String usrId) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		this.orderId = orderNO;
-		this.orderTime = sdf.format(LocalDateTime.now());
+		this.orderTime = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00").format(LocalDateTime.now());
 		this.orderFlag = orderFlag;
 		this.vehicleType = vehicleType;
 		this.usrId = usrId;

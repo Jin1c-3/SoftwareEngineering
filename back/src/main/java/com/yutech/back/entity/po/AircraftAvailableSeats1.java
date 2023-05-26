@@ -5,6 +5,7 @@ import com.yutech.back.entity.bo.AircraftAvailableSeats;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -18,7 +19,8 @@ import java.io.Serializable;
  * @since 2023-05-26
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @ApiModel(value="AircraftAvailableSeats1对象", description="")
 public class AircraftAvailableSeats1 extends AircraftAvailableSeats implements Serializable {
