@@ -1,13 +1,13 @@
 package com.yutech.back.entity.po;
 
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.yutech.back.entity.bo.AircraftAvailableSeats;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="AircraftAvailableSeats12对象", description="")
-public class AircraftAvailableSeats12 implements Serializable {
+public class AircraftAvailableSeats12 extends AircraftAvailableSeats implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class AircraftAvailableSeats12 implements Serializable {
     private String seatType;
 
     @TableField("date")
-    private LocalDate date;
+    private String date;
 
 
 }

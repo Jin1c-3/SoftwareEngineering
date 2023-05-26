@@ -5,11 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.OtherUtil;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.bo.AircraftAvailableSeats;
 import com.yutech.back.entity.dto.AircraftSeatDTO;
 import com.yutech.back.entity.dto.TicketQueryDTO;
-import com.yutech.back.entity.po.AircraftSeat;
-import com.yutech.back.entity.po.FlightInfo;
-import com.yutech.back.entity.po.FlightInfoDetail;
+import com.yutech.back.entity.po.*;
 import com.yutech.back.service.persistence.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -173,25 +172,81 @@ public class AircraftController {
 	@GetMapping("/query-aircraft-seat")
 	@ApiOperation("查询航班座位信息")
 	public Result<List<AircraftSeat>> queryAircraftSeat(@Validated AircraftSeatDTO aircraftSeatDTO) {
-		List<AircraftSeat> aircraftSeatList;
-		try {
-			aircraftSeatList = aircraftSeatService.list(new QueryWrapper<AircraftSeat>()
-					.eq("flight_no", aircraftSeatDTO.getFlightNo())
-					.eq("station_order", aircraftSeatDTO.getStationOrder())
-					.eq("date", aircraftSeatDTO.getDate()));
-		} catch (GlobalException e) {
-			throw new GlobalException("查询航班座位信息失败", e);
+		log.debug("查询航班座位信息前端信息==={}", aircraftSeatDTO);
+		List<AircraftSeat> aircraftSeatList = null;
+		List<AircraftAvailableSeats> aircraftAvailableSeatsList = null;
+
+		if (aircraftSeatDTO.getStationOrder() == 1) {
+			List<AircraftAvailableSeats1> aircraftAvailableSeats1List = aircraftAvailableSeats1Service
+					.list(new QueryWrapper<AircraftAvailableSeats1>()
+							.eq("flight_no", aircraftSeatDTO.getFlightNo())
+							.eq("date", aircraftSeatDTO.getDate()));
+			if(aircraftAvailableSeats1List != null) {
+				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats1List);
+			}
+		}
+		if (aircraftSeatDTO.getStationOrder() == 2) {
+			List<AircraftAvailableSeats2> aircraftAvailableSeats2List = aircraftAvailableSeats2Service
+					.list(new QueryWrapper<AircraftAvailableSeats2>()
+							.eq("flight_no", aircraftSeatDTO.getFlightNo())
+							.eq("date", aircraftSeatDTO.getDate()));
+			if(aircraftAvailableSeats2List != null) {
+				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats2List);
+			}
+		}
+		if (aircraftSeatDTO.getStationOrder() == 3) {
+			List<AircraftAvailableSeats3> aircraftAvailableSeats3List = aircraftAvailableSeats3Service
+					.list(new QueryWrapper<AircraftAvailableSeats3>()
+							.eq("flight_no", aircraftSeatDTO.getFlightNo())
+							.eq("date", aircraftSeatDTO.getDate()));
+			if(aircraftAvailableSeats3List != null) {
+				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats3List);
+			}
+		}
+		if (aircraftSeatDTO.getStationOrder() == 12) {
+			List<AircraftAvailableSeats12> aircraftAvailableSeats12List = aircraftAvailableSeats12Service
+					.list(new QueryWrapper<AircraftAvailableSeats12>()
+							.eq("flight_no", aircraftSeatDTO.getFlightNo())
+							.eq("date", aircraftSeatDTO.getDate()));
+			if(aircraftAvailableSeats12List != null) {
+				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats12List);
+			}
+		}
+		if (aircraftSeatDTO.getStationOrder() == 123) {
+			List<AircraftAvailableSeats123> aircraftAvailableSeats123List = aircraftAvailableSeats123Service
+					.list(new QueryWrapper<AircraftAvailableSeats123>()
+							.eq("flight_no", aircraftSeatDTO.getFlightNo())
+							.eq("date", aircraftSeatDTO.getDate()));
+			if(aircraftAvailableSeats123List != null) {
+				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats123List);
+			}
+		}
+		if (aircraftSeatDTO.getStationOrder() == 23) {
+			List<AircraftAvailableSeats23> aircraftAvailableSeats23List = aircraftAvailableSeats23Service
+					.list(new QueryWrapper<AircraftAvailableSeats23>()
+							.eq("flight_no", aircraftSeatDTO.getFlightNo())
+							.eq("date", aircraftSeatDTO.getDate()));
+			if(aircraftAvailableSeats23List != null) {
+				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats23List);
+			}
 		}
 
-		if (aircraftSeatDTO.getSeatType() != null && aircraftSeatList != null) {
-			aircraftSeatList = aircraftSeatList.stream()
-					.filter(aircraftSeat -> aircraftSeat.getSeatType().equals(aircraftSeatDTO.getSeatType()))
+		if (aircraftSeatDTO.getSeatNo() != null && aircraftSeatDTO != null) {
+			aircraftAvailableSeatsList = aircraftAvailableSeatsList.stream()
+					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatNo() == aircraftSeatDTO.getSeatNo())
 					.collect(Collectors.toList());
 		}
-		if (aircraftSeatDTO.getSeatNo() != null && aircraftSeatList != null) {
-			aircraftSeatList = aircraftSeatList.stream()
-					.filter(aircraftSeat -> aircraftSeat.getSeatNo().equals(aircraftSeatDTO.getSeatNo()))
+		if (aircraftSeatDTO.getSeatType() != null && aircraftSeatDTO != null) {
+			aircraftAvailableSeatsList = aircraftAvailableSeatsList.stream()
+					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatType() == aircraftSeatDTO.getSeatType())
 					.collect(Collectors.toList());
+		}
+		try {
+			aircraftAvailableSeatsList.forEach(aircraftAvailableSeats -> {
+				aircraftSeatList.add(new AircraftSeat(aircraftAvailableSeats));
+			});
+		} catch (GlobalException e) {
+			throw new GlobalException("查询航班座位信息失败", e);
 		}
 		return Result.ok(aircraftSeatList).message(aircraftSeatList == null ? "暂无此座位" : "查询航班座位信息成功");
 	}
