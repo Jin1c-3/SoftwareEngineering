@@ -173,39 +173,27 @@ public class AircraftController {
 	@GetMapping("/query-aircraft-seat")
 	@ApiOperation("查询航班座位信息")
 	public Result<List<AircraftSeat>> queryAircraftSeat(@Validated AircraftSeatDTO aircraftSeatDTO) {
-		List<AircraftSeat> aircraftSeatListPrimitive = null;
-		List<AircraftSeat> aircraftSeatListFiltered = null;
+		List<AircraftSeat> aircraftSeatList;
 		try {
-			aircraftSeatListPrimitive = aircraftSeatService.list(new QueryWrapper<AircraftSeat>()
+			aircraftSeatList = aircraftSeatService.list(new QueryWrapper<AircraftSeat>()
 					.eq("flight_no", aircraftSeatDTO.getFlightNo())
 					.eq("station_order", aircraftSeatDTO.getStationOrder())
 					.eq("date", aircraftSeatDTO.getDate()));
 		} catch (GlobalException e) {
 			throw new GlobalException("查询航班座位信息失败", e);
 		}
-		if (aircraftSeatDTO.getSeatType() == null &&
-				aircraftSeatDTO.getSeatNo() == null) {
-			return Result.ok(aircraftSeatListPrimitive).message(aircraftSeatListPrimitive == null ? "暂无此座位" : "查询航班座位信息成功");
-		}
-		if (aircraftSeatDTO.getSeatType() != null &&
-				aircraftSeatDTO.getSeatNo() == null) {
-			aircraftSeatListFiltered = aircraftSeatListPrimitive.stream()
+
+		if (aircraftSeatDTO.getSeatType() != null && aircraftSeatList != null) {
+			aircraftSeatList = aircraftSeatList.stream()
 					.filter(aircraftSeat -> aircraftSeat.getSeatType().equals(aircraftSeatDTO.getSeatType()))
 					.collect(Collectors.toList());
-			return Result.ok(aircraftSeatListFiltered).message(aircraftSeatListFiltered == null ? "暂无此座位" : "查询航班座位信息成功");
 		}
-		if (aircraftSeatDTO.getSeatType() == null &&
-				aircraftSeatDTO.getSeatNo() != null) {
-			aircraftSeatListFiltered = aircraftSeatListPrimitive.stream()
+		if (aircraftSeatDTO.getSeatNo() != null && aircraftSeatList != null) {
+			aircraftSeatList = aircraftSeatList.stream()
 					.filter(aircraftSeat -> aircraftSeat.getSeatNo().equals(aircraftSeatDTO.getSeatNo()))
 					.collect(Collectors.toList());
-			return Result.ok(aircraftSeatListFiltered).message(aircraftSeatListFiltered == null ? "暂无此座位" : "查询航班座位信息成功");
 		}
-		aircraftSeatListFiltered = aircraftSeatListPrimitive.stream()
-				.filter(aircraftSeat -> aircraftSeat.getSeatType().equals(aircraftSeatDTO.getSeatType()))
-				.filter(aircraftSeat -> aircraftSeat.getSeatNo().equals(aircraftSeatDTO.getSeatNo()))
-				.collect(Collectors.toList());
-		return Result.ok(aircraftSeatListFiltered).message(aircraftSeatListFiltered == null ? "暂无此座位" : "查询航班座位信息成功");
+		return Result.ok(aircraftSeatList).message(aircraftSeatList == null ? "暂无此座位" : "查询航班座位信息成功");
 	}
 }
 
