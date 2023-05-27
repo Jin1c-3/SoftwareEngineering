@@ -43,6 +43,6 @@ public class OtherUtil {
 
 	public static String getRandomUsrIdByUUID() {
 		Format sdf = new SimpleDateFormat("yyyyMMdd");
-		return sdf.format(new Date()) + "-" + UUID.randomUUID()
+		return sdf.format(new Date()) + "-" + UUID.randomUUID();
 	}
 }
