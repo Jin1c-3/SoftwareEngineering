@@ -84,7 +84,7 @@ public class ServiceProviderController {
 
 	@PostMapping("/add-aircraft")
 	@ApiOperation(value = "添加飞机", notes = "添加飞机")
-	public Result<Object> addAircraft(Aircraft aircraft) {
+	public Result<Object> addAircraft(@RequestBody Aircraft aircraft) {
 		aircraft.setAircraftId("0");
 		aircraft.setAircraftStatus("可用");
 		log.debug("添加飞机==={}", aircraft);
@@ -112,7 +112,7 @@ public class ServiceProviderController {
 
 	@DeleteMapping("/delete-aircraft")
 	@ApiOperation(value = "删除飞机", notes = "删除飞机")
-	public Result<Object> deleteAircraft(String aircraftId) {
+	public Result<Object> deleteAircraft(@RequestBody String aircraftId) {
 		log.debug("删除飞机==={}", aircraftId);
 		try {
 			aircraftService.removeById(aircraftId);
@@ -153,7 +153,7 @@ public class ServiceProviderController {
 
 	@PatchMapping("/update-aircraft")
 	@ApiOperation(value = "更新飞机", notes = "更新飞机")
-	public Result<Object> updateAircraft(Aircraft aircraft) {
+	public Result<Object> updateAircraft(@RequestBody Aircraft aircraft) {
 		log.debug("更新飞机==={}", aircraft);
 		if (aircraftService.getById(aircraft.getAircraftId()) == null) {
 			log.info("飞机不存在===" + aircraft);
