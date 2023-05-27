@@ -276,7 +276,6 @@ public class UsrController {
 		} else {
 			throw new GlobalException("支付失败，未知交通工具");
 		}
-
 		return Result.ok(alipayForm).message("正在跳转支付页面...");
 	}
 

@@ -316,7 +316,7 @@ public class SuperUsrController {
 	@PatchMapping("/update-usr")
 	@ApiOperation(value = "修改用户", notes = "绕过策略直接修改用户，注意ID不能被修改")
 	@ApiParam(name = "usr", value = "被修改的用户。注意如果某属性为空，则将数据库中属性也置空！因此需要传入完整的Usr对象", required = true)
-	public Result<Object> updateUsr(Usr usr) {
+	public Result<Object> updateUsr(@RequestBody Usr usr) {
 		if (usrService.getById(usr.getUsrId()) == null) {
 			log.info("该用户不存在==={}", usr);
 			return Result.error().message("该用户不存在，修改失败");
@@ -348,9 +348,10 @@ public class SuperUsrController {
 	@DeleteMapping("/delete-usr")
 	@ApiOperation(value = "删除用户", notes = "删除用户")
 	public Result<Object> deleteUsr(String usrId) {
+		log.debug("删除用户==={}", usrId);
 		if (usrService.getById(usrId) == null) return Result.error().message("该用户不存在，删除失败");
 		usrService.removeById(usrId);
-		log.debug("删除用户成功===", usrId);
+		log.debug("删除用户成功==={}", usrId);
 		return Result.ok().message("删除成功");
 	}
 

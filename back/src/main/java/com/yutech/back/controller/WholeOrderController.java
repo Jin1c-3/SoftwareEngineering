@@ -2,18 +2,20 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.po.FlightTicket;
+import com.yutech.back.entity.po.TrainTicket;
 import com.yutech.back.entity.po.WholeOrder;
+import com.yutech.back.service.persistence.FlightTicketService;
+import com.yutech.back.service.persistence.TrainTicketService;
 import com.yutech.back.service.persistence.WholeOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -35,8 +37,15 @@ import java.util.Map;
 @Api(tags = "订单管理")
 @CrossOrigin
 public class WholeOrderController {
+
 	@Autowired
 	private WholeOrderService wholeOrderService;
+
+	@Autowired
+	private FlightTicketService flightTicketService;
+
+	@Autowired
+	private TrainTicketService trainTicketService;
 
 	/**
 	 * 根据用户id查询订单
@@ -52,7 +61,7 @@ public class WholeOrderController {
 		return Result.ok(wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId))).message("查询成功");
 	}
 
-	@GetMapping("/callback")
+	@PostMapping("/callback")
 	@ApiOperation(value = "支付宝回调", notes = "支付宝回调")
 	public String callback(HttpServletRequest request) {
 		Map<String, String> params = new HashMap<String, String>();
@@ -73,6 +82,7 @@ public class WholeOrderController {
 		String tradeStatus = request.getParameter("trade_status");
 		String subject = request.getParameter("subject");
 		String sellerId = request.getParameter("seller_id");
+		String vehicleType = subject.substring(0, 2);
 		//支付宝流水
 		String tradeNo = request.getParameter("trade_no");
 		log.info("trade_status>>" + tradeStatus + ">>trade_no>>" + tradeNo + ">>out_trade_no>>" + outTradeNo);
@@ -83,6 +93,30 @@ public class WholeOrderController {
 			wholeOrder.setOrderFlag("是");
 			log.debug("支付宝回调后更新订单信息===" + wholeOrder);
 			wholeOrderService.updateById(wholeOrder);
+
+			if ("飞机".equals(vehicleType)) {
+				try {
+					List<FlightTicket> flightTicketList = flightTicketService.list(new QueryWrapper<FlightTicket>().eq("order_id", outTradeNo));
+					for (FlightTicket flightTicket : flightTicketList) {
+						flightTicket.setTicketStatus("未值机");
+						flightTicketService.updateById(flightTicket);
+					}
+				} catch (Exception e) {
+					throw new GlobalException("机票状态更改失败", e);
+				}
+			} else if ("火车".equals(vehicleType)) {
+				try {
+					List<TrainTicket> trainTicketList = trainTicketService.list(new QueryWrapper<TrainTicket>().eq("order_id", outTradeNo));
+					for (TrainTicket trainTicket : trainTicketList) {
+						trainTicket.setTicketStatus("未检票");
+						trainTicketService.updateById(trainTicket);
+					}
+				} catch (Exception e) {
+					throw new GlobalException("火车票状态更改失败", e);
+				}
+			} else {
+				throw new GlobalException("交通工具类型捕捉出错，" + vehicleType + "不存在");
+			}
 			return "success";
 		} else {
 			return "fail";

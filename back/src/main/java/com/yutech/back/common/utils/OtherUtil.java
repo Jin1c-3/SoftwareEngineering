@@ -43,6 +43,8 @@ public class OtherUtil {
 
 	public static String getRandomUsrIdByUUID() {
 		Format sdf = new SimpleDateFormat("yyyyMMdd");
-		return sdf.format(new Date()) + "-" + UUID.randomUUID();
+		String usrId = sdf.format(new Date()) + "-" + UUID.randomUUID();
+		log.trace("生成的用户ID是==={}", usrId);
+		return usrId;
 	}
 }

@@ -2,10 +2,12 @@ package com.yutech.back.service.bussiness.impl;
 
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
+import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.OtherUtil;
 import com.yutech.back.entity.bo.PaymentBO;
+import com.yutech.back.entity.dto.RefundDTO;
 import com.yutech.back.entity.po.WholeOrder;
 import com.yutech.back.service.bussiness.AlipayService;
 import com.yutech.back.service.persistence.WholeOrderService;
@@ -64,6 +66,22 @@ public class AlipayServiceImpl implements AlipayService {
 			return payForm;
 		} catch (Exception e) {
 			throw new GlobalException("支付宝支付接口调用失败", e);
+		}
+	}
+
+	public AlipayTradeRefundResponse refund(RefundDTO refundDTO) {
+		try {
+			AlipayTradeRefundResponse response = Factory.Payment.Common().refund(
+					refundDTO.getOrderId(),
+					refundDTO.getMoney().toString());
+			if (ResponseChecker.success(response)) {
+				log.debug("退款成功");
+			} else {
+				log.debug("退款失败");
+			}
+			return response;
+		} catch (Exception e) {
+			throw new GlobalException("支付宝退款接口调用失败", e);
 		}
 	}
 
