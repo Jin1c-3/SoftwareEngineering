@@ -48,7 +48,7 @@ public class PaymentDTO {
 	String seatType;
 
 	@ApiModelProperty(value = "金额")
-	@NotBlank(message = "金额不能为空")
+//	@NotBlank(message = "金额不能为空")
 	private BigDecimal money;
 
 	@ApiModelProperty(value = "用户ID")

@@ -2,6 +2,7 @@ package com.yutech.back.entity.bo;
 
 import com.yutech.back.common.validator.group.AddGroup;
 import com.yutech.back.common.validator.group.UpdateGroup;
+import com.yutech.back.entity.dto.PaymentDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -37,9 +38,13 @@ public class PaymentBO {
 	/**
 	 * 有参构造器
 	 */
-	public PaymentBO(@org.jetbrains.annotations.Nullable String orderNO, String subject, BigDecimal money) {
-		this.orderNO = orderNO;
-		this.subject = subject;
-		this.money = money;
+	public PaymentBO(PaymentDTO paymentDTO) {
+		this.subject = paymentDTO.getVehicleType() + " "
+				+ paymentDTO.getFlightOrTrainNO() + " "
+				+ paymentDTO.getStartPortOrStation() + " - "
+				+ paymentDTO.getEndPortOrStation();
+		this.money = paymentDTO.getMoney();
+		this.vehicleType = paymentDTO.getVehicleType();
+		this.usrId = paymentDTO.getUsrId();
 	}
 }

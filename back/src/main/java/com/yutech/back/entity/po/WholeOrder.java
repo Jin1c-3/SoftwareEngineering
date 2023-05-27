@@ -34,9 +34,9 @@ public class WholeOrder implements Serializable {
 	@TableField("order_time")
 	private String orderTime;
 
-	@ApiModelProperty(value = "是否已支付")
-	@TableField("order_flag")
-	private String orderFlag;
+	@ApiModelProperty(value = "订单状态")
+	@TableField("order_status")
+	private String orderStatus;
 
 	@TableField("vehicle_type")
 	private String vehicleType;
@@ -48,10 +48,10 @@ public class WholeOrder implements Serializable {
 	/**
 	 * 有参构造器
 	 */
-	public WholeOrder(String orderNO, String orderFlag, String vehicleType, String usrId) {
+	public WholeOrder(String orderNO, String orderStatus, String vehicleType, String usrId) {
 		this.orderId = orderNO;
-		this.orderTime = DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00").format(LocalDateTime.now());
-		this.orderFlag = orderFlag;
+		this.orderTime = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now());
+		this.orderStatus = orderStatus;
 		this.vehicleType = vehicleType;
 		this.usrId = usrId;
 	}

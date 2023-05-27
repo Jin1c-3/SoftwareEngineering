@@ -90,7 +90,7 @@ public class WholeOrderController {
 			//支付成功，修改订单状态
 			log.debug("支付宝回调订单号===" + outTradeNo);
 			WholeOrder wholeOrder = wholeOrderService.getOne(new QueryWrapper<WholeOrder>().eq("order_id", outTradeNo));
-			wholeOrder.setOrderFlag("是");
+			wholeOrder.setOrderStatus("是");
 			log.debug("支付宝回调后更新订单信息===" + wholeOrder);
 			wholeOrderService.updateById(wholeOrder);
 

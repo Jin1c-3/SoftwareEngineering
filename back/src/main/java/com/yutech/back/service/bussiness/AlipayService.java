@@ -1,6 +1,8 @@
 package com.yutech.back.service.bussiness;
 
+import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
 import com.yutech.back.entity.bo.PaymentBO;
+import com.yutech.back.entity.dto.RefundDTO;
 
 
 /**
@@ -8,4 +10,6 @@ import com.yutech.back.entity.bo.PaymentBO;
  */
 public interface AlipayService {
 	String toPay(PaymentBO paymentBO);
+
+	AlipayTradeRefundResponse refund(RefundDTO refundDTO);
 }

@@ -3,7 +3,6 @@ package com.yutech.back.controller;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.ExceptionUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.service.bussiness.AliSmsService;
 import com.yutech.back.service.bussiness.AlipayService;
 import com.yutech.back.service.bussiness.EMailService;
@@ -13,8 +12,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
 
 /**
  * Restful风格说明
@@ -137,12 +134,12 @@ public class TestController {
 	@Autowired
 	private AlipayService alipayService;
 
-	@ApiOperation(value = "测试通过支付宝支付的基础功能")
-	@GetMapping("/testAlipay/{subject}/{money}")
-	public String testAlipay(@PathVariable("subject") String subject, @PathVariable("money") BigDecimal money) {
-		return alipayService.toPay(new PaymentBO(null, subject, money));
+//	@ApiOperation(value = "测试通过支付宝支付的基础功能")
+//	@GetMapping("/testAlipay/{subject}/{money}")
+//	public String testAlipay(@PathVariable("subject") String subject, @PathVariable("money") BigDecimal money) {
+//		return alipayService.toPay(new PaymentBO(null, subject, money));
 //		return Result.ok();
-	}
+//	}
 
 	@Autowired
 	private AliSmsService aliSmsService;

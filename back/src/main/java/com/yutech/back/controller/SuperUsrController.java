@@ -4,7 +4,7 @@ package com.yutech.back.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.JwtUtil;
-import com.yutech.back.common.utils.OtherUtil;
+import com.yutech.back.common.utils.RandomGeneratorUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.dto.SuperUsrOperationDTO;
@@ -366,7 +366,7 @@ public class SuperUsrController {
 	public Result<Object> addUsr(@RequestBody Usr usr) {
 		log.debug("添加用户==={}", usr);
 		if (usrService.getById(usr.getUsrId()) == null) {
-			usr.setUsrId(OtherUtil.getRandomUsrIdByUUID());
+			usr.setUsrId(RandomGeneratorUtil.getRandomUsrIdByUUID());
 		}
 		try {
 			usrService.save(usr);

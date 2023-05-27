@@ -3,7 +3,7 @@ package com.yutech.back.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.exception.GlobalException;
-import com.yutech.back.common.utils.OtherUtil;
+import com.yutech.back.common.utils.DateUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.bo.AircraftAvailableSeats;
 import com.yutech.back.entity.dto.AircraftSeatDTO;
@@ -94,7 +94,7 @@ public class AircraftController {
 	                                                          @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "日期格式不正确")
 	                                                          @RequestParam String date) {
 		log.debug("查询航班信息前端信息==={}==={}", flightId, date);
-		int weekDay = OtherUtil.getWeek(date);
+		int weekDay = DateUtil.getWeek(date);
 
 		boolean weekDayFlag = false;
 		try {

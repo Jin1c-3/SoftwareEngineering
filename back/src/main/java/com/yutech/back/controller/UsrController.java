@@ -1,15 +1,14 @@
 package com.yutech.back.controller;
 
 
+import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.exception.GlobalException;
-import com.yutech.back.common.utils.FileUtil;
-import com.yutech.back.common.utils.JwtUtil;
-import com.yutech.back.common.utils.OtherUtil;
-import com.yutech.back.common.utils.Result;
+import com.yutech.back.common.utils.*;
 import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.dto.PaymentDTO;
+import com.yutech.back.entity.dto.RefundDTO;
 import com.yutech.back.entity.dto.UsrDTO;
 import com.yutech.back.entity.po.FlightTicket;
 import com.yutech.back.entity.po.TrainTicket;
@@ -83,7 +82,7 @@ public class UsrController {
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
 		if (Boolean.TRUE.equals(usrService.verifyUnique(usrPushInDB))) {
-			usrPushInDB.setUsrId(OtherUtil.getRandomUsrIdByUUID());
+			usrPushInDB.setUsrId(RandomGeneratorUtil.getRandomUsrIdByUUID());
 			usrPushInDB.setUsrAvatar(defaultAvatar);
 			log.debug("用户注册，即将存入数据库===" + usrPushInDB);
 			//保存用户信息
@@ -251,32 +250,38 @@ public class UsrController {
 	@PostMapping("/alipay")
 	public Result<String> alipay(@Validated @RequestBody PaymentDTO paymentDTO) {
 		log.debug("用户支付，前端信息==={}", paymentDTO);
-		String orderNO = OtherUtil.generateTradeNo();
+		String orderNO = RandomGeneratorUtil.generateTradeNo();
 		String subject = paymentDTO.getVehicleType() + paymentDTO.getFlightOrTrainNO() + paymentDTO.getSeatType();
-		String alipayForm = alipayService.toPay(new PaymentBO(orderNO, subject, paymentDTO.getMoney()));
+		String alipayForm = alipayService.toPay(new PaymentBO(paymentDTO));
 
 		if (paymentDTO.getVehicleType().equals("飞机")) {
 			FlightTicket flightTicket = new FlightTicket(paymentDTO);
-			flightTicket.setTicketStatus("未支付");
+			flightTicket.setTicketStatus(StatusUtil.FLIGHT_TICKET_STATUS_UNPAID);
 			flightTicket.setOrderId(orderNO);
 			try {
 				flightTicketService.save(flightTicket);
 			} catch (Exception e) {
-				throw new GlobalException("飞机票保存失败", e);
+				throw new GlobalException("飞机票保存失败，但订单已创建", e);
 			}
 		} else if (paymentDTO.getVehicleType().equals("火车")) {
 			TrainTicket trainTicket = new TrainTicket(paymentDTO);
-			trainTicket.setTicketStatus("未支付");
+			trainTicket.setTicketStatus(StatusUtil.TRAIN_TICKET_STATUS_UNPAID);
 			trainTicket.setOrderId(orderNO);
 			try {
 				trainTicketService.save(trainTicket);
 			} catch (Exception e) {
-				throw new GlobalException("火车票保存失败", e);
+				throw new GlobalException("火车票保存失败，但订单已创建", e);
 			}
 		} else {
-			throw new GlobalException("支付失败，未知交通工具");
+			throw new GlobalException("支付失败，未知交通工具，但订单已创建");
 		}
 		return Result.ok(alipayForm).message("正在跳转支付页面...");
+	}
+
+	@ApiOperation(value = "支付宝退款接口", notes = "支付宝退款接口")
+	@PostMapping("/alipay-refund")
+	public Result<AlipayTradeRefundResponse> alipayRefund(RefundDTO refundDTO) {
+		return Result.ok(alipayService.refund(refundDTO)).message("正在退款...");
 	}
 
 }
