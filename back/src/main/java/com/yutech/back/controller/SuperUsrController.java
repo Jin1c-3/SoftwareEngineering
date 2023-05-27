@@ -347,7 +347,7 @@ public class SuperUsrController {
 	 */
 	@DeleteMapping("/delete-usr")
 	@ApiOperation(value = "删除用户", notes = "删除用户")
-	public Result<Object> deleteUsr(String usrId) {
+	public Result<Object> deleteUsr(@RequestBody String usrId) {
 		log.debug("删除用户==={}", usrId);
 		if (usrService.getById(usrId) == null) return Result.error().message("该用户不存在，删除失败");
 		usrService.removeById(usrId);
