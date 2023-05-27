@@ -2,31 +2,34 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.FileUtil;
 import com.yutech.back.common.utils.JwtUtil;
+import com.yutech.back.common.utils.OtherUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.bo.PaymentBO;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.dto.PaymentDTO;
 import com.yutech.back.entity.dto.UsrDTO;
+import com.yutech.back.entity.po.FlightTicket;
+import com.yutech.back.entity.po.TrainTicket;
 import com.yutech.back.entity.po.Usr;
 import com.yutech.back.entity.vo.UsrVO;
 import com.yutech.back.service.bussiness.AliSmsService;
 import com.yutech.back.service.bussiness.AlipayService;
 import com.yutech.back.service.bussiness.EMailService;
+import com.yutech.back.service.persistence.FlightTicketService;
+import com.yutech.back.service.persistence.TrainTicketService;
 import com.yutech.back.service.persistence.UsrService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -55,6 +58,12 @@ public class UsrController {
 	@Autowired
 	private AlipayService alipayService;
 
+	@Autowired
+	private FlightTicketService flightTicketService;
+
+	@Autowired
+	private TrainTicketService trainTicketService;
+
 	/**
 	 * 默认头像
 	 */
@@ -71,11 +80,10 @@ public class UsrController {
 	@PostMapping("/registry")
 	public Result<UsrVO> usrRegistry(@RequestBody UsrDTO usrDTO) {
 		log.debug("用户注册，前端信息====" + usrDTO);
-		Format sdf = new SimpleDateFormat("yyyyMMdd");
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
 		if (Boolean.TRUE.equals(usrService.verifyUnique(usrPushInDB))) {
-			usrPushInDB.setUsrId(sdf.format(new Date()) + "-" + UUID.randomUUID());
+			usrPushInDB.setUsrId(OtherUtil.getRandomUsrIdByUUID());
 			usrPushInDB.setUsrAvatar(defaultAvatar);
 			log.debug("用户注册，即将存入数据库===" + usrPushInDB);
 			//保存用户信息
@@ -241,10 +249,35 @@ public class UsrController {
 
 	@ApiOperation(value = "用户支付", notes = "用户订单支付")
 	@PostMapping("/alipay")
-	public Result<String> alipay(@RequestBody PaymentDTO paymentDTO) {
+	public Result<String> alipay(@Validated @RequestBody PaymentDTO paymentDTO) {
 		log.debug("用户支付，前端信息==={}", paymentDTO);
-		String subject = paymentDTO.getVehicleType() + paymentDTO.getFlightOrTrainNO() + paymentDTO.getDueDate() + paymentDTO.getSeatType();
-		return Result.ok(alipayService.toPay(new PaymentBO(null, subject, paymentDTO.getMoney()))).message("正在跳转支付页面...");
+		String orderNO = OtherUtil.generateTradeNo();
+		String subject = paymentDTO.getVehicleType() + paymentDTO.getFlightOrTrainNO() + paymentDTO.getSeatType();
+		String alipayForm = alipayService.toPay(new PaymentBO(orderNO, subject, paymentDTO.getMoney()));
+
+		if (paymentDTO.getVehicleType().equals("飞机")) {
+			FlightTicket flightTicket = new FlightTicket(paymentDTO);
+			flightTicket.setTicketStatus("未支付");
+			flightTicket.setOrderId(orderNO);
+			try {
+				flightTicketService.save(flightTicket);
+			} catch (Exception e) {
+				throw new GlobalException("飞机票保存失败", e);
+			}
+		} else if (paymentDTO.getVehicleType().equals("火车")) {
+			TrainTicket trainTicket = new TrainTicket(paymentDTO);
+			trainTicket.setTicketStatus("未支付");
+			trainTicket.setOrderId(orderNO);
+			try {
+				trainTicketService.save(trainTicket);
+			} catch (Exception e) {
+				throw new GlobalException("火车票保存失败", e);
+			}
+		} else {
+			throw new GlobalException("支付失败，未知交通工具");
+		}
+
+		return Result.ok(alipayForm).message("正在跳转支付页面...");
 	}
 
 }

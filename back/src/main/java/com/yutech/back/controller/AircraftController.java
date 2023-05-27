@@ -139,7 +139,7 @@ public class AircraftController {
 			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
 							.eq("flight_end_city", ticketQueryDTO.getEndCity()))
 					.stream().forEach(flightInfoDetail -> endFlights.add(flightInfoDetail.getFlightId()));
-		} catch (GlobalException e) {
+		} catch (Exception e) {
 			throw new GlobalException("查询航班信息失败", e);
 		}
 		try {
@@ -151,12 +151,12 @@ public class AircraftController {
 			trueFlights.stream().forEach(trueFlight -> {
 				try {
 					flightInfoList.add(flightInfoDetailService.getOne(new QueryWrapper<FlightInfoDetail>().eq("flight_id", trueFlight)));
-				} catch (GlobalException e) {
+				} catch (Exception e) {
 					throw new GlobalException("查询航班信息失败", e);
 				}
 			});
 		} catch (Exception e) {
-			return Result.error(flightInfoList).message("暂无此航班");
+			throw new GlobalException("查询航班信息失败", e);
 		}
 		log.trace("查询航班信息结果==={}", flightInfoList);
 		return Result.ok(flightInfoList).message("查询航班信息成功");
@@ -181,7 +181,7 @@ public class AircraftController {
 					.list(new QueryWrapper<AircraftAvailableSeats1>()
 							.eq("flight_no", aircraftSeatDTO.getFlightNo())
 							.eq("date", aircraftSeatDTO.getDate()));
-			if(aircraftAvailableSeats1List != null) {
+			if (aircraftAvailableSeats1List != null) {
 				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats1List);
 			}
 		}
@@ -190,7 +190,7 @@ public class AircraftController {
 					.list(new QueryWrapper<AircraftAvailableSeats2>()
 							.eq("flight_no", aircraftSeatDTO.getFlightNo())
 							.eq("date", aircraftSeatDTO.getDate()));
-			if(aircraftAvailableSeats2List != null) {
+			if (aircraftAvailableSeats2List != null) {
 				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats2List);
 			}
 		}
@@ -199,7 +199,7 @@ public class AircraftController {
 					.list(new QueryWrapper<AircraftAvailableSeats3>()
 							.eq("flight_no", aircraftSeatDTO.getFlightNo())
 							.eq("date", aircraftSeatDTO.getDate()));
-			if(aircraftAvailableSeats3List != null) {
+			if (aircraftAvailableSeats3List != null) {
 				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats3List);
 			}
 		}
@@ -208,7 +208,7 @@ public class AircraftController {
 					.list(new QueryWrapper<AircraftAvailableSeats12>()
 							.eq("flight_no", aircraftSeatDTO.getFlightNo())
 							.eq("date", aircraftSeatDTO.getDate()));
-			if(aircraftAvailableSeats12List != null) {
+			if (aircraftAvailableSeats12List != null) {
 				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats12List);
 			}
 		}
@@ -217,7 +217,7 @@ public class AircraftController {
 					.list(new QueryWrapper<AircraftAvailableSeats123>()
 							.eq("flight_no", aircraftSeatDTO.getFlightNo())
 							.eq("date", aircraftSeatDTO.getDate()));
-			if(aircraftAvailableSeats123List != null) {
+			if (aircraftAvailableSeats123List != null) {
 				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats123List);
 			}
 		}
@@ -226,7 +226,7 @@ public class AircraftController {
 					.list(new QueryWrapper<AircraftAvailableSeats23>()
 							.eq("flight_no", aircraftSeatDTO.getFlightNo())
 							.eq("date", aircraftSeatDTO.getDate()));
-			if(aircraftAvailableSeats23List != null) {
+			if (aircraftAvailableSeats23List != null) {
 				aircraftAvailableSeatsList.addAll(aircraftAvailableSeats23List);
 			}
 		}
@@ -245,7 +245,7 @@ public class AircraftController {
 			aircraftAvailableSeatsList.forEach(aircraftAvailableSeats -> {
 				aircraftSeatList.add(new AircraftSeat(aircraftAvailableSeats));
 			});
-		} catch (GlobalException e) {
+		} catch (Exception e) {
 			throw new GlobalException("查询航班座位信息失败", e);
 		}
 		return Result.ok(aircraftSeatList).message(aircraftSeatList == null ? "暂无此座位" : "查询航班座位信息成功");

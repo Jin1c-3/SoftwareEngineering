@@ -2,7 +2,9 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.JwtUtil;
+import com.yutech.back.common.utils.OtherUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.dto.SuperUsrOperationDTO;
@@ -360,12 +362,16 @@ public class SuperUsrController {
 	 */
 	@PostMapping("/add-usr")
 	@ApiOperation(value = "添加用户", notes = "绕过策略直接添加用户")
-	public Result<Object> addUsr(Usr usr) {
-		if (usrService.getById(usr.getUsrId()) != null) {
-			log.info("该用户已存在，不能重复添加==={}", usr);
-			return Result.error().message("该用户已存在，添加失败");
+	public Result<Object> addUsr(@RequestBody Usr usr) {
+		log.debug("添加用户==={}", usr);
+		if (usrService.getById(usr.getUsrId()) == null) {
+			usr.setUsrId(OtherUtil.getRandomUsrIdByUUID());
 		}
-		usrService.save(usr);
+		try {
+			usrService.save(usr);
+		} catch (Exception e) {
+			throw new GlobalException("管理员添加用户失败", e);
+		}
 		log.debug("添加用户成功==={}", usr);
 		return Result.ok().message("添加成功");
 	}
