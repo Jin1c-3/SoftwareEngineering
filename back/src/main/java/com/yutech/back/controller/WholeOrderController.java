@@ -34,7 +34,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/whole-order")
 @Slf4j
-@Api(tags = "订单管理")
+@Api(tags = "订单接口")
 @CrossOrigin
 public class WholeOrderController {
 
@@ -62,7 +62,7 @@ public class WholeOrderController {
 	}
 
 	@PostMapping("/callback")
-	@ApiOperation(value = "支付宝回调", notes = "支付宝回调")
+//	@ApiOperation(value = "支付宝回调", notes = "支付宝回调")
 	public String callback(HttpServletRequest request) {
 		Map<String, String> params = new HashMap<String, String>();
 		Map requestParams = request.getParameterMap();

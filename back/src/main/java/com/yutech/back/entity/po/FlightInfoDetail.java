@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -27,16 +26,23 @@ import java.time.LocalDateTime;
 public class FlightInfoDetail implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@TableField("flight_start_time")
-	private LocalDateTime flightStartTime;
-
-	@TableField("flight_end_time")
-	private LocalDateTime flightEndTime;
-
 	@MppMultiId
 	@TableField("flight_ID")
 	private String flightId;
+
+	@MppMultiId
+	@TableField("flight_order")
+	private Integer flightOrder;
+
+	@MppMultiId
+	@TableField("flight_schedule")
+	private String flightSchedule;
+
+	@TableField("flight_start_time")
+	private String flightStartTime;
+
+	@TableField("flight_end_time")
+	private String flightEndTime;
 
 	@TableField("flight_start_city")
 	private String flightStartCity;
@@ -50,10 +56,6 @@ public class FlightInfoDetail implements Serializable {
 	@TableField("flight_end_port")
 	private String flightEndPort;
 
-	@MppMultiId
-	@TableField("flight_order")
-	private Integer flightOrder;
-
 	@ApiModelProperty(value = "经济舱本段价格")
 	@TableField("flight_L_price")
 	private BigDecimal flightLPrice;
@@ -65,6 +67,15 @@ public class FlightInfoDetail implements Serializable {
 	@ApiModelProperty(value = "头等舱本段价格")
 	@TableField("flight_T_price")
 	private BigDecimal flightTPrice;
+
+	@TableField("aircraft_ID")
+	private String aircraftId;
+
+	@TableField("aircraft_type")
+	private String aircraftType;
+
+	@TableField("flight_status")
+	private String flightStatus;
 
 
 }

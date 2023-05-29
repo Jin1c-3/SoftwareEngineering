@@ -34,7 +34,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/super-usr")
-@Api(tags = "管理员系统")
+@Api(tags = "管理员接口")
 @CrossOrigin
 @Slf4j
 public class SuperUsrController {

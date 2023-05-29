@@ -41,7 +41,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @RestController
 @RequestMapping("/usr")
-@Api(tags = "用户管理")
+@Api(tags = "用户总接口")
 @Slf4j
 @CrossOrigin
 public class UsrController {
@@ -246,12 +246,11 @@ public class UsrController {
 		return Result.ok(code).message("验证码发送成功");
 	}
 
-	@ApiOperation(value = "用户支付", notes = "用户订单支付")
+	@ApiOperation(value = "用户支付宝支付接口", notes = "用户订单支付")
 	@PostMapping("/alipay")
 	public Result<String> alipay(@Validated @RequestBody PaymentDTO paymentDTO) {
 		log.debug("用户支付，前端信息==={}", paymentDTO);
 		String orderNO = RandomGeneratorUtil.generateTradeNo();
-		String subject = paymentDTO.getVehicleType() + paymentDTO.getFlightOrTrainNO() + paymentDTO.getSeatType();
 		String alipayForm = alipayService.toPay(new PaymentBO(paymentDTO));
 
 		if (paymentDTO.getVehicleType().equals("飞机")) {
@@ -278,7 +277,7 @@ public class UsrController {
 		return Result.ok(alipayForm).message("正在跳转支付页面...");
 	}
 
-	@ApiOperation(value = "支付宝退款接口", notes = "支付宝退款接口")
+	@ApiOperation(value = "用户支付宝退款接口", notes = "支付宝退款接口")
 	@PostMapping("/alipay-refund")
 	public Result<AlipayTradeRefundResponse> alipayRefund(RefundDTO refundDTO) {
 		return Result.ok(alipayService.refund(refundDTO)).message("正在退款...");

@@ -61,6 +61,9 @@ public class TrainTicket implements Serializable {
 	@TableField("seat_type")
 	private String seatType;
 
+	@TableField("seat_no")
+	private String seatNo;
+
 	@TableField("train_price")
 	private BigDecimal trainPrice;
 
@@ -76,6 +79,7 @@ public class TrainTicket implements Serializable {
 		this.passengerName = paymentDTO.getPassengerName();
 		this.seatType = paymentDTO.getSeatType();
 		this.trainPrice = paymentDTO.getMoney();
+		this.seatNo = paymentDTO.getSeatNo();
 	}
 
 }

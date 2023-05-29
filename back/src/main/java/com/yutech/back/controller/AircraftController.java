@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/aircraft")
 @Slf4j
 @CrossOrigin
-@Api(tags = "飞机管理")
+@Api(tags = "飞机接口")
 @Validated
 public class AircraftController {
 
@@ -63,7 +64,7 @@ public class AircraftController {
 	private FlightInfoDetailService flightInfoDetailService;
 
 	@Autowired
-	private FlightInfoService flightInfoService;
+	private FlightTicketService flightTicketService;
 
 	/**
 	 * 根据航班ID查询航班的站点信息
@@ -93,28 +94,23 @@ public class AircraftController {
 	                                                          @NotBlank(message = "日期不能为空")
 	                                                          @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "日期格式不正确")
 	                                                          @RequestParam String date) {
-		log.debug("查询航班信息前端信息==={}==={}", flightId, date);
 		int weekDay = DateUtil.getWeek(date);
+		log.debug("查询航班信息前端信息==={}==={}==={}", flightId, date, weekDay);
+		List<FlightInfoDetail> flightInfoDetailList = new ArrayList<>();
 
-		boolean weekDayFlag = false;
 		try {
-			FlightInfo flightInfo = flightInfoService.getOne(new QueryWrapper<FlightInfo>().eq("flight_id", flightId));
-			if (flightInfo.getFlightSchedule().contains(weekDay + "")) weekDayFlag = true;
+			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+							.eq("flight_id", flightId))
+					.forEach(flightInfoDetail -> {
+						if (flightInfoDetail.getFlightSchedule().contains(weekDay + "")) {
+							flightInfoDetailList.add(flightInfoDetail);
+						}
+					});
 		} catch (Exception e) {
-			throw new GlobalException("查询航班信息失败", e);
+			throw new GlobalException("查询航班信息失败，星期转换错误", e);
 		}
-
-		List<FlightInfoDetail> flightInfoList = null;
-		if (weekDayFlag) {
-			try {
-				flightInfoList = flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>().eq("flight_id", flightId).eq("week_day", weekDay));
-			} catch (Exception e) {
-				return Result.error(flightInfoList).message("查询航班信息失败");
-			}
-			log.trace("查询航班信息结果==={}", flightInfoList);
-			return Result.ok(flightInfoList).message(flightInfoList == null ? "该航班不存在" : "查询航班信息成功");
-		}
-		return Result.error(flightInfoList).message("该航班今日不飞行");
+		log.trace("查询航班信息结果==={}", flightInfoDetailList);
+		return Result.ok(flightInfoDetailList).message(flightInfoDetailList.isEmpty() ? "该航班不存在" : "查询航班信息成功");
 
 	}
 
@@ -128,19 +124,29 @@ public class AircraftController {
 	@ApiOperation(value = "查询航班", notes = "只负责查询航班，不管有没有余票")
 	public Result<List<FlightInfoDetail>> queryFlight(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询航班信息前端信息==={}", ticketQueryDTO);
-		List<String> startFlights = null;
-		List<String> endFlights = null;
-		List<String> trueFlights = null;
-		List<FlightInfoDetail> flightInfoList = null;
+		List<String> startFlights = new ArrayList<String>();
+		List<String> endFlights = new ArrayList<String>();
+		List<String> trueFlights = new ArrayList<String>();
+		List<FlightInfoDetail> flightInfoList = new ArrayList<>();
 		try {
 			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
-							.eq("flight_start_city", ticketQueryDTO.getStartCity()))
-					.stream().forEach(flightInfoDetail -> startFlights.add(flightInfoDetail.getFlightId()));
+							.eq("flight_start_city", ticketQueryDTO.getStartCityOrStation()))
+					.stream().forEach(flightInfoDetail -> {
+						startFlights.add(flightInfoDetail.getFlightId() +
+								"," + flightInfoDetail.getFlightStartTime() +
+								"," + flightInfoDetail.getFlightEndTime() +
+								"," + flightInfoDetail.getFlightOrder());
+					});
 			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
-							.eq("flight_end_city", ticketQueryDTO.getEndCity()))
-					.stream().forEach(flightInfoDetail -> endFlights.add(flightInfoDetail.getFlightId()));
+							.eq("flight_end_city", ticketQueryDTO.getEndCityOrStation()))
+					.stream().forEach(flightInfoDetail -> {
+						endFlights.add(flightInfoDetail.getFlightId() +
+								"," + flightInfoDetail.getFlightStartTime() +
+								"," + flightInfoDetail.getFlightEndTime() +
+								"," + flightInfoDetail.getFlightOrder());
+					});
 		} catch (Exception e) {
-			throw new GlobalException("查询航班信息失败", e);
+			throw new GlobalException("查询航班信息失败，城市查询出错", e);
 		}
 		try {
 			startFlights.stream().forEach(startFlight -> {
@@ -150,16 +156,20 @@ public class AircraftController {
 			});
 			trueFlights.stream().forEach(trueFlight -> {
 				try {
-					flightInfoList.add(flightInfoDetailService.getOne(new QueryWrapper<FlightInfoDetail>().eq("flight_id", trueFlight)));
+					flightInfoList.addAll(flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+							.eq("flight_id", trueFlight.split(",")[0])
+							.eq("flight_start_time", trueFlight.split(",")[1])
+							.eq("flight_end_time", trueFlight.split(",")[2])
+							.eq("flight_order", trueFlight.split(",")[3])));
 				} catch (Exception e) {
-					throw new GlobalException("查询航班信息失败", e);
+					throw new GlobalException("查询航班信息失败，航线结果对接出错", e);
 				}
 			});
 		} catch (Exception e) {
 			throw new GlobalException("查询航班信息失败", e);
 		}
 		log.trace("查询航班信息结果==={}", flightInfoList);
-		return Result.ok(flightInfoList).message("查询航班信息成功");
+		return Result.ok(flightInfoList).message(flightInfoList.isEmpty() ? "暂无此航班" : "查询航班信息成功");
 	}
 
 	/**
@@ -173,8 +183,8 @@ public class AircraftController {
 	@ApiOperation("查询航班座位信息")
 	public Result<List<AircraftSeat>> queryAircraftSeat(@Validated AircraftSeatDTO aircraftSeatDTO) {
 		log.debug("查询航班座位信息前端信息==={}", aircraftSeatDTO);
-		List<AircraftSeat> aircraftSeatList = null;
-		List<AircraftAvailableSeats> aircraftAvailableSeatsList = null;
+		List<AircraftSeat> aircraftSeatList = new ArrayList<>();
+		List<AircraftAvailableSeats> aircraftAvailableSeatsList = new ArrayList<>();
 
 		if (aircraftSeatDTO.getStationOrder() == 1) {
 			List<AircraftAvailableSeats1> aircraftAvailableSeats1List = aircraftAvailableSeats1Service
@@ -249,6 +259,19 @@ public class AircraftController {
 			throw new GlobalException("查询航班座位信息失败", e);
 		}
 		return Result.ok(aircraftSeatList).message(aircraftSeatList == null ? "暂无此座位" : "查询航班座位信息成功");
+	}
+
+	@GetMapping("/query-aircraft-ticket")
+	@ApiOperation(value = "根据订单号查询机票", notes = "根据订单号查询机票")
+	public Result<FlightTicket> queryAircraftTicket(@RequestParam("orderId") String orderId) {
+		log.debug("根据订单号查询机票前端信息==={}", orderId);
+		FlightTicket flightTicket = new FlightTicket();
+		try {
+			flightTicket = flightTicketService.getOne(new QueryWrapper<FlightTicket>().eq("order_Id", orderId));
+		} catch (Exception e) {
+			throw new GlobalException("根据订单号查询机票失败", e);
+		}
+		return Result.ok(flightTicket).message(flightTicket == null ? "暂无此机票" : "根据订单号查询机票成功");
 	}
 }
 

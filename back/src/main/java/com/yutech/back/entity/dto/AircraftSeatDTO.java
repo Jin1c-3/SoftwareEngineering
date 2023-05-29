@@ -14,7 +14,7 @@ public class AircraftSeatDTO {
 	@NotBlank(message = "航班号不能为空")
 	private String flightNo;
 
-	@NotBlank(message = "站点不能为空，数值为下面六者之一：1、2、3、12、23、123")
+//	@NotBlank(message = "站点不能为空，数值为下面六者之一：1、2、3、12、23、123")
 	private Integer stationOrder;
 
 	private String seatNo;

@@ -28,7 +28,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/service-provider")
 @Slf4j
-@Api(tags = "服务商系统")
+@Api(tags = "服务商接口")
 @CrossOrigin
 public class ServiceProviderController {
 
@@ -133,7 +133,7 @@ public class ServiceProviderController {
 			log.info("通过服务商ID获取飞机列表失败");
 			return Result.error(aircraftList).message("获取失败");
 		}
-		log.debug("通过服务商ID获取飞机列表==={}", aircraftList);
+		log.trace("通过服务商ID获取飞机列表==={}", aircraftList);
 		return Result.ok(aircraftList).message("获取成功");
 	}
 
@@ -147,7 +147,7 @@ public class ServiceProviderController {
 			log.info("通过服务商ID获取飞机列表失败==={}", serviceProviderId);
 			return Result.error(aircraftList).message("获取失败");
 		}
-		log.debug("通过服务商ID获取飞机列表==={}", aircraftList);
+		log.trace("通过服务商ID获取飞机列表==={}", aircraftList);
 		return Result.ok(aircraftList).message("获取成功");
 	}
 

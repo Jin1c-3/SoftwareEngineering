@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -30,11 +29,11 @@ public class TrainNumberInfoDetail implements Serializable {
 
 	@ApiModelProperty(value = "到达该站时间")
 	@TableField("train_arrive_time")
-	private LocalDateTime trainArriveTime;
+	private String trainArriveTime;
 
 	@ApiModelProperty(value = "离开该站时间")
 	@TableField("train_leave_time")
-	private LocalDateTime trainLeaveTime;
+	private String trainLeaveTime;
 
 	@MppMultiId
 	@ApiModelProperty(value = "车次编号")
