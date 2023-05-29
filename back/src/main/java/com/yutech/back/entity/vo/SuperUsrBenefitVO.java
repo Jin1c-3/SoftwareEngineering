@@ -12,4 +12,10 @@ public class SuperUsrBenefitVO {
 	private Integer ticketNum;
 	private BigDecimal totalBenefit;
 	private BigDecimal trueBenefit;
+
+	public SuperUsrBenefitVO() {
+		totalBenefit = new BigDecimal(0);
+		trueBenefit = new BigDecimal(0);
+		ticketNum = 0;
+	}
 }

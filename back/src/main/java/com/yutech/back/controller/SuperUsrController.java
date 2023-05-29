@@ -396,20 +396,20 @@ public class SuperUsrController {
 		superUsrBenefitVO1.setVehicleType("火车");
 		superUsrBenefitVO2.setVehicleType("飞机");
 		trainTicketList.forEach(trainTicket -> {
-			superUsrBenefitVO1.setTotalBenefit(superUsrBenefitVO1.getTotalBenefit().add(trainTicket.getTrainPrice()));
+			superUsrBenefitVO1.setTotalBenefit(superUsrBenefitVO1.getTotalBenefit().add(trainTicket.getTrainPrice() == null ? BigDecimal.valueOf(0) : trainTicket.getTrainPrice()));
 			superUsrBenefitVO1.setTicketNum(superUsrBenefitVO1.getTicketNum() + 1);
 		});
 		flightTicketList.forEach(flightTicket -> {
-			superUsrBenefitVO2.setTotalBenefit(superUsrBenefitVO2.getTotalBenefit().add(flightTicket.getFlightPrice()));
+			superUsrBenefitVO2.setTotalBenefit(superUsrBenefitVO2.getTotalBenefit().add(flightTicket.getFlightPrice() == null ? BigDecimal.valueOf(0) : flightTicket.getFlightPrice()));
 			superUsrBenefitVO2.setTicketNum(superUsrBenefitVO2.getTicketNum() + 1);
 		});
-		superUsrBenefitVO1.setTrueBenefit(superUsrBenefitVO1.getTotalBenefit().multiply(new BigDecimal(0.1)));
+		superUsrBenefitVO1.setTrueBenefit(superUsrBenefitVO1.getTotalBenefit().multiply(BigDecimal.valueOf(0.1)));
 		BigDecimal serviceProviderBenefit = new BigDecimal(0);
-		serviceProviderService.list().forEach(serviceProvider -> {
-			serviceProviderController.queryBenefit(serviceProvider.getServiceProviderId()).getData().forEach(
-					serviceProviderBenefitVO -> serviceProviderBenefit.add(serviceProviderBenefitVO.getTrueBenefit())
-			);
-		});
+		serviceProviderService.list().forEach(serviceProvider -> serviceProviderController.queryBenefit(serviceProvider.getServiceProviderId())
+				.getData()
+				.forEach(
+						serviceProviderBenefitVO -> serviceProviderBenefit.add(serviceProviderBenefitVO.getTrueBenefit())
+				));
 		superUsrBenefitVO2.setTrueBenefit(superUsrBenefitVO2.getTotalBenefit().subtract(serviceProviderBenefit));
 		superUsrBenefitVOList.add(superUsrBenefitVO1);
 		superUsrBenefitVOList.add(superUsrBenefitVO2);

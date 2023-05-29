@@ -80,7 +80,7 @@ public class FlightTicket implements Serializable {
 		this.flightEndPort = paymentDTO.getEndPortOrStation();
 		this.passengerName = paymentDTO.getPassengerName();
 		this.seatType = paymentDTO.getSeatType();
-		this.seatNo = paymentDTO.getSeatNo();
+//		this.seatNo = paymentDTO.getSeatNo();
 		this.flightPrice = paymentDTO.getMoney();
 	}
 

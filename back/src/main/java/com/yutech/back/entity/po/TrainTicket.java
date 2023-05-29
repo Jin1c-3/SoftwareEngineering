@@ -79,7 +79,7 @@ public class TrainTicket implements Serializable {
 		this.passengerName = paymentDTO.getPassengerName();
 		this.seatType = paymentDTO.getSeatType();
 		this.trainPrice = paymentDTO.getMoney();
-		this.seatNo = paymentDTO.getSeatNo();
+//		this.seatNo = paymentDTO.getSeatNo();
 	}
 
 }

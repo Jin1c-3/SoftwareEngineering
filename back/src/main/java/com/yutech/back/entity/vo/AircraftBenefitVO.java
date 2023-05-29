@@ -12,4 +12,10 @@ public class AircraftBenefitVO {
 	private Integer flightTicketNum;
 	private BigDecimal totalBenefit;
 	private BigDecimal trueBenefit;
+
+	public AircraftBenefitVO() {
+		totalBenefit = new BigDecimal(0);
+		trueBenefit = new BigDecimal(0);
+		flightTicketNum = 0;
+	}
 }
