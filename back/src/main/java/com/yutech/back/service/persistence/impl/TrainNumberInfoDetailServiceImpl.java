@@ -26,9 +26,10 @@ public class TrainNumberInfoDetailServiceImpl extends MppServiceImpl<TrainNumber
 	@Autowired
 	private TrainNumberInfoDetailMapper trainNumberInfoDetailMapper;
 
+	@Override
 	public int queryTrainSeat(TrainSeatDTO trainSeatDTO) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("Seat_Type", trainSeatDTO.getSeatType());
+		map.put("seat_type", trainSeatDTO.getSeatType());
 		map.put("train_number_ID", trainSeatDTO.getTrainNumberId());
 		map.put("day", trainSeatDTO.getDay());
 		map.put("start_station", trainSeatDTO.getStartStation());

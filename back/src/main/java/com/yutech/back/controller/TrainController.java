@@ -133,7 +133,7 @@ public class TrainController {
 	public Result<Integer> queryTrainSeat(@RequestBody @Validated TrainSeatDTO trainSeatDTO) {
 		log.debug("查询火车座位前端信息==={}", trainSeatDTO);
 		int seat = trainNumberInfoDetailService.queryTrainSeat(trainSeatDTO);
-		if (seat == -1) throw new GlobalException("查询火车座位异常");
+		if (seat == -1) throw new GlobalException("火车座位数未改变，查询失败");
 		return Result.ok(seat).message(seat == 0 ? "暂无此座位" : "查询火车座位成功");
 	}
 

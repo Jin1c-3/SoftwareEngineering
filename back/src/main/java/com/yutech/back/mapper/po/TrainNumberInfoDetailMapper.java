@@ -20,14 +20,13 @@ import java.util.Map;
 @Mapper
 public interface TrainNumberInfoDetailMapper extends MppBaseMapper<TrainNumberInfoDetail> {
 
-	@Options(statementType = StatementType.CALLABLE)
-	@Select({"call select_num ",
-			"#{map.Seat_Type,mode=IN,jdbcType=NVARCHAR},",
-			"#{map.train_number_ID,mode=IN,jdbcType=NVARCHAR},",
-			"#{map.day,mode=IN,jdbcType=DATE},",
-			"#{map.start_station,mode=IN,jdbcType=NVARCHAR},",
-			"#{map.end_station,mode=IN,jdbcType=NVARCHAR},",
-			"${map.seat_num,mode=OUT,jdbcType=INTEGER}"
-	})
+	@Options(statementType = StatementType.CALLABLE, timeout = 600)
+	@Select("{CALL select_num (" +
+			"#{seat_type,mode=IN,jdbcType=NVARCHAR}," +
+			"#{train_number_ID,mode=IN,jdbcType=NVARCHAR}," +
+			"#{day,mode=IN,jdbcType=DATE}," +
+			"#{start_station,mode=IN,jdbcType=NVARCHAR}," +
+			"#{end_station,mode=IN,jdbcType=NVARCHAR}," +
+			"#{seat_num,mode=OUT,jdbcType=INTEGER})}")
 	void queryTrainSeat(Map<String, Object> map);
 }
