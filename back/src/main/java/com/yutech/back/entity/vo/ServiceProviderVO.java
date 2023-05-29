@@ -9,7 +9,7 @@ import lombok.Data;
 @ApiModel(value = "服务商信息表现层", description = "服务商信息表现层")
 public class ServiceProviderVO {
 
-	private String serviceProviderId;
+	private Integer serviceProviderId;
 
 	private String serviceProviderName;
 
@@ -20,7 +20,7 @@ public class ServiceProviderVO {
 	}
 
 	public ServiceProviderVO(ServiceProvider serviceProvider) {
-		this.serviceProviderId = String.valueOf(serviceProvider.getServiceProviderId());
+		this.serviceProviderId = serviceProvider.getServiceProviderId();
 		this.serviceProviderName = serviceProvider.getServiceProviderName();
 		this.pushMoney = serviceProvider.getPushMoney();
 	}

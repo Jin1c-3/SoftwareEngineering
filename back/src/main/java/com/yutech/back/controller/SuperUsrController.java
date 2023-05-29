@@ -8,12 +8,9 @@ import com.yutech.back.common.utils.RandomGeneratorUtil;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.dto.SuperUsrOperationDTO;
-import com.yutech.back.entity.po.ServiceProvider;
-import com.yutech.back.entity.po.SuperUsr;
-import com.yutech.back.entity.po.Usr;
-import com.yutech.back.service.persistence.ServiceProviderService;
-import com.yutech.back.service.persistence.SuperUsrService;
-import com.yutech.back.service.persistence.UsrService;
+import com.yutech.back.entity.po.*;
+import com.yutech.back.entity.vo.SuperUsrBenefitVO;
+import com.yutech.back.service.persistence.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -22,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,6 +49,15 @@ public class SuperUsrController {
 
 	@Autowired
 	private UsrService usrService;
+
+	@Autowired
+	private TrainTicketService trainTicketService;
+
+	@Autowired
+	private FlightTicketService flightTicketService;
+
+	@Autowired
+	private ServiceProviderController serviceProviderController;
 
 
 //	/**
@@ -375,6 +383,37 @@ public class SuperUsrController {
 		}
 		log.debug("添加用户成功==={}", usr);
 		return Result.ok().message("添加成功");
+	}
+
+	@GetMapping("/query-benefit")
+	@ApiOperation(value = "查询网站收益", notes = "查询网站收益")
+	public Result<List<SuperUsrBenefitVO>> queryBenefit() {
+		List<SuperUsrBenefitVO> superUsrBenefitVOList = new ArrayList<>();
+		List<TrainTicket> trainTicketList = trainTicketService.list();
+		List<FlightTicket> flightTicketList = flightTicketService.list();
+		SuperUsrBenefitVO superUsrBenefitVO1 = new SuperUsrBenefitVO();
+		SuperUsrBenefitVO superUsrBenefitVO2 = new SuperUsrBenefitVO();
+		superUsrBenefitVO1.setVehicleType("火车");
+		superUsrBenefitVO2.setVehicleType("飞机");
+		trainTicketList.forEach(trainTicket -> {
+			superUsrBenefitVO1.setTotalBenefit(superUsrBenefitVO1.getTotalBenefit().add(trainTicket.getTrainPrice()));
+			superUsrBenefitVO1.setTicketNum(superUsrBenefitVO1.getTicketNum() + 1);
+		});
+		flightTicketList.forEach(flightTicket -> {
+			superUsrBenefitVO2.setTotalBenefit(superUsrBenefitVO2.getTotalBenefit().add(flightTicket.getFlightPrice()));
+			superUsrBenefitVO2.setTicketNum(superUsrBenefitVO2.getTicketNum() + 1);
+		});
+		superUsrBenefitVO1.setTrueBenefit(superUsrBenefitVO1.getTotalBenefit().multiply(new BigDecimal(0.1)));
+		BigDecimal serviceProviderBenefit = new BigDecimal(0);
+		serviceProviderService.list().forEach(serviceProvider -> {
+			serviceProviderController.queryBenefit(serviceProvider.getServiceProviderId()).getData().forEach(
+					serviceProviderBenefitVO -> serviceProviderBenefit.add(serviceProviderBenefitVO.getTrueBenefit())
+			);
+		});
+		superUsrBenefitVO2.setTrueBenefit(superUsrBenefitVO2.getTotalBenefit().subtract(serviceProviderBenefit));
+		superUsrBenefitVOList.add(superUsrBenefitVO1);
+		superUsrBenefitVOList.add(superUsrBenefitVO2);
+		return Result.ok(superUsrBenefitVOList).message("查询成功");
 	}
 }
 

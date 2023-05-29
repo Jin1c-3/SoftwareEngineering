@@ -4,6 +4,7 @@ package com.yutech.back.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.common.utils.StatusUtil;
 import com.yutech.back.entity.po.FlightTicket;
 import com.yutech.back.entity.po.TrainTicket;
 import com.yutech.back.entity.po.WholeOrder;
@@ -76,7 +77,6 @@ public class WholeOrderController {
 			log.debug("参数>>" + name + ":" + valueStr);
 			params.put(name, valueStr);
 		}
-		requestParams.get("trade_status");
 
 		String outTradeNo = request.getParameter("out_trade_no");
 		String tradeStatus = request.getParameter("trade_status");
@@ -86,19 +86,23 @@ public class WholeOrderController {
 		//支付宝流水
 		String tradeNo = request.getParameter("trade_no");
 		log.info("trade_status>>" + tradeStatus + ">>trade_no>>" + tradeNo + ">>out_trade_no>>" + outTradeNo);
-		if ("TRADE_FINISHED".equals(tradeStatus) || "TRADE_SUCCESS".equals(tradeStatus) || tradeStatus == null) {
+		if ("TRADE_FINISHED".equals(tradeStatus) || "TRADE_SUCCESS".equals(tradeStatus)/* || tradeStatus == null*/) {
 			//支付成功，修改订单状态
 			log.debug("支付宝回调订单号===" + outTradeNo);
 			WholeOrder wholeOrder = wholeOrderService.getOne(new QueryWrapper<WholeOrder>().eq("order_id", outTradeNo));
-			wholeOrder.setOrderStatus("是");
+			wholeOrder.setOrderStatus(StatusUtil.ORDER_STATUS_PAID);
 			log.debug("支付宝回调后更新订单信息===" + wholeOrder);
-			wholeOrderService.updateById(wholeOrder);
+			try {
+				wholeOrderService.updateById(wholeOrder);
+			} catch (Exception e) {
+				throw new GlobalException("订单状态更新失败", e);
+			}
 
 			if ("飞机".equals(vehicleType)) {
 				try {
 					List<FlightTicket> flightTicketList = flightTicketService.list(new QueryWrapper<FlightTicket>().eq("order_id", outTradeNo));
 					for (FlightTicket flightTicket : flightTicketList) {
-						flightTicket.setTicketStatus("未值机");
+						flightTicket.setTicketStatus(StatusUtil.FLIGHT_TICKET_STATUS_CHECKED_IN);
 						flightTicketService.updateById(flightTicket);
 					}
 				} catch (Exception e) {
@@ -108,7 +112,7 @@ public class WholeOrderController {
 				try {
 					List<TrainTicket> trainTicketList = trainTicketService.list(new QueryWrapper<TrainTicket>().eq("order_id", outTradeNo));
 					for (TrainTicket trainTicket : trainTicketList) {
-						trainTicket.setTicketStatus("未检票");
+						trainTicket.setTicketStatus(StatusUtil.TRAIN_TICKET_STATUS_UNCHECK_IN);
 						trainTicketService.updateById(trainTicket);
 					}
 				} catch (Exception e) {

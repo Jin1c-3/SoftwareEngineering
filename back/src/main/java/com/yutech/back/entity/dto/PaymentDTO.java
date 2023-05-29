@@ -46,8 +46,8 @@ public class PaymentDTO {
 	@ApiModelProperty(value = "座位类型")
 	String seatType;
 
-	@ApiModelProperty(value = "座位号")
-	String seatNo;
+//	@ApiModelProperty(value = "座位号")
+//	String seatNo;
 
 	@ApiModelProperty(value = "金额")
 //	@NotBlank(message = "金额不能为空")

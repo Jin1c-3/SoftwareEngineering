@@ -44,10 +44,11 @@ public class EMailServiceImpl implements EMailService {
 		// 发送邮件
 		try {
 			javaMailSender.send(simpleMailMessage);
-			log.debug("邮件发送成功:from: {} ====== to: {}", from, to);
+			log.debug("邮件发送成功:from: {} === to: {}", from, to);
 			return true;
 		} catch (Exception e) {
-			log.error("邮件发送失败:from: {} ====== to: {}", from, to);
+			log.error("邮件发送失败:from: {} === to: {}", from, to);
+			log.error(e.getMessage());
 			return false;
 		}
 	}
@@ -77,10 +78,10 @@ public class EMailServiceImpl implements EMailService {
 	@Override
 	public Boolean sendVerificationCode(EMail4CodeBO eMail4CodeBO) {
 		if (sendSimpleMail(from, eMail4CodeBO.getTo(), "[网络鱼科技]验证码", "您的验证码为:" + eMail4CodeBO.getCode() + "，5分钟内有效，请勿将验证码告诉他人。")) {
-			log.info("验证码邮件发送成功:from: {} ======= to: {} ,with code {}", from, eMail4CodeBO.getTo(), eMail4CodeBO.getCode());
+			log.info("验证码邮件发送成功:from: {} === to: {} ,with code {}", from, eMail4CodeBO.getTo(), eMail4CodeBO.getCode());
 			return true;
 		} else {
-			log.error("验证码邮件发送失败:from: {} ======= to: {} ,with code {}", from, eMail4CodeBO.getTo(), eMail4CodeBO.getCode());
+			log.error("验证码邮件发送失败:from: {} === to: {} ,with code {}", from, eMail4CodeBO.getTo(), eMail4CodeBO.getCode());
 			return false;
 		}
 	}
@@ -92,11 +93,11 @@ public class EMailServiceImpl implements EMailService {
 	 * @param name 用户名
 	 */
 	public Boolean sendGreetings(String to, String name) {
-		if (sendSimpleMail(from, to, "[网络鱼科技]欢迎", "欢迎您的加入，" + name + "。")) {
-			log.info("欢迎邮件发送成功:from: {} ======= to: {} ,with name {}", from, to, name);
+		if (sendSimpleMail(from, to, "[网络鱼科技]欢迎邮件", "欢迎您的加入，" + name + "！祝您使用愉快！")) {
+			log.debug("欢迎邮件发送成功:from: {} === to: {} ,with name {}", from, to, name);
 			return true;
 		} else {
-			log.error("欢迎邮件发送失败:from: {} ======= to: {} ,with name {}", from, to, name);
+			log.error("欢迎邮件发送失败:from: {} === to: {} ,with name {}", from, to, name);
 			return false;
 		}
 	}

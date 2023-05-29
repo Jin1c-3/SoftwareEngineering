@@ -4,10 +4,15 @@ package com.yutech.back.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
+import com.yutech.back.entity.vo.AircraftBenefitVO;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.po.Aircraft;
+import com.yutech.back.entity.po.FlightInfoDetail;
+import com.yutech.back.entity.po.FlightTicket;
 import com.yutech.back.entity.po.ServiceProvider;
 import com.yutech.back.service.persistence.AircraftService;
+import com.yutech.back.service.persistence.FlightInfoDetailService;
+import com.yutech.back.service.persistence.FlightTicketService;
 import com.yutech.back.service.persistence.ServiceProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +44,12 @@ public class ServiceProviderController {
 
 	@Autowired
 	private AircraftService aircraftService;
+
+	@Autowired
+	private FlightInfoDetailService flightInfoDetailService;
+
+	@Autowired
+	private FlightTicketService flightTicketService;
 
 	@ApiOperation(value = "服务商登录", notes = "服务商登录，需要传入ID和密码")
 	@GetMapping("/login")
@@ -166,6 +179,42 @@ public class ServiceProviderController {
 			return Result.error().message("更新失败");
 		}
 		return Result.ok().message("更新成功");
+	}
+
+	@GetMapping("/query-benefit")
+	@ApiOperation(value = "查询收益", notes = "查询收益")
+	public Result<List<AircraftBenefitVO>> queryBenefit(@RequestParam Integer serviceProviderId) {
+		Float pushMoney = serviceProviderService.getOne(new QueryWrapper<ServiceProvider>().eq("service_provider_ID", serviceProviderId)).getPushMoney();
+		List<String> aircraftIdList = new ArrayList<>();
+		List<AircraftBenefitVO> aircraftBenefitVOList = new ArrayList<>();
+
+		aircraftService.list(new QueryWrapper<Aircraft>()
+						.eq("service_provider_ID", serviceProviderId))
+				.forEach(aircraft -> {
+					aircraftIdList.add(aircraft.getAircraftId());
+				});
+
+		aircraftIdList.forEach(aircraftId1 -> {
+			AircraftBenefitVO aircraftBenefitVO = new AircraftBenefitVO();
+			List<String> flightIdList = new ArrayList<>();
+			aircraftBenefitVO.setAircraftId(aircraftId1);
+			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+							.eq("aircraft_ID", aircraftId1))
+					.forEach(flightInfoDetail -> {
+						flightIdList.add(flightInfoDetail.getFlightId());
+					});
+			flightIdList.forEach(flightId -> {
+				flightTicketService.list(new QueryWrapper<FlightTicket>()
+								.eq("flight_ID", flightId))
+						.forEach(flightTicket -> {
+							aircraftBenefitVO.setTotalBenefit(aircraftBenefitVO.getTotalBenefit().add(flightTicket.getFlightPrice()));
+							aircraftBenefitVO.setFlightTicketNum(aircraftBenefitVO.getFlightTicketNum() + 1);
+						});
+			});
+			aircraftBenefitVO.setTrueBenefit(aircraftBenefitVO.getTotalBenefit().multiply(new BigDecimal(1 - pushMoney)));
+			aircraftBenefitVOList.add(aircraftBenefitVO);
+		});
+		return Result.ok(aircraftBenefitVOList).message("查询成功");
 	}
 }
 
