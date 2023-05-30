@@ -243,12 +243,12 @@ public class AircraftController {
 
 		if (aircraftSeatDTO.getSeatNo() != null && aircraftSeatDTO != null) {
 			aircraftAvailableSeatsList = aircraftAvailableSeatsList.stream()
-					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatNo() == aircraftSeatDTO.getSeatNo())
+					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatNo().equals(aircraftSeatDTO.getSeatNo()))
 					.collect(Collectors.toList());
 		}
 		if (aircraftSeatDTO.getSeatType() != null && aircraftSeatDTO != null) {
 			aircraftAvailableSeatsList = aircraftAvailableSeatsList.stream()
-					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatType() == aircraftSeatDTO.getSeatType())
+					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatType().equals(aircraftSeatDTO.getSeatType()))
 					.collect(Collectors.toList());
 		}
 		try {
@@ -258,7 +258,7 @@ public class AircraftController {
 		} catch (Exception e) {
 			throw new GlobalException("查询航班座位信息失败", e);
 		}
-		return Result.ok(aircraftSeatList).message(aircraftSeatList == null ? "暂无此座位" : "查询航班座位信息成功");
+		return Result.ok(aircraftSeatList).message(aircraftSeatList.isEmpty() ? "暂无此座位" : "查询航班座位信息成功");
 	}
 
 	@GetMapping("/query-aircraft-ticket")
