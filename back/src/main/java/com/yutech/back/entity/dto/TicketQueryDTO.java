@@ -13,13 +13,13 @@ public class TicketQueryDTO {
 
 	@ApiModelProperty(value = "始发城市或火车站名", required = true)
 	@NotBlank(message = "始发城市不能为空")
-	private String StartCityOrStation;
+	private String startCityOrStation;
 
 	@ApiModelProperty(value = "终点城市或火车站名", required = true)
 	@NotBlank(message = "终点城市不能为空")
-	private String EndCityOrStation;
+	private String endCityOrStation;
 
 	@ApiModelProperty(value = "用户出发时间，只需要年月日", required = true)
 	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "日期格式不正确")
-	private String LeaveYearMonthDay;
+	private String leaveYearMonthDay;
 }
