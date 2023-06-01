@@ -135,7 +135,6 @@ public class AircraftController {
 							.and(flightInfoDetailQueryWrapper -> flightInfoDetailQueryWrapper.like("flight_schedule", weekDay + "")))
 					.stream().forEach(flightInfoDetail -> {
 						startFlights.add(flightInfoDetail.getFlightId() +
-								"," + flightInfoDetail.getFlightOrder() +
 								"," + flightInfoDetail.getFlightSchedule());
 					});
 			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
@@ -143,7 +142,6 @@ public class AircraftController {
 							.and(flightInfoDetailQueryWrapper -> flightInfoDetailQueryWrapper.like("flight_schedule", weekDay + "")))
 					.stream().forEach(flightInfoDetail -> {
 						endFlights.add(flightInfoDetail.getFlightId() +
-								"," + flightInfoDetail.getFlightOrder() +
 								"," + flightInfoDetail.getFlightSchedule());
 					});
 		} catch (Exception e) {
@@ -160,7 +158,7 @@ public class AircraftController {
 					List<FlightInfoDetail> flightInfoDetails = new ArrayList<>();
 					flightInfoDetails.addAll(flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
 							.eq("flight_id", trueFlight.split(",")[0])
-							.eq("flight_schedule", trueFlight.split(",")[2])));
+							.eq("flight_schedule", trueFlight.split(",")[1])));
 					flightInfoDetailList.add(flightInfoDetails);
 				} catch (Exception e) {
 					throw new GlobalException("查询航班信息失败，航线结果对接出错", e);
