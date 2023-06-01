@@ -46,23 +46,46 @@ public class PassengerController {
 		return Result.ok(passengerService.list(new QueryWrapper<Passenger>().eq("usr_id", usrId))).message("查询成功");
 	}
 
+	private boolean isPassengerInDB(Passenger passenger) {
+		return passengerService.getOne(new QueryWrapper<Passenger>()
+				.eq("passenger_id", passenger.getPassengerId())
+				.eq("usr_id", passenger.getUsrId())) != null;
+	}
+
 	@PostMapping("/addPassenger")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息，前端弄一个页面添加就行")
 	public Result<Object> addPassenger(@RequestBody Passenger passenger) {
 		log.debug("添加乘客信息===" + passenger);
-		Passenger passengerInDB = passengerService.getOne(new QueryWrapper<Passenger>()
-				.eq("passenger_id", passenger.getPassengerId())
-				.eq("usr_id", passenger.getUsrId()));
-		if (passengerInDB != null) {
+		if (isPassengerInDB(passenger)) {
 			log.info("添加乘客信息失败，该乘客已存在===" + passenger);
 			return Result.error().message("添加失败，该乘客已存在");
 		}
 		try {
 			passengerService.save(passenger);
-			log.debug("添加乘客信息成功===" + passenger);
+			log.trace("添加乘客信息成功===" + passenger);
 			return Result.ok().message("添加成功");
 		} catch (Exception e) {
 			log.error("添加乘客信息失败==={}==={}", passenger, e.getMessage());
+			return Result.error().message("添加失败");
+		}
+	}
+
+	@PostMapping("addPassengerList")
+	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息列表")
+	public Result<Object> addPassengerList(@RequestBody List<Passenger> passengerList) {
+		log.debug("添加乘客信息列表===" + passengerList);
+		for (Passenger passenger : passengerList) {
+			if (isPassengerInDB(passenger)) {
+				log.info("添加乘客信息失败，该乘客已存在===" + passenger);
+				return Result.error().message("添加失败，该乘客已存在");
+			}
+		}
+		try {
+			passengerService.saveBatch(passengerList);
+			log.trace("添加乘客信息列表成功===" + passengerList);
+			return Result.ok().message("添加成功");
+		} catch (Exception e) {
+			log.error("添加乘客信息列表失败==={}==={}", passengerList, e.getMessage());
 			return Result.error().message("添加失败");
 		}
 	}
@@ -71,10 +94,7 @@ public class PassengerController {
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
 	public Result<Object> deletePassenger(@RequestBody Passenger passenger) {
 		log.debug("删除乘客信息===" + passenger);
-		Passenger passengerInDB = passengerService.getOne(new QueryWrapper<Passenger>()
-				.eq("passenger_id", passenger.getPassengerId())
-				.eq("usr_id", passenger.getUsrId()));
-		if (passengerInDB == null) {
+		if (isPassengerInDB(passenger)) {
 			log.info("添加乘客信息失败，该乘客不存在===" + passenger);
 			return Result.error().message("添加失败，该乘客不存在");
 		}

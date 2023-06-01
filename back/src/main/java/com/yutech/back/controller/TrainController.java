@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * <p>
@@ -84,6 +85,31 @@ public class TrainController {
 		return Result.ok(trainNumberInfoDetail).message(trainNumberInfoDetail == null ? "暂无此路线" : "查询火车票信息成功");
 	}
 
+	private boolean isTransit(TrainNumberInfoDetail start, TrainNumberInfoDetail end) {
+		AtomicBoolean isTransit = new AtomicBoolean(false);
+		boolean isSameTrain = start.getTrainNumberId().equals(end.getTrainNumberId())
+				&& start.getTrainOrder() < end.getTrainOrder();
+		if (isSameTrain) {
+			return true;
+		}
+		List<TrainNumberInfoDetail> startTrainNumberInfoDetailList = trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
+				.eq("train_number_ID", start.getTrainNumberId()));
+		List<TrainNumberInfoDetail> endTrainNumberInfoDetailList = trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
+				.eq("train_number_ID", end.getTrainNumberId()));
+		startTrainNumberInfoDetailList.stream().filter(startFollowStation -> startFollowStation.getTrainOrder() > start.getTrainOrder())
+				.forEach(startFollowStation -> {
+					endTrainNumberInfoDetailList.stream().filter(endForwardStation -> endForwardStation.getTrainOrder() < end.getTrainOrder())
+							.anyMatch(endForwardStation -> {
+								if (startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())) {
+									isTransit.set(true);
+									return true;
+								}
+								return false;
+							});
+				});
+		return isTransit.get();
+	}
+
 	@PostMapping("/query-train")
 	@ApiOperation(value = "查询满足条件的火车路线", notes = "查询火车路线")
 	public Result<List<List<TrainNumberInfoDetail>>> queryTrain(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
@@ -106,11 +132,13 @@ public class TrainController {
 		}
 		try {
 			startCityOrStation.stream().forEach(start -> {
-				endCityOrStation.stream().forEach(end -> {
-					if (start.getTrainNumberId().equals(end.getTrainNumberId()) && start.getTrainOrder() < end.getTrainOrder()) {
+				endCityOrStation.stream().anyMatch(end -> {
+					if (isTransit(start, end)) {
 						trueTrainNumberId.add(start.getTrainNumberId());
-						return;
+						endCityOrStation.remove(end);
+						return true;
 					}
+					return false;
 				});
 			});
 		} catch (Exception e) {
