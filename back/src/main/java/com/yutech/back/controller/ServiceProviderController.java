@@ -2,14 +2,15 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.JwtUtil;
 import com.yutech.back.common.utils.Result;
-import com.yutech.back.entity.vo.AircraftBenefitVO;
 import com.yutech.back.entity.dto.LoginDTO;
 import com.yutech.back.entity.po.Aircraft;
 import com.yutech.back.entity.po.FlightInfoDetail;
 import com.yutech.back.entity.po.FlightTicket;
 import com.yutech.back.entity.po.ServiceProvider;
+import com.yutech.back.entity.vo.AircraftBenefitVO;
 import com.yutech.back.service.persistence.AircraftService;
 import com.yutech.back.service.persistence.FlightInfoDetailService;
 import com.yutech.back.service.persistence.FlightTicketService;
@@ -86,11 +87,15 @@ public class ServiceProviderController {
 	@ApiOperation(value = "服务商信息更新", notes = "服务商信息更新，需要传入token")
 	@GetMapping("/update")
 	public Result<Object> update(ServiceProvider serviceProvider) {
-		if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
-			log.info("服务商不存在===" + serviceProvider);
-			return Result.error().message("服务商不存在");
+		try {
+			if (serviceProviderService.getById(serviceProvider.getServiceProviderId()) == null) {
+				log.info("服务商不存在===" + serviceProvider);
+				return Result.error().message("服务商不存在");
+			}
+			serviceProviderService.updateById(serviceProvider);
+		} catch (Exception e) {
+			throw new GlobalException("服务商查询异常", e);
 		}
-		serviceProviderService.updateById(serviceProvider);
 		log.debug("服务商更新成功===" + serviceProvider);
 		return Result.ok().message("更新成功");
 	}

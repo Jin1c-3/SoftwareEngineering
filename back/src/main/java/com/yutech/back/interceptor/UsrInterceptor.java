@@ -3,6 +3,7 @@ package com.yutech.back.interceptor;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.utils.InterceptorUtil;
 import com.yutech.back.common.utils.JwtUtil;
+import com.yutech.back.entity.po.Usr;
 import com.yutech.back.service.persistence.UsrService;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -34,8 +35,14 @@ public class UsrInterceptor implements HandlerInterceptor {
 		}
 		if (!StringUtils.isEmpty(token)) {
 			String id = JwtUtil.getId(request);
+			Usr usrInDB = usrService.getById(id);
+			if (usrInDB == null) {
+				log.warn("数据库中没有id为{}的用户", id);
+				InterceptorUtil.createInvalidResponse(response);
+				return false;
+			}
 			log.debug(id + "===的token是===" + token);
-			if (JwtUtil.verify(token, id, usrService.getById(id).getUsrPwd())) {
+			if (JwtUtil.verify(token, id, usrInDB.getUsrPwd())) {
 				log.info(id + "===通过了token验证");
 				return true;
 			}

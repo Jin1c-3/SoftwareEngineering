@@ -34,4 +34,8 @@ public class InterceptorUtil {
 	public static void createTimeLimitResponse(HttpServletResponse response) {
 		createResponse(response, "请重新登录", 50008);
 	}
+
+	public static void createInvalidResponse(HttpServletResponse response) {
+		createResponse(response, "无效的token", 50014);
+	}
 }

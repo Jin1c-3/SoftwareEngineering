@@ -3,6 +3,7 @@ package com.yutech.back.controller;
 
 import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.*;
 import com.yutech.back.entity.bo.PaymentBO;
@@ -72,7 +73,7 @@ public class UsrController {
 	private String defaultAvatar;
 
 	/**
-	 * 用户登录
+	 * 用户注册
 	 *
 	 * @param usrDTO 用户注册信息
 	 * @return 用户信息
@@ -80,12 +81,13 @@ public class UsrController {
 	@ApiOperation(value = "用户注册", notes = "用户注册，会检验唯一性。注意传头像的时候，他的key应该是avatar而不是UsrAvatar")
 	@PostMapping("/registry")
 	public Result<UsrVO> usrRegistry(@RequestBody UsrDTO usrDTO) {
-		log.debug("用户注册，前端信息====" + usrDTO);
+		log.debug("用户注册，前端信息===" + usrDTO);
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
 		if (Boolean.TRUE.equals(usrService.verifyUnique(usrPushInDB))) {
 			usrPushInDB.setUsrId(RandomGeneratorUtil.getRandomUsrIdByUUID());
 			usrPushInDB.setUsrAvatar(defaultAvatar);
+			usrPushInDB.setUsrPwd(PasswordEncryptorUtil.encrypt(usrPushInDB.getUsrPwd()));
 			log.debug("用户注册，即将存入数据库===" + usrPushInDB);
 			//保存用户信息
 			usrService.save(usrPushInDB);
@@ -122,18 +124,18 @@ public class UsrController {
 			}
 		}
 		if (countVerifier > 1) {
-			log.warn("用户登录失败，账号存在多个，用户为======{}", loginDTO);
+			log.warn("用户登录失败，账号存在多个，用户为==={}", loginDTO);
 			return Result.error("").message("您的账号存在问题，待管理员核实");
 		}
 		if (countVerifier == 0) {
-			log.info("用户登录失败，账号不存在，用户为======{}", loginDTO);
+			log.info("用户登录失败，账号不存在，用户为==={}", loginDTO);
 			return Result.error("").message("账号不存在");
 		}
-		if (!usrInDB.getUsrPwd().equals(loginDTO.getPwd())) {
-			log.info("用户登录失败，密码错误，用户为======{}", usrInDB);
+		if (!PasswordEncryptorUtil.match(loginDTO.getPwd(), usrInDB.getUsrPwd())) {
+			log.info("用户登录失败，密码错误，用户为==={}", usrInDB);
 			return Result.error("").message("密码错误");
 		}
-		log.info("用户登录成功======{}", usrInDB);
+		log.info("用户登录成功==={}", usrInDB);
 		return Result.ok(JwtUtil.sign(usrInDB.getUsrId(), usrInDB.getUsrPwd())).message("登录成功");
 	}
 
@@ -166,26 +168,30 @@ public class UsrController {
 	@PatchMapping("/update")
 	@ApiOperation(value = "修改用户信息", notes = "修改用户信息，请传入usrId!!!!!!")
 	public Result<UsrVO> updateUsrInfo(UsrDTO usrDTO, MultipartFile avatar, HttpServletRequest request) {
-		log.debug("用户信息修改，前端信息：=======" + usrDTO);
+		log.debug("用户信息修改，前端信息===" + usrDTO);
 		Usr usrInDB = usrService.getOne(new QueryWrapper<Usr>().eq("usr_ID", usrDTO.getUsrId()));
 		if (usrInDB == null) {
-			log.info("用户信息修改失败，用户不存在，用户为======{}", usrDTO);
+			log.info("用户信息修改失败，用户不存在，用户为==={}", usrDTO);
 			return Result.error(new UsrVO()).message("用户不存在");
 		}
 		Usr usrPushInDB = new Usr(usrDTO);
 		//验证账号唯一性
 		if (!usrService.verifyGoodUpdate(usrInDB)) {
-			log.info("用户信息修改失败，账号已存在，用户为======{}", usrInDB);
+			log.info("用户信息修改失败，账号已存在，用户为==={}", usrInDB);
 			return Result.error(new UsrVO()).message("修改失败，账号已存在");
 		}
 		//如果头像不为空，就上传头像
 		if (avatar != null) {
 			log.debug("用户信息修改，头像不为空，开始上传头像");
-			usrInDB.setUsrAvatar(FileUtil.storeMultipartFile(usrDTO.getUsrId(), avatar, request));
+			usrPushInDB.setUsrAvatar(FileUtil.storeMultipartFile(usrDTO.getUsrId(), avatar, request));
+		}
+		if (!StringUtils.isEmpty(usrDTO.getUsrPwd())) {
+			log.debug("用户信息修改，密码不为空，开始加密");
+			usrPushInDB.setUsrPwd(PasswordEncryptorUtil.encrypt(usrDTO.getUsrPwd()));
 		}
 		//更新用户信息
+		log.debug("用户信息更新成功，用户为==={}", usrPushInDB);
 		usrService.updateById(usrPushInDB);
-		log.info("用户信息更新成功，用户为==={}", usrPushInDB);
 		return Result.ok(new UsrVO(usrPushInDB)).message("修改成功");
 	}
 

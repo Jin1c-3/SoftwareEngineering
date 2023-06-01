@@ -2,6 +2,7 @@ package com.yutech.back.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yutech.back.common.exception.GlobalException;
 import com.yutech.back.common.utils.Result;
 import com.yutech.back.entity.po.Passenger;
 import com.yutech.back.service.persistence.PassengerService;
@@ -42,7 +43,7 @@ public class PassengerController {
 	@ApiOperation(value = "根据用户id查询乘客信息", notes = "用户id和PassengerID是互通的")
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataTypeClass = String.class)
 	public Result<List<Passenger>> findPsgByUsrId(String usrId) {
-		log.debug("根据usrId查询乘客信息=======" + usrId);
+		log.debug("根据usrId查询乘客信息===" + usrId);
 		return Result.ok(passengerService.list(new QueryWrapper<Passenger>().eq("usr_id", usrId))).message("查询成功");
 	}
 
@@ -65,13 +66,12 @@ public class PassengerController {
 			log.trace("添加乘客信息成功===" + passenger);
 			return Result.ok().message("添加成功");
 		} catch (Exception e) {
-			log.error("添加乘客信息失败==={}==={}", passenger, e.getMessage());
-			return Result.error().message("添加失败");
+			throw new GlobalException("添加乘客函数出错" + passenger, e);
 		}
 	}
 
 	@PostMapping("/addPassengerList")
-	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息列表")
+	@ApiOperation(value = "添加乘客信息列表", notes = "添加一条乘客信息列表")
 	public Result<Object> addPassengerList(@RequestBody List<Passenger> passengerList) {
 		log.debug("添加乘客信息列表===" + passengerList);
 		for (Passenger passenger : passengerList) {
@@ -85,8 +85,8 @@ public class PassengerController {
 			log.trace("添加乘客信息列表成功===" + passengerList);
 			return Result.ok().message("添加成功");
 		} catch (Exception e) {
-			log.error("添加乘客信息列表失败==={}==={}", passengerList, e.getMessage());
-			return Result.error().message("添加失败");
+			throw new GlobalException("添加乘客列表函数出错" + passengerList, e);
+
 		}
 	}
 

@@ -75,14 +75,14 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.0</version>
         </dependency>
 
         <!-- mybatis-plus-plus，支持多重主键-->
         <dependency>
             <groupId>com.github.jeffreyning</groupId>
             <artifactId>mybatisplus-plus</artifactId>
-            <version>1.5.1-RELEASE</version>
+            <version>1.7.4-RELEASE</version>
         </dependency>
 
         <!-- mybatis-plus-generator -->
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.0</version>
         </dependency>
         <!-- mybatis-plus engine -->
         <dependency>
@@ -211,6 +211,12 @@
             <groupId>cn.smallbun.screw</groupId>
             <artifactId>screw-core</artifactId>
             <version>1.0.5</version>
+        </dependency>
+
+        <!--数据库密码加密存储-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
