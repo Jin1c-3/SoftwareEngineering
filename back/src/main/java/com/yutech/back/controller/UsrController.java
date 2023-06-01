@@ -275,13 +275,16 @@ public class UsrController {
 						passengerName,
 						paymentDTO.getSeatType(),
 						paymentDTO.getMoney());
+				flightTicket.setTicketId(1000);
 				flightTickets.add(flightTicket);
 			}
 //			FlightTicket flightTicket = new FlightTicket(paymentDTO);
 //			flightTicket.setTicketStatus(StatusUtil.FLIGHT_TICKET_STATUS_UNPAID);
 //			flightTicket.setOrderId(orderNO);
 			try {
-				flightTicketService.saveBatch(flightTickets);
+				for (FlightTicket flightTicket : flightTickets) {
+					flightTicketService.mySave(flightTicket);
+				}
 			} catch (Exception e) {
 				throw new GlobalException("飞机票保存失败，但订单已创建", e);
 			}

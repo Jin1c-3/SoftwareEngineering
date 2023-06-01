@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.List;
@@ -41,6 +42,7 @@ public class PaymentDTO {
 	String endPortOrStation;
 
 	@ApiModelProperty(value = "乘客姓名")
+	@NotEmpty(message = "乘客姓名不能为空")
 	List<String> passengerNames;
 
 	@ApiModelProperty(value = "座位类型")
