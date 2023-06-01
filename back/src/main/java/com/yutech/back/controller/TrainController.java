@@ -68,7 +68,7 @@ public class TrainController {
 //	}
 
 	@GetMapping("/query-train-by-id")
-	@ApiOperation(value = "查询火车路线", notes = "查询火车路线")
+	@ApiOperation(value = "车次查询火车路线", notes = "查询火车路线")
 	public Result<List<TrainNumberInfoDetail>> queryTrainById(@NotBlank(message = "车次ID不能为空") @Validated
 	                                                          @RequestParam String trainNumberId) {
 		log.debug("查询火车票信息前端信息==={}", trainNumberId);
@@ -85,7 +85,7 @@ public class TrainController {
 	}
 
 	@PostMapping("/query-train")
-	@ApiOperation(value = "查询火车路线", notes = "查询火车路线")
+	@ApiOperation(value = "查询满足条件的火车路线", notes = "查询火车路线")
 	public Result<List<List<TrainNumberInfoDetail>>> queryTrain(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询火车路线信息前端信息==={}", ticketQueryDTO);
 		List<TrainNumberInfoDetail> startCityOrStation = new ArrayList<>();

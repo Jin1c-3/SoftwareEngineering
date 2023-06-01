@@ -73,7 +73,7 @@ public class AircraftController {
 	 * @return
 	 */
 	@GetMapping("/query-flight-by-id")
-	@ApiOperation("根据航班ID查询航班的站点信息")
+	@ApiOperation("航班ID查询航班的站点信息")
 	public Result<List<FlightInfoDetail>> queryFlightById(@NotBlank(message = "航班号不能为空")
 	                                                      @RequestParam String flightId) {
 		log.debug("查询航班信息前端信息==={}", flightId);
@@ -88,7 +88,7 @@ public class AircraftController {
 	}
 
 	@GetMapping("/query-flight-by-id-date")
-	@ApiOperation("根据航班ID和日期查询航班的站点信息")
+	@ApiOperation("航班ID+日期查询航班的站点信息")
 	public Result<List<FlightInfoDetail>> queryFlightByIdDate(@NotBlank(message = "航班号不能为空")
 	                                                          @RequestParam String flightId,
 	                                                          @NotBlank(message = "日期不能为空")
@@ -121,7 +121,7 @@ public class AircraftController {
 	 * @return
 	 */
 	@PostMapping("/query-flight")
-	@ApiOperation(value = "查询航班", notes = "只负责查询航班，不管有没有余票")
+	@ApiOperation(value = "查询满足条件的航班", notes = "只负责查询航班，不管有没有余票")
 	public Result<List<List<FlightInfoDetail>>> queryFlight(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询航班信息前端信息==={}", ticketQueryDTO);
 		int weekDay = DateUtil.getWeek(ticketQueryDTO.getLeaveYearMonthDay());

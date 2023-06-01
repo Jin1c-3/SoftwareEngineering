@@ -24,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/passenger")
-@Api(tags = "用户乘客接口")
+@Api(tags = "乘客接口")
 @Slf4j
 @CrossOrigin
 public class PassengerController {
