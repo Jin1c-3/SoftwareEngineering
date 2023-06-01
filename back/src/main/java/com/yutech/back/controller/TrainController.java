@@ -86,12 +86,12 @@ public class TrainController {
 
 	@PostMapping("/query-train")
 	@ApiOperation(value = "查询火车路线", notes = "查询火车路线")
-	public Result<List<TrainNumberInfoDetail>> queryTrain(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
+	public Result<List<List<TrainNumberInfoDetail>>> queryTrain(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询火车路线信息前端信息==={}", ticketQueryDTO);
 		List<TrainNumberInfoDetail> startCityOrStation = new ArrayList<>();
 		List<TrainNumberInfoDetail> endCityOrStation = new ArrayList<>();
 		List<String> trueTrainNumberId = new ArrayList<>();
-		List<TrainNumberInfoDetail> trainNumberInfoDetailList = new ArrayList<>();
+		List<List<TrainNumberInfoDetail>> trainNumberInfoDetailList = new ArrayList<>();
 		try {
 			startCityOrStation.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
 					.eq("train_arrive_city", ticketQueryDTO.getStartCityOrStation())
@@ -118,8 +118,10 @@ public class TrainController {
 		}
 		try {
 			trueTrainNumberId.stream().forEach(trainNumberId -> {
-				trainNumberInfoDetailList.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
+				List<TrainNumberInfoDetail> trainNumberInfoDetails = new ArrayList<>();
+				trainNumberInfoDetails.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
 						.eq("train_number_ID", trainNumberId)));
+				trainNumberInfoDetailList.add(trainNumberInfoDetails);
 			});
 		} catch (Exception e) {
 			throw new GlobalException("转换火车路线信息异常", e);

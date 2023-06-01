@@ -122,12 +122,12 @@ public class AircraftController {
 	 */
 	@PostMapping("/query-flight")
 	@ApiOperation(value = "查询航班", notes = "只负责查询航班，不管有没有余票")
-	public Result<List<FlightInfoDetail>> queryFlight(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
+	public Result<List<List<FlightInfoDetail>>> queryFlight(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询航班信息前端信息==={}", ticketQueryDTO);
 		List<String> startFlights = new ArrayList<String>();
 		List<String> endFlights = new ArrayList<String>();
 		List<String> trueFlights = new ArrayList<String>();
-		List<FlightInfoDetail> flightInfoList = new ArrayList<>();
+		List<List<FlightInfoDetail>> flightInfoList = new ArrayList<>();
 		try {
 			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
 							.eq("flight_start_city", ticketQueryDTO.getStartCityOrStation()))
@@ -156,11 +156,13 @@ public class AircraftController {
 			});
 			trueFlights.stream().forEach(trueFlight -> {
 				try {
-					flightInfoList.addAll(flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+					List<FlightInfoDetail> flightInfoDetails = new ArrayList<>();
+					flightInfoDetails.addAll(flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
 							.eq("flight_id", trueFlight.split(",")[0])
 							.eq("flight_start_time", trueFlight.split(",")[1])
 							.eq("flight_end_time", trueFlight.split(",")[2])
 							.eq("flight_order", trueFlight.split(",")[3])));
+					flightInfoList.add(flightInfoDetails);
 				} catch (Exception e) {
 					throw new GlobalException("查询航班信息失败，航线结果对接出错", e);
 				}
