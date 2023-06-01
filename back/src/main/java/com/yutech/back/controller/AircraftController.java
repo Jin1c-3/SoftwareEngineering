@@ -160,7 +160,6 @@ public class AircraftController {
 					List<FlightInfoDetail> flightInfoDetails = new ArrayList<>();
 					flightInfoDetails.addAll(flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
 							.eq("flight_id", trueFlight.split(",")[0])
-							.eq("flight_order", trueFlight.split(",")[1])
 							.eq("flight_schedule", trueFlight.split(",")[2])));
 					flightInfoDetailList.add(flightInfoDetails);
 				} catch (Exception e) {
