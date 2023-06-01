@@ -18,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -100,11 +101,22 @@ public class TrainController {
 				.forEach(startFollowStation -> {
 					endTrainNumberInfoDetailList.stream().filter(endForwardStation -> endForwardStation.getTrainOrder() < end.getTrainOrder())
 							.anyMatch(endForwardStation -> {
-								if (startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())) {
-									isTransit.set(true);
-									return true;
+								try {
+									SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+									boolean isNull = startFollowStation.getTrainArriveCity() == null || endForwardStation.getTrainArriveCity() == null;
+									if (isNull) {
+										return false;
+									}
+									boolean isSameCityAndSuitableTime = startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())
+											&& sdf.parse(startFollowStation.getTrainArriveTime().substring(0, 5)).before(sdf.parse(endForwardStation.getTrainLeaveTime().substring(0, 5)));
+									if (isSameCityAndSuitableTime) {
+										isTransit.set(true);
+										return true;
+									}
+									return false;
+								} catch (Exception e) {
+									throw new GlobalException("时间转换异常", e);
 								}
-								return false;
 							});
 				});
 		return isTransit.get();
@@ -116,7 +128,7 @@ public class TrainController {
 		log.debug("查询火车路线信息前端信息==={}", ticketQueryDTO);
 		List<TrainNumberInfoDetail> startCityOrStation = new ArrayList<>();
 		List<TrainNumberInfoDetail> endCityOrStation = new ArrayList<>();
-		List<String> trueTrainNumberId = new ArrayList<>();
+		List<String> trueTrainNumberIdOrIds = new ArrayList<>();
 		List<List<TrainNumberInfoDetail>> trainNumberInfoDetailList = new ArrayList<>();
 		try {
 			startCityOrStation.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
@@ -132,23 +144,25 @@ public class TrainController {
 		}
 		try {
 			startCityOrStation.stream().forEach(start -> {
-				endCityOrStation.stream().anyMatch(end -> {
+				endCityOrStation.stream().forEach(end -> {
 					if (isTransit(start, end)) {
-						trueTrainNumberId.add(start.getTrainNumberId());
-						endCityOrStation.remove(end);
-						return true;
+						trueTrainNumberIdOrIds.add(start.getTrainNumberId() + "," + end.getTrainNumberId());
+					} else if (start.getTrainNumberId().equals(end.getTrainNumberId())
+							&& start.getTrainOrder() < end.getTrainOrder()) {
+						trueTrainNumberIdOrIds.add(start.getTrainNumberId());
 					}
-					return false;
 				});
 			});
 		} catch (Exception e) {
 			throw new GlobalException("合并火车路线信息异常", e);
 		}
 		try {
-			trueTrainNumberId.stream().forEach(trainNumberId -> {
+			trueTrainNumberIdOrIds.stream().forEach(trainNumberIdOrIds -> {
 				List<TrainNumberInfoDetail> trainNumberInfoDetails = new ArrayList<>();
-				trainNumberInfoDetails.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
-						.eq("train_number_ID", trainNumberId)));
+				for (String trainNumberId : trainNumberIdOrIds.split(",")) {
+					trainNumberInfoDetails.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
+							.eq("train_number_ID", trainNumberId)));
+				}
 				trainNumberInfoDetailList.add(trainNumberInfoDetails);
 			});
 		} catch (Exception e) {
