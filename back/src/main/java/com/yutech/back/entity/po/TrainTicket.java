@@ -3,7 +3,6 @@ package com.yutech.back.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.yutech.back.entity.dto.PaymentDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -70,16 +69,29 @@ public class TrainTicket implements Serializable {
 	public TrainTicket() {
 	}
 
-	public TrainTicket(PaymentDTO paymentDTO) {
-		this.trainNumberId = paymentDTO.getFlightOrTrainNO();
-		this.trainTicketStartTime = paymentDTO.getStartTime();
-		this.trainTicketEndTime = paymentDTO.getEndTime();
-		this.trainStartStation = paymentDTO.getStartPortOrStation();
-		this.trainEndStation = paymentDTO.getEndPortOrStation();
-		this.passengerName = paymentDTO.getPassengerName();
-		this.seatType = paymentDTO.getSeatType();
-		this.trainPrice = paymentDTO.getMoney();
-//		this.seatNo = paymentDTO.getSeatNo();
+	public TrainTicket(String trainNumberId,String orderId, String trainTicketStartTime, String trainTicketEndTime, String trainStartStation, String trainEndStation,String ticketStatus, String passengerName, String seatType, BigDecimal trainPrice) {
+		this.trainNumberId = trainNumberId;
+		this.orderId = orderId;
+		this.trainTicketStartTime = trainTicketStartTime;
+		this.trainTicketEndTime = trainTicketEndTime;
+		this.trainStartStation = trainStartStation;
+		this.trainEndStation = trainEndStation;
+		this.ticketStatus = ticketStatus;
+		this.passengerName = passengerName;
+		this.seatType = seatType;
+		this.trainPrice = trainPrice;
 	}
+
+//	public TrainTicket(PaymentDTO paymentDTO) {
+//		this.trainNumberId = paymentDTO.getFlightOrTrainNO();
+//		this.trainTicketStartTime = paymentDTO.getStartTime();
+//		this.trainTicketEndTime = paymentDTO.getEndTime();
+//		this.trainStartStation = paymentDTO.getStartPortOrStation();
+//		this.trainEndStation = paymentDTO.getEndPortOrStation();
+//		this.passengerName = paymentDTO.getPassengerName();
+//		this.seatType = paymentDTO.getSeatType();
+//		this.trainPrice = paymentDTO.getMoney();
+////		this.seatNo = paymentDTO.getSeatNo();
+//	}
 
 }

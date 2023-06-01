@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -254,20 +256,50 @@ public class UsrController {
 		String alipayForm = alipayService.toPay(new PaymentBO(paymentDTO));
 
 		if (paymentDTO.getVehicleType().equals("飞机")) {
-			FlightTicket flightTicket = new FlightTicket(paymentDTO);
-			flightTicket.setTicketStatus(StatusUtil.FLIGHT_TICKET_STATUS_UNPAID);
-			flightTicket.setOrderId(orderNO);
+
+			List<FlightTicket> flightTickets = new ArrayList<>();
+			for (String passengerName : paymentDTO.getPassengerNames()) {
+				FlightTicket flightTicket = new FlightTicket(paymentDTO.getFlightOrTrainNO(),
+						orderNO,
+						paymentDTO.getStartTime(),
+						paymentDTO.getEndTime(),
+						paymentDTO.getStartPortOrStation(),
+						paymentDTO.getEndPortOrStation(),
+						StatusUtil.FLIGHT_TICKET_STATUS_UNPAID,
+						passengerName,
+						paymentDTO.getSeatType(),
+						paymentDTO.getMoney());
+				flightTickets.add(flightTicket);
+			}
+//			FlightTicket flightTicket = new FlightTicket(paymentDTO);
+//			flightTicket.setTicketStatus(StatusUtil.FLIGHT_TICKET_STATUS_UNPAID);
+//			flightTicket.setOrderId(orderNO);
 			try {
-				flightTicketService.save(flightTicket);
+				flightTicketService.saveBatch(flightTickets);
 			} catch (Exception e) {
 				throw new GlobalException("飞机票保存失败，但订单已创建", e);
 			}
 		} else if (paymentDTO.getVehicleType().equals("火车")) {
-			TrainTicket trainTicket = new TrainTicket(paymentDTO);
-			trainTicket.setTicketStatus(StatusUtil.TRAIN_TICKET_STATUS_UNPAID);
-			trainTicket.setOrderId(orderNO);
+
+			List<TrainTicket> trainTickets = new ArrayList<>();
+			for (String passengerName : paymentDTO.getPassengerNames()) {
+				TrainTicket trainTicket = new TrainTicket(paymentDTO.getFlightOrTrainNO(),
+						orderNO,
+						paymentDTO.getStartTime(),
+						paymentDTO.getEndTime(),
+						paymentDTO.getStartPortOrStation(),
+						paymentDTO.getEndPortOrStation(),
+						StatusUtil.TRAIN_TICKET_STATUS_UNPAID,
+						passengerName,
+						paymentDTO.getSeatType(),
+						paymentDTO.getMoney());
+				trainTickets.add(trainTicket);
+			}
+//			TrainTicket trainTicket = new TrainTicket(paymentDTO);
+//			trainTicket.setTicketStatus(StatusUtil.TRAIN_TICKET_STATUS_UNPAID);
+//			trainTicket.setOrderId(orderNO);
 			try {
-				trainTicketService.save(trainTicket);
+				trainTicketService.saveBatch(trainTickets);
 			} catch (Exception e) {
 				throw new GlobalException("火车票保存失败，但订单已创建", e);
 			}

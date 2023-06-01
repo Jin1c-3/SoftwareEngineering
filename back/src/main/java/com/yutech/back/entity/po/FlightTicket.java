@@ -3,7 +3,6 @@ package com.yutech.back.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.yutech.back.entity.dto.PaymentDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -72,16 +71,29 @@ public class FlightTicket implements Serializable {
 	public FlightTicket() {
 	}
 
-	public FlightTicket(PaymentDTO paymentDTO) {
-		this.flightId = paymentDTO.getFlightOrTrainNO();
-		this.flightStartTime = paymentDTO.getStartTime();
-		this.flightEndTime = paymentDTO.getEndTime();
-		this.flightStartPort = paymentDTO.getStartPortOrStation();
-		this.flightEndPort = paymentDTO.getEndPortOrStation();
-		this.passengerName = paymentDTO.getPassengerName();
-		this.seatType = paymentDTO.getSeatType();
-//		this.seatNo = paymentDTO.getSeatNo();
-		this.flightPrice = paymentDTO.getMoney();
+	public FlightTicket(String flightId, String orderId, String flightStartTime, String flightEndTime, String flightStartPort, String flightEndPort, String ticketStatus, String passengerName, String seatType, BigDecimal flightPrice) {
+		this.flightId = flightId;
+		this.orderId = orderId;
+		this.flightStartTime = flightStartTime;
+		this.flightEndTime = flightEndTime;
+		this.flightStartPort = flightStartPort;
+		this.flightEndPort = flightEndPort;
+		this.ticketStatus = ticketStatus;
+		this.passengerName = passengerName;
+		this.seatType = seatType;
+		this.flightPrice = flightPrice;
 	}
+
+//	public FlightTicket(PaymentDTO paymentDTO) {
+//		this.flightId = paymentDTO.getFlightOrTrainNO();
+//		this.flightStartTime = paymentDTO.getStartTime();
+//		this.flightEndTime = paymentDTO.getEndTime();
+//		this.flightStartPort = paymentDTO.getStartPortOrStation();
+//		this.flightEndPort = paymentDTO.getEndPortOrStation();
+//		this.passengerName = paymentDTO.getPassengerName();
+//		this.seatType = paymentDTO.getSeatType();
+////		this.seatNo = paymentDTO.getSeatNo();
+//		this.flightPrice = paymentDTO.getMoney();
+//	}
 
 }

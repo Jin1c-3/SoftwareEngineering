@@ -8,6 +8,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @ApiModel(value = "支付传输层", description = "支付传输层")
@@ -40,8 +41,7 @@ public class PaymentDTO {
 	String endPortOrStation;
 
 	@ApiModelProperty(value = "乘客姓名")
-	@NotBlank(message = "乘客姓名不能为空")
-	String passengerName;
+	List<String> passengerNames;
 
 	@ApiModelProperty(value = "座位类型")
 	String seatType;
