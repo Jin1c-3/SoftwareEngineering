@@ -70,7 +70,7 @@ public class PassengerController {
 		}
 	}
 
-	@PostMapping("addPassengerList")
+	@PostMapping("/addPassengerList")
 	@ApiOperation(value = "添加乘客信息", notes = "添加一条乘客信息列表")
 	public Result<Object> addPassengerList(@RequestBody List<Passenger> passengerList) {
 		log.debug("添加乘客信息列表===" + passengerList);
