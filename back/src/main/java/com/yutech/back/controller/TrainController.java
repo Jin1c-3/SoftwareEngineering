@@ -143,15 +143,25 @@ public class TrainController {
 			throw new GlobalException("查询火车路线信息异常", e);
 		}
 		try {
-			startCityOrStation.stream().forEach(start -> {
-				endCityOrStation.stream().forEach(end -> {
+			startCityOrStation.stream().anyMatch(start -> {
+				if(trueTrainNumberIdOrIds.size()>50){
+					return true;
+				}
+				endCityOrStation.stream().anyMatch(end -> {
+					if(trueTrainNumberIdOrIds.size()>100){
+						return true;
+					}
 					if (isTransit(start, end)) {
 						trueTrainNumberIdOrIds.add(start.getTrainNumberId() + "," + end.getTrainNumberId());
+						return false;
 					} else if (start.getTrainNumberId().equals(end.getTrainNumberId())
 							&& start.getTrainOrder() < end.getTrainOrder()) {
 						trueTrainNumberIdOrIds.add(start.getTrainNumberId());
+						return false;
 					}
+					return false;
 				});
+				return false;
 			});
 		} catch (Exception e) {
 			throw new GlobalException("合并火车路线信息异常", e);
