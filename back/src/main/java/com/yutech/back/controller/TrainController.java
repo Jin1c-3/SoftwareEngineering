@@ -8,7 +8,6 @@ import com.yutech.back.entity.dto.TrainSeatDTO;
 import com.yutech.back.entity.po.TrainNumberInfoDetail;
 import com.yutech.back.entity.po.TrainTicket;
 import com.yutech.back.service.persistence.TrainNumberInfoDetailService;
-import com.yutech.back.service.persistence.TrainNumberInfoService;
 import com.yutech.back.service.persistence.TrainTicketService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,10 +42,14 @@ public class TrainController {
 	private TrainNumberInfoDetailService trainNumberInfoDetailService;
 
 	@Autowired
-	private TrainNumberInfoService trainNumberInfoService;
-
-	@Autowired
 	private TrainTicketService trainTicketService;
+
+	private static final Integer MAX_ITER = 50;
+
+	private TrainNumberInfoDetail mid1 = new TrainNumberInfoDetail();
+
+	private TrainNumberInfoDetail mid2 = new TrainNumberInfoDetail();
+
 
 //	@GetMapping("/queryTrainTicket")
 //	public Result<Object> getQueryTrainTicket(GetTrainDTO getTrainDTO) {
@@ -86,19 +89,27 @@ public class TrainController {
 		return Result.ok(trainNumberInfoDetail).message(trainNumberInfoDetail == null ? "暂无此路线" : "查询火车票信息成功");
 	}
 
+	private boolean isNonstop(TrainNumberInfoDetail start, TrainNumberInfoDetail end) {
+		return start.getTrainNumberId().equals(end.getTrainNumberId())
+				&& start.getTrainOrder() < end.getTrainOrder();
+	}
+
 	private boolean isTransit(TrainNumberInfoDetail start, TrainNumberInfoDetail end) {
 		AtomicBoolean isTransit = new AtomicBoolean(false);
-		boolean isSameTrain = start.getTrainNumberId().equals(end.getTrainNumberId())
-				&& start.getTrainOrder() < end.getTrainOrder();
-		if (isSameTrain) {
-			return true;
-		}
+//		boolean isSameTrain = start.getTrainNumberId().equals(end.getTrainNumberId())
+//				&& start.getTrainOrder() < end.getTrainOrder();
+//		if (isSameTrain) {
+//			return true;
+//		}
 		List<TrainNumberInfoDetail> startTrainNumberInfoDetailList = trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
 				.eq("train_number_ID", start.getTrainNumberId()));
 		List<TrainNumberInfoDetail> endTrainNumberInfoDetailList = trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
 				.eq("train_number_ID", end.getTrainNumberId()));
 		startTrainNumberInfoDetailList.stream().filter(startFollowStation -> startFollowStation.getTrainOrder() > start.getTrainOrder())
 				.forEach(startFollowStation -> {
+					if (isTransit.get()) {
+						return;
+					}
 					endTrainNumberInfoDetailList.stream().filter(endForwardStation -> endForwardStation.getTrainOrder() < end.getTrainOrder())
 							.anyMatch(endForwardStation -> {
 								try {
@@ -108,14 +119,17 @@ public class TrainController {
 										return false;
 									}
 									boolean isSameCityAndSuitableTime = startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())
-											&& sdf.parse(startFollowStation.getTrainArriveTime().substring(0, 5)).before(sdf.parse(endForwardStation.getTrainLeaveTime().substring(0, 5)));
+											&& (sdf.parse(startFollowStation.getTrainArriveTime().substring(0, 5)).before(sdf.parse(endForwardStation.getTrainLeaveTime().substring(0, 5)))
+											|| startFollowStation.getDateorder() < endForwardStation.getDateorder());
 									if (isSameCityAndSuitableTime) {
+										mid1 = startFollowStation;
+										mid2 = endForwardStation;
 										isTransit.set(true);
 										return true;
 									}
 									return false;
 								} catch (Exception e) {
-									throw new GlobalException("时间转换异常", e);
+									throw new GlobalException("时间转换可能异常", e);
 								}
 							});
 				});
@@ -128,7 +142,6 @@ public class TrainController {
 		log.debug("查询火车路线信息前端信息==={}", ticketQueryDTO);
 		List<TrainNumberInfoDetail> startCityOrStation = new ArrayList<>();
 		List<TrainNumberInfoDetail> endCityOrStation = new ArrayList<>();
-		List<String> trueTrainNumberIdOrIds = new ArrayList<>();
 		List<List<TrainNumberInfoDetail>> trainNumberInfoDetailList = new ArrayList<>();
 		try {
 			startCityOrStation.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
@@ -144,19 +157,28 @@ public class TrainController {
 		}
 		try {
 			startCityOrStation.stream().anyMatch(start -> {
-				if(trueTrainNumberIdOrIds.size()>50){
+				if (trainNumberInfoDetailList.size() > MAX_ITER) {
 					return true;
 				}
 				endCityOrStation.stream().anyMatch(end -> {
-					if(trueTrainNumberIdOrIds.size()>100){
+					if (trainNumberInfoDetailList.size() > MAX_ITER) {
 						return true;
 					}
-					if (isTransit(start, end)) {
-						trueTrainNumberIdOrIds.add(start.getTrainNumberId() + "," + end.getTrainNumberId());
+					if (isNonstop(start, end)) {
+						trainNumberInfoDetailList.add(new ArrayList<TrainNumberInfoDetail>() {{
+							add(start);
+							add(end);
+						}});
 						return false;
-					} else if (start.getTrainNumberId().equals(end.getTrainNumberId())
-							&& start.getTrainOrder() < end.getTrainOrder()) {
-						trueTrainNumberIdOrIds.add(start.getTrainNumberId());
+					} else if (isTransit(start, end)) {
+						trainNumberInfoDetailList.add(new ArrayList<TrainNumberInfoDetail>() {{
+							add(start);
+							add(mid1);
+							add(mid2);
+							add(end);
+						}});
+						mid1 = new TrainNumberInfoDetail();
+						mid2 = new TrainNumberInfoDetail();
 						return false;
 					}
 					return false;
@@ -165,18 +187,6 @@ public class TrainController {
 			});
 		} catch (Exception e) {
 			throw new GlobalException("合并火车路线信息异常", e);
-		}
-		try {
-			trueTrainNumberIdOrIds.stream().forEach(trainNumberIdOrIds -> {
-				List<TrainNumberInfoDetail> trainNumberInfoDetails = new ArrayList<>();
-				for (String trainNumberId : trainNumberIdOrIds.split(",")) {
-					trainNumberInfoDetails.addAll(trainNumberInfoDetailService.list(new QueryWrapper<TrainNumberInfoDetail>()
-							.eq("train_number_ID", trainNumberId)));
-				}
-				trainNumberInfoDetailList.add(trainNumberInfoDetails);
-			});
-		} catch (Exception e) {
-			throw new GlobalException("转换火车路线信息异常", e);
 		}
 		log.trace("查询火车路线信息结果==={}", trainNumberInfoDetailList);
 		return Result.ok(trainNumberInfoDetailList).message(trainNumberInfoDetailList.isEmpty() ? "暂无此路线" : "查询火车路线信息成功");
