@@ -44,7 +44,7 @@ public class TrainController {
 	@Autowired
 	private TrainTicketService trainTicketService;
 
-	private static final Integer MAX_ITER = 50;
+	private static final Integer MAX_ITER = 20;
 
 	private TrainNumberInfoDetail mid1 = new TrainNumberInfoDetail();
 
