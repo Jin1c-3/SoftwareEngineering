@@ -45,6 +45,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 			"/**/alipay/**",
 			"/**/callback/**",
 			"/**/aircraft/query-flight/**",
+			"/**/aircraft/query-aircraft-seat/**",
 			"/**/train//query-train/**",
 	};
 
