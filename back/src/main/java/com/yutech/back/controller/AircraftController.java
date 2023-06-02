@@ -240,12 +240,12 @@ public class AircraftController {
 			}
 		}
 
-		if (aircraftSeatDTO.getSeatNo() != null && aircraftSeatDTO != null) {
+		if (aircraftSeatDTO.getSeatNo() != null && aircraftSeatDTO != null && !aircraftSeatDTO.getSeatNo().equals("")) {
 			aircraftAvailableSeatsList = aircraftAvailableSeatsList.stream()
 					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatNo().equals(aircraftSeatDTO.getSeatNo()))
 					.collect(Collectors.toList());
 		}
-		if (aircraftSeatDTO.getSeatType() != null && aircraftSeatDTO != null) {
+		if (aircraftSeatDTO.getSeatType() != null && aircraftSeatDTO != null && !aircraftSeatDTO.getSeatType().equals("")) {
 			aircraftAvailableSeatsList = aircraftAvailableSeatsList.stream()
 					.filter(aircraftAvailableSeats -> aircraftAvailableSeats.getSeatType().equals(aircraftSeatDTO.getSeatType()))
 					.collect(Collectors.toList());
