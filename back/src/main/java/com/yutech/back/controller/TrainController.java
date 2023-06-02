@@ -44,7 +44,7 @@ public class TrainController {
 	@Autowired
 	private TrainTicketService trainTicketService;
 
-	private static final Integer MAX_ITER = 20;
+	private static final Integer MAX_ITER = 10;
 
 	private TrainNumberInfoDetail mid1 = new TrainNumberInfoDetail();
 
@@ -118,7 +118,8 @@ public class TrainController {
 									if (isNull) {
 										return false;
 									}
-									boolean isSameCityAndSuitableTime = startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())
+									boolean isSameCityAndSuitableTime = (startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())
+											&& !startFollowStation.getTrainArriveCity().equals(start.getTrainArriveCity()))
 											&& (sdf.parse(startFollowStation.getTrainArriveTime().substring(0, 5)).before(sdf.parse(endForwardStation.getTrainLeaveTime().substring(0, 5)))
 											|| startFollowStation.getDateorder() < endForwardStation.getDateorder());
 									if (isSameCityAndSuitableTime) {
