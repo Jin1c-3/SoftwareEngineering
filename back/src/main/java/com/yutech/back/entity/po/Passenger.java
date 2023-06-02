@@ -45,6 +45,7 @@ public class Passenger implements Serializable {
 	private String phoneNumber;
 
 	@ApiModelProperty(value = "乘客类型（飞机，火车）")
+	@MppMultiId
 	@TableField("passenger_type")
 	private String passengerType;
 

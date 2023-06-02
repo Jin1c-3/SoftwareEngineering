@@ -50,7 +50,8 @@ public class PassengerController {
 	private boolean isPassengerInDB(Passenger passenger) {
 		return passengerService.getOne(new QueryWrapper<Passenger>()
 				.eq("passenger_id", passenger.getPassengerId())
-				.eq("usr_id", passenger.getUsrId())) != null;
+				.eq("usr_id", passenger.getUsrId())
+				.eq("passenger_type", passenger.getPassengerType())) != null;
 	}
 
 	@PostMapping("/addPassenger")
@@ -86,7 +87,6 @@ public class PassengerController {
 			return Result.ok().message("添加成功");
 		} catch (Exception e) {
 			throw new GlobalException("添加乘客列表函数出错" + passengerList, e);
-
 		}
 	}
 
@@ -94,19 +94,20 @@ public class PassengerController {
 	@ApiOperation(value = "删除乘客信息", notes = "删除乘客信息")
 	public Result<Object> deletePassenger(@RequestBody Passenger passenger) {
 		log.debug("删除乘客信息===" + passenger);
-		if (isPassengerInDB(passenger)) {
-			log.info("添加乘客信息失败，该乘客不存在===" + passenger);
-			return Result.error().message("添加失败，该乘客不存在");
+		if (!isPassengerInDB(passenger)) {
+			log.info("删除乘客信息失败，该乘客不存在===" + passenger);
+			return Result.error().message("删除失败，该乘客不存在");
 		}
 		try {
-			passengerService.remove(new QueryWrapper<Passenger>()
-					.eq("passenger_id", passenger.getPassengerId())
-					.eq("usr_id", passenger.getUsrId()));
+			passengerService.deleteByMultiId(passenger);
+//			passengerService.remove(new QueryWrapper<Passenger>()
+//					.eq("passenger_id", passenger.getPassengerId())
+//					.eq("usr_id", passenger.getUsrId())
+//					.eq("passenger_type", passenger.getPassengerType()));
 			log.debug("删除乘客信息成功===" + passenger);
 			return Result.ok().message("删除成功");
 		} catch (Exception e) {
-			log.error("删除乘客信息失败==={}==={}", passenger, e.getMessage());
-			return Result.error().message("删除失败");
+			throw new GlobalException("删除乘客函数出错" + passenger, e);
 		}
 	}
 }
