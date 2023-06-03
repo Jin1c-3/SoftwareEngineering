@@ -308,7 +308,7 @@ public class UsrController {
 //			trainTicket.setTicketStatus(StatusUtil.TRAIN_TICKET_STATUS_UNPAID);
 //			trainTicket.setOrderId(orderNO);
 			try {
-				trainTicketService.saveBatch(trainTickets);
+				trainTickets.forEach(trainTicket -> trainTicketService.mySave(trainTicket));
 			} catch (Exception e) {
 				throw new GlobalException("火车票保存失败，但订单已创建", e);
 			}

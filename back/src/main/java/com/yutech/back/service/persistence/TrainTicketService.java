@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TrainTicketService extends IService<TrainTicket> {
 
+    boolean mySave(TrainTicket trainTicket);
+
 }
