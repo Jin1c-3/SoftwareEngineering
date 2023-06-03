@@ -50,7 +50,7 @@ public class WholeOrder implements Serializable {
 	 */
 	public WholeOrder(String orderNO, String orderStatus, String vehicleType, String usrId) {
 		this.orderId = orderNO;
-		this.orderTime = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now());
+		this.orderTime = DateTimeFormatter.ofPattern("yyyy-MM-dd kk:mm:ss").format(LocalDateTime.now());
 		this.orderStatus = orderStatus;
 		this.vehicleType = vehicleType;
 		this.usrId = usrId;
