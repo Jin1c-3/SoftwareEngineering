@@ -221,7 +221,7 @@ public class UsrController {
 			log.info("修改用户密码失败，用户不存在，用户为======{}", phoneOrEMail);
 			return Result.error().message("无此用户");
 		}
-		usrInDB.setUsrPwd(pwd);
+		usrInDB.setUsrPwd(PasswordEncryptorUtil.encrypt(pwd));
 		usrService.updateById(usrInDB);
 		log.info("修改用户密码成功，用户为======{}", usrInDB);
 		return Result.ok().message("修改成功");
@@ -262,7 +262,6 @@ public class UsrController {
 		String alipayForm = alipayService.toPay(new PaymentBO(paymentDTO));
 
 		if (paymentDTO.getVehicleType().equals("飞机")) {
-
 			List<FlightTicket> flightTickets = new ArrayList<>();
 			for (String passengerName : paymentDTO.getPassengerNames()) {
 				FlightTicket flightTicket = new FlightTicket(paymentDTO.getFlightOrTrainNO(),

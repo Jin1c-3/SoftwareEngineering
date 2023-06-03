@@ -33,6 +33,8 @@ public class FileUtil {
 	 */
 	private static String uploadPath;
 
+	private static final String relativePath = "/static/img/";
+
 	/**
 	 * 通过 @Value 注解，将 application.properties 中的 web.upload-path 属性值注入到 uploadPath 中
 	 *
@@ -63,9 +65,13 @@ public class FileUtil {
 		// 在 uploadPath 文件夹中通过日期对上传的文件归类保存
 		// 比如：/2019/06/06/test.png
 		String format = sdf.format(new Date());
-		File folder = new File(StringUtils.isEmpty(prePath) ? uploadPath + format : uploadPath + prePath + "/" + format);
+		String webFolderPath = StringUtils.isEmpty(prePath) ?
+				relativePath + format :
+				relativePath + prePath + "/" + format;
+		String trueFolderPath = System.getProperty("user.dir") + webFolderPath;
+		File folder = new File(trueFolderPath);
 		if (!folder.isDirectory()) {
-			log.debug("正在新建文件夹======{}", folder);
+			log.debug("正在新建文件夹==={}", folder);
 			folder.mkdirs();
 		}
 		// 对上传的文件重命名，避免文件重名
@@ -76,7 +82,7 @@ public class FileUtil {
 			// 文件保存
 			file.transferTo(new File(folder, newName));
 			// 返回上传文件的访问路径
-			String httpAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/" + format + newName;
+			String httpAddress = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + webFolderPath + newName;
 			log.info("图片存储成功，真实文件位置===" + folder + "/" + newName + "===返回的网络文件地址===" + httpAddress);
 			return httpAddress;
 		} catch (IOException e) {
@@ -108,7 +114,7 @@ public class FileUtil {
 	 * @return txt文件的内容
 	 */
 	public static String readFileFromTxt(String path) {
-		log.debug("正在读取txt文件======{}", path);
+		log.debug("正在读取txt文件==={}", path);
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
 			char[] buf = new char[1024];

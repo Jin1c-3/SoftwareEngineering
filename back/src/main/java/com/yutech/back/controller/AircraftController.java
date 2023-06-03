@@ -125,9 +125,9 @@ public class AircraftController {
 	public Result<List<List<FlightInfoDetail>>> queryFlight(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询航班信息前端信息==={}", ticketQueryDTO);
 		int weekDay = DateUtil.getWeek(ticketQueryDTO.getLeaveYearMonthDay());
-		List<String> startFlights = new ArrayList<String>();
-		List<String> endFlights = new ArrayList<String>();
-		List<String> trueFlights = new ArrayList<String>();
+		List<String> startFlights = new ArrayList<>();
+		List<String> endFlights = new ArrayList<>();
+		List<String> trueFlights = new ArrayList<>();
 		List<List<FlightInfoDetail>> flightInfoDetailList = new ArrayList<>();
 		try {
 			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()

@@ -46,7 +46,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 			"/**/callback/**",
 			"/**/aircraft/query-flight/**",
 			"/**/aircraft/query-aircraft-seat/**",
-			"/**/train//query-train/**",
+			"/**/train/query-train/**",
 	};
 
 	/**
@@ -99,5 +99,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
 				.allowCredentials(true)
 				.allowedMethods("*")
 				.maxAge(60 * 60 * 24);
+	}
+
+	@Override
+	public void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/","file:static/");
 	}
 }
