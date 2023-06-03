@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotBlank;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -120,8 +121,7 @@ public class TrainController {
 									}
 									boolean isSameCityAndSuitableTime = (startFollowStation.getTrainArriveCity().equals(endForwardStation.getTrainArriveCity())
 											&& !startFollowStation.getTrainArriveCity().equals(start.getTrainArriveCity()))
-											&& (sdf.parse(startFollowStation.getTrainArriveTime().substring(0, 5)).before(sdf.parse(endForwardStation.getTrainLeaveTime().substring(0, 5)))
-											|| startFollowStation.getDateorder() < endForwardStation.getDateorder());
+											&& sdf.parse(startFollowStation.getTrainArriveTime().substring(0, 5)).before(sdf.parse(endForwardStation.getTrainLeaveTime().substring(0, 5)));
 									if (isSameCityAndSuitableTime) {
 										mid1 = startFollowStation;
 										mid2 = endForwardStation;
@@ -166,18 +166,10 @@ public class TrainController {
 						return true;
 					}
 					if (isNonstop(start, end)) {
-						trainNumberInfoDetailList.add(new ArrayList<TrainNumberInfoDetail>() {{
-							add(start);
-							add(end);
-						}});
+						trainNumberInfoDetailList.add(new ArrayList<>(Arrays.asList(start, end)));
 						return false;
 					} else if (isTransit(start, end)) {
-						trainNumberInfoDetailList.add(new ArrayList<TrainNumberInfoDetail>() {{
-							add(start);
-							add(mid1);
-							add(mid2);
-							add(end);
-						}});
+						trainNumberInfoDetailList.add(new ArrayList<>(Arrays.asList(start, mid1, mid2, end)));
 						mid1 = new TrainNumberInfoDetail();
 						mid2 = new TrainNumberInfoDetail();
 						return false;
