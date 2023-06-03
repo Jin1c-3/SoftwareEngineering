@@ -2,6 +2,7 @@ package com.yutech.back.service.bussiness.impl;
 
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
+import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -42,13 +43,22 @@ public class AlipayServiceImpl implements AlipayService {
 	@Value("${alipay.returnUrl}")
 	private String returnUrl;
 
+	public String query(String outTradeNo) {
+		AlipayTradeQueryResponse response;
+		try {
+			response = Factory.Payment.Common().query(outTradeNo);
+		} catch (Exception e) {
+			throw new GlobalException("支付宝订单查询失败", e);
+		}
+		return response.getHttpBody();
+	}
+
 	/**
 	 * 支付宝支付
 	 *
 	 * @param paymentBO 支付信息
 	 * @return 支付宝支付页面
 	 */
-	@Override
 	public String toPay(PaymentBO paymentBO) {
 		if (StringUtils.isBlank(paymentBO.getOrderNO())) {
 			paymentBO.setOrderNO(RandomGeneratorUtil.generateTradeNo());
@@ -60,20 +70,22 @@ public class AlipayServiceImpl implements AlipayService {
 					paymentBO.getMoney().toString(),
 					returnUrl);
 			String payForm = null;
+			if (ResponseChecker.success(response)) {
+				payForm = response.getBody();
+			}
 			WholeOrder wholeOrder = new WholeOrder(
 					paymentBO.getOrderNO(),
 					StatusUtil.ORDER_STATUS_UNPAID,
 					paymentBO.getVehicleType(),
-					paymentBO.getUsrId());
+					paymentBO.getUsrId(),
+					payForm);
 			log.debug("存入订单表whole_order中的数据==={}", wholeOrder);
 			try {
 				wholeOrderService.save(wholeOrder);
 			} catch (Exception e) {
 				throw new GlobalException("JDBC操作失败", e);
 			}
-			if (ResponseChecker.success(response)) {
-				payForm = response.getBody();
-			}
+
 			log.debug("支付宝支付接口调用完成，返回的数据为===" + response.getBody());
 			return payForm;
 		} catch (Exception e) {

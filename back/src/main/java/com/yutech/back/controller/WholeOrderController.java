@@ -8,6 +8,7 @@ import com.yutech.back.common.utils.StatusUtil;
 import com.yutech.back.entity.po.FlightTicket;
 import com.yutech.back.entity.po.TrainTicket;
 import com.yutech.back.entity.po.WholeOrder;
+import com.yutech.back.service.bussiness.AlipayService;
 import com.yutech.back.service.persistence.FlightTicketService;
 import com.yutech.back.service.persistence.TrainTicketService;
 import com.yutech.back.service.persistence.WholeOrderService;
@@ -48,6 +49,9 @@ public class WholeOrderController {
 	@Autowired
 	private TrainTicketService trainTicketService;
 
+	@Autowired
+	private AlipayService alipayService;
+
 	/**
 	 * 根据用户id查询订单
 	 *
@@ -58,7 +62,7 @@ public class WholeOrderController {
 	@ApiImplicitParam(name = "usrId", value = "用户id", required = true, dataTypeClass = String.class)
 	@ApiOperation(value = "根据用户id查询订单", notes = "根据用户id查询订单")
 	public Result<List<WholeOrder>> getOrderByUsrId(String usrId) {
-		log.debug("查询订单信息=======" + usrId);
+		log.debug("查询订单信息===" + usrId);
 		return Result.ok(wholeOrderService.list(new QueryWrapper<WholeOrder>().eq("usr_id", usrId))).message("查询成功");
 	}
 
@@ -126,5 +130,29 @@ public class WholeOrderController {
 			return "fail";
 		}
 	}
+
+	@GetMapping("/alipayQuery")
+	@ApiOperation(value = "支付宝支付官方查询接口", notes = "支付宝支付官方查询接口")
+	public Result<String> alipayQuery(@RequestParam String orderId) {
+		log.debug("用户支付宝继续支付接口===" + orderId);
+		return Result.ok(alipayService.query(orderId)).message("查询中...");
+	}
+
+	@GetMapping("/alipayContinue")
+	@ApiOperation(value = "支付宝继续支付接口", notes = "用户订单继续支付")
+	public Result<String> alipayContinue(@RequestParam String orderId) {
+		log.debug("支付宝继续支付接口前端信息===" + orderId);
+		WholeOrder wholeOrder = null;
+		try {
+			wholeOrder = wholeOrderService.getOne(new QueryWrapper<WholeOrder>().eq("order_id", orderId));
+		} catch (Exception e) {
+			throw new GlobalException("订单不存在", e);
+		}
+		if (wholeOrder == null) {
+			throw new GlobalException("订单不存在");
+		}
+		return Result.ok(wholeOrder.getPayForm()).message("支付跳转中...");
+	}
+
 }
 

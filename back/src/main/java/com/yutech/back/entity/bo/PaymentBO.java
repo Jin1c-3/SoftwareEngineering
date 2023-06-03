@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 
 /**
@@ -17,7 +16,7 @@ import java.math.BigDecimal;
 @Data
 @ApiModel(value = "支付业务对象", description = "支付业务对象")
 public class PaymentBO {
-	@Null
+
 	@ApiModelProperty(value = "订单号")
 	private String orderNO;
 
@@ -34,6 +33,9 @@ public class PaymentBO {
 
 	@ApiModelProperty(value = "用户ID")
 	private String usrId;
+
+	public PaymentBO() {
+	}
 
 	/**
 	 * 有参构造器

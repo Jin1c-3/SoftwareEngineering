@@ -12,4 +12,6 @@ public interface AlipayService {
 	String toPay(PaymentBO paymentBO);
 
 	AlipayTradeRefundResponse refund(RefundDTO refundDTO);
+
+	String query(String orderId);
 }

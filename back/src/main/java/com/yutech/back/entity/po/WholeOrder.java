@@ -45,15 +45,20 @@ public class WholeOrder implements Serializable {
 	@TableField("usr_ID")
 	private String usrId;
 
+	@ApiModelProperty(value = "支付页面")
+	@TableField("pay_form")
+	private String payForm;
+
 	/**
 	 * 有参构造器
 	 */
-	public WholeOrder(String orderNO, String orderStatus, String vehicleType, String usrId) {
+	public WholeOrder(String orderNO, String orderStatus, String vehicleType, String usrId, String payForm) {
 		this.orderId = orderNO;
 		this.orderTime = DateTimeFormatter.ofPattern("yyyy-MM-dd kk:mm:ss").format(LocalDateTime.now());
 		this.orderStatus = orderStatus;
 		this.vehicleType = vehicleType;
 		this.usrId = usrId;
+		this.payForm = payForm;
 	}
 
 //	public WholeOrder(String orderNO, LocalDateTime date, String orderFlag, String vehicleType, String usrId) {
