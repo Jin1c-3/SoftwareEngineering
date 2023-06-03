@@ -187,11 +187,21 @@ public class TrainController {
 
 	@PostMapping("/query-train-seat")
 	@ApiOperation(value = "查询火车座位", notes = "查询火车座位")
-	public Result<Integer> queryTrainSeat(@RequestBody @Validated TrainSeatDTO trainSeatDTO) {
+	public Result<List<Integer>> queryTrainSeat(@RequestBody @Validated TrainSeatDTO trainSeatDTO) {
 		log.debug("查询火车座位前端信息==={}", trainSeatDTO);
-		int seat = trainNumberInfoDetailService.queryTrainSeat(trainSeatDTO);
-		if (seat == -1) throw new GlobalException("火车座位数未改变，查询失败");
-		return Result.ok(seat).message(seat == 0 ? "暂无此座位" : "查询火车座位成功");
+		trainSeatDTO.setSeatType("硬座");
+		int seatYZ = trainNumberInfoDetailService.queryTrainSeat(trainSeatDTO);
+		trainSeatDTO.setSeatType("硬卧");
+		int seatYW = trainNumberInfoDetailService.queryTrainSeat(trainSeatDTO);
+		trainSeatDTO.setSeatType("软座");
+		int seatRZ = trainNumberInfoDetailService.queryTrainSeat(trainSeatDTO);
+		trainSeatDTO.setSeatType("软卧");
+		int seatRW = trainNumberInfoDetailService.queryTrainSeat(trainSeatDTO);
+		List<Integer> seatList = new ArrayList<>(Arrays.asList(seatYZ, seatYW, seatRZ, seatRW));
+		seatList.forEach(seat -> {
+			if (seat == -1) throw new GlobalException("火车座位数未改变，查询失败");
+		});
+		return Result.ok(seatList).message(seatList.isEmpty() ? "暂无此座位" : "查询火车座位成功");
 	}
 
 	@GetMapping("/query-train-ticket")

@@ -11,8 +11,8 @@ import javax.validation.constraints.Pattern;
 @ApiModel(value = "火车票座位查询对象", description = "火车票座位查询")
 public class TrainSeatDTO {
 
-	@ApiModelProperty(value = "座位类型")
-	@NotBlank(message = "座位类型不能为空")
+//	@ApiModelProperty(value = "座位类型")
+//	@NotBlank(message = "座位类型不能为空")
 	private String seatType;
 
 	@ApiModelProperty(value = "车次")
