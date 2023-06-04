@@ -32,7 +32,7 @@ public class AlipayConfig {
 
 	private Config getOptions() {
 		Config config = new Config();
-		config.protocol = "https";
+		config.protocol = "http";
 		// 沙箱环境修改为 openapi.alipaydev.com
 		// 支付宝网关地址：https://openapi-sandbox.dl.alipaydev.com/gateway.do
 		config.gatewayHost = "openapi.alipaydev.com";

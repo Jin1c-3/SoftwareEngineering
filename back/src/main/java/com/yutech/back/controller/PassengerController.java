@@ -78,8 +78,11 @@ public class PassengerController {
 		for (Passenger passenger : passengerList) {
 			if (isPassengerInDB(passenger)) {
 				log.info("添加乘客信息失败，该乘客已存在===" + passenger);
-				return Result.error().message("添加失败，该乘客已存在");
+				passengerList.remove(passenger);
 			}
+		}
+		if(passengerList.isEmpty()){
+			return Result.ok().message("已经全部添加");
 		}
 		try {
 			passengerService.saveBatch(passengerList);

@@ -258,14 +258,14 @@ public class UsrController {
 	@PostMapping("/alipay")
 	public Result<String> alipay(@Validated @RequestBody PaymentDTO paymentDTO) {
 		log.debug("用户支付，前端信息==={}", paymentDTO);
-		String orderNO = RandomGeneratorUtil.generateTradeNo();
-		String alipayForm = alipayService.toPay(new PaymentBO(paymentDTO));
+		PaymentBO paymentBO = new PaymentBO(paymentDTO);
+		String alipayForm = alipayService.toPay(paymentBO);
 
 		if (paymentDTO.getVehicleType().equals("飞机")) {
 			List<FlightTicket> flightTickets = new ArrayList<>();
 			for (String passengerName : paymentDTO.getPassengerNames()) {
 				FlightTicket flightTicket = new FlightTicket(paymentDTO.getFlightOrTrainNO(),
-						orderNO,
+						paymentBO.getOrderNO(),
 						paymentDTO.getStartTime(),
 						paymentDTO.getEndTime(),
 						paymentDTO.getStartPortOrStation(),
@@ -283,16 +283,16 @@ public class UsrController {
 			try {
 				for (FlightTicket flightTicket : flightTickets) {
 					flightTicketService.mySave(flightTicket);
+					log.info("飞机票保存成功，飞机票为==={}", flightTicket);
 				}
 			} catch (Exception e) {
 				throw new GlobalException("飞机票保存失败，但订单已创建", e);
 			}
 		} else if (paymentDTO.getVehicleType().equals("火车")) {
-
 			List<TrainTicket> trainTickets = new ArrayList<>();
 			for (String passengerName : paymentDTO.getPassengerNames()) {
 				TrainTicket trainTicket = new TrainTicket(paymentDTO.getFlightOrTrainNO(),
-						orderNO,
+						paymentBO.getOrderNO(),
 						paymentDTO.getStartTime(),
 						paymentDTO.getEndTime(),
 						paymentDTO.getStartPortOrStation(),
@@ -307,7 +307,10 @@ public class UsrController {
 //			trainTicket.setTicketStatus(StatusUtil.TRAIN_TICKET_STATUS_UNPAID);
 //			trainTicket.setOrderId(orderNO);
 			try {
-				trainTickets.forEach(trainTicket -> trainTicketService.mySave(trainTicket));
+				trainTickets.forEach(trainTicket -> {
+					trainTicketService.mySave(trainTicket);
+					log.info("火车票保存成功，火车票为==={}", trainTicket);
+				});
 			} catch (Exception e) {
 				throw new GlobalException("火车票保存失败，但订单已创建", e);
 			}

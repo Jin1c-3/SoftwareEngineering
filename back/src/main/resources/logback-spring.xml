@@ -167,10 +167,11 @@
 
     <!-- Step4.2 生产环境:输出到文档-->
     <springProfile name="prod">
-        <logger name="com.lyh" level="WARN"/>
+        <logger name="com.yutech.back" level="INFO"/>
         <root level="INFO">
             <appender-ref ref="ERROR_FILE"/>
             <appender-ref ref="WARN_FILE"/>
+            <appender-ref ref="INFO_FILE"/>
         </root>
     </springProfile>
 </configuration>

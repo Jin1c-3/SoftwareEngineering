@@ -262,15 +262,16 @@ public class AircraftController {
 
 	@GetMapping("/query-aircraft-ticket")
 	@ApiOperation(value = "根据订单号查询机票", notes = "根据订单号查询机票")
-	public Result<FlightTicket> queryAircraftTicket(@RequestParam("orderId") String orderId) {
+	public Result<List<FlightTicket>> queryAircraftTicket(@RequestParam("orderId") String orderId) {
 		log.debug("根据订单号查询机票前端信息==={}", orderId);
-		FlightTicket flightTicket = new FlightTicket();
+		List<FlightTicket> flightTicketList = new ArrayList<>();
 		try {
-			flightTicket = flightTicketService.getOne(new QueryWrapper<FlightTicket>().eq("order_Id", orderId));
+			flightTicketList = flightTicketService.list(new QueryWrapper<FlightTicket>()
+					.eq("order_Id", orderId));
 		} catch (Exception e) {
 			throw new GlobalException("根据订单号查询机票失败", e);
 		}
-		return Result.ok(flightTicket).message(flightTicket == null ? "暂无此机票" : "根据订单号查询机票成功");
+		return Result.ok(flightTicketList).message(flightTicketList.isEmpty() ? "暂无此机票" : "根据订单号查询机票成功");
 	}
 }
 

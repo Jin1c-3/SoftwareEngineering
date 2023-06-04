@@ -209,13 +209,14 @@ public class TrainController {
 	public Result<List<TrainTicket>> queryTrainTicket(@NotBlank(message = "订单号不能为空") @Validated
 	                                                  @RequestParam String orderId) {
 		log.debug("根据订单号查询火车票前端信息==={}", orderId);
-		List<TrainTicket> trainTicketList = null;
+		List<TrainTicket> trainTicketList = new ArrayList<>();
 		try {
-			trainTicketList = trainTicketService.list(new QueryWrapper<TrainTicket>().eq("order_id", orderId));
+			trainTicketList = trainTicketService.list(new QueryWrapper<TrainTicket>()
+					.eq("order_id", orderId));
 		} catch (Exception e) {
 			throw new GlobalException("根据订单号查询火车票异常", e);
 		}
 		log.trace("根据订单号查询火车票结果==={}", trainTicketList);
-		return Result.ok(trainTicketList).message(trainTicketList == null ? "暂无此订单" : "根据订单号查询火车票成功");
+		return Result.ok(trainTicketList).message(trainTicketList.isEmpty() ? "暂无此订单" : "根据订单号查询火车票成功");
 	}
 }
