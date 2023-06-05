@@ -202,13 +202,13 @@ public class UsrController {
 	 * @param pwd          新密码
 	 * @return Result
 	 */
-	@PatchMapping("/update-pwd/{phoneOrEMail}")
+	@PatchMapping("/update-pwd")
 	@ApiOperation(value = "修改用户密码", notes = "修改用户密码，传入账号或手机号，将新密码存入数据库")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "phoneOrEMail", value = "账号或手机号", required = true, dataTypeClass = String.class, paramType = "path"),
 			@ApiImplicitParam(name = "pwd", value = "新密码", required = true, dataTypeClass = String.class, paramType = "query")
 	})
-	public Result<Object> updateUsrPwd(@PathVariable String phoneOrEMail, String pwd) {
+	public Result<Object> updateUsrPwd(String phoneOrEMail, String pwd) {
 		Boolean isEMail = phoneOrEMail.contains("@");
 		log.debug("修改用户密码，前端信息======{}======判断是否是邮箱======{}======", phoneOrEMail, isEMail);
 		Usr usrInDB;

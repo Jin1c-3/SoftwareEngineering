@@ -42,6 +42,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 			"/**/webjars/**",
 			"/**/v3/**",
 			"/**/before-update/**",
+			"/**/update-pwd/**",
 			"/**/alipay/**",
 			"/**/callback/**",
 			"/**/aircraft/query-flight/**",
