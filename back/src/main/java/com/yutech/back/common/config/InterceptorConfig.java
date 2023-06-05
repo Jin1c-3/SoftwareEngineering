@@ -48,6 +48,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 			"/**/aircraft/query-flight/**",
 			"/**/aircraft/query-aircraft-seat/**",
 			"/**/train/query-train/**",
+			"/**/train/query-train-seat/**",
 	};
 
 	/**
