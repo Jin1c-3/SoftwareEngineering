@@ -322,8 +322,12 @@ public class UsrController {
 
 	@ApiOperation(value = "用户支付宝退款接口", notes = "支付宝退款接口")
 	@PostMapping("/alipay-refund")
-	public Result<AlipayTradeRefundResponse> alipayRefund(RefundDTO refundDTO) {
-		return Result.ok(alipayService.refund(refundDTO)).message("正在退款...");
+	public Result<String> alipayRefund(RefundDTO refundDTO) {
+		AlipayTradeRefundResponse refund = alipayService.refund(refundDTO);
+		if (refund.getCode().equals("10000")) {
+			return Result.ok(refund.getSubMsg()).message("退款成功");
+		}
+		return Result.error(refund.getSubMsg()).message("正在退款...");
 	}
 
 }
