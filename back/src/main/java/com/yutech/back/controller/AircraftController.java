@@ -124,51 +124,30 @@ public class AircraftController {
 	@ApiOperation(value = "查询满足条件的航班", notes = "只负责查询航班，不管有没有余票")
 	public Result<List<List<FlightInfoDetail>>> queryFlight(@Validated @RequestBody TicketQueryDTO ticketQueryDTO) {
 		log.debug("查询航班信息前端信息==={}", ticketQueryDTO);
-		int weekDay = DateUtil.getWeek(ticketQueryDTO.getLeaveYearMonthDay());
-		List<String> startFlights = new ArrayList<>();
-		List<String> endFlights = new ArrayList<>();
-		List<String> trueFlights = new ArrayList<>();
-		List<List<FlightInfoDetail>> flightInfoDetailList = new ArrayList<>();
-		try {
-			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
-							.eq("flight_start_city", ticketQueryDTO.getStartCityOrStation())
-							.and(flightInfoDetailQueryWrapper -> flightInfoDetailQueryWrapper.like("flight_schedule", weekDay + "")))
-					.stream().forEach(flightInfoDetail -> {
-						startFlights.add(flightInfoDetail.getFlightId() +
-								"," + flightInfoDetail.getFlightSchedule());
-					});
-			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
-							.eq("flight_end_city", ticketQueryDTO.getEndCityOrStation())
-							.and(flightInfoDetailQueryWrapper -> flightInfoDetailQueryWrapper.like("flight_schedule", weekDay + "")))
-					.stream().forEach(flightInfoDetail -> {
-						endFlights.add(flightInfoDetail.getFlightId() +
-								"," + flightInfoDetail.getFlightSchedule());
-					});
-		} catch (Exception e) {
-			throw new GlobalException("查询航班信息失败，城市查询出错", e);
-		}
-		try {
-			startFlights.stream().forEach(startFlight -> {
-				endFlights.stream().forEach(endFlight -> {
-					if (startFlight.equals(endFlight)) trueFlights.add(startFlight);
+		List<List<FlightInfoDetail>> flightInfoDetailListList = new ArrayList<>();
+		flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+						.eq("flight_start_city", ticketQueryDTO.getStartCityOrStation())
+						.or()
+						.eq("flight_start_port", ticketQueryDTO.getStartCityOrStation()))
+				.forEach(flightInfoDetailStart -> {
+					if (flightInfoDetailStart.getFlightSchedule().contains(DateUtil.getWeek(ticketQueryDTO.getLeaveYearMonthDay()) + "")) {
+						List<FlightInfoDetail> flightInfoDetailList = flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+										.eq("flight_id", flightInfoDetailStart.getFlightId())
+										.eq("flight_schedule", flightInfoDetailStart.getFlightSchedule()))
+								.stream().filter(flightInfoDetailEnd -> flightInfoDetailEnd.getFlightOrder() >= flightInfoDetailStart.getFlightOrder())
+								.collect(Collectors.toList());
+						List<FlightInfoDetail> flightInfoDetailList1 = new ArrayList<>();
+						for (FlightInfoDetail flightInfoDetail1 : flightInfoDetailList) {
+							flightInfoDetailList1.add(flightInfoDetail1);
+							if (flightInfoDetail1.getFlightEndCity().equals(ticketQueryDTO.getEndCityOrStation())
+									|| flightInfoDetail1.getFlightEndPort().equals(ticketQueryDTO.getEndCityOrStation())) {
+								flightInfoDetailListList.add(flightInfoDetailList1);
+								break;
+							}
+						}
+					}
 				});
-			});
-			trueFlights.stream().forEach(trueFlight -> {
-				try {
-					List<FlightInfoDetail> flightInfoDetails = new ArrayList<>();
-					flightInfoDetails.addAll(flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
-							.eq("flight_id", trueFlight.split(",")[0])
-							.eq("flight_schedule", trueFlight.split(",")[1])));
-					flightInfoDetailList.add(flightInfoDetails);
-				} catch (Exception e) {
-					throw new GlobalException("查询航班信息失败，航线结果对接出错", e);
-				}
-			});
-		} catch (Exception e) {
-			throw new GlobalException("查询航班信息失败", e);
-		}
-		log.trace("查询航班信息结果==={}", flightInfoDetailList);
-		return Result.ok(flightInfoDetailList).message(flightInfoDetailList.isEmpty() ? "暂无此航班" : "查询航班信息成功");
+		return Result.ok(flightInfoDetailListList).message(flightInfoDetailListList.isEmpty() ? "没有满足条件的航班" : "查询航班信息成功");
 	}
 
 	/**
