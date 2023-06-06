@@ -86,7 +86,7 @@ public class AlipayServiceImpl implements AlipayService {
 				throw new GlobalException("JDBC操作失败", e);
 			}
 
-			log.debug("支付宝支付接口调用完成，返回的数据为===" + response.getBody());
+			log.info("支付宝支付接口调用完成，返回的数据为==={}==={}", response.getBody(), response);
 			return payForm;
 		} catch (Exception e) {
 			throw new GlobalException("支付宝支付接口调用失败", e);

@@ -43,7 +43,7 @@ public class UsrInterceptor implements HandlerInterceptor {
 			}
 			log.debug(id + "===的token是===" + token);
 			if (JwtUtil.verify(token, id, usrInDB.getUsrPwd())) {
-				log.info(id + "===通过了token验证");
+				log.debug(id + "===通过了token验证");
 				return true;
 			}
 			log.info(id + "===未通过token验证");

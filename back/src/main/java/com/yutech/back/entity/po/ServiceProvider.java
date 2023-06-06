@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -38,7 +39,7 @@ public class ServiceProvider implements Serializable {
 
     @ApiModelProperty(value = "约定提成")
     @TableField("push_money")
-    private Float pushMoney;
+    private BigDecimal pushMoney;
 
 
 }

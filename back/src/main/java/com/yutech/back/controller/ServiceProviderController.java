@@ -189,36 +189,26 @@ public class ServiceProviderController {
 	@GetMapping("/query-benefit")
 	@ApiOperation(value = "查询收益", notes = "查询收益")
 	public Result<List<AircraftBenefitVO>> queryBenefit(@RequestParam Integer serviceProviderId) {
-		Float pushMoney = serviceProviderService.getOne(new QueryWrapper<ServiceProvider>().eq("service_provider_ID", serviceProviderId)).getPushMoney();
-		List<String> aircraftIdList = new ArrayList<>();
+		BigDecimal pushMoney = serviceProviderService.getOne(new QueryWrapper<ServiceProvider>().eq("service_provider_ID", serviceProviderId)).getPushMoney();
+		List<String> aircraftIdList;
 		List<AircraftBenefitVO> aircraftBenefitVOList = new ArrayList<>();
 
 		aircraftService.list(new QueryWrapper<Aircraft>()
 						.eq("service_provider_ID", serviceProviderId))
 				.forEach(aircraft -> {
-					aircraftIdList.add(aircraft.getAircraftId());
+					AircraftBenefitVO aircraftBenefitVO = new AircraftBenefitVO();
+					aircraftBenefitVO.setAircraftId(aircraft.getAircraftId());
+					flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
+									.eq("aircraft_ID", aircraft.getAircraftId()))
+							.forEach(flightInfoDetail -> {
+								List<FlightTicket> flightTicketList = flightTicketService.list(new QueryWrapper<FlightTicket>()
+										.eq("flight_ID", flightInfoDetail.getFlightId()));
+								aircraftBenefitVO.setTotalBenefit(flightTicketList.stream().map(FlightTicket::getFlightPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
+								aircraftBenefitVO.setFlightTicketNum(flightTicketList.size());
+							});
+					aircraftBenefitVO.setTrueBenefit(aircraftBenefitVO.getTotalBenefit().multiply(BigDecimal.ONE.subtract(pushMoney)));
+					aircraftBenefitVOList.add(aircraftBenefitVO);
 				});
-
-		aircraftIdList.forEach(aircraftId1 -> {
-			AircraftBenefitVO aircraftBenefitVO = new AircraftBenefitVO();
-			List<String> flightIdList = new ArrayList<>();
-			aircraftBenefitVO.setAircraftId(aircraftId1);
-			flightInfoDetailService.list(new QueryWrapper<FlightInfoDetail>()
-							.eq("aircraft_ID", aircraftId1))
-					.forEach(flightInfoDetail -> {
-						flightIdList.add(flightInfoDetail.getFlightId());
-					});
-			flightIdList.forEach(flightId -> {
-				flightTicketService.list(new QueryWrapper<FlightTicket>()
-								.eq("flight_ID", flightId))
-						.forEach(flightTicket -> {
-							aircraftBenefitVO.setTotalBenefit(aircraftBenefitVO.getTotalBenefit().add(flightTicket.getFlightPrice()));
-							aircraftBenefitVO.setFlightTicketNum(aircraftBenefitVO.getFlightTicketNum() + 1);
-						});
-			});
-			aircraftBenefitVO.setTrueBenefit(aircraftBenefitVO.getTotalBenefit().multiply(new BigDecimal(1 - pushMoney)));
-			aircraftBenefitVOList.add(aircraftBenefitVO);
-		});
 		return Result.ok(aircraftBenefitVOList).message("查询成功");
 	}
 }

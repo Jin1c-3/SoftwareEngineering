@@ -20,8 +20,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -58,6 +58,12 @@ public class SuperUsrController {
 
 	@Autowired
 	private ServiceProviderController serviceProviderController;
+
+	@Autowired
+	private FlightInfoDetailService flightInfoDetailService;
+
+	@Autowired
+	private AircraftService aircraftService;
 
 
 //	/**
@@ -388,32 +394,48 @@ public class SuperUsrController {
 	@GetMapping("/query-benefit")
 	@ApiOperation(value = "查询网站收益", notes = "查询网站收益")
 	public Result<List<SuperUsrBenefitVO>> queryBenefit() {
-		List<SuperUsrBenefitVO> superUsrBenefitVOList = new ArrayList<>();
 		List<TrainTicket> trainTicketList = trainTicketService.list();
 		List<FlightTicket> flightTicketList = flightTicketService.list();
+		List<ServiceProvider> serviceProviderList = serviceProviderService.list();
+		List<FlightInfoDetail> flightInfoDetailList = flightInfoDetailService.list();
+		List<Aircraft> aircraftList = aircraftService.list();
 		SuperUsrBenefitVO superUsrBenefitVO1 = new SuperUsrBenefitVO();
 		SuperUsrBenefitVO superUsrBenefitVO2 = new SuperUsrBenefitVO();
 		superUsrBenefitVO1.setVehicleType("火车");
 		superUsrBenefitVO2.setVehicleType("飞机");
-		trainTicketList.forEach(trainTicket -> {
-			superUsrBenefitVO1.setTotalBenefit(superUsrBenefitVO1.getTotalBenefit().add(trainTicket.getTrainPrice() == null ? BigDecimal.valueOf(0) : trainTicket.getTrainPrice()));
-			superUsrBenefitVO1.setTicketNum(superUsrBenefitVO1.getTicketNum() + 1);
-		});
-		flightTicketList.forEach(flightTicket -> {
-			superUsrBenefitVO2.setTotalBenefit(superUsrBenefitVO2.getTotalBenefit().add(flightTicket.getFlightPrice() == null ? BigDecimal.valueOf(0) : flightTicket.getFlightPrice()));
-			superUsrBenefitVO2.setTicketNum(superUsrBenefitVO2.getTicketNum() + 1);
-		});
+
+		superUsrBenefitVO1.setTotalBenefit(trainTicketList.stream().map(TrainTicket::getTrainPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
+		superUsrBenefitVO2.setTotalBenefit(flightTicketList.stream().map(FlightTicket::getFlightPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
+		superUsrBenefitVO1.setTicketNum(trainTicketList.size());
+		superUsrBenefitVO2.setTicketNum(flightTicketList.size());
+
 		superUsrBenefitVO1.setTrueBenefit(superUsrBenefitVO1.getTotalBenefit().multiply(BigDecimal.valueOf(0.1)));
 		BigDecimal serviceProviderBenefit = new BigDecimal(0);
-		serviceProviderService.list().forEach(serviceProvider -> serviceProviderController.queryBenefit(serviceProvider.getServiceProviderId())
-				.getData()
-				.forEach(
-						serviceProviderBenefitVO -> serviceProviderBenefit.add(serviceProviderBenefitVO.getTrueBenefit())
-				));
+
+		Set<String> fightIdInFlightTicketSet = flightTicketList.stream().map(FlightTicket::getFlightId).collect(Collectors.toSet());
+		Map<String, String> flightIdAndAircraftId = new HashMap<>();
+		Map<String, Integer> flightIdAndServiceProviderId = new HashMap<>();
+		Map<String, BigDecimal> flightIdAndPushMoney = new HashMap<>();
+		fightIdInFlightTicketSet.forEach(flightId -> {
+			flightIdAndAircraftId.put(flightId, flightInfoDetailList.stream().filter(flightInfoDetail -> flightInfoDetail.getFlightId().equals(flightId)).findFirst().get().getAircraftId());
+		});
+		flightIdAndAircraftId.forEach((flightId, aircraftId) -> {
+			flightIdAndServiceProviderId.put(flightId, aircraftList.stream().filter(aircraft -> aircraft.getAircraftId().equals(aircraftId)).findFirst().get().getServiceProviderId());
+		});
+		flightIdAndServiceProviderId.forEach((flightId, serviceProviderId) -> {
+			flightIdAndPushMoney.put(flightId, serviceProviderList.stream().filter(serviceProvider -> serviceProvider.getServiceProviderId().equals(serviceProviderId)).findFirst().get().getPushMoney());
+		});
+
+		for (FlightTicket flightTicket : flightTicketList) {
+			serviceProviderBenefit = serviceProviderBenefit.add(flightTicket.getFlightPrice().multiply(BigDecimal.ONE.subtract(flightIdAndPushMoney.get(flightTicket.getFlightId()))));
+		}
+
+//		flightTicketList.forEach(flightTicket -> {
+//			serviceProviderBenefit.add(flightTicket.getFlightPrice().multiply(BigDecimal.valueOf(1 - flightIdAndPushMoney.get(flightTicket.getFlightId()))));
+//		});
+
 		superUsrBenefitVO2.setTrueBenefit(superUsrBenefitVO2.getTotalBenefit().subtract(serviceProviderBenefit));
-		superUsrBenefitVOList.add(superUsrBenefitVO1);
-		superUsrBenefitVOList.add(superUsrBenefitVO2);
-		return Result.ok(superUsrBenefitVOList).message("查询成功");
+		return Result.ok(Arrays.asList(superUsrBenefitVO1, superUsrBenefitVO2)).message("查询成功");
 	}
 }
 

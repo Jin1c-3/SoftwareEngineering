@@ -35,7 +35,7 @@ public class AlipayConfig {
 		config.protocol = "http";
 		// 沙箱环境修改为 openapi.alipaydev.com
 		// 支付宝网关地址：https://openapi-sandbox.dl.alipaydev.com/gateway.do
-		config.gatewayHost = "openapi.alipaydev.com";
+		config.gatewayHost = "openapi-sandbox.dl.alipaydev.com";
 		config.signType = "RSA2";
 		config.appId = appId;
 		// 为避免私钥随源码泄露，推荐从文件中读取私钥字符串而不是写入源码中

@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @ApiModel(value = "服务商信息表现层", description = "服务商信息表现层")
 public class ServiceProviderVO {
@@ -14,7 +16,7 @@ public class ServiceProviderVO {
 	private String serviceProviderName;
 
 	@ApiModelProperty(value = "约定提成")
-	private Float pushMoney;
+	private BigDecimal pushMoney;
 
 	public ServiceProviderVO() {
 	}
