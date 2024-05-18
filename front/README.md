@@ -1,24 +1,9 @@
-# electron-test
+之前前端在写代码的时候没有使用 git ，打包后的文件可以在全平台运行。但是安装包太大了传不上来，所以请在百度云下载这部分打包后的文件：
 
-## Project setup
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+链接：https://pan.baidu.com/s/1SLkKerZyzkBpn5U8PbdRBQ?pwd=p7ps 
+提取码：p7ps 
+--来自百度网盘超级会员V5的分享
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+另外注意原本是将后端部署到云服务器上的，现在云服务器已经到期了，所以此处的前端只能看界面样式而无法提供功能。

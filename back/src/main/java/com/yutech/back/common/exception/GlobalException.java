@@ -1,6 +1,7 @@
 package com.yutech.back.common.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
  * 使用 HttpStatus 的常量表示 响应状态码，需导入 httpcore 相关依赖文件。
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class GlobalException extends RuntimeException {
 
 	/**
